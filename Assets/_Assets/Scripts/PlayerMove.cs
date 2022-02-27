@@ -12,10 +12,12 @@ public class PlayerMove : MonoBehaviour
 
 	private bool init = false;
 	private SpriteRenderer sRenderer;
+	private GameObject playerVisuals;
 
 	private void Start()
 	{
-		sRenderer = GetComponent<SpriteRenderer>();
+		sRenderer = GetComponentInChildren<SpriteRenderer>();
+		playerVisuals = transform.GetChild(0).gameObject;
 	}
 
 	public void Init(List<float> limits)
@@ -38,8 +40,8 @@ public class PlayerMove : MonoBehaviour
 	{
 		Vector2 newPosition;
 		// newPosition.x = ((rightLimit - leftLimit) * horizontal) + leftLimit;
-		newPosition.x = Mathf.Lerp(leftLimit + sRenderer.size.x / 2, rightLimit - sRenderer.size.x / 2, horizontal);
-		newPosition.y = Mathf.Lerp(bottomLimit + sRenderer.size.y / 2, upLimit - sRenderer.size.y / 2, vertical);
+		newPosition.x = Mathf.Lerp(leftLimit + (sRenderer.size.x * playerVisuals.transform.localScale.x) / 2, rightLimit - (sRenderer.size.x * playerVisuals.transform.localScale.x) / 2, horizontal);
+		newPosition.y = Mathf.Lerp(bottomLimit + (sRenderer.size.y * playerVisuals.transform.localScale.y) / 2, upLimit - (sRenderer.size.y * playerVisuals.transform.localScale.y) / 2, vertical);
 		transform.position = newPosition;
 	}
 }

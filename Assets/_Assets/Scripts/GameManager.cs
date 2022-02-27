@@ -41,14 +41,12 @@ public class GameManager : MonoBehaviour
 
 		_instance = this;
 		DontDestroyOnLoad(this.gameObject);
-	}
-	#endregion
 
-	private void Start()
-	{
+
 		playerMove = Instantiate(playerPrefab).GetComponentInChildren<PlayerMove>();
 		joystick.Init(playerMove);
 	}
+	#endregion
 
 	public void SetMapLimits(List<float> limits)
 	{

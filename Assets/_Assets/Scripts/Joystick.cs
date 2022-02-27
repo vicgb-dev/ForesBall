@@ -5,11 +5,12 @@ using UnityEngine.EventSystems;
 
 public class Joystick : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-	[SerializeField] private PlayerMove playerMove;
 
 	[SerializeField] private Canvas canvas;
-	public RectTransform rTConainer;
+	[SerializeField] private RectTransform rTConainer;
+
 	private RectTransform rT;
+	private PlayerMove playerMove;
 
 	private float containerLimitUp;
 	private float containerLimitDown;

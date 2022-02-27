@@ -865,7 +865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapBuilder: {fileID: 198629391}
-  playerPrefab: {fileID: 6755251483613476558, guid: 53176e6366e7934468b3f820a659620b, type: 3}
+  playerPrefab: {fileID: 6438973676714548558, guid: 53176e6366e7934468b3f820a659620b, type: 3}
   joystick: {fileID: 1460553176}
 --- !u!1 &1057347270
 GameObject:
@@ -1185,7 +1185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3444d7b251e3543458036f971684f6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMove: {fileID: 0}
   canvas: {fileID: 225247640}
   rTConainer: {fileID: 474031122}
 --- !u!1 &1559251322
