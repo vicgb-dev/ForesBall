@@ -29,10 +29,6 @@ public class PlayerMove : MonoBehaviour
 
 		transform.position = new Vector3((rightLimit - leftLimit) / 2 + leftLimit, (upLimit - bottomLimit) / 2 + bottomLimit, 0);
 
-		Debug.Log("Limite izq" + leftLimit);
-		Debug.Log("Limite up" + upLimit);
-		Debug.Log("Limite der" + rightLimit);
-		Debug.Log("Limite down" + bottomLimit);
 		init = true;
 	}
 

@@ -55,4 +55,13 @@ public class GameManager : MonoBehaviour
 		playerMove.Init(limits);
 	}
 
+	public void StartLevel(int lvlNum)
+	{
+		Actions.onLvlStart?.Invoke(lvlNum);
+	}
+
+	public void EndLevel()
+	{
+		Actions.onLvlEnd?.Invoke();
+	}
 }

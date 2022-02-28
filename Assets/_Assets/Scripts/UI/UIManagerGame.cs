@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManagerJuego : MonoBehaviour
+public class UIManagerGame : MonoBehaviour
 {
 	public GameObject canvas;
 	public GameObject pSafeArea;

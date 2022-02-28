@@ -18,19 +18,12 @@ public class MapBuilder : MonoBehaviour
 		rightLimit = limits[2];
 		bottomLimit = limits[3];
 
-		Debug.Log("Limite izq" + leftLimit);
-		Debug.Log("Limite up" + upLimit);
-		Debug.Log("Limite der" + rightLimit);
-		Debug.Log("Limite down" + bottomLimit);
 		init = true;
 	}
 
 	void Update()
 	{
 		if (!init) return;
-
-
 		//more things
-
 	}
 }
