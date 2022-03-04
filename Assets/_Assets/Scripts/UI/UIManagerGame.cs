@@ -6,6 +6,8 @@ public class UIManagerGame : MonoBehaviour
 {
 	public GameObject canvas;
 	public GameObject pSafeArea;
+	public GameObject pMinimenu;
+	public GameObject pJoystick;
 	public GameObject pGame;
 
 	private void Start()
@@ -17,10 +19,14 @@ public class UIManagerGame : MonoBehaviour
 	public void ReorganizeParents()
 	{
 		pGame.transform.SetParent(canvas.transform);
+		pMinimenu.transform.SetParent(canvas.transform);
+		pJoystick.transform.SetParent(canvas.transform);
 		pSafeArea.transform.SetParent(pGame.transform);
 
 		for (int i = 0; i < pSafeArea.transform.childCount; i++)
 			pSafeArea.transform.GetChild(i).SetParent(canvas.transform);
+
+		pSafeArea.transform.localScale *= 2;
 
 	}
 }

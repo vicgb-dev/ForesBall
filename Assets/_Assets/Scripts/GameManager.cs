@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	void Awake()
+	private void Awake()
 	{
 		// Si el singleton aun no ha sido inicializado
 		if (_instance != null && _instance != this)
@@ -51,6 +51,11 @@ public class GameManager : MonoBehaviour
 	public void SetMapLimits(List<float> limits)
 	{
 		this.limits = limits;
+		InitScripts();
+	}
+
+	private void InitScripts()
+	{
 		mapBuilder.Init(limits);
 		playerMove.Init(limits);
 	}
