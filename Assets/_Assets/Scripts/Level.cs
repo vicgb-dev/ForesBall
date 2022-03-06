@@ -6,15 +6,15 @@ using UnityEngine;
 public class Level : ScriptableObject
 {
 	[Header("Level data")]
-	[SerializeField] private int level;
-	[SerializeField] private string songName;
+	public int level;
+	public string songName;
 
 	[Header("Enemies")]
-	[SerializeField] private List<EnemyStraight> enemiesStraight;
-	[SerializeField] private List<EnemyFollow> enemiesFollow;
-	[SerializeField] private List<EnemyBig> enemiesBig;
+	public int enemiesStraight;
+	public int enemiesFollow;
+	public int enemiesBig;
 
 	[Header("PowerUps")]
-	[SerializeField] private List<PowerUpWave> powerUpsWave;
-	[SerializeField] private List<PowerUpInmortal> powerUpsInmortal;
+	public int powerUpsWave;
+	public int powerUpsInmortal;
 }

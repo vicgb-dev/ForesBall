@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Joystick : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class Joystick : MonoBehaviour, IDragHandler//, IPointerDownHandler, IBeginDragHandler, IEndDragHandler
 {
 
 	[SerializeField] private Canvas canvas;
@@ -52,8 +52,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
 	public void OnDrag(PointerEventData eventData)
 	{
-		Debug.Log("OnDrag");
-		Vector2 nextPosition = Input.mousePosition;
+		//Debug.Log("OnDrag");
+		Vector2 nextPosition = Input.GetTouch(0).position;
 
 		bool overLimitUp = nextPosition.y + offSetVertical > containerLimitUp;
 		bool overLimitDown = nextPosition.y - offSetVertical < containerLimitDown;
@@ -74,23 +74,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 		vertical = Mathf.InverseLerp(containerLimitDown + offSetVertical, containerLimitUp - offSetVertical, rT.position.y);
 		horizontal = Mathf.InverseLerp(containerLimitLeft + OffSetHorizontal, containerLimitRight - OffSetHorizontal, rT.position.x);
 
-		Debug.Log("V: " + Mathf.Round(vertical * 100) + "% H: " + Mathf.Round(horizontal * 100) + "%");
+		//Debug.Log("V: " + Mathf.Round(vertical * 100) + "% H: " + Mathf.Round(horizontal * 100) + "%");
 
 		if (playerMove != null) playerMove.NewPosition(horizontal, vertical);
-	}
-
-	public void OnPointerDown(PointerEventData eventData)
-	{
-		Debug.Log("OnPointerDown");
-	}
-
-	public void OnBeginDrag(PointerEventData eventData)
-	{
-		Debug.Log("OnBeginDrag");
-	}
-
-	public void OnEndDrag(PointerEventData eventData)
-	{
-		Debug.Log("OnEndDrag");
 	}
 }

@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
 	//TO DO: cambiarlo por una interfaz
-	public MapBuilder mapBuilder;
 	public GameObject playerPrefab;
-	public Joystick joystick;
 
+	private Joystick joystick;
 	private PlayerMove playerMove;
-	private List<float> limits;
+	public Dictionary<Limits, float> limits = new Dictionary<Limits, float>();
 
 	//Definición del patrón Singleton
 	#region Singleton
@@ -43,21 +43,36 @@ public class GameManager : MonoBehaviour
 		DontDestroyOnLoad(this.gameObject);
 
 
-		playerMove = Instantiate(playerPrefab).GetComponentInChildren<PlayerMove>();
-		joystick.Init(playerMove);
 	}
 	#endregion
 
-	public void SetMapLimits(List<float> limits)
+	private void OnEnable()
 	{
-		this.limits = limits;
+		Actions.onLvlEnd += TimeStop;
+	}
+
+	private void OnDisable()
+	{
+		Actions.onLvlEnd -= TimeStop;
+	}
+
+	public void SetMapLimits(List<float> limitsFloat)
+	{
+		limits.Clear();
+		limits.Add(Limits.left, limitsFloat[0]);
+		limits.Add(Limits.up, limitsFloat[1]);
+		limits.Add(Limits.right, limitsFloat[2]);
+		limits.Add(Limits.bottom, limitsFloat[3]);
 		InitScripts();
 	}
 
 	private void InitScripts()
 	{
-		mapBuilder.Init(limits);
-		playerMove.Init(limits);
+		playerMove = Instantiate(playerPrefab).GetComponentInChildren<PlayerMove>();
+		playerMove.Init();
+
+		joystick = GameObject.Find("JDot").GetComponent<Joystick>();
+		joystick.Init(playerMove);
 	}
 
 	public void StartLevel(int lvlNum)
@@ -65,8 +80,19 @@ public class GameManager : MonoBehaviour
 		Actions.onLvlStart?.Invoke(lvlNum);
 	}
 
-	public void EndLevel()
+	public void EndLevel(bool win)
 	{
-		Actions.onLvlEnd?.Invoke();
+		Actions.onLvlEnd?.Invoke(win);
+	}
+
+	public void TimeStop(bool win)
+	{
+		Time.timeScale = 0;
+	}
+
+	public void ResetScene()
+	{
+		Time.timeScale = 1;
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 }

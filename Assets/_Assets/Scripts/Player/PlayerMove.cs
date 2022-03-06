@@ -10,9 +10,10 @@ public class PlayerMove : MonoBehaviour
 	private float rightLimit;
 	private float bottomLimit;
 
-	private bool init = false;
+	private bool control = false;
 	private SpriteRenderer sRenderer;
 	private GameObject playerVisuals;
+	private Dictionary<Limits, float> limits;
 
 	private void Start()
 	{
@@ -20,24 +21,53 @@ public class PlayerMove : MonoBehaviour
 		playerVisuals = transform.GetChild(0).gameObject;
 	}
 
-	public void Init(List<float> limits)
+	private void OnEnable()
 	{
-		leftLimit = limits[0];
-		upLimit = limits[1];
-		rightLimit = limits[2];
-		bottomLimit = limits[3];
+		Actions.onLvlStart += EnableControl;
+		Actions.onLvlEnd += UnableControl;
+	}
 
-		transform.position = new Vector3((rightLimit - leftLimit) / 2 + leftLimit, (upLimit - bottomLimit) / 2 + bottomLimit, 0);
+	private void OnDisable()
+	{
+		Actions.onLvlStart -= EnableControl;
+		Actions.onLvlEnd -= UnableControl;
+	}
 
-		init = true;
+	public void Init()
+	{
+		limits = GameManager.Instance.limits;
+
+		transform.position = new Vector3(
+			(limits[Limits.right] - limits[Limits.left]) / 2 + limits[Limits.left],
+			(limits[Limits.up] - limits[Limits.bottom]) / 2 + limits[Limits.bottom],
+			0);
+	}
+
+	private void EnableControl(int lvlNum)
+	{
+		control = true;
+	}
+
+	private void UnableControl(bool win)
+	{
+		control = false;
 	}
 
 	public void NewPosition(float horizontal, float vertical)
 	{
+		if (!control) return;
+
 		Vector2 newPosition;
-		// newPosition.x = ((rightLimit - leftLimit) * horizontal) + leftLimit;
-		newPosition.x = Mathf.Lerp(leftLimit + (sRenderer.size.x * playerVisuals.transform.localScale.x) / 2, rightLimit - (sRenderer.size.x * playerVisuals.transform.localScale.x) / 2, horizontal);
-		newPosition.y = Mathf.Lerp(bottomLimit + (sRenderer.size.y * playerVisuals.transform.localScale.y) / 2, upLimit - (sRenderer.size.y * playerVisuals.transform.localScale.y) / 2, vertical);
+		newPosition.x = Mathf.Lerp(
+			limits[Limits.left] + (sRenderer.size.x * playerVisuals.transform.localScale.x) / 2,
+			limits[Limits.right] - (sRenderer.size.x * playerVisuals.transform.localScale.x) / 2,
+			horizontal);
+
+		newPosition.y = Mathf.Lerp(
+			limits[Limits.bottom] + (sRenderer.size.y * playerVisuals.transform.localScale.y) / 2,
+			limits[Limits.up] - (sRenderer.size.y * playerVisuals.transform.localScale.y) / 2,
+			vertical);
+
 		transform.position = newPosition;
 	}
 }

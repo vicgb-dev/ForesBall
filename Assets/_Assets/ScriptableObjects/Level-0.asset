@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f29812b503ecd4aa042a38e18b680e, type: 3}
   m_Name: Level-0
   m_EditorClassIdentifier: 
-  level: 0
+  level: 1
   songName: 
-  enemiesStraight: []
-  enemiesFollow: []
-  enemiesBig: []
-  powerUpsWave: []
-  powerUpInmortal: []
+  enemiesStraight: 10
+  enemiesFollow: 0
+  enemiesBig: 0
+  powerUpsWave: 0
+  powerUpsInmortal: 0
