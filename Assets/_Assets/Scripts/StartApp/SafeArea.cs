@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SafeArea : MonoBehaviour
 {
-
 	//Ajusta el tamaño de la pantalla a la zona segura de cada dispositivo
 	private void Awake()
 	{

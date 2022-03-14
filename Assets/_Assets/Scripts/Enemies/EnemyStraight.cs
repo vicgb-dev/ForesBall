@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class EnemyStraight : MonoBehaviour
 {
-	[SerializeField] private float speed = 100;
+	[SerializeField] private float initialForce = 100;
+	[SerializeField] private float speed = 2f;
+	[SerializeField] private float speedIncremental = 0.05f;
 	[SerializeField] private float secsToActivateCollider = 1;
 
 	private Vector2 direction;
@@ -21,40 +23,28 @@ public class EnemyStraight : MonoBehaviour
 
 	private void Start()
 	{
-		rb.AddForce(transform.up * speed);
-		StartCoroutine(ChangeTag());
-	}
-
-	private void OnEnable()
-	{
-		Actions.onCleanLvl += DestroyThis;
-	}
-
-	private void OnDisable()
-	{
-		Actions.onCleanLvl -= DestroyThis;
-	}
-
-	private void DestroyThis()
-	{
-		Destroy(gameObject);
-	}
-
-	private void Update()
-	{
-		lastVelocity = rb.velocity;
+		rb.AddForce(transform.up * initialForce);
+		StartCoroutine(ActivateEnemyTag());
 	}
 
 	private void OnCollisionEnter2D(Collision2D other)
 	{
-		var speed = lastVelocity.magnitude;
+		speed += speedIncremental;
 		direction = Vector3.Reflect(lastVelocity.normalized, other.contacts[0].normal);
-		rb.velocity = direction * Mathf.Max(speed, 0);
+		rb.velocity = direction * speed;
 	}
 
-	private IEnumerator ChangeTag()
+	private void OnEnable() => Actions.onCleanLvl += DestroyThis;
+
+	private void OnDisable() => Actions.onCleanLvl -= DestroyThis;
+
+	private void DestroyThis() => Destroy(gameObject);
+
+	private void Update() => lastVelocity = rb.velocity;
+
+	private IEnumerator ActivateEnemyTag()
 	{
-		yield return new WaitForSeconds(secsToActivateCollider);
-		gameObject.tag = "Enemy";
+		yield return new WaitForSecondsRealtime(secsToActivateCollider);
+		gameObject.tag = Tag.EnemyStraight.ToString();
 	}
 }

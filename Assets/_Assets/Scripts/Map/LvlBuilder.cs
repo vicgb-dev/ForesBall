@@ -7,6 +7,7 @@ public class LvlBuilder : MonoBehaviour
 	// Componente que se ocupa de preparar enemigos, powerups y probabilidades
 
 	[Header("Configuration")]
+	public float delayFirstSpawn;
 	public float timeBtwSpawns;
 
 	[Header("Prefabs")]
@@ -24,29 +25,35 @@ public class LvlBuilder : MonoBehaviour
 	private void OnEnable()
 	{
 		Actions.onLvlStart += StartLevel;
+		Actions.onLvlEnd += StopSpawns;
 	}
 
 	private void OnDisable()
 	{
 		Actions.onLvlStart -= StartLevel;
+		Actions.onLvlEnd -= StopSpawns;
 	}
 
 	private void StartLevel(int lvlNum)
 	{
 		Debug.Log("Comienza el lvl " + lvlNum);
 		limits = GameManager.Instance.limits;
+
+		SoundManager.Instance.PlayAudio(levels[lvlNum - 1].songName);
+
 		StopAllCoroutines();
-		StartCoroutine(SpawnEnemy(enemyStraightPrefab, levels[lvlNum - 1].enemiesStraight));
+		StartCoroutine(SpawnEnemy(enemyStraightPrefab, levels[lvlNum - 1].enemiesStraight, delayFirstSpawn, timeBtwSpawns));
 		// StartCoroutine(SpawnEnemy(enemyFollowPrefab, levels[lvlNum - 1].enemiesFollow));
 		// StartCoroutine(SpawnEnemy(enemyBigPrefab, levels[lvlNum - 1].enemiesBig));
 	}
 
-	private IEnumerator SpawnEnemy(GameObject enemyPrefab, int enemies)
+	private IEnumerator SpawnEnemy(GameObject enemyPrefab, int enemies, float firstSpawn, float btwSpawns)
 	{
+		yield return new WaitForSeconds(firstSpawn);
 		SpriteRenderer sRenderer = enemyPrefab.GetComponentInChildren<SpriteRenderer>();
 		while (enemies > 0)
 		{
-			yield return new WaitForSeconds(timeBtwSpawns);
+			yield return new WaitForSeconds(btwSpawns);
 			while (!spawned)
 			{
 				Vector3 newLocation = new Vector3(
@@ -72,6 +79,11 @@ public class LvlBuilder : MonoBehaviour
 		}
 		Debug.Log("Fin de la rutina");
 
+	}
+
+	private void StopSpawns(bool win)
+	{
+		StopAllCoroutines();
 	}
 
 	private bool CanSpawn(Vector3 center, float radius)

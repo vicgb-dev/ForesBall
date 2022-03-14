@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
 	//TO DO: cambiarlo por una interfaz
 	public GameObject playerPrefab;
+	public float durationTimeStop = 1f;
 
 	private Joystick joystick;
 	private PlayerMove playerMove;
@@ -88,6 +89,13 @@ public class GameManager : MonoBehaviour
 	public void TimeStop(bool win)
 	{
 		Time.timeScale = 0;
+		StartCoroutine(TimeStart());
+	}
+
+	public IEnumerator TimeStart()
+	{
+		yield return new WaitForSecondsRealtime(durationTimeStop);
+		Time.timeScale = 1;
 	}
 
 	public void ResetScene()

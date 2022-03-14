@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level-0
   m_EditorClassIdentifier: 
   level: 1
-  songName: 
+  songName: Short-InTheHallOfTheMountainKing
   enemiesStraight: 10
   enemiesFollow: 0
   enemiesBig: 0
