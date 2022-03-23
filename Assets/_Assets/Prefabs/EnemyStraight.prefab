@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1238095518798861850}
   - component: {fileID: 5356940671335265267}
   - component: {fileID: 4026320245226624678}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyStraight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 4495162964843040009}
   - component: {fileID: 2705867912903004508}
   - component: {fileID: 7447828884731519394}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}

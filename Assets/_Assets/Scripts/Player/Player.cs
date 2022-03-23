@@ -8,8 +8,8 @@ public class Player : MonoBehaviour
 	{
 		if (other.gameObject.tag.Contains("Enemy"))
 		{
-			Debug.LogWarning("Fin del juego");
-			GameManager.Instance.EndLevel(false);
+			Debug.Log("Player touched enemy");
+			LvlBuilder.Instance.EndLevel(false);
 		}
 	}
 }

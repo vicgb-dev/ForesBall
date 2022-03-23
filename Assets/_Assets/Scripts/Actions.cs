@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class Actions
 {
-	public static Action<int> onLvlStart;
+	public static Action<Level> onLvlStart;
 	public static Action<bool> onLvlEnd;
 	public static Action onCleanLvl;
 	//El tiempo se para, se reproduce un sonido de findejuego

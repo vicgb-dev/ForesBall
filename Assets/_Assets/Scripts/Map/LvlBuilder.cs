@@ -6,10 +6,6 @@ public class LvlBuilder : MonoBehaviour
 {
 	// Componente que se ocupa de preparar enemigos, powerups y probabilidades
 
-	[Header("Configuration")]
-	public float delayFirstSpawn;
-	public float timeBtwSpawns;
-
 	[Header("Prefabs")]
 	public GameObject enemyStraightPrefab;
 	public GameObject enemyFollowPrefab;
@@ -21,30 +17,92 @@ public class LvlBuilder : MonoBehaviour
 	private Dictionary<Limits, float> limits;
 	private bool spawned = false;
 	private Collider2D[] colliders = new Collider2D[0];
+	private Level currentLvl;
+
+	//Definición del patrón Singleton
+	#region Singleton
+
+	private static LvlBuilder _instance;
+	public static LvlBuilder Instance
+	{
+		get
+		{
+			if (_instance != null) return _instance;
+			Debug.Log("Buscando singleton en escena");
+			_instance = FindObjectOfType<LvlBuilder>();
+			if (_instance != null) return _instance;
+			var manager = new GameObject("Singleton");
+			_instance = manager.AddComponent<LvlBuilder>();
+			return _instance;
+		}
+	}
+
+	private void Awake()
+	{
+		// Si el singleton aun no ha sido inicializado
+		if (_instance != null && _instance != this)
+		{
+			Destroy(this.gameObject);
+			return;
+		}
+
+		_instance = this;
+		DontDestroyOnLoad(this.gameObject);
+	}
+
+	#endregion
+
 
 	private void OnEnable()
 	{
-		Actions.onLvlStart += StartLevel;
 		Actions.onLvlEnd += StopSpawns;
 	}
 
 	private void OnDisable()
 	{
-		Actions.onLvlStart -= StartLevel;
 		Actions.onLvlEnd -= StopSpawns;
 	}
 
-	private void StartLevel(int lvlNum)
+	public void StartLevel(int lvlNum)
 	{
-		Debug.Log("Comienza el lvl " + lvlNum);
+		currentLvl = levels[lvlNum - 1];
+		Actions.onLvlStart?.Invoke(currentLvl);
+		Debug.Log("Comienza el lvl " + currentLvl.levelNum);
 		limits = GameManager.Instance.limits;
 
-		SoundManager.Instance.PlayAudio(levels[lvlNum - 1].songName);
-
 		StopAllCoroutines();
-		StartCoroutine(SpawnEnemy(enemyStraightPrefab, levels[lvlNum - 1].enemiesStraight, delayFirstSpawn, timeBtwSpawns));
-		// StartCoroutine(SpawnEnemy(enemyFollowPrefab, levels[lvlNum - 1].enemiesFollow));
-		// StartCoroutine(SpawnEnemy(enemyBigPrefab, levels[lvlNum - 1].enemiesBig));
+		if (currentLvl.straightCount > 0)
+		{
+			Debug.Log($"Hay {currentLvl.straightCount} enemigos directos");
+			if (currentLvl.straightSpawnTimeStamps.Count > 0)
+				StartCoroutine(SpawnEnemy(enemyStraightPrefab, currentLvl.straightCount, currentLvl.straightDelayFirstSpawn, currentLvl.straightSpawnTimeStamps));
+			else
+				StartCoroutine(SpawnEnemy(enemyStraightPrefab, currentLvl.straightCount, currentLvl.straightDelayFirstSpawn, currentLvl.straightDelayBtwSpawns));
+		}
+
+		if (currentLvl.followCount > 0)
+		{
+			Debug.Log($"Hay {currentLvl.followCount} enemigos seguimiento");
+			if (currentLvl.followSpawnTimeStamps.Count > 0)
+				StartCoroutine(SpawnEnemy(enemyFollowPrefab, currentLvl.followCount, currentLvl.followDelayFirstSpawn, currentLvl.followSpawnTimeStamps));
+			else
+				StartCoroutine(SpawnEnemy(enemyFollowPrefab, currentLvl.followCount, currentLvl.followDelayFirstSpawn, currentLvl.followDelayBtwSpawns));
+		}
+
+		if (currentLvl.bigCount > 0)
+		{
+			Debug.Log($"Hay {currentLvl.bigCount} enemigos grandes");
+			if (currentLvl.bigSpawnTimeStamps.Count > 0)
+				StartCoroutine(SpawnEnemy(enemyBigPrefab, currentLvl.bigCount, currentLvl.bigDelayFirstSpawn, currentLvl.bigSpawnTimeStamps));
+			else
+				StartCoroutine(SpawnEnemy(enemyBigPrefab, currentLvl.bigCount, currentLvl.bigDelayFirstSpawn, currentLvl.bigDelayBtwSpawns));
+		}
+	}
+
+	public void EndLevel(bool win)
+	{
+		Actions.onLvlEnd?.Invoke(win);
+		Debug.LogWarning("FIN DEL JUEGO");
 	}
 
 	private IEnumerator SpawnEnemy(GameObject enemyPrefab, int enemies, float firstSpawn, float btwSpawns)
@@ -77,8 +135,39 @@ public class LvlBuilder : MonoBehaviour
 			spawned = false;
 			enemies--;
 		}
-		Debug.Log("Fin de la rutina");
+	}
 
+	private IEnumerator SpawnEnemy(GameObject enemyPrefab, int enemies, float firstSpawn, List<float> timeStamps)
+	{
+		yield return new WaitForSeconds(firstSpawn);
+		SpriteRenderer sRenderer = enemyPrefab.GetComponentInChildren<SpriteRenderer>();
+		int counter = 0;
+		while (enemies > 0)
+		{
+			yield return new WaitForSeconds(timeStamps[counter++]);
+			while (!spawned)
+			{
+				Vector3 newLocation = new Vector3(
+					Random.Range(limits[Limits.left] + sRenderer.size.x, limits[Limits.right] - sRenderer.size.x),
+					Random.Range(limits[Limits.bottom] + sRenderer.size.y, limits[Limits.up] - sRenderer.size.y),
+					0);
+
+
+				if (CanSpawn(newLocation, sRenderer.size.x / 2))
+				{
+					Instantiate(enemyPrefab, newLocation, enemyPrefab.transform.rotation);
+					spawned = true;
+				}
+				else
+				{
+					Debug.LogError("Habia algun collider en la zona");
+				}
+
+				yield return null;
+			}
+			spawned = false;
+			enemies--;
+		}
 	}
 
 	private void StopSpawns(bool win)

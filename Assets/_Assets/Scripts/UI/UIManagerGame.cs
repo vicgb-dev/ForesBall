@@ -5,16 +5,25 @@ using UnityEngine.UI;
 
 public class UIManagerGame : MonoBehaviour
 {
-	public GameObject canvas;
-	public GameObject pSafeArea;
-	public GameObject pMinimenu;
-	public GameObject pJoystick;
-	public GameObject pGame;
-	public GameObject pUIGame;
-	public GameObject pEndGame;
-	public Color winBackground;
-	public Color loseBackground;
-	public float delayStartLvl;
+
+	[Header("References")]
+	[SerializeField] private GameObject canvas;
+	[SerializeField] private GameObject pSafeArea;
+	[SerializeField] private GameObject pMinimenu;
+	[SerializeField] private GameObject pJoystick;
+	[SerializeField] private GameObject pGame;
+	[SerializeField] private GameObject pUIGame;
+	[SerializeField] private GameObject pBlockTouchGame;
+	[SerializeField] private GameObject pEndGame;
+
+	[Header("UI Game Options")]
+	[SerializeField] private Color winBackground;
+	[SerializeField] private Color loseBackground;
+	[SerializeField] private float delayStartLvl;
+
+	[Header("Lvl chooser")]
+	[SerializeField] private GameObject lvlPLvlChooser;
+	[SerializeField] private GameObject lvlPanelPrefab;
 
 	public float alphaSpeed = 0.1f;
 
@@ -22,6 +31,21 @@ public class UIManagerGame : MonoBehaviour
 	{
 		ReorganizeParents();
 		TestButtons();
+
+		GameMenuBuilder(LvlBuilder.Instance.levels);
+
+		// Desactivamos el panel que evita que toques otro boton del panel Game
+		pBlockTouchGame.SetActive(false);
+	}
+
+	private void GameMenuBuilder(List<Level> levels)
+	{
+		foreach (Level level in levels)
+		{
+			//GameObject levelPanel = Instantiate(lvlPanelPrefab);
+			//levelPanel.GetComponent<>
+		}
+
 	}
 
 	private void TestButtons()
@@ -37,12 +61,16 @@ public class UIManagerGame : MonoBehaviour
 
 	private void UIStartLvl(int lvl)
 	{
+		// Activamos el panel que evita que toques otro boton del panel Game
+		Debug.Log("El listener funciona");
+		pBlockTouchGame.SetActive(true);
 		FadeChildren(pUIGame, false);
-		StartCoroutine(GameManagerStartLvl());
+		StartCoroutine(LvlBuilderStartLvl());
 	}
 
 	private void FadeChildren(GameObject GOFaded, bool to1)
 	{
+		Debug.Log("Desapareciendo hijos de " + GOFaded.name);
 		for (int i = 0; i < GOFaded.transform.childCount; i++)
 		{
 			if (GOFaded.transform.GetChild(i).transform.childCount > 0)
@@ -54,20 +82,21 @@ public class UIManagerGame : MonoBehaviour
 
 	}
 
-	private IEnumerator GameManagerStartLvl()
+	private IEnumerator LvlBuilderStartLvl()
 	{
 		yield return new WaitForSecondsRealtime(delayStartLvl);
-		GameManager.Instance.StartLevel(1);
+		LvlBuilder.Instance.StartLevel(1);
 	}
 
 	private void BlockGameView(bool win)
 	{
-		ChangeColor(win);
+		ChangePanelBlockViewColor(win);
 		StartCoroutine(Alpha(pEndGame, true));
 		FadeChildren(pUIGame, true);
+		pBlockTouchGame.SetActive(false);
 	}
 
-	private void ChangeColor(bool win)
+	private void ChangePanelBlockViewColor(bool win)
 	{
 		if (win) pEndGame.GetComponent<Image>().color = winBackground;
 		else pEndGame.GetComponent<Image>().color = loseBackground;

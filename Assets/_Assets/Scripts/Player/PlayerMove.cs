@@ -43,7 +43,7 @@ public class PlayerMove : MonoBehaviour
 			0);
 	}
 
-	private void EnableControl(int lvlNum)
+	private void EnableControl(Level lvl)
 	{
 		control = true;
 	}
