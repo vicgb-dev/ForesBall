@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManagerGame : MonoBehaviour
 {
@@ -52,12 +53,32 @@ public class UIManagerGame : MonoBehaviour
 	{
 		// GameObject.Find("TestStartLvl").GetComponent<Button>().onClick.AddListener(() => GameManager.Instance.StartLevel(1));
 		// GameObject.Find("TestResetScene").GetComponent<Button>().onClick.AddListener(() => GameManager.Instance.ResetScene());
-		GameObject.Find("PlayButton").GetComponent<Button>().onClick.AddListener(() => UIStartLvl(1));
+		// GameObject.Find("PlayButton").GetComponent<Button>().onClick.AddListener(() => UIStartLvl(1));
 	}
 
-	private void OnEnable() => Actions.onLvlEnd += BlockGameView;
+	private void OnEnable()
+	{
+		Actions.onLvlEnd += BlockGameView;
+		Actions.onLoadLevels += LoadPanelLevels;
+	}
 
-	private void OnDisable() => Actions.onLvlEnd -= BlockGameView;
+	private void OnDisable()
+	{
+		Actions.onLvlEnd -= BlockGameView;
+		Actions.onLoadLevels -= LoadPanelLevels;
+	}
+
+	private void LoadPanelLevels(List<Level> levels)
+	{
+		foreach (Level lvl in levels)
+		{
+			GameObject lvlPanel = Instantiate(lvlPanelPrefab, lvlPLvlChooser.transform);
+			lvlPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = lvl.levelNum.ToString();
+			lvlPanel.GetComponentInChildren<Button>().onClick.AddListener(() => UIStartLvl(lvl.levelNum));
+		}
+
+		lvlPLvlChooser.GetComponent<LvlSwiper>().Populated();
+	}
 
 	private void UIStartLvl(int lvl)
 	{
@@ -65,12 +86,11 @@ public class UIManagerGame : MonoBehaviour
 		Debug.Log("El listener funciona");
 		pBlockTouchGame.SetActive(true);
 		FadeChildren(pUIGame, false);
-		StartCoroutine(LvlBuilderStartLvl());
+		StartCoroutine(LvlBuilderStartLvl(lvl));
 	}
 
 	private void FadeChildren(GameObject GOFaded, bool to1)
 	{
-		Debug.Log("Desapareciendo hijos de " + GOFaded.name);
 		for (int i = 0; i < GOFaded.transform.childCount; i++)
 		{
 			if (GOFaded.transform.GetChild(i).transform.childCount > 0)
@@ -82,10 +102,10 @@ public class UIManagerGame : MonoBehaviour
 
 	}
 
-	private IEnumerator LvlBuilderStartLvl()
+	private IEnumerator LvlBuilderStartLvl(int lvl)
 	{
 		yield return new WaitForSecondsRealtime(delayStartLvl);
-		LvlBuilder.Instance.StartLevel(1);
+		LvlBuilder.Instance.StartLevel(lvl);
 	}
 
 	private void BlockGameView(bool win)

@@ -56,6 +56,7 @@ public class LvlBuilder : MonoBehaviour
 	private void OnEnable()
 	{
 		Actions.onLvlEnd += StopSpawns;
+		Actions.onLoadLevels?.Invoke(levels);
 	}
 
 	private void OnDisable()
@@ -74,7 +75,7 @@ public class LvlBuilder : MonoBehaviour
 		if (currentLvl.straightCount > 0)
 		{
 			Debug.Log($"Hay {currentLvl.straightCount} enemigos directos");
-			if (currentLvl.straightSpawnTimeStamps.Count > 0)
+			if (currentLvl.straightSpawnTimeStamps.Count == currentLvl.straightCount)
 				StartCoroutine(SpawnEnemy(enemyStraightPrefab, currentLvl.straightCount, currentLvl.straightDelayFirstSpawn, currentLvl.straightSpawnTimeStamps));
 			else
 				StartCoroutine(SpawnEnemy(enemyStraightPrefab, currentLvl.straightCount, currentLvl.straightDelayFirstSpawn, currentLvl.straightDelayBtwSpawns));
@@ -83,7 +84,7 @@ public class LvlBuilder : MonoBehaviour
 		if (currentLvl.followCount > 0)
 		{
 			Debug.Log($"Hay {currentLvl.followCount} enemigos seguimiento");
-			if (currentLvl.followSpawnTimeStamps.Count > 0)
+			if (currentLvl.followSpawnTimeStamps.Count == currentLvl.followCount)
 				StartCoroutine(SpawnEnemy(enemyFollowPrefab, currentLvl.followCount, currentLvl.followDelayFirstSpawn, currentLvl.followSpawnTimeStamps));
 			else
 				StartCoroutine(SpawnEnemy(enemyFollowPrefab, currentLvl.followCount, currentLvl.followDelayFirstSpawn, currentLvl.followDelayBtwSpawns));
@@ -92,7 +93,7 @@ public class LvlBuilder : MonoBehaviour
 		if (currentLvl.bigCount > 0)
 		{
 			Debug.Log($"Hay {currentLvl.bigCount} enemigos grandes");
-			if (currentLvl.bigSpawnTimeStamps.Count > 0)
+			if (currentLvl.bigSpawnTimeStamps.Count == currentLvl.bigCount)
 				StartCoroutine(SpawnEnemy(enemyBigPrefab, currentLvl.bigCount, currentLvl.bigDelayFirstSpawn, currentLvl.bigSpawnTimeStamps));
 			else
 				StartCoroutine(SpawnEnemy(enemyBigPrefab, currentLvl.bigCount, currentLvl.bigDelayFirstSpawn, currentLvl.bigDelayBtwSpawns));
