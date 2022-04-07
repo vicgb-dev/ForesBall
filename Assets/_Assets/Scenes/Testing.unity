@@ -2267,12 +2267,7 @@ MonoBehaviour:
   enemyFollowPrefab: {fileID: 4026320245226624677, guid: a612a798dee84a640886b326c57231d4, type: 3}
   enemyBigPrefab: {fileID: 4026320245226624677, guid: e39d0aeaf4b5d13488870b6fe5c3b5c4, type: 3}
   levels:
-  - {fileID: 11400000, guid: 582283c592f44b14b87aafb7fa37fc08, type: 2}
-  - {fileID: 11400000, guid: c3692899db8fdc44593b31f2af9d1b05, type: 2}
-  - {fileID: 11400000, guid: 0f546984b82734149bd637c6b2a2136d, type: 2}
-  - {fileID: 11400000, guid: 1859bef2aa123884db68a1ab807183df, type: 2}
-  - {fileID: 11400000, guid: f9c30d8602403f342b697c3f9e130aca, type: 2}
-  - {fileID: 11400000, guid: af1055f3aa2a56f44b58276a0a1cc989, type: 2}
+  - {fileID: 11400000, guid: 160ed215172703e4cb8b298f18781cd4, type: 2}
 --- !u!1 &1559251322
 GameObject:
   m_ObjectHideFlags: 0
