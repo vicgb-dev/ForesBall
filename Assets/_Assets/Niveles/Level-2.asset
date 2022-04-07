@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23f29812b503ecd4aa042a38e18b680e, type: 3}
-  m_Name: Level-0
+  m_Name: Level-2
   m_EditorClassIdentifier: 
-  levelNum: 1
+  levelNum: 2
   music: {fileID: 8300000, guid: b7e88e8c0b1c720479ce160154259769, type: 3}
   musicVolume: 0.109
   winSound: {fileID: 0}
@@ -27,7 +27,7 @@ MonoBehaviour:
   followDelayFirstSpawn: 0.41
   followDelayBtwSpawns: 0.54
   followSpawnTimeStamps: []
-  bigCount: 1
+  bigCount: 12
   bigDelayFirstSpawn: 0.53
   bigDelayBtwSpawns: 0.46
   bigSpawnTimeStamps: []
