@@ -145,7 +145,12 @@ public class LvlBuilder : MonoBehaviour
 		int counter = 0;
 		while (enemies > 0)
 		{
-			yield return new WaitForSeconds(timeStamps[counter++]);
+			if (counter - 1 < 0)
+				yield return new WaitForSeconds(timeStamps[counter]);
+			else
+				yield return new WaitForSeconds(timeStamps[counter] - timeStamps[counter - 1]);
+
+			counter++;
 			while (!spawned)
 			{
 				Vector3 newLocation = new Vector3(
