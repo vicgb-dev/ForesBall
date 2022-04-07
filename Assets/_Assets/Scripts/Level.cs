@@ -24,6 +24,7 @@ public class Level : ScriptableObject
 
 	[Space(10)]
 	[Header("EnemyStraight")]
+	[Range(0, 15)]
 	public int straightCount;
 	[Range(0f, 5f)]
 	public float straightDelayFirstSpawn;
@@ -33,6 +34,7 @@ public class Level : ScriptableObject
 
 	[Space(10)]
 	[Header("EnemyFollow")]
+	[Range(0, 15)]
 	public int followCount;
 	[Range(0f, 5f)]
 	public float followDelayFirstSpawn;
@@ -42,6 +44,7 @@ public class Level : ScriptableObject
 
 	[Space(10)]
 	[Header("EnemyBig")]
+	[Range(0, 15)]
 	public int bigCount;
 	[Range(0f, 5f)]
 	public float bigDelayFirstSpawn;
@@ -52,6 +55,8 @@ public class Level : ScriptableObject
 
 	[Space(10)]
 	[Header("PowerUps")]
+	[Range(0, 15)]
 	public int powerUpsWave;
+	[Range(0, 15)]
 	public int powerUpsInmortal;
 }
