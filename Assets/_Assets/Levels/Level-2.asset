@@ -19,7 +19,7 @@ MonoBehaviour:
   winSoundVolume: 0
   loseSound: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}
   loseSoundVolume: 0.112
-  straightCount: 2
+  straightCount: 0
   straightDelayFirstSpawn: 0.56
   straightDelayBtwSpawns: 0.53
   straightSpawnTimeStamps: []
@@ -30,7 +30,15 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  bigCount: 12
+  - 24.9
+  - 24.9
+  - 24.9
+  - 27.5
+  - 37.1
+  - 37.1
+  - 37.1
+  - 39.8
+  bigCount: 0
   bigDelayFirstSpawn: 0.53
   bigDelayBtwSpawns: 0.46
   bigSpawnTimeStamps: []
