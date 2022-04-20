@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Level-0", menuName = " Scriptable Objects/Level")]
-public class Level : ScriptableObject
+public class LevelSO : ScriptableObject
 {
-	[Header("Level data")]
-	public int levelNum;
+	// [Header("Level data")]
+	// public int levelNum;
 
 	[Space(10)]
 	[Header("Audio")]

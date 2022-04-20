@@ -12,12 +12,11 @@ public class LvlBuilder : MonoBehaviour
 	public GameObject enemyBigPrefab;
 
 	[Header("Levels")]
-	public List<Level> levels;
+	public LevelsManagerSO levelsManagerSO;
 
 	private Dictionary<Limits, float> limits;
 	private bool spawned = false;
 	private Collider2D[] colliders = new Collider2D[0];
-	private Level currentLvl;
 
 	//Definición del patrón Singleton
 	#region Singleton
@@ -47,28 +46,27 @@ public class LvlBuilder : MonoBehaviour
 		}
 
 		_instance = this;
-		DontDestroyOnLoad(this.gameObject);
+		//DontDestroyOnLoad(this.gameObject);
 	}
 
 	#endregion
 
+	public List<LevelSO> GetLevels() => levelsManagerSO.levels;
 
 	private void OnEnable()
 	{
+		Actions.onLvlStart += StartLevel;
 		Actions.onLvlEnd += StopSpawns;
-		Actions.onLoadLevels?.Invoke(levels);
 	}
 
 	private void OnDisable()
 	{
+		Actions.onLvlStart -= StartLevel;
 		Actions.onLvlEnd -= StopSpawns;
 	}
 
-	public void StartLevel(int lvlNum)
+	public void StartLevel(LevelSO currentLvl)
 	{
-		currentLvl = levels[lvlNum - 1];
-		Actions.onLvlStart?.Invoke(currentLvl);
-		Debug.Log("Comienza el lvl " + currentLvl.levelNum);
 		limits = GameManager.Instance.limits;
 
 		StopAllCoroutines();

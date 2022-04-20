@@ -8,7 +8,7 @@ public class SoundManager : MonoBehaviour
 	public List<AudioClip> songs = new List<AudioClip>();
 	public List<AudioClip> endLvlSounds = new List<AudioClip>();
 
-	private Level currentLvl;
+	private LevelSO currentLvl;
 	private GameObject lvlMusic;
 
 	//Definición del patrón Singleton
@@ -56,7 +56,7 @@ public class SoundManager : MonoBehaviour
 		Actions.onLvlEnd -= StopPlaying;
 	}
 
-	public void PlayAudio(Level lvl)
+	public void PlayAudio(LevelSO lvl)
 	{
 		currentLvl = lvl;
 		CreateAudioChild("LvlMusic", currentLvl.music, currentLvl.musicVolume).Play();
