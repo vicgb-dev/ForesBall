@@ -13,26 +13,32 @@ MonoBehaviour:
   m_Name: Level-2
   m_EditorClassIdentifier: 
   levelNum: 2
-  music: {fileID: 8300000, guid: b7e88e8c0b1c720479ce160154259769, type: 3}
+  music: {fileID: 8300000, guid: 24abe5c0761a72b45a66381510c9eb9f, type: 3}
   musicVolume: 0.109
   winSound: {fileID: 0}
   winSoundVolume: 0
   loseSound: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}
   loseSoundVolume: 0.112
-  straightCount: 2
+  straightCount: 0
   straightDelayFirstSpawn: 0.56
   straightDelayBtwSpawns: 0.53
-  straightSpawnTimeStamps:
+  straightSpawnTimeStamps: []
+  followCount: 11
+  followDelayFirstSpawn: 0.66
+  followDelayBtwSpawns: 1
+  followSpawnTimeStamps:
   - 0
   - 0
   - 0
-  - 0
-  - 0
-  followCount: 2
-  followDelayFirstSpawn: 0.41
-  followDelayBtwSpawns: 0.54
-  followSpawnTimeStamps: []
-  bigCount: 12
+  - 24.9
+  - 24.9
+  - 24.9
+  - 27.5
+  - 37.1
+  - 37.1
+  - 37.1
+  - 39.8
+  bigCount: 0
   bigDelayFirstSpawn: 0.53
   bigDelayBtwSpawns: 0.46
   bigSpawnTimeStamps: []

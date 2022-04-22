@@ -19,15 +19,24 @@ MonoBehaviour:
   winSoundVolume: 0
   loseSound: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}
   loseSoundVolume: 0.112
-  straightCount: 2
-  straightDelayFirstSpawn: 0.56
-  straightDelayBtwSpawns: 0.53
-  straightSpawnTimeStamps: []
-  followCount: 2
+  straightCount: 9
+  straightDelayFirstSpawn: 0
+  straightDelayBtwSpawns: 1
+  straightSpawnTimeStamps:
+  - 1.4
+  - 2.4
+  - 3.4
+  - 17.4
+  - 18.4
+  - 19.4
+  - 39.1
+  - 40
+  - 40.7
+  followCount: 0
   followDelayFirstSpawn: 0.41
   followDelayBtwSpawns: 0.54
   followSpawnTimeStamps: []
-  bigCount: 12
+  bigCount: 0
   bigDelayFirstSpawn: 0.53
   bigDelayBtwSpawns: 0.46
   bigSpawnTimeStamps: []
