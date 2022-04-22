@@ -39,30 +39,28 @@ public class SoundManager : MonoBehaviour
 		}
 
 		_instance = this;
-		DontDestroyOnLoad(this.gameObject);
+		//DontDestroyOnLoad(this.gameObject);
 	}
 
 	#endregion
 
 	private void OnEnable()
 	{
-		Actions.onLvlStart += PlayAudio;
 		Actions.onLvlEnd += StopPlaying;
 	}
 
 	private void OnDisable()
 	{
-		Actions.onLvlStart -= PlayAudio;
 		Actions.onLvlEnd -= StopPlaying;
 	}
 
-	public void PlayAudio(LevelSO lvl)
+	public void OnStartLvl(LevelSO lvl)
 	{
 		currentLvl = lvl;
 		CreateAudioChild("LvlMusic", currentLvl.music, currentLvl.musicVolume).Play();
 	}
 
-	public void StopPlaying(bool win)
+	private void StopPlaying(bool win)
 	{
 		Destroy(GameObject.Find("LvlMusic"));
 		if (win) CreateAudioChild("EndLvlSound", currentLvl.winSound, currentLvl.winSoundVolume).Play();

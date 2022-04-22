@@ -39,6 +39,6 @@ public class MapBounds : MonoBehaviour
 		limits.Add(ray.origin.y);
 
 		GameManager.Instance.SetMapLimits(limits);
+		Destroy(this);
 	}
-
 }

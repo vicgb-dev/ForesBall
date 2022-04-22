@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 		}
 
 		_instance = this;
-		DontDestroyOnLoad(this.gameObject);
+		//DontDestroyOnLoad(this.gameObject);
 	}
 
 	#endregion
@@ -73,6 +73,11 @@ public class GameManager : MonoBehaviour
 
 		joystick = GameObject.Find("JDot").GetComponent<Joystick>();
 		joystick.Init(playerMove);
+	}
+
+	public void StartLevel(LevelSO lvl)
+	{
+		Actions.onLvlStart?.Invoke(lvl);
 	}
 
 	public void TimeStop(bool win)

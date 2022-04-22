@@ -7,6 +7,7 @@ public static class Actions
 {
 	public static Action<LevelSO> onLvlStart;
 	public static Action<bool> onLvlEnd;
+	public static Action<int> onNewActiveLvlPanel;
 	public static Action onCleanLvl;
 	//El tiempo se para, se reproduce un sonido de findejuego
 	//se quita el control del joystick

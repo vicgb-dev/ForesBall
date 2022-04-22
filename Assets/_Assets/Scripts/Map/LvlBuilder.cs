@@ -5,6 +5,8 @@ using UnityEngine;
 public class LvlBuilder : MonoBehaviour
 {
 	// Componente que se ocupa de preparar enemigos, powerups y probabilidades
+	[Header("Options")]
+	[SerializeField] private float delayStartTime;
 
 	[Header("Prefabs")]
 	public GameObject enemyStraightPrefab;
@@ -17,6 +19,7 @@ public class LvlBuilder : MonoBehaviour
 	private Dictionary<Limits, float> limits;
 	private bool spawned = false;
 	private Collider2D[] colliders = new Collider2D[0];
+	private LevelSO currentLvl;
 
 	//Definición del patrón Singleton
 	#region Singleton
@@ -55,19 +58,27 @@ public class LvlBuilder : MonoBehaviour
 
 	private void OnEnable()
 	{
-		Actions.onLvlStart += StartLevel;
+		Actions.onLvlStart += StartLevelWithDelay;
 		Actions.onLvlEnd += StopSpawns;
 	}
 
 	private void OnDisable()
 	{
-		Actions.onLvlStart -= StartLevel;
+		Actions.onLvlStart -= StartLevelWithDelay;
 		Actions.onLvlEnd -= StopSpawns;
 	}
 
-	public void StartLevel(LevelSO currentLvl)
+	public void StartLevelWithDelay(LevelSO lvl)
+	{
+		currentLvl = lvl;
+		Invoke(nameof(StartLevel), delayStartTime);
+	}
+
+	public void StartLevel()
 	{
 		limits = GameManager.Instance.limits;
+
+		SoundManager.Instance.OnStartLvl(currentLvl);
 
 		StopAllCoroutines();
 		if (currentLvl.straightCount > 0)
@@ -96,12 +107,6 @@ public class LvlBuilder : MonoBehaviour
 			else
 				StartCoroutine(SpawnEnemy(enemyBigPrefab, currentLvl.bigCount, currentLvl.bigDelayFirstSpawn, currentLvl.bigDelayBtwSpawns));
 		}
-	}
-
-	public void EndLevel(bool win)
-	{
-		Actions.onLvlEnd?.Invoke(win);
-		Debug.LogWarning("FIN DEL JUEGO");
 	}
 
 	private IEnumerator SpawnEnemy(GameObject enemyPrefab, int enemies, float firstSpawn, float btwSpawns)

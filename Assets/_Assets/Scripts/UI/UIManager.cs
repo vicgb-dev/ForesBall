@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,130 +8,107 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
 	[Header("References")]
-	[SerializeField] private GameObject canvas;
-	[SerializeField] private GameObject pSafeArea;
-	[SerializeField] private GameObject pMinimenu;
-	[SerializeField] private GameObject pJoystick;
-	[SerializeField] private GameObject pGame;
-	[SerializeField] private GameObject pUIGame;
+	[SerializeField] private GameObject pUiGame;
 	[SerializeField] private GameObject pBlockTouchGame;
 	[SerializeField] private GameObject pEndGame;
+	[SerializeField] private GameObject scrollView;
 
 	[Header("UI Game Options")]
 	[SerializeField] private Color winBackground;
 	[SerializeField] private Color loseBackground;
-	[SerializeField] private float delayStartLvl;
-
-	[Header("Lvl chooser")]
-	[SerializeField] private GameObject lvlPLvlChooser;
-	[SerializeField] private GameObject lvlPanelPrefab;
+	[SerializeField] private float secondsToChangeAlpha;
+	[SerializeField] private float secondsToMoveLevelPanels;
+	[SerializeField] private AnimationCurve curveToMove;
+	[SerializeField] private AnimationCurve curveToOriginalColor;
 
 	public float alphaSpeed = 0.1f;
+	private Vector3 scrollViewUpPosition;
+	private Vector3 scrollViewDownPosition;
+
+	private Image endGameImage;
+	private Color endGameAlpha0;
+	private Color endGameAlpha1;
 
 	private void Start()
 	{
-		ReorganizeParents();
-		LoadPanelLevels(LvlBuilder.Instance.GetLevels());
-		// Desactivamos el panel que evita que toques otro boton del panel Game
+		scrollViewUpPosition = new Vector3(
+			scrollView.transform.position.x,
+			scrollView.transform.position.y + pUiGame.GetComponent<RectTransform>().rect.height,
+			scrollView.transform.position.z);
+
+		scrollViewDownPosition = new Vector3(
+			scrollView.transform.position.x,
+			scrollView.transform.position.y,
+			scrollView.transform.position.z);
+
+		endGameImage = pEndGame.GetComponent<Image>();
+		endGameAlpha0 = new Color(endGameImage.color.r, endGameImage.color.g, endGameImage.color.b, 0);
+ 		endGameAlpha1 = new Color(endGameImage.color.r, endGameImage.color.g, endGameImage.color.b, 1);
+
 		pBlockTouchGame.SetActive(false);
 	}
 
 	private void OnEnable()
 	{
 		Actions.onLvlEnd += BlockGameView;
+		Actions.onLvlStart += CleanGameView;
 	}
 
 	private void OnDisable()
 	{
 		Actions.onLvlEnd -= BlockGameView;
+		Actions.onLvlStart -= CleanGameView;
 	}
 
-	// Reorganize parents to use masks
-	public void ReorganizeParents()
+	private void CleanGameView(LevelSO lvl)
 	{
-		pGame.transform.SetParent(canvas.transform);
-		pMinimenu.transform.SetParent(canvas.transform);
-		pJoystick.transform.SetParent(canvas.transform);
-		pSafeArea.transform.SetParent(pGame.transform);
-		pSafeArea.transform.SetSiblingIndex(0);
-
-		for (int i = 0; i < pSafeArea.transform.childCount; i++)
-			pSafeArea.transform.GetChild(i).SetParent(canvas.transform);
-
-		pSafeArea.transform.localScale *= 2;
-	}
-
-	// Crear paneles para elegir nivel
-	private void LoadPanelLevels(List<LevelSO> levels)
-	{
-		Debug.Log(levels.Count);
-		int cont = 1;
-		foreach (LevelSO level in levels)
-		{
-			GameObject lvlPanel = Instantiate(lvlPanelPrefab, lvlPLvlChooser.transform);
-			lvlPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = cont++ + "";
-			lvlPanel.GetComponentInChildren<Button>().onClick.AddListener(() => {
-				pBlockTouchGame.SetActive(true);
-				FadeChildren(pUIGame, false);
-				LvlManager.Instance.UIStartedLevel(level);
-			});
-		}
-		lvlPLvlChooser.GetComponent<LvlSwiper>().Populated();
+		// MOVER EL GAMEOBJECT QUE TIENE LOS PANELES DE LOS NIVELES HACIA ARRIBA
+		StopAllCoroutines();
+		StartCoroutine(MovePanel(scrollView, scrollViewDownPosition, scrollViewUpPosition, secondsToMoveLevelPanels, curveToMove));
+		StartCoroutine(ColorChange(endGameImage, endGameImage.color, endGameAlpha0, secondsToChangeAlpha, curveToMove));
+		pBlockTouchGame.SetActive(true);
 	}
 
 	private void BlockGameView(bool win)
 	{
+		// MOVER EL GAMEOBJECT QUE TIENE LOS PANELES DE LOS NIVELES HACIA ABAJO
 		if (win) pEndGame.GetComponent<Image>().color = winBackground;
 		else pEndGame.GetComponent<Image>().color = loseBackground;
 
-		StartCoroutine(Alpha(pEndGame, true));
-		FadeChildren(pUIGame, true);
+		StopAllCoroutines();
+		StartCoroutine(MovePanel(scrollView, scrollViewUpPosition, scrollViewDownPosition, secondsToMoveLevelPanels, curveToMove));
+		StartCoroutine(ColorChange(endGameImage, endGameAlpha0, win ? winBackground : loseBackground, secondsToChangeAlpha, curveToMove, () => 
+		{
+			Actions.onCleanLvl?.Invoke();
+			StartCoroutine(ColorChange(endGameImage, endGameImage.color, endGameAlpha1, secondsToChangeAlpha * 10, curveToOriginalColor));
+		}));
 		pBlockTouchGame.SetActive(false);
 	}
 
-	private void FadeChildren(GameObject GOFaded, bool to1)
+	private IEnumerator MovePanel(GameObject go, Vector3 initialPosition, Vector3 finalPosition, float seconds, AnimationCurve curve)
 	{
-		for (int i = 0; i < GOFaded.transform.childCount; i++)
+		float time = 0;
+		while(Vector3.Distance(go.transform.position, finalPosition) > 0.0001f)
 		{
-			if (GOFaded.transform.GetChild(i).transform.childCount > 0)
-				FadeChildren(GOFaded.transform.GetChild(i).gameObject, to1);
-
-			StartCoroutine(Alpha(GOFaded.transform.GetChild(i).gameObject, to1));
+			Debug.Log(Vector3.Distance(go.transform.position, finalPosition));
+			time += Time.unscaledDeltaTime / seconds;
+			go.transform.position = Vector3.Lerp(initialPosition, finalPosition, curve.Evaluate(time));
+			yield return null;
 		}
 	}
 
-	private IEnumerator Alpha(GameObject UI_GO, bool to1)
+	private IEnumerator ColorChange(Image image, Color initialColor, Color finalColor, float secondsToChangeAlpha, AnimationCurve curve, Action callback = null)
 	{
-		Image background;
-		Color color;
-		if (UI_GO.GetComponent<Image>() != null)
+		float time = 0;
+		float elapsedTime = 0;
+		while (elapsedTime < secondsToChangeAlpha)
 		{
-			background = UI_GO.GetComponent<Image>();
-			color = background.color;
-			if (to1)
-			{
-				UI_GO.SetActive(true);
-				color.a = 0;
-				while (color.a < 1)
-				{
-					color.a += alphaSpeed * Time.unscaledDeltaTime;
-					background.color = color;
-					yield return null;
-				}
-				Actions.onCleanLvl?.Invoke();
-			}
-			else
-			{
-				UI_GO.SetActive(true);
-				color.a = 1;
-				while (color.a > 0)
-				{
-					color.a -= alphaSpeed * Time.unscaledDeltaTime;
-					background.color = color;
-					yield return null;
-				}
-				UI_GO.SetActive(false);
-			}
+			elapsedTime += Time.unscaledDeltaTime;
+			time += Time.unscaledDeltaTime / secondsToChangeAlpha;
+			image.color = Color.Lerp(initialColor, finalColor, curve.Evaluate(time));
+			yield return null;
 		}
+		callback?.Invoke();
+		
 	}
 }
