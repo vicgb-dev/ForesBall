@@ -90,7 +90,6 @@ public class UIManager : MonoBehaviour
 		float time = 0;
 		while(Vector3.Distance(go.transform.position, finalPosition) > 0.0001f)
 		{
-			Debug.Log(Vector3.Distance(go.transform.position, finalPosition));
 			time += Time.unscaledDeltaTime / seconds;
 			go.transform.position = Vector3.Lerp(initialPosition, finalPosition, curve.Evaluate(time));
 			yield return null;

@@ -2,10 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBig : MonoBehaviour, IEnemy
+public class EnemyBig : MonoBehaviour
 {
-	public void Move()
-	{
-
-	}
 }

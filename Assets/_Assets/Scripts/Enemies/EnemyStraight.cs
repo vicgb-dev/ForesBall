@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStraight : MonoBehaviour
+public class EnemyStraight : Enemy, IEnemy
 {
 	[SerializeField] private float initialForce = 100;
 	[SerializeField] private float speed = 2f;
@@ -11,40 +11,34 @@ public class EnemyStraight : MonoBehaviour
 
 	private Vector2 direction;
 	private Vector2 lastVelocity;
-	private float newAngle;
-	private Rigidbody2D rb;
 
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
-		newAngle = Random.Range(0, 360);
-		transform.Rotate(0, 0, newAngle);
+		transform.Rotate(0, 0, Random.Range(0, 360));
 	}
 
 	private void Start()
 	{
 		rb.AddForce(transform.up * initialForce);
-		StartCoroutine(ActivateEnemyTag());
+		StartCoroutine(ActivateEnemyTag(Tag.EnemyStraight, secsToActivateCollider));
 	}
 
 	private void OnCollisionEnter2D(Collision2D other)
 	{
+		if(stopped) return;
 		speed += speedIncremental;
 		direction = Vector3.Reflect(lastVelocity.normalized, other.contacts[0].normal);
 		rb.velocity = direction * speed;
 	}
-
-	private void OnEnable() => Actions.onCleanLvl += DestroyThis;
-
-	private void OnDisable() => Actions.onCleanLvl -= DestroyThis;
-
-	private void DestroyThis() => Destroy(gameObject);
-
+	
 	private void Update() => lastVelocity = rb.velocity;
 
-	private IEnumerator ActivateEnemyTag()
+	public void StopMoving()
 	{
-		yield return new WaitForSecondsRealtime(secsToActivateCollider);
-		gameObject.tag = Tag.EnemyStraight.ToString();
+		rb.isKinematic = true;
+		rb.velocity = Vector2.zero;
+		stopped = true;
 	}
+
 }

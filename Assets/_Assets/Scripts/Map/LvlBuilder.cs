@@ -20,6 +20,7 @@ public class LvlBuilder : MonoBehaviour
 	private bool spawned = false;
 	private Collider2D[] colliders = new Collider2D[0];
 	private LevelSO currentLvl;
+	public List<GameObject> enemiesGO;
 
 	//Definición del patrón Singleton
 	#region Singleton
@@ -81,6 +82,10 @@ public class LvlBuilder : MonoBehaviour
 		SoundManager.Instance.OnStartLvl(currentLvl);
 
 		StopAllCoroutines();
+
+		enemiesGO.Clear();
+		StartCoroutine(CountdownToWin(currentLvl.music.length));
+
 		if (currentLvl.straightCount > 0)
 		{
 			Debug.Log($"Hay {currentLvl.straightCount} enemigos directos");
@@ -109,6 +114,43 @@ public class LvlBuilder : MonoBehaviour
 		}
 	}
 
+	private IEnumerator CountdownToWin(float timeToWin)
+	{
+		yield return new WaitForSecondsRealtime(timeToWin);
+		
+		SoundManager.Instance.OnEndLvl(true);
+
+		foreach (GameObject enemy in enemiesGO)
+		{
+			switch(enemy.tag)
+			{
+				case "EnemyStraight":
+					enemy.GetComponent<EnemyStraight>().StopMoving();
+				break;
+				case "EnemyFollow":
+					enemy.GetComponent<EnemyFollow>().StopMoving();
+				break;
+				case "EnemyBig":
+				break;
+			}
+			enemy.tag = Tag.Untagged.ToString();
+		}
+		yield return new WaitForSecondsRealtime(2);
+
+		float timeBetweenDestroy = 1;
+		foreach (GameObject enemy in enemiesGO)
+		{
+			Destroy(enemy);
+			timeBetweenDestroy = timeBetweenDestroy - 0.1f > 0.1f ? timeBetweenDestroy - 0.1f : 0.1f;
+			yield return new WaitForSecondsRealtime(timeBetweenDestroy);
+		}
+
+		yield return new WaitForSecondsRealtime(1);
+
+		SoundManager.Instance.WinFinished();
+		Actions.onLvlEnd?.Invoke(true);
+	}
+
 	private IEnumerator SpawnEnemy(GameObject enemyPrefab, int enemies, float firstSpawn, float btwSpawns)
 	{
 		yield return new WaitForSeconds(firstSpawn);
@@ -126,7 +168,8 @@ public class LvlBuilder : MonoBehaviour
 
 				if (CanSpawn(newLocation, sRenderer.size.x / 2))
 				{
-					Instantiate(enemyPrefab, newLocation, enemyPrefab.transform.rotation);
+					GameObject instantiateEnemy = Instantiate(enemyPrefab, newLocation, enemyPrefab.transform.rotation);
+					enemiesGO.Add(instantiateEnemy);
 					spawned = true;
 				}
 				else
@@ -164,7 +207,8 @@ public class LvlBuilder : MonoBehaviour
 
 				if (CanSpawn(newLocation, sRenderer.size.x / 2))
 				{
-					Instantiate(enemyPrefab, newLocation, enemyPrefab.transform.rotation);
+					GameObject instantiateEnemy = Instantiate(enemyPrefab, newLocation, enemyPrefab.transform.rotation);
+					enemiesGO.Add(instantiateEnemy);
 					spawned = true;
 				}
 				else

@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Enemy
   - EnemyStraight
-  - UnchangeableAlpha
+  - EnemyFollow
   layers:
   - Default
   - TransparentFX

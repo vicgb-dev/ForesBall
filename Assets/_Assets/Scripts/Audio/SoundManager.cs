@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour
 
 	private LevelSO currentLvl;
 	private GameObject lvlMusic;
+	private bool winFinished;
 
 	//Definición del patrón Singleton
 	#region Singleton
@@ -46,13 +47,15 @@ public class SoundManager : MonoBehaviour
 
 	private void OnEnable()
 	{
-		Actions.onLvlEnd += StopPlaying;
+		Actions.onLvlEnd += OnEndLvl;
 	}
 
 	private void OnDisable()
 	{
-		Actions.onLvlEnd -= StopPlaying;
+		Actions.onLvlEnd -= OnEndLvl;
 	}
+
+	public void WinFinished() => winFinished = true;
 
 	public void OnStartLvl(LevelSO lvl)
 	{
@@ -60,11 +63,34 @@ public class SoundManager : MonoBehaviour
 		CreateAudioChild("LvlMusic", currentLvl.music, currentLvl.musicVolume).Play();
 	}
 
-	private void StopPlaying(bool win)
+	public void OnEndLvl(bool win)
 	{
 		Destroy(GameObject.Find("LvlMusic"));
+
 		if (win) CreateAudioChild("EndLvlSound", currentLvl.winSound, currentLvl.winSoundVolume).Play();
 		else CreateAudioChild("EndLvlSound", currentLvl.loseSound, currentLvl.loseSoundVolume).Play();
+	}
+
+	private IEnumerator VolumeControl(AudioSource aS)
+	{
+		float finalVolume = aS.volume;
+		float time = 0;
+		while(!winFinished)
+		{
+			if(time < 1)
+			{
+				time += Time.unscaledDeltaTime;
+				aS.volume = Mathf.Lerp(0, finalVolume, time);
+			}
+			yield return null;
+		}
+		time = 0;
+		while(time < 1)
+		{
+			time += Time.unscaledDeltaTime;
+			aS.volume = Mathf.Lerp(finalVolume, 0, time);
+			yield return null;
+		}
 	}
 
 	private AudioSource CreateAudioChild(string name, AudioClip audioClip, float audioVolume, bool selfDestruction = true)

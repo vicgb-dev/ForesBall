@@ -12,24 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f29812b503ecd4aa042a38e18b680e, type: 3}
   m_Name: Level-0
   m_EditorClassIdentifier: 
-  levelNum: 1
-  music: {fileID: 8300000, guid: b7e88e8c0b1c720479ce160154259769, type: 3}
-  musicVolume: 1
-  winSound: {fileID: 0}
-  winSoundVolume: 0
+  music: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}
+  musicVolume: 0.109
+  winSound: {fileID: 8300000, guid: 384a1ebc4b057fd489b2e01744769962, type: 3}
+  winSoundVolume: 0.123
   loseSound: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}
-  loseSoundVolume: 0.154
-  straightCount: 3
+  loseSoundVolume: 0.112
+  straightCount: 10
   straightDelayFirstSpawn: 0
-  straightDelayBtwSpawns: 0
+  straightDelayBtwSpawns: 0.01
   straightSpawnTimeStamps: []
-  followCount: 0
+  followCount: 10
   followDelayFirstSpawn: 0
-  followDelayBtwSpawns: 0
+  followDelayBtwSpawns: 0.01
   followSpawnTimeStamps: []
   bigCount: 0
-  bigDelayFirstSpawn: 0
-  bigDelayBtwSpawns: 0
+  bigDelayFirstSpawn: 0.53
+  bigDelayBtwSpawns: 0.46
   bigSpawnTimeStamps: []
   powerUpsWave: 0
   powerUpsInmortal: 0
