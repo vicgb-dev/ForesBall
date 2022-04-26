@@ -5,11 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Level-0", menuName = "Levels/New level")]
 public class LevelSO : ScriptableObject
 {
-	// [Header("Level data")]
-	// public int levelNum;
-
-	[Space(10)]
-	[Header("Audio")]
+	public string musicName;
 	public AudioClip music;
 	[Range(0f, 1f)]
 	public float musicVolume;
@@ -20,43 +16,12 @@ public class LevelSO : ScriptableObject
 	[Range(0f, 1f)]
 	public float loseSoundVolume;
 
-
-
 	[Space(10)]
-	[Header("EnemyStraight")]
-	[Range(0, 15)]
-	public int straightCount;
-	[Range(0f, 5f)]
-	public float straightDelayFirstSpawn;
-	[Range(0f, 5f)]
-	public float straightDelayBtwSpawns;
 	public List<float> straightSpawnTimeStamps;
-
-	[Space(10)]
-	[Header("EnemyFollow")]
-	[Range(0, 15)]
-	public int followCount;
-	[Range(0f, 5f)]
-	public float followDelayFirstSpawn;
-	[Range(0f, 5f)]
-	public float followDelayBtwSpawns;
 	public List<float> followSpawnTimeStamps;
-
-	[Space(10)]
-	[Header("EnemyBig")]
-	[Range(0, 15)]
-	public int bigCount;
-	[Range(0f, 5f)]
-	public float bigDelayFirstSpawn;
-	[Range(0f, 5f)]
-	public float bigDelayBtwSpawns;
 	public List<float> bigSpawnTimeStamps;
 
-
 	[Space(10)]
-	[Header("PowerUps")]
-	[Range(0, 15)]
-	public int powerUpsWave;
-	[Range(0, 15)]
-	public int powerUpsInmortal;
+	public List<float> powerUpsWaveTimeStamps;
+	public List<float> powerUpsInmortalTimeStamps;
 }

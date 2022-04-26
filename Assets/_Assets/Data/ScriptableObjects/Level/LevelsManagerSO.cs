@@ -5,6 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LevelsManager", menuName = "Levels/Levels Manager")]
 public class LevelsManagerSO : ScriptableObject
 {
-    [Header("Levels")]
 	public List<LevelSO> levels;
 }

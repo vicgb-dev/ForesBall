@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,19 +9,17 @@ public class LvlBuilder : MonoBehaviour
 	[Header("Options")]
 	[SerializeField] private float delayStartTime;
 
-	[Header("Prefabs")]
-	public GameObject enemyStraightPrefab;
-	public GameObject enemyFollowPrefab;
-	public GameObject enemyBigPrefab;
+	[Header("Enemies")]
+	[SerializeField] private EnemiesManagerSO enemiesManagerSO;
 
 	[Header("Levels")]
-	public LevelsManagerSO levelsManagerSO;
+	[SerializeField] private LevelsManagerSO levelsManagerSO;
 
 	private Dictionary<Limits, float> limits;
 	private bool spawned = false;
 	private Collider2D[] colliders = new Collider2D[0];
 	private LevelSO currentLvl;
-	public List<GameObject> enemiesGO;
+	private List<GameObject> enemiesGO = new List<GameObject>();
 
 	//Definición del patrón Singleton
 	#region Singleton
@@ -69,6 +68,8 @@ public class LvlBuilder : MonoBehaviour
 		Actions.onLvlEnd -= StopSpawns;
 	}
 
+	private void StopSpawns(bool win) => StopAllCoroutines();
+
 	public void StartLevelWithDelay(LevelSO lvl)
 	{
 		currentLvl = lvl;
@@ -86,39 +87,21 @@ public class LvlBuilder : MonoBehaviour
 		enemiesGO.Clear();
 		StartCoroutine(CountdownToWin(currentLvl.music.length));
 
-		if (currentLvl.straightCount > 0)
-		{
-			Debug.Log($"Hay {currentLvl.straightCount} enemigos directos");
-			if (currentLvl.straightSpawnTimeStamps.Count == currentLvl.straightCount)
-				StartCoroutine(SpawnEnemy(enemyStraightPrefab, currentLvl.straightCount, currentLvl.straightDelayFirstSpawn, currentLvl.straightSpawnTimeStamps));
-			else
-				StartCoroutine(SpawnEnemy(enemyStraightPrefab, currentLvl.straightCount, currentLvl.straightDelayFirstSpawn, currentLvl.straightDelayBtwSpawns));
-		}
+		StartCoroutine(SpawnEnemy(0, currentLvl.straightSpawnTimeStamps));
+		StartCoroutine(SpawnEnemy(1, currentLvl.followSpawnTimeStamps));
+		StartCoroutine(SpawnEnemy(2, currentLvl.bigSpawnTimeStamps));
+	}
 
-		if (currentLvl.followCount > 0)
-		{
-			Debug.Log($"Hay {currentLvl.followCount} enemigos seguimiento");
-			if (currentLvl.followSpawnTimeStamps.Count == currentLvl.followCount)
-				StartCoroutine(SpawnEnemy(enemyFollowPrefab, currentLvl.followCount, currentLvl.followDelayFirstSpawn, currentLvl.followSpawnTimeStamps));
-			else
-				StartCoroutine(SpawnEnemy(enemyFollowPrefab, currentLvl.followCount, currentLvl.followDelayFirstSpawn, currentLvl.followDelayBtwSpawns));
-		}
+	private void SetUpEnemy(GameObject enemy)
+	{
 
-		if (currentLvl.bigCount > 0)
-		{
-			Debug.Log($"Hay {currentLvl.bigCount} enemigos grandes");
-			if (currentLvl.bigSpawnTimeStamps.Count == currentLvl.bigCount)
-				StartCoroutine(SpawnEnemy(enemyBigPrefab, currentLvl.bigCount, currentLvl.bigDelayFirstSpawn, currentLvl.bigSpawnTimeStamps));
-			else
-				StartCoroutine(SpawnEnemy(enemyBigPrefab, currentLvl.bigCount, currentLvl.bigDelayFirstSpawn, currentLvl.bigDelayBtwSpawns));
-		}
 	}
 
 	private IEnumerator CountdownToWin(float timeToWin)
 	{
 		yield return new WaitForSecondsRealtime(timeToWin);
 
-		SoundManager.Instance.OnEndLvl(true);
+		SoundManager.Instance.PlayWin();
 
 		foreach (GameObject enemy in enemiesGO)
 		{
@@ -128,57 +111,26 @@ public class LvlBuilder : MonoBehaviour
 		}
 		yield return new WaitForSecondsRealtime(2);
 
-		float timeBetweenDestroy = 1;
+		float y = 1;
 		foreach (GameObject enemy in enemiesGO)
 		{
 			Destroy(enemy);
-			timeBetweenDestroy = timeBetweenDestroy - 0.1f > 0.1f ? timeBetweenDestroy - 0.1f : 0.1f;
-			yield return new WaitForSecondsRealtime(timeBetweenDestroy);
+			SoundManager.Instance.PlayPop();
+
+			yield return new WaitForSecondsRealtime(1 / y);
+			y++;
 		}
 
 		yield return new WaitForSecondsRealtime(1);
 
-		SoundManager.Instance.WinFinished();
 		Actions.onLvlEnd?.Invoke(true);
 	}
 
-	private IEnumerator SpawnEnemy(GameObject enemyPrefab, int enemies, float firstSpawn, float btwSpawns)
+	private IEnumerator SpawnEnemy(int position, List<float> timeStamps)
 	{
-		yield return new WaitForSeconds(firstSpawn);
+		GameObject enemyPrefab = enemiesManagerSO.enemies[position].enemyPrefab;
 		SpriteRenderer sRenderer = enemyPrefab.GetComponentInChildren<SpriteRenderer>();
-		while (enemies > 0)
-		{
-			yield return new WaitForSeconds(btwSpawns);
-			while (!spawned)
-			{
-				Vector3 newLocation = new Vector3(
-					Random.Range(limits[Limits.left] + sRenderer.size.x, limits[Limits.right] - sRenderer.size.x),
-					Random.Range(limits[Limits.bottom] + sRenderer.size.y, limits[Limits.up] - sRenderer.size.y),
-					0);
-
-
-				if (CanSpawn(newLocation, sRenderer.size.x / 2))
-				{
-					GameObject instantiateEnemy = Instantiate(enemyPrefab, newLocation, enemyPrefab.transform.rotation);
-					enemiesGO.Add(instantiateEnemy);
-					spawned = true;
-				}
-				else
-				{
-					//Debug.LogError("Habia algun collider en la zona");
-				}
-
-				yield return null;
-			}
-			spawned = false;
-			enemies--;
-		}
-	}
-
-	private IEnumerator SpawnEnemy(GameObject enemyPrefab, int enemies, float firstSpawn, List<float> timeStamps)
-	{
-		yield return new WaitForSeconds(firstSpawn);
-		SpriteRenderer sRenderer = enemyPrefab.GetComponentInChildren<SpriteRenderer>();
+		int enemies = timeStamps.Count;
 		int counter = 0;
 		while (enemies > 0)
 		{
@@ -188,35 +140,25 @@ public class LvlBuilder : MonoBehaviour
 				yield return new WaitForSeconds(timeStamps[counter] - timeStamps[counter - 1]);
 
 			counter++;
+
 			while (!spawned)
 			{
 				Vector3 newLocation = new Vector3(
-					Random.Range(limits[Limits.left] + sRenderer.size.x, limits[Limits.right] - sRenderer.size.x),
-					Random.Range(limits[Limits.bottom] + sRenderer.size.y, limits[Limits.up] - sRenderer.size.y),
+					UnityEngine.Random.Range(limits[Limits.left] + sRenderer.size.x, limits[Limits.right] - sRenderer.size.x),
+					UnityEngine.Random.Range(limits[Limits.bottom] + sRenderer.size.y, limits[Limits.up] - sRenderer.size.y),
 					0);
 
-
-				if (CanSpawn(newLocation, sRenderer.size.x / 2))
+				if (CanSpawn(newLocation, sRenderer.size.x * 0.75f))
 				{
 					GameObject instantiateEnemy = Instantiate(enemyPrefab, newLocation, enemyPrefab.transform.rotation);
+					enemiesManagerSO.enemies[position].SetUpEnemy(instantiateEnemy);
 					enemiesGO.Add(instantiateEnemy);
 					spawned = true;
 				}
-				else
-				{
-					Debug.LogError("Habia algun collider en la zona");
-				}
-
-				yield return null;
 			}
 			spawned = false;
 			enemies--;
 		}
-	}
-
-	private void StopSpawns(bool win)
-	{
-		StopAllCoroutines();
 	}
 
 	private bool CanSpawn(Vector3 center, float radius)
@@ -236,9 +178,7 @@ public class LvlBuilder : MonoBehaviour
 
 			if (center.x >= leftExtent && center.x <= rightExtent && center.y >= lowerExtent && center.y <= upperExtent)
 				return false;
-
 		}
 		return true;
-		//return Physics2D.OverlapCircleNonAlloc(center, radius, colliders) == 0 ? true : false);
 	}
 }

@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 8406387879587118895}
   - component: {fileID: 5812217627826302500}
   m_Layer: 5
-  m_Name: LevelPanel
+  m_Name: LevelPanel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -340,7 +340,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1085.4165, y: 1302.145}
+  m_SizeDelta: {x: 878.2925, y: 1256.8364}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3991654188735059684
 MonoBehaviour:
@@ -506,8 +506,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 706, y: -417}
-  m_SizeDelta: {x: 659.0892, y: 145.88}
+  m_AnchoredPosition: {x: 558.7478, y: -417}
+  m_SizeDelta: {x: 565.2361, y: 145.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7238589338246195603
 CanvasRenderer:
@@ -925,7 +925,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 379.1635}
+  m_SizeDelta: {x: 0, y: 291.7831}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8270506090805257808
 GameObject:
@@ -961,8 +961,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 706, y: -193.00008}
-  m_SizeDelta: {x: 659.0892, y: 145.88}
+  m_AnchoredPosition: {x: 558.7478, y: -193.00008}
+  m_SizeDelta: {x: 565.2361, y: 145.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5133193396594716387
 CanvasRenderer:
@@ -1264,8 +1264,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 150
-    m_Right: 150
+    m_Left: 200
+    m_Right: 200
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4

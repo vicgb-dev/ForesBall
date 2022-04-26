@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Enemy", menuName = "Enemies/New enemy")]
 public class EnemySO : ScriptableObject
 {
-	[Header("Enemy options")]
 	public GameObject enemyPrefab;
 	public SpriteRendererSO spriteRendererSO;
 	public TrailSO trailSO;

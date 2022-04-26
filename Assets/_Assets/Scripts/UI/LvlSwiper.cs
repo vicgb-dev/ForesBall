@@ -22,7 +22,6 @@ public class LvlSwiper : MonoBehaviour, IPointerDownHandler
 	private int currentPanel = 0;
 	private bool pointerInSwipeLvl = false;
 
-
 	public void Populated()
 	{
 		positions = new float[transform.childCount];
@@ -75,7 +74,7 @@ public class LvlSwiper : MonoBehaviour, IPointerDownHandler
 		}
 	}
 
-	private IEnumerator MoveOrigin()
+	public IEnumerator MoveOrigin()
 	{
 		float nextPosition = positions[currentPanel];
 		while (Mathf.Abs(nextPosition - scrollbar.value) > 0.001f)
@@ -88,7 +87,7 @@ public class LvlSwiper : MonoBehaviour, IPointerDownHandler
 	private IEnumerator MoveLeft()
 	{
 		currentPanel++;
-		Actions.onNewActiveLvlPanel?.Invoke(currentPanel);
+		// Actions.onNewActiveLvlPanel?.Invoke(currentPanel);
 		float nextPosition = positions[currentPanel];
 		while (nextPosition - scrollbar.value > 0.001f)
 		{
@@ -100,7 +99,7 @@ public class LvlSwiper : MonoBehaviour, IPointerDownHandler
 	private IEnumerator MoveRight()
 	{
 		currentPanel--;
-		Actions.onNewActiveLvlPanel?.Invoke(currentPanel);
+		// Actions.onNewActiveLvlPanel?.Invoke(currentPanel);
 		float nextPosition = positions[currentPanel];
 		while (scrollbar.value - nextPosition > 0.001f)
 		{
@@ -114,11 +113,19 @@ public class LvlSwiper : MonoBehaviour, IPointerDownHandler
 		for (int i = 0; i < positions.Length; i++)
 			if (scrollbar.value < positions[i] + (distance / 2) && scrollbar.value > positions[i] - (distance / 2))
 			{
+				currentPanel = i;
+				Actions.onNewActiveLvlPanel?.Invoke(currentPanel);
 				transform.GetChild(i).localScale = Vector2.Lerp(transform.GetChild(i).localScale, new Vector2(panelMaxScale, panelMaxScale), transitionTime);
 				for (int a = 0; a < positions.Length; a++)
 					if (a != i)
 						transform.GetChild(a).localScale = Vector2.Lerp(transform.GetChild(a).localScale, new Vector2(panelMinScale, panelMinScale), transitionTime);
 			}
+	}
+
+	public void ScrollbarMoveOrigin()
+	{
+		StopAllCoroutines();
+		StartCoroutine(MoveOrigin());
 	}
 
 	public void OnPointerDown(PointerEventData eventData) => pointerInSwipeLvl = true;

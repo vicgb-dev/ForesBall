@@ -12,23 +12,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f29812b503ecd4aa042a38e18b680e, type: 3}
   m_Name: Level-0
   m_EditorClassIdentifier: 
+  musicName: Platillos
   music: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}
-  musicVolume: 0.3
+  musicVolume: 0.5
   winSound: {fileID: 8300000, guid: 384a1ebc4b057fd489b2e01744769962, type: 3}
-  winSoundVolume: 0.3
+  winSoundVolume: 0.5
   loseSound: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}
-  loseSoundVolume: 0.3
-  straightCount: 15
-  straightDelayFirstSpawn: 0
-  straightDelayBtwSpawns: 0.1
-  straightSpawnTimeStamps: []
-  followCount: 0
-  followDelayFirstSpawn: 0
-  followDelayBtwSpawns: 0.01
+  loseSoundVolume: 0.5
+  straightSpawnTimeStamps:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   followSpawnTimeStamps: []
-  bigCount: 0
-  bigDelayFirstSpawn: 0
-  bigDelayBtwSpawns: 0
   bigSpawnTimeStamps: []
-  powerUpsWave: 0
-  powerUpsInmortal: 0
+  powerUpsWaveTimeStamps: []
+  powerUpsInmortalTimeStamps: []

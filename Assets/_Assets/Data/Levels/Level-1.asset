@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f29812b503ecd4aa042a38e18b680e, type: 3}
   m_Name: Level-1
   m_EditorClassIdentifier: 
+  musicName: In The Hall Of The Mountain King
   music: {fileID: 8300000, guid: b7e88e8c0b1c720479ce160154259769, type: 3}
-  musicVolume: 0.3
+  musicVolume: 0.5
   winSound: {fileID: 8300000, guid: 384a1ebc4b057fd489b2e01744769962, type: 3}
-  winSoundVolume: 0.3
+  winSoundVolume: 0.5
   loseSound: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}
-  loseSoundVolume: 0.3
-  straightCount: 9
-  straightDelayFirstSpawn: 0
-  straightDelayBtwSpawns: 1
+  loseSoundVolume: 0.5
   straightSpawnTimeStamps:
   - 1.4
   - 2.4
@@ -31,13 +29,7 @@ MonoBehaviour:
   - 39.1
   - 40
   - 40.7
-  followCount: 0
-  followDelayFirstSpawn: 0.41
-  followDelayBtwSpawns: 0.54
   followSpawnTimeStamps: []
-  bigCount: 0
-  bigDelayFirstSpawn: 0.53
-  bigDelayBtwSpawns: 0.46
   bigSpawnTimeStamps: []
-  powerUpsWave: 0
-  powerUpsInmortal: 0
+  powerUpsWaveTimeStamps: []
+  powerUpsInmortalTimeStamps: []

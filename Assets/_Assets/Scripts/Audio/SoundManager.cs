@@ -5,12 +5,13 @@ using System.Linq;
 
 public class SoundManager : MonoBehaviour
 {
-	public List<AudioClip> songs = new List<AudioClip>();
-	public List<AudioClip> endLvlSounds = new List<AudioClip>();
+	[SerializeField] private AudioClip popSound;
+	[Range(0, 1)]
+	[SerializeField] private float popVolume;
 
 	private LevelSO currentLvl;
 	private GameObject lvlMusic;
-	private bool winFinished;
+	private float pitch;
 
 	//Definición del patrón Singleton
 	#region Singleton
@@ -45,39 +46,33 @@ public class SoundManager : MonoBehaviour
 
 	#endregion
 
-	public void WinFinished() => winFinished = true;
+	private void OnEnable()
+	{
+		Actions.onLvlEnd += PlayLose;
+	}
+
+	private void OnDisable()
+	{
+		Actions.onLvlEnd -= PlayLose;
+	}
 
 	public void OnStartLvl(LevelSO lvl)
 	{
+		pitch = 1;
 		currentLvl = lvl;
 		CreateAudioChild("LvlMusic", currentLvl.music, currentLvl.musicVolume).Play();
 	}
 
-	public void OnEndLvl(bool win)
+	public void PlayLose(bool win)
 	{
-		if (win) CreateAudioChild("EndLvlSound", currentLvl.winSound, currentLvl.winSoundVolume).Play();
+		Destroy(GameObject.Find("LvlMusic"));
+		if (!win) CreateAudioChild("EndLvlSound", currentLvl.loseSound, currentLvl.loseSoundVolume).Play();
 	}
 
-	private IEnumerator VolumeControl(AudioSource aS)
+	public void PlayWin()
 	{
-		float finalVolume = aS.volume;
-		float time = 0;
-		while(!winFinished)
-		{
-			if(time < 1)
-			{
-				time += Time.unscaledDeltaTime;
-				aS.volume = Mathf.Lerp(0, finalVolume, time);
-			}
-			yield return null;
-		}
-		time = 0;
-		while(time < 1)
-		{
-			time += Time.unscaledDeltaTime;
-			aS.volume = Mathf.Lerp(finalVolume, 0, time);
-			yield return null;
-		}
+		Destroy(GameObject.Find("LvlMusic"));
+		CreateAudioChild("EndLvlSound", currentLvl.winSound, currentLvl.winSoundVolume).Play();
 	}
 
 	private AudioSource CreateAudioChild(string name, AudioClip audioClip, float audioVolume, bool selfDestruction = true)
@@ -96,5 +91,13 @@ public class SoundManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds(delay);
 		Destroy(audioGO);
+	}
+
+	public void PlayPop()
+	{
+		AudioSource aS = CreateAudioChild($"PopSound{pitch.ToString("0.00")}", popSound, popVolume);
+		aS.pitch = pitch;
+		pitch += 0.1f;
+		aS.Play();
 	}
 }
