@@ -10,33 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23f29812b503ecd4aa042a38e18b680e, type: 3}
-  m_Name: Level-2
+  m_Name: Level-1
   m_EditorClassIdentifier: 
-  music: {fileID: 8300000, guid: 24abe5c0761a72b45a66381510c9eb9f, type: 3}
-  musicVolume: 0.109
-  winSound: {fileID: 8300000, guid: 57b5aad0b88bb254aa4e6b4e306359af, type: 3}
-  winSoundVolume: 0.12
+  music: {fileID: 8300000, guid: b7e88e8c0b1c720479ce160154259769, type: 3}
+  musicVolume: 0.3
+  winSound: {fileID: 8300000, guid: 384a1ebc4b057fd489b2e01744769962, type: 3}
+  winSoundVolume: 0.3
   loseSound: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}
-  loseSoundVolume: 0.112
-  straightCount: 2
-  straightDelayFirstSpawn: 0.56
-  straightDelayBtwSpawns: 0.53
+  loseSoundVolume: 0.3
+  straightCount: 9
+  straightDelayFirstSpawn: 0
+  straightDelayBtwSpawns: 1
   straightSpawnTimeStamps:
-  - 24.9
-  - 37.1
-  followCount: 9
-  followDelayFirstSpawn: 0.66
-  followDelayBtwSpawns: 1
-  followSpawnTimeStamps:
-  - 0
-  - 0
-  - 0
-  - 24.9
-  - 24.9
-  - 27.5
-  - 37.1
-  - 37.1
-  - 39.8
+  - 1.4
+  - 2.4
+  - 3.4
+  - 17.4
+  - 18.4
+  - 19.4
+  - 39.1
+  - 40
+  - 40.7
+  followCount: 0
+  followDelayFirstSpawn: 0.41
+  followDelayBtwSpawns: 0.54
+  followSpawnTimeStamps: []
   bigCount: 0
   bigDelayFirstSpawn: 0.53
   bigDelayBtwSpawns: 0.46

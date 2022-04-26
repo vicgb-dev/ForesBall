@@ -45,16 +45,6 @@ public class SoundManager : MonoBehaviour
 
 	#endregion
 
-	private void OnEnable()
-	{
-		Actions.onLvlEnd += OnEndLvl;
-	}
-
-	private void OnDisable()
-	{
-		Actions.onLvlEnd -= OnEndLvl;
-	}
-
 	public void WinFinished() => winFinished = true;
 
 	public void OnStartLvl(LevelSO lvl)
@@ -65,10 +55,7 @@ public class SoundManager : MonoBehaviour
 
 	public void OnEndLvl(bool win)
 	{
-		Destroy(GameObject.Find("LvlMusic"));
-
 		if (win) CreateAudioChild("EndLvlSound", currentLvl.winSound, currentLvl.winSoundVolume).Play();
-		else CreateAudioChild("EndLvlSound", currentLvl.loseSound, currentLvl.loseSoundVolume).Play();
 	}
 
 	private IEnumerator VolumeControl(AudioSource aS)

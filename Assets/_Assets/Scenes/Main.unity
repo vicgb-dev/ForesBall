@@ -2299,10 +2299,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayStartTime: 2
-  enemyStraightPrefab: {fileID: 4026320245226624677, guid: 5eab71a3c63b587489fafd8e9fc5a917, type: 3}
-  enemyFollowPrefab: {fileID: 4026320245226624677, guid: a612a798dee84a640886b326c57231d4, type: 3}
-  enemyBigPrefab: {fileID: 4026320245226624677, guid: e39d0aeaf4b5d13488870b6fe5c3b5c4, type: 3}
+  enemyStraightPrefab: {fileID: 2222314964590709460, guid: 69322490d75fdcb44bd4c2bcf20d40b5, type: 3}
+  enemyFollowPrefab: {fileID: 2222314964590709460, guid: 4685ddc68294101468b3aa827eac8ce6, type: 3}
+  enemyBigPrefab: {fileID: 2222314964590709460, guid: d02e885acc21fff4091fe32c87ea8d5c, type: 3}
   levelsManagerSO: {fileID: 11400000, guid: 2a83f6d13ea37f549acaa41908a8c803, type: 2}
+  enemiesGO: []
 --- !u!1 &1559251322
 GameObject:
   m_ObjectHideFlags: 0

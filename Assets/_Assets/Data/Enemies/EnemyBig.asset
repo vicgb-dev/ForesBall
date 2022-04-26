@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae9d8e1be53aa64aa0258090b5686a5, type: 3}
+  m_Name: EnemyBig
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 2222314964590709460, guid: d02e885acc21fff4091fe32c87ea8d5c, type: 3}
+  spriteRendererSO: {fileID: 11400000, guid: 6012c7f0cc63aa944974049713785f32, type: 2}
+  trailSO: {fileID: 0}
+  deathParticlesSO: {fileID: 11400000, guid: e2ac887f670f7ef4785f0a072ad5da0b, type: 2}

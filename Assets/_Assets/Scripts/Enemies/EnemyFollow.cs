@@ -9,6 +9,7 @@ public class EnemyFollow : Enemy, IEnemy
 	[SerializeField] private float speedIncremental = 0.01f;
 	[SerializeField] private float secsToActivateCollider = 1;
 
+	private Rigidbody2D rb;
 	private Vector2 direction;
 	private Vector2 lastVelocity;
 	private GameObject targetPlayer;
@@ -50,7 +51,7 @@ public class EnemyFollow : Enemy, IEnemy
 		}
 	}
 	
-	public void StopMoving()
+	public override void StopMoving()
 	{
 		rb.isKinematic = true;
 		rb.velocity = Vector2.zero;

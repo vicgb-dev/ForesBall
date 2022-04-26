@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Level-0", menuName = " Scriptable Objects/Level")]
+[CreateAssetMenu(fileName = "Level-0", menuName = "Levels/New level")]
 public class LevelSO : ScriptableObject
 {
 	// [Header("Level data")]

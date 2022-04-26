@@ -9,6 +9,7 @@ public class EnemyStraight : Enemy, IEnemy
 	[SerializeField] private float speedIncremental = 0.05f;
 	[SerializeField] private float secsToActivateCollider = 1;
 
+	private Rigidbody2D rb;
 	private Vector2 direction;
 	private Vector2 lastVelocity;
 
@@ -24,6 +25,8 @@ public class EnemyStraight : Enemy, IEnemy
 		StartCoroutine(ActivateEnemyTag(Tag.EnemyStraight, secsToActivateCollider));
 	}
 
+	private void Update() => lastVelocity = rb.velocity;
+
 	private void OnCollisionEnter2D(Collision2D other)
 	{
 		if(stopped) return;
@@ -32,13 +35,10 @@ public class EnemyStraight : Enemy, IEnemy
 		rb.velocity = direction * speed;
 	}
 	
-	private void Update() => lastVelocity = rb.velocity;
-
-	public void StopMoving()
+	public override void StopMoving()
 	{
 		rb.isKinematic = true;
 		rb.velocity = Vector2.zero;
 		stopped = true;
 	}
-
 }

@@ -117,22 +117,13 @@ public class LvlBuilder : MonoBehaviour
 	private IEnumerator CountdownToWin(float timeToWin)
 	{
 		yield return new WaitForSecondsRealtime(timeToWin);
-		
+
 		SoundManager.Instance.OnEndLvl(true);
 
 		foreach (GameObject enemy in enemiesGO)
 		{
-			switch(enemy.tag)
-			{
-				case "EnemyStraight":
-					enemy.GetComponent<EnemyStraight>().StopMoving();
-				break;
-				case "EnemyFollow":
-					enemy.GetComponent<EnemyFollow>().StopMoving();
-				break;
-				case "EnemyBig":
-				break;
-			}
+			enemy.GetComponent<Enemy>().StopMoving();
+
 			enemy.tag = Tag.Untagged.ToString();
 		}
 		yield return new WaitForSecondsRealtime(2);
@@ -174,7 +165,7 @@ public class LvlBuilder : MonoBehaviour
 				}
 				else
 				{
-					Debug.LogError("Habia algun collider en la zona");
+					//Debug.LogError("Habia algun collider en la zona");
 				}
 
 				yield return null;

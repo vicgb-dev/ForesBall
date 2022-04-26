@@ -11,7 +11,7 @@ public class UIBuilder : MonoBehaviour
 	[SerializeField] private GameObject pMinimenu;
 	[SerializeField] private GameObject pJoystick;
 	[SerializeField] private GameObject pGame;
-	
+
 	[Header("Lvl chooser")]
 	[SerializeField] private GameObject lvlPLvlChooser;
 	[SerializeField] private GameObject lvlPanelPrefab;
@@ -31,12 +31,12 @@ public class UIBuilder : MonoBehaviour
 		rectTransform.anchorMin = minAnchor;
 		rectTransform.anchorMax = maxAnchor;
 	}
-	
+
 	void Start()
-    {
+	{
 		ReorganizeParents();
 		LoadPanelLevels(LvlBuilder.Instance.GetLevels());
-    }
+	}
 
 	// Reorganize parents to use masks
 	public void ReorganizeParents()
@@ -56,7 +56,6 @@ public class UIBuilder : MonoBehaviour
 	// Create panels to choose level
 	private void LoadPanelLevels(List<LevelSO> levels)
 	{
-		Debug.Log(levels.Count);
 		int cont = 1;
 		foreach (LevelSO level in levels)
 		{
