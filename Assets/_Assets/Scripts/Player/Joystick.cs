@@ -29,13 +29,14 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 	private float horizontal;
 
 	private bool isButton = false;
-	private bool buittonEnabled = true;
+	private bool buittonEnabled = false;
+	private bool isJoystick = true;
 	private int currentLvl;
 
 	public void Init(PlayerMove playerMove)
 	{
 		this.playerMove = playerMove;
-		StartCoroutine(ToButton());
+		StartCoroutine(ToNothing());
 	}
 
 	private void OnEnable()
@@ -50,7 +51,6 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 			StopAllCoroutines();
 			StartCoroutine(ToButton());
 		};
-		Actions.onNewActiveLvlPanel += newCurrentlvl => currentLvl = newCurrentlvl;
 	}
 
 	private void Awake()
@@ -78,7 +78,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 
 	public void OnDrag(PointerEventData eventData)
 	{
-		if (isButton) return;
+		if (!isJoystick) return;
 		//Debug.Log("OnDrag");
 		Vector2 nextPosition = Input.GetTouch(0).position;
 
@@ -111,12 +111,13 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 		if (!isButton) return;
 		if (!buittonEnabled) return;
 		buittonEnabled = false;
-		GameManager.Instance.StartLevel(LvlBuilder.Instance.GetLevels()[currentLvl]);
+		GameManager.Instance.StartLevel(LvlBuilder.Instance.GetLevels()[UIManager.Instance.currentPanel]);
 	}
 
-	private IEnumerator ToButton()
+	public IEnumerator ToButton()
 	{
 		isButton = true;
+		isJoystick = false;
 
 		float time = 0;
 		Vector3 initialScale = thisRT.localScale;
@@ -141,7 +142,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 		buittonEnabled = true;
 	}
 
-	private IEnumerator ToJoystick()
+	public IEnumerator ToJoystick()
 	{
 		float time = 0;
 
@@ -161,5 +162,32 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 		}
 
 		isButton = false;
+		isJoystick = true;
+	}
+
+	public IEnumerator ToNothing()
+	{
+		isButton = false;
+		buittonEnabled = false;
+
+		float time = 0;
+		Vector3 initialScale = thisRT.localScale;
+		Vector3 finalScale = Vector3.zero;
+
+		Vector2 initialPosition = thisRT.position;
+		Vector2 finalPosition = rTConainer.position;
+
+		Image imagePlayButton = gameObject.transform.GetChild(0).GetComponent<Image>();
+		Color initialColor = imagePlayButton.color;
+		Color finalColor = new Color(initialColor.r, initialColor.g, initialColor.b, 1);
+
+		while (thisRT.localScale.x > finalScale.x)
+		{
+			time += Time.unscaledDeltaTime / secondsToMorph;
+			thisRT.localScale = Vector3.Lerp(initialScale, finalScale, curve.Evaluate(time));
+			thisRT.position = Vector2.Lerp(initialPosition, finalPosition, curve.Evaluate(time));
+			imagePlayButton.color = Color.Lerp(initialColor, finalColor, curve.Evaluate(time));
+			yield return null;
+		}
 	}
 }

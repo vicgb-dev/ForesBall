@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
 	private PlayerMove playerMove;
 	public Dictionary<Limits, float> limits = new Dictionary<Limits, float>();
 
-	//Definición del patrón Singleton
 	#region Singleton
 
 	private static GameManager _instance;
@@ -33,7 +32,6 @@ public class GameManager : MonoBehaviour
 
 	private void Awake()
 	{
-		// Si el singleton aun no ha sido inicializado
 		if (_instance != null && _instance != this)
 		{
 			Destroy(this.gameObject);
@@ -41,7 +39,6 @@ public class GameManager : MonoBehaviour
 		}
 
 		_instance = this;
-		//DontDestroyOnLoad(this.gameObject);
 	}
 
 	#endregion
