@@ -8,6 +8,9 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
 	[SerializeField] public Joystick joystick;
+	[SerializeField] private GameObject SettingsMenu;
+	[SerializeField] private GameObject CustomizeMenu;
+	[SerializeField] private GameObject ChallengesMenu;
 
 	public float secondsToMoveLevelPanels;
 	public AnimationCurve curveToMove;
@@ -58,29 +61,31 @@ public class UIManager : MonoBehaviour
 
 	private void Start()
 	{
-		uIGameViewManager.CleanGameView(null);
+		Actions.onNewUIState?.Invoke(UIState.Main);
 	}
 
 	public void MainMenuButton1()
 	{
-		mainMenuManager.MoveMainMenuLeft();
-		// Actions.onNewUIState
+		Actions.onNewUIState?.Invoke(UIState.Challenges);
 	}
 
 	public void MainMenuButton2()
 	{
-		mainMenuManager.MoveMainMenuLeft();
+		Actions.onNewUIState?.Invoke(UIState.Customize);
 	}
 
 	public void MainMenuButton3()
 	{
-		mainMenuManager.MoveMainMenuLeft();
+		Actions.onNewUIState?.Invoke(UIState.Settings);
 	}
 
 	public void MainMenuButton4()
 	{
-		mainMenuManager.MoveMainMenuLeft();
-		uIGameViewManager.BlockGameView();
-		StartCoroutine(joystick.ToButton());
+		Actions.onNewUIState?.Invoke(UIState.Levels);
+	}
+
+	public void BackButton()
+	{
+		Actions.onNewUIState?.Invoke(UIState.Main);
 	}
 }

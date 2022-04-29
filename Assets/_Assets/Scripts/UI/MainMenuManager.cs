@@ -16,13 +16,28 @@ public class MainMenuManager : MonoBehaviour
 		mainMenuOriginPosition = new Vector3(rT.localPosition.x, rT.localPosition.y, rT.localPosition.z);
 	}
 
+	private void OnEnable()
+	{
+		Actions.onNewUIState += OnNewUIState;
+	}
+
+	private void OnNewUIState(UIState state)
+	{
+		if (state == UIState.Main)
+			MoveMainMenuOrigin();
+		else
+			MoveMainMenuLeft();
+	}
+
 	public void MoveMainMenuLeft()
 	{
+		StopAllCoroutines();
 		StartCoroutine(UIHelpers.Instance.MovePanel(mainMenu, mainMenu.transform.localPosition, mainMenuLeftPosition, UIManager.Instance.secondsToMoveLevelPanels, UIManager.Instance.curveToMove));
 	}
 
 	public void MoveMainMenuOrigin()
 	{
+		StopAllCoroutines();
 		StartCoroutine(UIHelpers.Instance.MovePanel(mainMenu, mainMenu.transform.localPosition, mainMenuOriginPosition, UIManager.Instance.secondsToMoveLevelPanels, UIManager.Instance.curveToMove));
 	}
 }

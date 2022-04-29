@@ -14,6 +14,7 @@ public class UIGameViewManager : MonoBehaviour
 	[Header("References")]
 	[SerializeField] private GameObject pUiGame;
 	[SerializeField] private GameObject pBlockTouchGame;
+	[SerializeField] private GameObject pBlockTouchMiniMenu;
 	[SerializeField] private GameObject pEndGame;
 	[SerializeField] private GameObject scrollView;
 	[SerializeField] private GameObject horizontalScrollBar;
@@ -47,16 +48,32 @@ public class UIGameViewManager : MonoBehaviour
 		pBlockTouchGame.SetActive(false);
 	}
 
-	public void CleanGameView(LevelSO lvl)
+	private void OnEnable()
+	{
+		Actions.onNewUIState += OnNewUIState;
+		Actions.onLvlStart += (lvl) => pBlockTouchMiniMenu.SetActive(true);
+		Actions.onLvlEnd += (win) => pBlockTouchMiniMenu.SetActive(false);
+	}
+
+	private void OnNewUIState(UIState state)
+	{
+		if (state == UIState.Levels)
+			BlockGameView();
+		else
+			CleanGameView();
+	}
+
+	// Move elements out of the player's sight
+	public void CleanGameView(LevelSO lvl = null)
 	{
 		StopAllCoroutines();
-		// Move elements out of the player's sight
-		StartCoroutine(UIHelpers.Instance.MovePanel(scrollView, scrollViewDownPosition, scrollViewUpPosition, UIManager.Instance.secondsToMoveLevelPanels, UIManager.Instance.curveToMove));
-		StartCoroutine(UIHelpers.Instance.MovePanel(horizontalScrollBar, scrollBarUpPosition, scrollBarDownPosition, UIManager.Instance.secondsToMoveLevelPanels, UIManager.Instance.curveToMove));
+		StartCoroutine(UIHelpers.Instance.MovePanel(scrollView, scrollView.transform.localPosition, scrollViewUpPosition, UIManager.Instance.secondsToMoveLevelPanels, UIManager.Instance.curveToMove));
+		StartCoroutine(UIHelpers.Instance.MovePanel(horizontalScrollBar, horizontalScrollBar.transform.localPosition, scrollBarDownPosition, UIManager.Instance.secondsToMoveLevelPanels, UIManager.Instance.curveToMove));
 		StartCoroutine(UIHelpers.Instance.ColorChange(endGameImage, endGameImage.color, endGameAlpha0, UIManager.Instance.secondsToChangeAlpha, UIManager.Instance.curveToMove));
 		pBlockTouchGame.SetActive(true);
 	}
 
+	// Move elements in the player's sight
 	public void BlockGameView(bool? win = null)
 	{
 		Color finalColor;
@@ -67,9 +84,9 @@ public class UIGameViewManager : MonoBehaviour
 		else
 			finalColor = originalColor;
 
-		// Move elements in the player's sight
-		StartCoroutine(UIHelpers.Instance.MovePanel(scrollView, scrollViewUpPosition, scrollViewDownPosition, UIManager.Instance.secondsToMoveLevelPanels, UIManager.Instance.curveToMove));
-		StartCoroutine(UIHelpers.Instance.MovePanel(horizontalScrollBar, scrollBarDownPosition, scrollBarUpPosition, UIManager.Instance.secondsToMoveLevelPanels, UIManager.Instance.curveToMove));
+		StopAllCoroutines();
+		StartCoroutine(UIHelpers.Instance.MovePanel(scrollView, scrollView.transform.localPosition, scrollViewDownPosition, UIManager.Instance.secondsToMoveLevelPanels, UIManager.Instance.curveToMove));
+		StartCoroutine(UIHelpers.Instance.MovePanel(horizontalScrollBar, horizontalScrollBar.transform.localPosition, scrollBarUpPosition, UIManager.Instance.secondsToMoveLevelPanels, UIManager.Instance.curveToMove));
 		StartCoroutine(UIHelpers.Instance.ColorChange(endGameImage, endGameAlpha0, finalColor, UIManager.Instance.secondsToChangeAlpha, UIManager.Instance.curveToMove, () =>
 		{
 			Actions.onCleanLvl?.Invoke();

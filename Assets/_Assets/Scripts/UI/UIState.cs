@@ -1,7 +1,7 @@
 public enum UIState
 {
 	Main,
-	Game,
+	Levels,
 	Challenges,
 	Customize,
 	Settings

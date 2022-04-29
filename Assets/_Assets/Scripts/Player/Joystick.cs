@@ -29,7 +29,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 	private float horizontal;
 
 	private bool isButton = false;
-	private bool buittonEnabled = false;
+	private bool buttonEnabled = false;
 	private bool isJoystick = true;
 	private int currentLvl;
 
@@ -37,20 +37,6 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 	{
 		this.playerMove = playerMove;
 		StartCoroutine(ToNothing());
-	}
-
-	private void OnEnable()
-	{
-		Actions.onLvlStart += lvl =>
-		{
-			StopAllCoroutines();
-			StartCoroutine(ToJoystick());
-		};
-		Actions.onLvlEnd += win =>
-		{
-			StopAllCoroutines();
-			StartCoroutine(ToButton());
-		};
 	}
 
 	private void Awake()
@@ -74,6 +60,32 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 
 		offSetVertical = (joystickCorners[1].y - joystickCorners[0].y) / 2;
 		OffSetHorizontal = (joystickCorners[2].x - joystickCorners[1].x) / 2;
+	}
+
+	private void OnEnable()
+	{
+		Actions.onLvlStart += lvl =>
+		{
+			StopAllCoroutines();
+			StartCoroutine(ToJoystick());
+		};
+		Actions.onLvlEnd += win =>
+		{
+			StopAllCoroutines();
+			StartCoroutine(ToButton());
+		};
+
+		Actions.onCleanLvl += () => buttonEnabled = true;
+
+		Actions.onNewUIState += OnNewUIState;
+	}
+
+	private void OnNewUIState(UIState state)
+	{
+		if (state == UIState.Levels)
+			StartCoroutine(ToButton());
+		else
+			StartCoroutine(ToNothing());
 	}
 
 	public void OnDrag(PointerEventData eventData)
@@ -109,8 +121,8 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 	public void OnPointerDown(PointerEventData eventData)
 	{
 		if (!isButton) return;
-		if (!buittonEnabled) return;
-		buittonEnabled = false;
+		if (!buttonEnabled) return;
+		buttonEnabled = false;
 		GameManager.Instance.StartLevel(LvlBuilder.Instance.GetLevels()[UIManager.Instance.currentPanel]);
 	}
 
@@ -130,16 +142,16 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 		Color initialColor = imagePlayButton.color;
 		Color finalColor = new Color(initialColor.r, initialColor.g, initialColor.b, 1);
 
-		while (thisRT.localScale.x < finalScale.x)
+		float elapsedTime = 0;
+		while (elapsedTime < secondsToMorph)
 		{
+			elapsedTime += Time.unscaledDeltaTime;
 			time += Time.unscaledDeltaTime / secondsToMorph;
 			thisRT.localScale = Vector3.Lerp(initialScale, finalScale, curve.Evaluate(time));
 			thisRT.position = Vector2.Lerp(initialPosition, finalPosition, curve.Evaluate(time));
 			imagePlayButton.color = Color.Lerp(initialColor, finalColor, curve.Evaluate(time));
 			yield return null;
 		}
-
-		buittonEnabled = true;
 	}
 
 	public IEnumerator ToJoystick()
@@ -153,8 +165,10 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 		Color initialColor = imagePlayButton.color;
 		Color finalColor = new Color(initialColor.r, initialColor.g, initialColor.b, 0);
 
-		while (thisRT.localScale.x > finalScale.x)
+		float elapsedTime = 0;
+		while (elapsedTime < secondsToMorph)
 		{
+			elapsedTime += Time.unscaledDeltaTime;
 			time += Time.unscaledDeltaTime / secondsToMorph;
 			thisRT.localScale = Vector3.Lerp(initialScale, finalScale, curve.Evaluate(time));
 			imagePlayButton.color = Color.Lerp(initialColor, finalColor, curve.Evaluate(time));
@@ -168,7 +182,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 	public IEnumerator ToNothing()
 	{
 		isButton = false;
-		buittonEnabled = false;
+		buttonEnabled = false;
 
 		float time = 0;
 		Vector3 initialScale = thisRT.localScale;
@@ -181,8 +195,10 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 		Color initialColor = imagePlayButton.color;
 		Color finalColor = new Color(initialColor.r, initialColor.g, initialColor.b, 1);
 
-		while (thisRT.localScale.x > finalScale.x)
+		float elapsedTime = 0;
+		while (elapsedTime < secondsToMorph)
 		{
+			elapsedTime += Time.unscaledDeltaTime;
 			time += Time.unscaledDeltaTime / secondsToMorph;
 			thisRT.localScale = Vector3.Lerp(initialScale, finalScale, curve.Evaluate(time));
 			thisRT.position = Vector2.Lerp(initialPosition, finalPosition, curve.Evaluate(time));
