@@ -12,7 +12,7 @@ public class TESTEditor : Editor
 
 		TESTS tests = (TESTS)target;
 
-		UIGameViewManager uIGameViewManager = tests.uIGameViewManager;
+		LevelsMenuManager levelsMenuManager = tests.levelsMenuManager;
 
 		GUILayout.Label("Actions");
 		GUILayout.BeginHorizontal();
@@ -33,12 +33,12 @@ public class TESTEditor : Editor
 
 		if (GUILayout.Button("BlockGameView(true)"))
 		{
-			uIGameViewManager.BlockGameView(true);
+			levelsMenuManager.BlockGameView(true);
 		}
 
 		if (GUILayout.Button("CleanGameView(lvl)"))
 		{
-			uIGameViewManager.CleanGameView(LvlBuilder.Instance.GetLevels()[0]);
+			levelsMenuManager.CleanGameView(LvlBuilder.Instance.GetLevels()[0]);
 		}
 		GUILayout.EndHorizontal();
 	}

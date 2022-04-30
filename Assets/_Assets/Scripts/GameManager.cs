@@ -72,11 +72,6 @@ public class GameManager : MonoBehaviour
 		joystick.Init(playerMove);
 	}
 
-	public void StartLevel(LevelSO lvl)
-	{
-		Actions.onLvlStart?.Invoke(lvl);
-	}
-
 	public void TimeStop(bool win)
 	{
 		Time.timeScale = 0;

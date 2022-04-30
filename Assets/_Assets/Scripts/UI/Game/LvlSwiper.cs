@@ -87,7 +87,6 @@ public class LvlSwiper : MonoBehaviour, IPointerDownHandler
 	private IEnumerator MoveLeft()
 	{
 		currentPanel++;
-		// Actions.onNewActiveLvlPanel?.Invoke(currentPanel);
 		float nextPosition = positions[currentPanel];
 		while (nextPosition - scrollbar.value > 0.001f)
 		{
@@ -99,7 +98,6 @@ public class LvlSwiper : MonoBehaviour, IPointerDownHandler
 	private IEnumerator MoveRight()
 	{
 		currentPanel--;
-		// Actions.onNewActiveLvlPanel?.Invoke(currentPanel);
 		float nextPosition = positions[currentPanel];
 		while (scrollbar.value - nextPosition > 0.001f)
 		{

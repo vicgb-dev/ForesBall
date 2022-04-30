@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UIGameViewManager : MonoBehaviour
+public class LevelsMenuManager : MonoBehaviour
 {
 	[Header("UI Game Options")]
 	[SerializeField] private Color winBackground;
@@ -14,7 +14,6 @@ public class UIGameViewManager : MonoBehaviour
 	[Header("References")]
 	[SerializeField] private GameObject pUiGame;
 	[SerializeField] private GameObject pBlockTouchGame;
-	[SerializeField] private GameObject pBlockTouchMiniMenu;
 	[SerializeField] private GameObject pEndGame;
 	[SerializeField] private GameObject scrollView;
 	[SerializeField] private GameObject horizontalScrollBar;
@@ -51,8 +50,6 @@ public class UIGameViewManager : MonoBehaviour
 	private void OnEnable()
 	{
 		Actions.onNewUIState += OnNewUIState;
-		Actions.onLvlStart += (lvl) => pBlockTouchMiniMenu.SetActive(true);
-		Actions.onLvlEnd += (win) => pBlockTouchMiniMenu.SetActive(false);
 	}
 
 	private void OnNewUIState(UIState state)

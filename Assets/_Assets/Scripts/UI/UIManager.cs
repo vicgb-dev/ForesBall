@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour
 	public AnimationCurve curveToOriginalColor;
 	public int currentPanel;
 
-	private UIGameViewManager uIGameViewManager;
+	private LevelsMenuManager levelsMenuManager;
 	private MainMenuManager mainMenuManager;
 
 	#region Singleton
@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour
 
 	private void Awake()
 	{
-		uIGameViewManager = GetComponentInChildren<UIGameViewManager>();
+		levelsMenuManager = GetComponentInChildren<LevelsMenuManager>();
 		mainMenuManager = GetComponentInChildren<MainMenuManager>();
 
 		if (_instance != null && _instance != this)
@@ -55,8 +55,8 @@ public class UIManager : MonoBehaviour
 
 	private void OnEnable()
 	{
-		Actions.onLvlEnd += (win) => uIGameViewManager.BlockGameView(win);
-		Actions.onLvlStart += (lvl) => uIGameViewManager.CleanGameView(lvl);
+		Actions.onLvlEnd += (win) => levelsMenuManager.BlockGameView(win);
+		Actions.onLvlStart += (lvl) => levelsMenuManager.CleanGameView(lvl);
 	}
 
 	private void Start()
@@ -87,5 +87,10 @@ public class UIManager : MonoBehaviour
 	public void BackButton()
 	{
 		Actions.onNewUIState?.Invoke(UIState.Main);
+	}
+
+	public void PlayLevel()
+	{
+		Actions.onLvlStart?.Invoke((LvlBuilder.Instance.GetLevels()[currentPanel]));
 	}
 }
