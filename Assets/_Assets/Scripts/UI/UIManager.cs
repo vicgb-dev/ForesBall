@@ -7,16 +7,11 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-	[SerializeField] public Joystick joystick;
-	[SerializeField] private GameObject SettingsMenu;
-	[SerializeField] private GameObject CustomizeMenu;
-	[SerializeField] private GameObject ChallengesMenu;
-
-	public float secondsToMoveLevelPanels;
+	public float secondsToMovePanels = 1;
 	public AnimationCurve curveToMove;
-	public float secondsToChangeAlpha;
+	public float secondsToChangeAlpha = 0.5f;
 	public AnimationCurve curveToOriginalColor;
-	public int currentPanel;
+	[HideInInspector] public int currentPanel;
 
 	private LevelsMenuManager levelsMenuManager;
 	private MainMenuManager mainMenuManager;

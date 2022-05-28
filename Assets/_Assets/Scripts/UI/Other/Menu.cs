@@ -82,7 +82,7 @@ public class Menu : MonoBehaviour
 		StartCoroutine(UIHelpers.Instance.MovePanel(panelMenu,
 			panelMenu.transform.localPosition,
 			finalPosition,
-			UIManager.Instance.secondsToMoveLevelPanels,
+			UIManager.Instance.secondsToMovePanels,
 			UIManager.Instance.curveToMove));
 	}
 }

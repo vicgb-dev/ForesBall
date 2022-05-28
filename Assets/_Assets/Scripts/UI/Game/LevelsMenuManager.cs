@@ -64,8 +64,8 @@ public class LevelsMenuManager : MonoBehaviour
 	public void CleanGameView(LevelSO lvl = null)
 	{
 		StopAllCoroutines();
-		StartCoroutine(UIHelpers.Instance.MovePanel(scrollView, scrollView.transform.localPosition, scrollViewUpPosition, UIManager.Instance.secondsToMoveLevelPanels, UIManager.Instance.curveToMove));
-		StartCoroutine(UIHelpers.Instance.MovePanel(horizontalScrollBar, horizontalScrollBar.transform.localPosition, scrollBarDownPosition, UIManager.Instance.secondsToMoveLevelPanels, UIManager.Instance.curveToMove));
+		StartCoroutine(UIHelpers.Instance.MovePanel(scrollView, scrollView.transform.localPosition, scrollViewUpPosition, UIManager.Instance.secondsToMovePanels, UIManager.Instance.curveToMove));
+		StartCoroutine(UIHelpers.Instance.MovePanel(horizontalScrollBar, horizontalScrollBar.transform.localPosition, scrollBarDownPosition, UIManager.Instance.secondsToMovePanels, UIManager.Instance.curveToMove));
 		StartCoroutine(UIHelpers.Instance.ColorChange(endGameImage, endGameImage.color, endGameAlpha0, UIManager.Instance.secondsToChangeAlpha, UIManager.Instance.curveToMove));
 		pBlockTouchGame.SetActive(true);
 	}
@@ -82,8 +82,8 @@ public class LevelsMenuManager : MonoBehaviour
 			finalColor = originalColor;
 
 		StopAllCoroutines();
-		StartCoroutine(UIHelpers.Instance.MovePanel(scrollView, scrollView.transform.localPosition, scrollViewDownPosition, UIManager.Instance.secondsToMoveLevelPanels, UIManager.Instance.curveToMove));
-		StartCoroutine(UIHelpers.Instance.MovePanel(horizontalScrollBar, horizontalScrollBar.transform.localPosition, scrollBarUpPosition, UIManager.Instance.secondsToMoveLevelPanels, UIManager.Instance.curveToMove));
+		StartCoroutine(UIHelpers.Instance.MovePanel(scrollView, scrollView.transform.localPosition, scrollViewDownPosition, UIManager.Instance.secondsToMovePanels, UIManager.Instance.curveToMove));
+		StartCoroutine(UIHelpers.Instance.MovePanel(horizontalScrollBar, horizontalScrollBar.transform.localPosition, scrollBarUpPosition, UIManager.Instance.secondsToMovePanels, UIManager.Instance.curveToMove));
 		StartCoroutine(UIHelpers.Instance.ColorChange(endGameImage, endGameAlpha0, finalColor, UIManager.Instance.secondsToChangeAlpha, UIManager.Instance.curveToMove, () =>
 		{
 			Actions.onCleanLvl?.Invoke();

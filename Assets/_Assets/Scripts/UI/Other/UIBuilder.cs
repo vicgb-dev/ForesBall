@@ -64,6 +64,6 @@ public class UIBuilder : MonoBehaviour
 			lvlPanel.transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"{(level.music.length / 60).ToString("00")}:{(level.music.length % 60).ToString("00")}";
 			lvlPanel.transform.GetChild(1).transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = level.musicName;
 		}
-		lvlPLvlChooser.GetComponent<LvlSwiper>().Populated();
+		lvlPLvlChooser.GetComponent<LvlSwiper>().Populate();
 	}
 }

@@ -22,7 +22,7 @@ public class LvlSwiper : MonoBehaviour, IPointerDownHandler
 	private int currentPanel = 0;
 	private bool pointerInSwipeLvl = false;
 
-	public void Populated()
+	public void Populate()
 	{
 		positions = new float[transform.childCount];
 		distance = 1f / (positions.Length - 1f);
@@ -45,13 +45,13 @@ public class LvlSwiper : MonoBehaviour, IPointerDownHandler
 
 	private void Swipe()
 	{
-		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+		if (Input.GetTouch(0).phase == TouchPhase.Began)
 		{
 			startTouchPosition = Input.GetTouch(0).position;
 			StopAllCoroutines();
 		}
 
-		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+		if (Input.GetTouch(0).phase == TouchPhase.Ended)
 		{
 			pointerInSwipeLvl = false;
 			Vector2 endTouchPosition = Input.GetTouch(0).position;
