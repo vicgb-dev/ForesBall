@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -20,6 +19,7 @@ public class LvlSwiper : MonoBehaviour, IPointerDownHandler
 	private bool lvlPanelsCreated = false;
 	private float distance;
 	private int currentPanel = 0;
+	private int lastPanel = 0;
 	private bool pointerInSwipeLvl = false;
 
 	public void Populate()
@@ -47,26 +47,30 @@ public class LvlSwiper : MonoBehaviour, IPointerDownHandler
 	{
 		if (Input.GetTouch(0).phase == TouchPhase.Began)
 		{
+			lastPanel = currentPanel;
 			startTouchPosition = Input.GetTouch(0).position;
 			StopAllCoroutines();
 		}
 
 		if (Input.GetTouch(0).phase == TouchPhase.Ended)
 		{
-			pointerInSwipeLvl = false;
-			Vector2 endTouchPosition = Input.GetTouch(0).position;
-			Vector2 range = endTouchPosition - startTouchPosition;
-			if (range.x < -swipeRange && currentPanel < positions.Length - 1)
+			if (currentPanel == lastPanel)
 			{
-				StopAllCoroutines();
-				StartCoroutine(MoveLeft());
-				return;
-			}
-			if (range.x > swipeRange && currentPanel > 0)
-			{
-				StopAllCoroutines();
-				StartCoroutine(MoveRight());
-				return;
+				pointerInSwipeLvl = false;
+				Vector2 endTouchPosition = Input.GetTouch(0).position;
+				Vector2 range = endTouchPosition - startTouchPosition;
+				if (range.x < -swipeRange && currentPanel < positions.Length - 1)
+				{
+					StopAllCoroutines();
+					StartCoroutine(MoveLeft());
+					return;
+				}
+				if (range.x > swipeRange && currentPanel > 0)
+				{
+					StopAllCoroutines();
+					StartCoroutine(MoveRight());
+					return;
+				}
 			}
 
 			StopAllCoroutines();
