@@ -123,9 +123,9 @@ public class Player : MonoBehaviour
 		yield return new WaitForSecondsRealtime(0.2f);
 
 		sprite.enabled = true;
-		sprite.color = Color.white;
 		Instantiate(endPowerUpParticlesPrefab, this.transform);
-		yield return new WaitForSecondsRealtime(0.2f);
+		yield return new WaitForSecondsRealtime(0.3f);
+		sprite.color = Color.white;
 		inmortal = false;
 
 		ResetVisuals();
