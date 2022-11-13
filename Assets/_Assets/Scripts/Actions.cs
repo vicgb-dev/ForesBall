@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class Actions
@@ -9,6 +7,7 @@ public static class Actions
 	public static Action<bool> onLvlEnd;
 	public static Action<int> onNewActiveLvlPanel;
 	public static Action onCleanLvl;
+	public static Action<GameObject, float> powerUpShrink;
 
 	public static Action<UIState> onNewUIState;
 }

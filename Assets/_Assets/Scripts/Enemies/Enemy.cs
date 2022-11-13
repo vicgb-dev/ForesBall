@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
 	protected float secsToActivateCollider = 1;
+	protected bool isAffectedByPowerUpShrink = true;
 
 	protected bool stopped = false;
 
@@ -11,9 +13,39 @@ public abstract class Enemy : MonoBehaviour
 
 	public abstract void StopMoving();
 
-	private void OnEnable() => Actions.onCleanLvl += DestroyThis;
+	private void OnEnable()
+	{
+		Actions.onCleanLvl += DestroyThis;
+		Actions.powerUpShrink += Shrink;
+	}
 
-	private void OnDisable() => Actions.onCleanLvl -= DestroyThis;
+	private void OnDisable()
+	{
+		Actions.onCleanLvl -= DestroyThis;
+		Actions.powerUpShrink -= Shrink;
+	}
+
+	private void Shrink(GameObject effectParticles, float secsPowerUpEffect)
+	{
+		if (!isAffectedByPowerUpShrink) return;
+		Instantiate(effectParticles, this.transform);
+		transform.localScale *= 0.5f;
+
+		StartCoroutine(BackToNormalSize(secsPowerUpEffect));
+	}
+
+	private IEnumerator BackToNormalSize(float seconds)
+	{
+		yield return new WaitForSecondsRealtime(seconds - 2);
+
+		float time = 0.5f;
+		while (transform.localScale.x <= 1)
+		{
+			time += Time.deltaTime;
+			transform.localScale = new Vector3(time, time, time);
+			yield return null;
+		}
+	}
 
 	private void DestroyThis()
 	{

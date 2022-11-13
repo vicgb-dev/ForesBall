@@ -21,7 +21,7 @@ public abstract class PowerUp : MonoBehaviour
 		Destroy(gameObject);
 	}
 
-	protected IEnumerator ActivateEnemyTag(Tag tag, float seconds)
+	protected IEnumerator ActivatePowerUpTag(Tag tag, float seconds)
 	{
 		yield return new WaitForSecondsRealtime(seconds);
 		gameObject.tag = tag.ToString();

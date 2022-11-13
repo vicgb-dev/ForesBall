@@ -8,5 +8,6 @@ public enum Tag
 	EnemyRay,
 	PowerUp,
 	PowerUpInmortal,
+	PowerUpShrink,
 	Untagged
 }

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c3566293f7c3784880d92acf0d90074, type: 3}
-  m_Name: PowerUp-Inmortal
+  m_Name: PowerUps-Shrink
   m_EditorClassIdentifier: 
-  powerUpPrefab: {fileID: 4433980205755556263, guid: ee987c158f3f3c6428d70b77ac2a08cd, type: 3}
+  powerUpPrefab: {fileID: 8234862638002759916, guid: 2753aaf441ba3344584bc3a152cdd183, type: 3}
   spriteRendererSO: {fileID: 11400000, guid: 59a958054fe80d748b2debc02f3baf12, type: 2}
   destroyedParticlesSO: {fileID: 11400000, guid: 960fe30b76a1d8949ba9dbc7d229da36, type: 2}

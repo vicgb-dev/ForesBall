@@ -93,6 +93,13 @@ public class SoundManager : MonoBehaviour
 		Destroy(audioGO);
 	}
 
+	public void PlaySinglePop()
+	{
+		AudioSource aS = CreateAudioChild($"PopSound{pitch.ToString("0.00")}", popSound, popVolume);
+		aS.pitch = pitch;
+		aS.Play();
+	}
+
 	public void PlayPop()
 	{
 		AudioSource aS = CreateAudioChild($"PopSound{pitch.ToString("0.00")}", popSound, popVolume);

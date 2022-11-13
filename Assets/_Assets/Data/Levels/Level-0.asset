@@ -21,30 +21,15 @@ MonoBehaviour:
   loseSoundVolume: 0.5
   straightSpawnTimeStamps:
   - 0
-  - 1
-  - 1
-  - 3
-  - 3
   followSpawnTimeStamps:
   - 0
-  - 2
-  - 2
-  - 4
-  - 4
   bigSpawnTimeStamps:
   - 0
-  - 1
-  - 2
-  - 3
-  - 4
   raySpawnTimeStamps:
   - 0
-  - 1
-  - 2
-  - 3
-  - 4
   powerUpsInmortalTimeStamps:
   - 1
+  powerUpsShrinkTimeStamps:
+  - 1
   - 2
   - 3
-  powerUpsWaveTimeStamps: []

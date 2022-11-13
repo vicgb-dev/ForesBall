@@ -97,6 +97,7 @@ public class LvlBuilder : MonoBehaviour
 
 		// PowerUps
 		StartCoroutine(SpawnPowerUp(0, currentLvl.powerUpsInmortalTimeStamps));
+		StartCoroutine(SpawnPowerUp(1, currentLvl.powerUpsShrinkTimeStamps));
 	}
 
 	private IEnumerator CountdownToWin(float timeToWin)

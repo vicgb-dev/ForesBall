@@ -10,6 +10,7 @@ public class EnemyBig : Enemy
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
+		isAffectedByPowerUpShrink = false;
 	}
 
 	private void Start()

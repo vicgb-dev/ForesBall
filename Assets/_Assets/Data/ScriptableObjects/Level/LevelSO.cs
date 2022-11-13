@@ -23,5 +23,5 @@ public class LevelSO : ScriptableObject
 
 	[Space(10)]
 	public List<float> powerUpsInmortalTimeStamps;
-	public List<float> powerUpsWaveTimeStamps;
+	public List<float> powerUpsShrinkTimeStamps;
 }

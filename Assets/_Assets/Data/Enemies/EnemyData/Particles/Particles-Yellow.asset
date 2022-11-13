@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3595446caf594f24787e67b3f2fadc5f, type: 3}
   m_Name: Particles-Yellow
   m_EditorClassIdentifier: 
-  deathParticlesPrefab: {fileID: 548885737187798852, guid: 7f384a821c67ac44c8879a0ab3d0d8c5, type: 3}
+  deathParticlesPrefab: {fileID: 548885737187798852, guid: 0f90711b443717f45b322d221beb4c6c, type: 3}
