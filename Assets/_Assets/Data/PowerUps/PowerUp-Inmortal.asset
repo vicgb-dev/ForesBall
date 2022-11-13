@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c231217dc0790548bbcb179b12b03af, type: 3}
-  m_Name: EnemiesTest
+  m_Script: {fileID: 11500000, guid: 8c3566293f7c3784880d92acf0d90074, type: 3}
+  m_Name: PowerUp-Inmortal
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 11400000, guid: 873339d889d258147abfa922537f82c4, type: 2}
+  powerUpPrefab: {fileID: 4433980205755556263, guid: ee987c158f3f3c6428d70b77ac2a08cd, type: 3}
+  spriteRendererSO: {fileID: 0}
+  destroyedParticlesSO: {fileID: 0}

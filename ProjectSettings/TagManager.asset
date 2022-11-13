@@ -9,6 +9,8 @@ TagManager:
   - EnemyFollow
   - EnemyBig
   - EnemyRay
+  - PowerUp
+  - PowerUpInmortal
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - EnemyBig
   - MapBounds
   - EnemyRay
-  - 
+  - PowerUp
   - 
   - 
   - 

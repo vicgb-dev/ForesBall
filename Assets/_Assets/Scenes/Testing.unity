@@ -1060,6 +1060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesSO: {fileID: 11400000, guid: 8d297125c2b4c7443a86ca18700020a2, type: 2}
+  powerUpsSO: {fileID: 11400000, guid: d6e86457443e7544abd7181a788379a7, type: 2}
 --- !u!4 &2096380907
 Transform:
   m_ObjectHideFlags: 0

@@ -4,7 +4,9 @@ using UnityEngine;
 public class TestSpawnEnemy : MonoBehaviour
 {
 	public EnemiesManagerSO enemiesSO;
+	public PowerUpsManagerSO powerUpsSO;
 
+	private List<GameObject> powerUpsGO = new List<GameObject>();
 	private List<GameObject> enemiesGO = new List<GameObject>();
 
 	void Start()
@@ -12,6 +14,17 @@ public class TestSpawnEnemy : MonoBehaviour
 		// Invoke(nameof(SpawnEnemy), 1);
 		// Invoke(nameof(StopEnemy), 3);
 		// Invoke(nameof(DestroyEnemy), 4);
+	}
+
+	[ContextMenu("SpawnPowerUps")]
+	public void SpawnPowerUps()
+	{
+		for (int i = 0; i < powerUpsSO.powerUps.Count; i++)
+		{
+			GameObject powerUp = Instantiate(powerUpsSO.powerUps[i].powerUpPrefab);
+			powerUpsSO.powerUps[i].SetUpPowerUp(powerUp);
+			powerUpsGO.Add(powerUp);
+		}
 	}
 
 	[ContextMenu("SpawnEnemy")]

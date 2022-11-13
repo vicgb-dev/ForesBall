@@ -11,6 +11,9 @@ public class LvlBuilder : MonoBehaviour
 	[Header("Enemies")]
 	[SerializeField] private EnemiesManagerSO enemiesManagerSO;
 
+	[Header("Power Ups")]
+	[SerializeField] private PowerUpsManagerSO powerUpsManagerSO;
+
 	[Header("Levels")]
 	[SerializeField] private LevelsManagerSO levelsManagerSO;
 
@@ -86,10 +89,14 @@ public class LvlBuilder : MonoBehaviour
 		enemiesGO.Clear();
 		StartCoroutine(CountdownToWin(currentLvl.music.length));
 
+		// Enemies
 		StartCoroutine(SpawnEnemy(0, currentLvl.straightSpawnTimeStamps));
 		StartCoroutine(SpawnEnemy(1, currentLvl.followSpawnTimeStamps));
 		StartCoroutine(SpawnEnemy(2, currentLvl.bigSpawnTimeStamps));
 		StartCoroutine(SpawnEnemy(3, currentLvl.raySpawnTimeStamps));
+
+		// PowerUps
+		StartCoroutine(SpawnPowerUp(0, currentLvl.powerUpsInmortalTimeStamps));
 	}
 
 	private IEnumerator CountdownToWin(float timeToWin)
@@ -124,6 +131,32 @@ public class LvlBuilder : MonoBehaviour
 		Actions.onLvlEnd?.Invoke(true);
 	}
 
+
+	private IEnumerator SpawnPowerUp(int powerUpType, List<float> timeStamps)
+	{
+		GameObject powerUpPrefab = powerUpsManagerSO.powerUps[powerUpType].powerUpPrefab;
+		SpriteRenderer sRenderer = powerUpPrefab.GetComponentInChildren<SpriteRenderer>();
+		int powerUps = timeStamps.Count;
+		int counter = 0;
+		while (powerUps > 0)
+		{
+			if (counter == 0)
+				yield return new WaitForSeconds(timeStamps[counter]);
+			else
+				yield return new WaitForSeconds(timeStamps[counter] - timeStamps[counter - 1]);
+
+			counter++;
+
+			Vector3 newLocation = new Vector3(
+				UnityEngine.Random.Range(limits[Limits.left] + sRenderer.size.x, limits[Limits.right] - sRenderer.size.x),
+				UnityEngine.Random.Range(limits[Limits.bottom] + sRenderer.size.y, limits[Limits.up] - sRenderer.size.y),
+				0);
+
+			GameObject instantiatedPowerUp = Instantiate(powerUpPrefab, newLocation, powerUpPrefab.transform.rotation);
+			powerUps--;
+		}
+	}
+
 	private IEnumerator SpawnEnemy(int enemyType, List<float> timeStamps)
 	{
 		GameObject enemyPrefab = enemiesManagerSO.enemies[enemyType].enemyPrefab;
@@ -132,7 +165,7 @@ public class LvlBuilder : MonoBehaviour
 		int counter = 0;
 		while (enemies > 0)
 		{
-			if (counter - 1 < 0)
+			if (counter == 0)
 				yield return new WaitForSeconds(timeStamps[counter]);
 			else
 				yield return new WaitForSeconds(timeStamps[counter] - timeStamps[counter - 1]);

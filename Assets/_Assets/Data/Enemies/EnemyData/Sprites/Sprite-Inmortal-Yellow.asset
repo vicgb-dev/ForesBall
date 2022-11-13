@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c231217dc0790548bbcb179b12b03af, type: 3}
-  m_Name: EnemiesTest
+  m_Script: {fileID: 11500000, guid: 7a73137d28a0d794f84d71ef90e3e695, type: 3}
+  m_Name: Sprite-Inmortal-Yellow
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 11400000, guid: 873339d889d258147abfa922537f82c4, type: 2}
+  sprite: {fileID: 0}
+  color: {r: 1, g: 0.75294125, b: 0, a: 1}

@@ -43,5 +43,8 @@ MonoBehaviour:
   - 2
   - 3
   - 4
+  powerUpsInmortalTimeStamps:
+  - 1
+  - 2
+  - 3
   powerUpsWaveTimeStamps: []
-  powerUpsInmortalTimeStamps: []

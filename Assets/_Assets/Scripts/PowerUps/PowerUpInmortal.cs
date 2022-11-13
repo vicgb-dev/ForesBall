@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpInmortal : MonoBehaviour
+public class PowerUpInmortal : PowerUp
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	private void Start()
+	{
+		StartCoroutine(ActivateEnemyTag(Tag.PowerUpInmortal, secsToActivateCollider));
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public override void PlayEffect()
+	{
+		GetComponent<Collider2D>().enabled = false;
+		foreach (Transform child in transform)
+		{
+			Destroy(child.gameObject);
+		}
+		Instantiate(deathParticlesPrefab, this.gameObject.transform);
+
+		Debug.LogWarning("Play effect de PowerUpInmortal");
+		GameObject.FindGameObjectWithTag(Tag.Player.ToString()).GetComponent<Player>().Inmortal(secsPowerUpEffect, GetComponentInChildren<SpriteRenderer>().color);
+	}
 }

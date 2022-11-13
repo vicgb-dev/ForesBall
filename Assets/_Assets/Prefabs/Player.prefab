@@ -253,6 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ce2923060687604493eb17c77f9aa5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  endPowerUpParticlesPrefab: {fileID: 548885737187798852, guid: 0f90711b443717f45b322d221beb4c6c, type: 3}
 --- !u!114 &2245470746147884612
 MonoBehaviour:
   m_ObjectHideFlags: 0

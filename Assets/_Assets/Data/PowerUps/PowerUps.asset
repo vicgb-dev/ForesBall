@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c231217dc0790548bbcb179b12b03af, type: 3}
-  m_Name: EnemiesTest
+  m_Script: {fileID: 11500000, guid: 5403aa6966b39ae40bd94034e1b177f2, type: 3}
+  m_Name: PowerUps
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 11400000, guid: 873339d889d258147abfa922537f82c4, type: 2}
+  powerUps:
+  - {fileID: 11400000, guid: 4563ed6a7337fd3459feb4aabeb0622c, type: 2}

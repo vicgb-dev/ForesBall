@@ -45,7 +45,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  time: 1
+  time: 0.8
   minVertexDistance: 0.1
   colorGradient:
     serializedVersion: 2

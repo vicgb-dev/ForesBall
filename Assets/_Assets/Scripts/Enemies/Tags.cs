@@ -1,9 +1,12 @@
 public enum Tag
 {
+	Player,
+	Enemy,
 	EnemyStraight,
 	EnemyFollow,
 	EnemyBig,
 	EnemyRay,
-	Enemy,
+	PowerUp,
+	PowerUpInmortal,
 	Untagged
 }

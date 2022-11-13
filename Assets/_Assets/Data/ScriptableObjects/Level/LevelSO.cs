@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +22,6 @@ public class LevelSO : ScriptableObject
 	public List<float> raySpawnTimeStamps;
 
 	[Space(10)]
-	public List<float> powerUpsWaveTimeStamps;
 	public List<float> powerUpsInmortalTimeStamps;
+	public List<float> powerUpsWaveTimeStamps;
 }

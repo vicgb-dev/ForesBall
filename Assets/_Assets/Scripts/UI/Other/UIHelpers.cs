@@ -39,7 +39,7 @@ public class UIHelpers : MonoBehaviour
 
 	public IEnumerator MovePanel(GameObject go, Vector3 initialPosition, Vector3 finalPosition, float seconds, AnimationCurve curve, Action callback = null)
 	{
-		Debug.Log($"Moviendo {go.name} de {initialPosition} a {finalPosition} en {seconds} segundos.");
+		//Debug.Log($"Moviendo {go.name} de {initialPosition} a {finalPosition} en {seconds} segundos.");
 		RectTransform rT = go.GetComponent<RectTransform>();
 		float time = 0;
 		float elapsedTime = 0;
