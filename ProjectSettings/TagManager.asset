@@ -11,6 +11,7 @@ TagManager:
   - EnemyRay
   - PowerUp
   - PowerUpInmortal
+  - PowerUpShrink
   layers:
   - Default
   - TransparentFX

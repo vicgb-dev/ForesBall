@@ -5,7 +5,7 @@ public abstract class PowerUp : MonoBehaviour
 {
 	protected float secsToActivateCollider = 0.3f;
 	[Min(3f)]
-	protected float secsPowerUpEffect = 4f;
+	protected float secsPowerUpEffect = 8f;
 
 	public GameObject deathParticlesPrefab;
 

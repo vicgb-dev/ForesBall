@@ -8,12 +8,12 @@ public class Player : MonoBehaviour
 	[SerializeField] private GameObject endPowerUpParticlesPrefab;
 
 	SpriteRenderer sprite;
-	CircleCollider2D circleCollider;
 	TrailRenderer trail;
+
+	private bool inmortal = false;
 	private void OnEnable()
 	{
 		sprite = GetComponentInChildren<SpriteRenderer>();
-		circleCollider = GetComponentInChildren<CircleCollider2D>();
 		trail = GetComponentInChildren<TrailRenderer>();
 		Actions.onCleanLvl += ResetPlayer;
 		Actions.onLvlStart += ResetPlayerStart;
@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
 
 	private void Trigger(Collider2D other)
 	{
-		if (other.gameObject.tag.Contains(Tag.Enemy.ToString()))
+		if (other.gameObject.tag.Contains(Tag.Enemy.ToString()) && !inmortal)
 		{
 			Debug.LogWarning("FIN DEL JUEGO");
 			Actions.onLvlEnd?.Invoke(false);
@@ -56,13 +56,13 @@ public class Player : MonoBehaviour
 	{
 		StopAllCoroutines();
 		transform.position = Vector3.zero;
+		inmortal = false;
 		ResetVisuals();
 	}
 
 	private void ResetVisuals()
 	{
 		sprite.enabled = true;
-		circleCollider.enabled = true;
 		trail.startColor = Color.white;
 		trail.endColor = Color.white;
 		sprite.color = Color.white;
@@ -72,6 +72,7 @@ public class Player : MonoBehaviour
 	public void Inmortal(float seconds, Color color)
 	{
 		StopAllCoroutines();
+		inmortal = true;
 		sprite.color = color;
 		trail.startColor = color;
 		trail.endColor = color;
@@ -82,7 +83,6 @@ public class Player : MonoBehaviour
 	private IEnumerator InmortalCoroutine(float seconds)
 	{
 		sprite.enabled = false;
-		circleCollider.enabled = false;
 
 		yield return new WaitForSecondsRealtime(seconds - 2);
 
@@ -125,7 +125,8 @@ public class Player : MonoBehaviour
 		sprite.enabled = true;
 		sprite.color = Color.white;
 		Instantiate(endPowerUpParticlesPrefab, this.transform);
-		yield return new WaitForSecondsRealtime(0.5f);
+		yield return new WaitForSecondsRealtime(0.2f);
+		inmortal = false;
 
 		ResetVisuals();
 	}
