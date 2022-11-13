@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c231217dc0790548bbcb179b12b03af, type: 3}
-  m_Name: EnemiesTest
+  m_Script: {fileID: 11500000, guid: 7a73137d28a0d794f84d71ef90e3e695, type: 3}
+  m_Name: Sprite-Rectangle-Pink
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 11400000, guid: 4aed449f1b7a6114f8283aa0335da18a, type: 2}
+  sprite: {fileID: 0}
+  color: {r: 0.86666673, g: 0.28235295, b: 0.7294118, a: 1}

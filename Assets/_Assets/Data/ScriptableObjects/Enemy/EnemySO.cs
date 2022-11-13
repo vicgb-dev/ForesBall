@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Enemy", menuName = "Enemies/New enemy")]
 public class EnemySO : ScriptableObject
 {
 	public GameObject enemyPrefab;
+	[Header("Overrides")]
 	public SpriteRendererSO spriteRendererSO;
 	public TrailSO trailSO;
 	public DeathParticlesSO deathParticlesSO;

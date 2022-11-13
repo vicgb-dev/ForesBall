@@ -1,13 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFollow : Enemy, IEnemy
+public class EnemyFollow : Enemy
 {
 	[SerializeField] private float initialForce = 0.1f;
 	[SerializeField] private float acceleration = 0.1f;
 	[SerializeField] private float speedIncremental = 0.01f;
-	[SerializeField] private float secsToActivateCollider = 1;
 
 	private Rigidbody2D rb;
 	private Vector2 direction;
@@ -30,15 +28,13 @@ public class EnemyFollow : Enemy, IEnemy
 
 	private void Update()
 	{
-		//rotate to look at the player
-		
-		if(stopped) return;
+		if (stopped) return;
 		transform.up = targetPlayer.transform.position - transform.position;
 	}
 
 	private void FixedUpdate()
 	{
-		if(stopped) return;
+		if (stopped) return;
 		rb.AddForce(transform.up * acceleration);
 	}
 
@@ -50,7 +46,7 @@ public class EnemyFollow : Enemy, IEnemy
 			acceleration += speedIncremental;
 		}
 	}
-	
+
 	public override void StopMoving()
 	{
 		rb.isKinematic = true;

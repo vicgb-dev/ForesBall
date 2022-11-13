@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3183203755183180763}
-  - component: {fileID: 1578718584530089220}
+  - component: {fileID: 4796146028660931475}
   - component: {fileID: -1157457709657963398}
   - component: {fileID: 2222314964590709463}
-  m_Layer: 8
-  m_Name: EnemyBig
+  m_Layer: 10
+  m_Name: EnemyRay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2222314964590709460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.01, y: 1.129, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1681361806866682232}
@@ -35,7 +35,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1578718584530089220
+--- !u!114 &4796146028660931475
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,12 +44,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2222314964590709460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de8393c891ec8014d98ef657ae544639, type: 3}
+  m_Script: {fileID: 11500000, guid: 827d611a2aeed6746bf2b19ceb1215d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathParticlesPrefab: {fileID: 548885737187798852, guid: dd1a757219c3c7840ade08b48f122ce5, type: 3}
-  frecuency: 1.5
-  amplitude: 3
+  deathParticlesPrefab: {fileID: 548885737187798852, guid: a3f4d3cba30e67c4da65461eec26412a, type: 3}
+  speed: 2
 --- !u!61 &-1157457709657963398
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -74,7 +73,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32665765, y: 0.32732862}
+  m_Size: {x: 0.2110129, y: 0.80919147}
   m_EdgeRadius: 0
 --- !u!50 &2222314964590709463
 Rigidbody2D:
@@ -107,7 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2969951612998566603}
   - component: {fileID: 2969951612998566600}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +122,7 @@ Transform:
   m_GameObject: {fileID: 2969951612998566602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.063634045, y: 0.063634045, z: 0.063634045}
+  m_LocalScale: {x: 0.04175666, y: 0.1585124, z: 0.063634045}
   m_Children: []
   m_Father: {fileID: 3183203755183180763}
   m_RootOrder: 1
@@ -169,7 +168,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dcdc43f7a0ad67b4ab3e3db38233dfae, type: 3}
-  m_Color: {r: 0.34117642, g: 0.68138534, b: 0.8784314, a: 1}
+  m_Color: {r: 0.8679245, g: 0.28248486, b: 0.7281935, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -189,7 +188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1681361806866682232}
   - component: {fileID: 5650719734255353299}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +217,7 @@ TrailRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9015769143513694703}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -259,8 +258,8 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.022731781
-        value: 0.055595398
+        time: 0.01442337
+        value: 0.111839294
         inSlope: 0
         outSlope: 0
         tangentMode: 0

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae9d8e1be53aa64aa0258090b5686a5, type: 3}
+  m_Name: EnemyRay
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 2222314964590709460, guid: f81882bb68e404c489c6c43dfcb83713, type: 3}
+  spriteRendererSO: {fileID: 11400000, guid: 28147553842116040a81b5c6e701d3e6, type: 2}
+  trailSO: {fileID: 11400000, guid: a1d914ccce6501740a6e28b501f12a45, type: 2}
+  deathParticlesSO: {fileID: 11400000, guid: 6fc63c0448ef0524080c418f1d0a7010, type: 2}

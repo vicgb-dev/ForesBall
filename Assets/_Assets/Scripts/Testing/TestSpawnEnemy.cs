@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,13 +7,14 @@ public class TestSpawnEnemy : MonoBehaviour
 
 	private List<GameObject> enemiesGO = new List<GameObject>();
 
-    void Start()
-    {
-		Invoke(nameof(SpawnEnemy), 1);
-		Invoke(nameof(StopEnemy), 3);
-		Invoke(nameof(DestroyEnemy), 4);
-    }
+	void Start()
+	{
+		// Invoke(nameof(SpawnEnemy), 1);
+		// Invoke(nameof(StopEnemy), 3);
+		// Invoke(nameof(DestroyEnemy), 4);
+	}
 
+	[ContextMenu("SpawnEnemy")]
 	public void SpawnEnemy()
 	{
 		for (int i = 0; i < enemiesSO.enemies.Count; i++)
@@ -25,6 +25,7 @@ public class TestSpawnEnemy : MonoBehaviour
 		}
 	}
 
+	[ContextMenu("StopEnemy")]
 	public void StopEnemy()
 	{
 		foreach (var enemyGO in enemiesGO)
@@ -32,12 +33,13 @@ public class TestSpawnEnemy : MonoBehaviour
 			enemyGO.GetComponent<Enemy>().StopMoving();
 		}
 	}
-	
+
+	[ContextMenu("DestroyEnemy")]
 	public void DestroyEnemy()
 	{
 		foreach (var enemyGO in enemiesGO)
 		{
-		Destroy(enemyGO);
+			Destroy(enemyGO);
 		}
 	}
 }

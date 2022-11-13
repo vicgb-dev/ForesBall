@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -90,11 +89,7 @@ public class LvlBuilder : MonoBehaviour
 		StartCoroutine(SpawnEnemy(0, currentLvl.straightSpawnTimeStamps));
 		StartCoroutine(SpawnEnemy(1, currentLvl.followSpawnTimeStamps));
 		StartCoroutine(SpawnEnemy(2, currentLvl.bigSpawnTimeStamps));
-	}
-
-	private void SetUpEnemy(GameObject enemy)
-	{
-
+		StartCoroutine(SpawnEnemy(3, currentLvl.raySpawnTimeStamps));
 	}
 
 	private IEnumerator CountdownToWin(float timeToWin)
@@ -114,11 +109,14 @@ public class LvlBuilder : MonoBehaviour
 		float y = 1;
 		foreach (GameObject enemy in enemiesGO)
 		{
-			Destroy(enemy);
-			SoundManager.Instance.PlayPop();
+			if (enemy.transform.childCount > 0)
+			{
+				Destroy(enemy);
+				SoundManager.Instance.PlayPop();
 
-			yield return new WaitForSecondsRealtime(1 / y);
-			y++;
+				yield return new WaitForSecondsRealtime(1 / y);
+				y++;
+			}
 		}
 
 		yield return new WaitForSecondsRealtime(1);
@@ -126,9 +124,9 @@ public class LvlBuilder : MonoBehaviour
 		Actions.onLvlEnd?.Invoke(true);
 	}
 
-	private IEnumerator SpawnEnemy(int position, List<float> timeStamps)
+	private IEnumerator SpawnEnemy(int enemyType, List<float> timeStamps)
 	{
-		GameObject enemyPrefab = enemiesManagerSO.enemies[position].enemyPrefab;
+		GameObject enemyPrefab = enemiesManagerSO.enemies[enemyType].enemyPrefab;
 		SpriteRenderer sRenderer = enemyPrefab.GetComponentInChildren<SpriteRenderer>();
 		int enemies = timeStamps.Count;
 		int counter = 0;
@@ -143,22 +141,61 @@ public class LvlBuilder : MonoBehaviour
 
 			while (!spawned)
 			{
-				Vector3 newLocation = new Vector3(
-					UnityEngine.Random.Range(limits[Limits.left] + sRenderer.size.x, limits[Limits.right] - sRenderer.size.x),
-					UnityEngine.Random.Range(limits[Limits.bottom] + sRenderer.size.y, limits[Limits.up] - sRenderer.size.y),
-					0);
-
-				if (CanSpawn(newLocation, sRenderer.size.x * 0.75f))
+				// Si el enemigo es el tipo rayo
+				if (enemyType == 3)
 				{
-					GameObject instantiateEnemy = Instantiate(enemyPrefab, newLocation, enemyPrefab.transform.rotation);
-					enemiesManagerSO.enemies[position].SetUpEnemy(instantiateEnemy);
-					enemiesGO.Add(instantiateEnemy);
+					SpawnRayEnemy(enemyPrefab);
 					spawned = true;
+				}
+				else
+				{
+					Vector3 newLocation = new Vector3(
+						UnityEngine.Random.Range(limits[Limits.left] + sRenderer.size.x, limits[Limits.right] - sRenderer.size.x),
+						UnityEngine.Random.Range(limits[Limits.bottom] + sRenderer.size.y, limits[Limits.up] - sRenderer.size.y),
+						0);
+
+					if (CanSpawn(newLocation, sRenderer.size.x * 0.75f))
+					{
+						GameObject instantiatedEnemy = Instantiate(enemyPrefab, newLocation, enemyPrefab.transform.rotation);
+						enemiesManagerSO.enemies[enemyType].SetUpEnemy(instantiatedEnemy);
+						enemiesGO.Add(instantiatedEnemy);
+						spawned = true;
+					}
 				}
 			}
 			spawned = false;
 			enemies--;
 		}
+	}
+
+	private void SpawnRayEnemy(GameObject prefab)
+	{
+		int random = UnityEngine.Random.Range(1, 5);
+
+		// Definimos donde se va a spawnear el rayo
+		Vector2 fromPos = Vector2.zero;
+		Vector3 toPos = Vector2.zero;
+
+		// Definimos coordenadas de un punto al que va a mirar el rayo
+		float thirdWidth = (limits[Limits.right] - limits[Limits.left]) / 3;
+		float thirdHeight = (limits[Limits.up] - limits[Limits.bottom]) / 3;
+		float randomDirectionX = UnityEngine.Random.Range(limits[Limits.left] + thirdWidth, limits[Limits.right] - thirdWidth);
+		float randomDirectionY = UnityEngine.Random.Range(limits[Limits.bottom] + thirdHeight, limits[Limits.up] - thirdHeight);
+		toPos = new Vector2(randomDirectionX, randomDirectionY);
+
+		if (random == 1) // Desde arriba
+			fromPos = new Vector2(UnityEngine.Random.Range(limits[Limits.left], limits[Limits.right]), limits[Limits.up]);
+		else if (random == 2) // Desde la derecha
+			fromPos = new Vector2(limits[Limits.right], UnityEngine.Random.Range(limits[Limits.up], limits[Limits.bottom]));
+		else if (random == 3) // Desde abajo
+			fromPos = new Vector2(UnityEngine.Random.Range(limits[Limits.left], limits[Limits.right]), limits[Limits.bottom]);
+		else if (random == 4) // Desde la izquierda
+			fromPos = new Vector2(limits[Limits.left], UnityEngine.Random.Range(limits[Limits.up], limits[Limits.bottom]));
+
+
+		GameObject instantiatedEnemy = Instantiate(prefab, fromPos, Quaternion.Euler(0, 0, 0));
+		instantiatedEnemy.transform.up = toPos - instantiatedEnemy.transform.position;
+		enemiesManagerSO.enemies[3].SetUpEnemy(instantiatedEnemy);
 	}
 
 	private bool CanSpawn(Vector3 center, float radius)

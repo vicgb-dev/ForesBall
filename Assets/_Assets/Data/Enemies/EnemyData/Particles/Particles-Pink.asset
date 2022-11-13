@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c231217dc0790548bbcb179b12b03af, type: 3}
-  m_Name: EnemiesTest
+  m_Script: {fileID: 11500000, guid: 3595446caf594f24787e67b3f2fadc5f, type: 3}
+  m_Name: Particles-Pink
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 11400000, guid: 4aed449f1b7a6114f8283aa0335da18a, type: 2}
+  deathParticlesPrefab: {fileID: 548885737187798852, guid: a3f4d3cba30e67c4da65461eec26412a, type: 3}

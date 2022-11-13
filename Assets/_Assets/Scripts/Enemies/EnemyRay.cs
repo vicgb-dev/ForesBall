@@ -1,11 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemyBig : Enemy
+public class EnemyRay : Enemy
 {
 	private Rigidbody2D rb;
-	[SerializeField] private float frecuency = 1;
-	[SerializeField] private float amplitude = 1;
+	[SerializeField] private float speed;
 
 	private void Awake()
 	{
@@ -14,8 +13,8 @@ public class EnemyBig : Enemy
 
 	private void Start()
 	{
-		StartCoroutine(ActivateEnemyTag(Tag.EnemyBig, secsToActivateCollider));
-		StartCoroutine(ChangeSize());
+		StartCoroutine(ActivateEnemyTag(Tag.EnemyRay, secsToActivateCollider));
+		StartCoroutine(Move());
 	}
 
 	public override void StopMoving()
@@ -26,16 +25,15 @@ public class EnemyBig : Enemy
 		StopAllCoroutines();
 	}
 
-	private IEnumerator ChangeSize()
+	private IEnumerator Move()
 	{
 		float time = 0;
 		Vector3 initialScale = transform.localScale;
-		float scale = 0;
-		while (scale >= 0)
+
+		while (time <= 5)
 		{
 			time += Time.deltaTime;
-			scale = (Mathf.Sin(time * frecuency) * amplitude);
-			transform.localScale = new Vector3(scale, scale, scale);
+			transform.position += transform.up * speed * Time.deltaTime;
 			yield return null;
 		}
 

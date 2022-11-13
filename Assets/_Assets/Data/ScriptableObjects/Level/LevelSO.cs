@@ -20,6 +20,7 @@ public class LevelSO : ScriptableObject
 	public List<float> straightSpawnTimeStamps;
 	public List<float> followSpawnTimeStamps;
 	public List<float> bigSpawnTimeStamps;
+	public List<float> raySpawnTimeStamps;
 
 	[Space(10)]
 	public List<float> powerUpsWaveTimeStamps;

@@ -31,5 +31,6 @@ MonoBehaviour:
   - 40.7
   followSpawnTimeStamps: []
   bigSpawnTimeStamps: []
+  raySpawnTimeStamps: []
   powerUpsWaveTimeStamps: []
   powerUpsInmortalTimeStamps: []

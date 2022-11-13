@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - EnemyStraight
   - EnemyFollow
+  - EnemyBig
+  - EnemyRay
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - EnemyFollow
   - EnemyBig
   - MapBounds
-  - 
+  - EnemyRay
   - 
   - 
   - 

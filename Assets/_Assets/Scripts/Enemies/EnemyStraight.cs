@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStraight : Enemy, IEnemy
+public class EnemyStraight : Enemy
 {
 	[SerializeField] private float initialForce = 100;
 	[SerializeField] private float speed = 2f;
 	[SerializeField] private float speedIncremental = 0.05f;
-	[SerializeField] private float secsToActivateCollider = 1;
 
 	private Rigidbody2D rb;
 	private Vector2 direction;
@@ -29,12 +26,12 @@ public class EnemyStraight : Enemy, IEnemy
 
 	private void OnCollisionEnter2D(Collision2D other)
 	{
-		if(stopped) return;
+		if (stopped) return;
 		speed += speedIncremental;
 		direction = Vector3.Reflect(lastVelocity.normalized, other.contacts[0].normal);
 		rb.velocity = direction * speed;
 	}
-	
+
 	public override void StopMoving()
 	{
 		rb.isKinematic = true;
