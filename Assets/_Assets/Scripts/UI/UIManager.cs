@@ -1,9 +1,4 @@
-using System.Collections;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -84,8 +79,13 @@ public class UIManager : MonoBehaviour
 		Actions.onNewUIState?.Invoke(UIState.Main);
 	}
 
-	public void PlayLevel()
+	public bool PlayLevel()
 	{
-		Actions.onLvlStart?.Invoke((LvlBuilder.Instance.GetLevels()[currentPanel]));
+		if (LvlBuilder.Instance.GetLevels()[currentPanel].unlocked)
+			Actions.onLvlStart?.Invoke(LvlBuilder.Instance.GetLevels()[currentPanel]);
+		else
+			Debug.Log($"El nivel {currentPanel + 1} no esta desbloqueado");
+
+		return !LvlBuilder.Instance.GetLevels()[currentPanel].unlocked;
 	}
 }

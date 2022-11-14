@@ -17,7 +17,6 @@ public class PowerUpInmortal : PowerUp
 		Instantiate(deathParticlesPrefab, this.gameObject.transform);
 		SoundManager.Instance.PlaySinglePop();
 
-		Debug.LogWarning("Play effect de PowerUpInmortal");
 		GameObject.FindGameObjectWithTag(Tag.Player.ToString()).GetComponent<Player>().Inmortal(secsPowerUpEffect, GetComponentInChildren<SpriteRenderer>().color);
 	}
 }

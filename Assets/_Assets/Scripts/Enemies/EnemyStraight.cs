@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class EnemyStraight : Enemy
 {
-	[SerializeField] private float initialForce = 100;
 	[SerializeField] private float speed = 2f;
 	[SerializeField] private float speedIncremental = 0.05f;
 

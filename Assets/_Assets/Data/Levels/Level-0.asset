@@ -33,3 +33,7 @@ MonoBehaviour:
   - 1
   - 2
   - 3
+  timeChallenge: 0.807
+  hotspot: 0.339
+  collectibles: 0.164
+  unlocked: 1

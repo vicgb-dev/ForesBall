@@ -122,8 +122,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 	{
 		if (!isButton) return;
 		if (!buttonEnabled) return;
-		buttonEnabled = false;
-		UIManager.Instance.PlayLevel();
+		buttonEnabled = UIManager.Instance.PlayLevel();
 	}
 
 	public IEnumerator ToButton()

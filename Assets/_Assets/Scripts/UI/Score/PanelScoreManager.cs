@@ -12,6 +12,11 @@ public class PanelScoreManager : MonoBehaviour
 		Actions.onNewUIState += OnNewUIState;
 	}
 
+	private void OnDisable()
+	{
+		Actions.onNewUIState -= OnNewUIState;
+	}
+
 	private void OnNewUIState(UIState state)
 	{
 		switch (state)

@@ -16,12 +16,24 @@ public class LevelSO : ScriptableObject
 	public float loseSoundVolume;
 
 	[Space(10)]
+	[Header("Enemies")]
 	public List<float> straightSpawnTimeStamps;
 	public List<float> followSpawnTimeStamps;
 	public List<float> bigSpawnTimeStamps;
 	public List<float> raySpawnTimeStamps;
 
 	[Space(10)]
+	[Header("Power Ups")]
 	public List<float> powerUpsInmortalTimeStamps;
 	public List<float> powerUpsShrinkTimeStamps;
+
+	[Space(10)]
+	[Header("Challenges")]
+	[Range(0f, 1f)]
+	public float timeChallenge;
+	[Range(0f, 1f)]
+	public float hotspot;
+	[Range(0f, 1f)]
+	public float collectibles;
+	public bool unlocked;
 }

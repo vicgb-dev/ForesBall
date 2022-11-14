@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,7 @@ public class LvlBuilder : MonoBehaviour
 	private Collider2D[] colliders = new Collider2D[0];
 	private LevelSO currentLvl;
 	private List<GameObject> enemiesGO = new List<GameObject>();
+	private float lvlDuration = 0;
 
 	//Definición del patrón Singleton
 	#region Singleton
@@ -70,7 +72,15 @@ public class LvlBuilder : MonoBehaviour
 		Actions.onLvlEnd -= StopSpawns;
 	}
 
-	private void StopSpawns(bool win) => StopAllCoroutines();
+	private void StopSpawns(bool win)
+	{
+		StopAllCoroutines();
+		float timeCompleted = (Time.realtimeSinceStartup - lvlDuration) / currentLvl.music.length;
+		if (win)
+			currentLvl.timeChallenge = 1;
+		else if (currentLvl.timeChallenge != 1)
+			currentLvl.timeChallenge = Mathf.Max(timeCompleted, currentLvl.timeChallenge);
+	}
 
 	public void StartLevelWithDelay(LevelSO lvl)
 	{
@@ -102,6 +112,8 @@ public class LvlBuilder : MonoBehaviour
 
 	private IEnumerator CountdownToWin(float timeToWin)
 	{
+		lvlDuration = Time.realtimeSinceStartup;
+
 		yield return new WaitForSecondsRealtime(timeToWin);
 
 		SoundManager.Instance.PlayWin();

@@ -5,7 +5,8 @@ using UnityEngine.UI;
 public class MultiTouchScrollRect : ScrollRect
 {
 	#region Fields
-	private int minimumTouchCount = 1, maximumTouchCount = 2, initialTouchCount = 0;
+	private int minimumTouchCount = 1;
+	private int initialTouchCount = 0;
 	#endregion
 
 	#region Properties
