@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.Linq;
 using UnityEngine.UI;
+using System;
 
 public class UIBuilder : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class UIBuilder : MonoBehaviour
 
 	private LevelSO currentLvl;
 	private int currentLvlIndex;
+	private bool populated;
 	// Fit the size of UI to the safe zone of the screen (responsive)
 	private void Awake()
 	{
@@ -53,8 +55,7 @@ public class UIBuilder : MonoBehaviour
 	private void SaveCurrentLvl(LevelSO level)
 	{
 		currentLvl = level;
-		LvlBuilder.Instance.GetLevels().Where(lvl => lvl == currentLvl).ToList().First();
-		currentLvlIndex = LvlBuilder.Instance.GetLevels().FindIndex(lvl => lvl == currentLvl);
+		currentLvlIndex = LvlBuilder.Instance.GetLevels().IndexOf(currentLvl);
 	}
 
 	private void ReloadLevelUI(bool win)
@@ -64,6 +65,7 @@ public class UIBuilder : MonoBehaviour
 
 	private IEnumerator ReloadLevelUICo(LevelSO level)
 	{
+		// Esperamos un frame para que el LvlBuilder actualice los valores de los desafios del nivel
 		yield return null;
 		Transform lvlPanel = lvlPLvlChooser.transform.GetChild(currentLvlIndex);
 		DrawChallenges(lvlPanel.GetChild(0).GetChild(2).GetChild(0));
@@ -71,6 +73,7 @@ public class UIBuilder : MonoBehaviour
 
 	private void DrawChallenges(Transform challenges)
 	{
+		int completedChallenges = 0;
 		bool timeChallengeCompleted = currentLvl.timeChallenge == 1;
 		bool hotspotChallengeCompleted = currentLvl.hotspot == 1;
 		bool collectiblesChallengeCompleted = currentLvl.collectibles == 1;
@@ -79,6 +82,7 @@ public class UIBuilder : MonoBehaviour
 		timeChallenge.fillAmount = currentLvl.timeChallenge;
 		if (timeChallengeCompleted)
 		{
+			completedChallenges++;
 			timeChallenge.color = challengeCompleteColor;
 			timeChallenge.transform.GetChild(0).GetComponent<Image>().color = Color.black;
 		}
@@ -87,6 +91,7 @@ public class UIBuilder : MonoBehaviour
 		hotspot.fillAmount = currentLvl.hotspot;
 		if (hotspotChallengeCompleted)
 		{
+			completedChallenges++;
 			hotspot.color = challengeCompleteColor;
 			hotspot.transform.GetChild(0).GetComponent<Image>().color = Color.black;
 		}
@@ -95,11 +100,18 @@ public class UIBuilder : MonoBehaviour
 		collectibles.fillAmount = currentLvl.collectibles;
 		if (collectiblesChallengeCompleted)
 		{
+			completedChallenges++;
 			collectibles.color = challengeCompleteColor;
 			collectibles.transform.GetChild(0).GetComponent<Image>().color = Color.black;
 		}
 
-		if (timeChallengeCompleted && hotspotChallengeCompleted && collectiblesChallengeCompleted)
+		UpdateLockedLvl(completedChallenges);
+	}
+
+	private void UpdateLockedLvl(int completedChallenges)
+	{
+		if (!populated) return;
+		if (completedChallenges >= 2)
 		{
 			if (LvlBuilder.Instance.GetLevels().Count > currentLvlIndex + 1)
 			{
@@ -146,5 +158,6 @@ public class UIBuilder : MonoBehaviour
 				lvlPanel.transform.GetChild(1).gameObject.SetActive(false);
 		}
 		lvlPLvlChooser.GetComponent<LvlSwiper>().Populate();
+		populated = true;
 	}
 }

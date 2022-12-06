@@ -5,7 +5,6 @@ public static class Actions
 {
 	public static Action<LevelSO> onLvlStart;
 	public static Action<bool> onLvlEnd;
-	public static Action<int> onNewActiveLvlPanel;
 	public static Action onCleanLvl;
 	public static Action<GameObject, float> powerUpShrink;
 

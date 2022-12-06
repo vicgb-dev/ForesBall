@@ -1745,6 +1745,7 @@ MonoBehaviour:
   pBlockTouchMiniMenu: {fileID: 637190740}
   pBlockChallangesMiniMenu: {fileID: 440164696}
   pChallangesMiniMenu: {fileID: 1821399224}
+  secondsToHideChallenges: 0.4
 --- !u!1 &585966367
 GameObject:
   m_ObjectHideFlags: 0

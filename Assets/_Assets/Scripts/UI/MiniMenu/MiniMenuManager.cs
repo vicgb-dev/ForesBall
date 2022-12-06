@@ -8,6 +8,7 @@ public class MiniMenuManager : MonoBehaviour
 	[SerializeField] private GameObject pBlockTouchMiniMenu;
 	[SerializeField] private GameObject pBlockChallangesMiniMenu;
 	[SerializeField] private GameObject pChallangesMiniMenu;
+	[SerializeField] private float secondsToHideChallenges;
 
 	private Vector3 panelLeftPosition;
 	private Vector3 panelRightPosition;
@@ -48,43 +49,52 @@ public class MiniMenuManager : MonoBehaviour
 
 	private void OnEnable()
 	{
-		Actions.onLvlEnd += (win) => pBlockTouchMiniMenu.SetActive(false);
+		Actions.onLvlEnd += EndLvl;
 
 		Actions.onLvlStart += StartLvl;
 	}
 
 	private void StartLvl(LevelSO lvl)
 	{
-		StartCoroutine(StartLvlCo(lvl));
+		StopAllCoroutines();
+		StartCoroutine(ToggleMiniMenuChallenges(lvl));
 	}
 
-	private IEnumerator StartLvlCo(LevelSO lvl)
+	private void EndLvl(bool win)
 	{
-		pBlockTouchMiniMenu.SetActive(true);
+		StopAllCoroutines();
+		StartCoroutine(ToggleMiniMenuChallenges(null));
+	}
+
+	private IEnumerator ToggleMiniMenuChallenges(LevelSO lvl)
+	{
+		pBlockTouchMiniMenu.SetActive(lvl != null);
 		pBlockChallangesMiniMenu.SetActive(true);
 
 		float time = 0;
 		float elapsedTime = 0;
-		while (elapsedTime < 1)
+		while (elapsedTime < secondsToHideChallenges)
 		{
 			elapsedTime += Time.unscaledDeltaTime;
-			time += Time.unscaledDeltaTime;
+			time += Time.unscaledDeltaTime / secondsToHideChallenges;
 
 			pBlockChallangesMiniMenu.GetComponent<Image>().color = new Color(0, 0, 0, Mathf.Lerp(0, 1, time));
 			yield return null;
 		}
 
-		pChallangesMiniMenu.SetActive(true);
+		pChallangesMiniMenu.SetActive(lvl != null);
 
 		time = 0;
 		elapsedTime = 0;
-		while (elapsedTime < 1)
+		while (elapsedTime < secondsToHideChallenges)
 		{
 			elapsedTime += Time.unscaledDeltaTime;
-			time += Time.unscaledDeltaTime;
+			time += Time.unscaledDeltaTime / secondsToHideChallenges;
 
 			pBlockChallangesMiniMenu.GetComponent<Image>().color = new Color(0, 0, 0, Mathf.Lerp(1, 0, time));
 			yield return null;
 		}
+
+		pBlockChallangesMiniMenu.SetActive(false);
 	}
 }

@@ -71,23 +71,7 @@ public class LvlBuilder : MonoBehaviour
 		Actions.onLvlStart -= StartLevelWithDelay;
 		Actions.onLvlEnd -= StopSpawns;
 	}
-
-	private void StopSpawns(bool win)
-	{
-		StopAllCoroutines();
-		float timeCompleted = (Time.realtimeSinceStartup - lvlDuration) / currentLvl.music.length;
-		if (win)
-			currentLvl.timeChallenge = 1;
-		else if (currentLvl.timeChallenge != 1)
-			currentLvl.timeChallenge = Mathf.Max(timeCompleted, currentLvl.timeChallenge);
-	}
-
-	public void StartLevelWithDelay(LevelSO lvl)
-	{
-		currentLvl = lvl;
-		Invoke(nameof(StartLevel), delayStartTime);
-	}
-
+	// Start Lvl spawner
 	public void StartLevel()
 	{
 		limits = GameManager.Instance.limits;
@@ -110,6 +94,7 @@ public class LvlBuilder : MonoBehaviour
 		StartCoroutine(SpawnPowerUp(1, currentLvl.powerUpsShrinkTimeStamps));
 	}
 
+	// End of game
 	private IEnumerator CountdownToWin(float timeToWin)
 	{
 		lvlDuration = Time.realtimeSinceStartup;
@@ -144,6 +129,66 @@ public class LvlBuilder : MonoBehaviour
 		Actions.onLvlEnd?.Invoke(true);
 	}
 
+	// End lvl win/lose
+	private void StopSpawns(bool win)
+	{
+		StopAllCoroutines();
+		CheckCompleteChallenges();
+	}
+
+	private void CheckCompleteChallenges()
+	{
+		// Should show congratulations or not
+		int completedChallenges = 0;
+		bool showCongratulations = true;
+		if (currentLvl.timeChallenge >= 0.99f) completedChallenges++;
+		if (currentLvl.hotspot >= 0.99f) completedChallenges++;
+		if (currentLvl.collectibles >= 0.99f) completedChallenges++;
+		if (completedChallenges >= 2) showCongratulations = false;
+		completedChallenges = 0;
+
+		// Update challenges
+		float timeCompleted = (Time.realtimeSinceStartup - lvlDuration) / currentLvl.music.length;
+		currentLvl.timeChallenge = Mathf.Max(timeCompleted, currentLvl.timeChallenge);
+		if (currentLvl.timeChallenge >= 0.99f)
+		{
+			currentLvl.timeChallenge = 1;
+			completedChallenges++;
+		}
+
+		if (currentLvl.hotspot >= 0.99f)
+		{
+			currentLvl.hotspot = 1;
+			completedChallenges++;
+		}
+
+		if (currentLvl.collectibles >= 0.99f)
+		{
+			currentLvl.collectibles = 1;
+			completedChallenges++;
+		}
+
+		// Show congratulations and unlock
+		if (completedChallenges >= 2)
+		{
+			var index = levelsManagerSO.levels.IndexOf(currentLvl);
+			if (index < levelsManagerSO.levels.Count - 1) levelsManagerSO.levels[index + 1].unlocked = true;
+			if (showCongratulations) PlayCongratulations();
+		}
+	}
+
+	private void PlayCongratulations()
+	{
+		Debug.Log("FELICIDADES! HAS DESBLOQUEADO EL SIGUIENTE NIVEL");
+	}
+
+	public void StartLevelWithDelay(LevelSO lvl)
+	{
+		currentLvl = lvl;
+		Invoke(nameof(StartLevel), delayStartTime);
+	}
+
+	#region spawns
 
 	private IEnumerator SpawnPowerUp(int powerUpType, List<float> timeStamps)
 	{
@@ -263,5 +308,20 @@ public class LvlBuilder : MonoBehaviour
 				return false;
 		}
 		return true;
+	}
+
+	#endregion
+
+	[ContextMenu("Reset lvls")]
+	public void ResetLvls()
+	{
+		levelsManagerSO.levels.ForEach(lvl =>
+		{
+			lvl.timeChallenge = 0;
+			lvl.collectibles = 0;
+			lvl.hotspot = 0;
+			lvl.unlocked = false;
+		});
+		levelsManagerSO.levels[0].unlocked = true;
 	}
 }
