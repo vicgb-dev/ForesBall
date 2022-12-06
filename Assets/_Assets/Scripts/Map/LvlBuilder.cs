@@ -28,6 +28,7 @@ public class LvlBuilder : MonoBehaviour
 	private List<GameObject> enemiesGO = new List<GameObject>();
 	private float lvlDuration = 0;
 	private float hotspotScore = 0;
+	private float collectiblesScore = 0;
 
 	//Definición del patrón Singleton
 	#region Singleton
@@ -103,23 +104,42 @@ public class LvlBuilder : MonoBehaviour
 		StartCoroutine(SpawnPowerUp(1, currentLvl.powerUpsShrinkTimeStamps));
 
 		// Challenges
-		StartCoroutine(SpawnChallenges(challengesManagerSO));
+		StartCoroutine(SpawnChallenges(challengesManagerSO, currentLvl.collectiblesSpawnTimeStamps));
 	}
 
 	#region spawns
 
-	private IEnumerator SpawnChallenges(ChallengesManagerSO challengesManagerSO)
+	private IEnumerator SpawnChallenges(ChallengesManagerSO challengesManagerSO, List<float> timeStamps)
 	{
 		// Spawn HotSpot
 		hotspotScore = 0;
-		Debug.Log("right" + limits[Limits.right]);
-		Debug.Log("left" + limits[Limits.left]);
-		Debug.Log("up" + limits[Limits.up]);
-		Debug.Log("bottom" + limits[Limits.bottom]);
 		Vector3 center = new Vector3(limits[Limits.right] + limits[Limits.left], limits[Limits.up] - (limits[Limits.up] - limits[Limits.bottom]) / 2, 0);
 		Instantiate(challengesManagerSO.hotSpotPrefab, center, challengesManagerSO.hotSpotPrefab.transform.rotation);
 
 		// Spawn collectibles
+		collectiblesScore = 0;
+
+		GameObject collectiblePrefab = challengesManagerSO.collectiblePrefab;
+		SpriteRenderer sRenderer = collectiblePrefab.GetComponentInChildren<SpriteRenderer>();
+		int collectibles = timeStamps.Count;
+		int counter = 0;
+		while (collectibles > 0)
+		{
+			if (counter == 0)
+				yield return new WaitForSeconds(timeStamps[counter]);
+			else
+				yield return new WaitForSeconds(timeStamps[counter] - timeStamps[counter - 1]);
+
+			counter++;
+
+			Vector3 newLocation = new Vector3(
+				UnityEngine.Random.Range(limits[Limits.left] + sRenderer.size.x, limits[Limits.right] - sRenderer.size.x),
+				UnityEngine.Random.Range(limits[Limits.bottom] + sRenderer.size.y, limits[Limits.up] - sRenderer.size.y),
+				0);
+
+			GameObject instantiatedCollectible = Instantiate(collectiblePrefab, newLocation, collectiblePrefab.transform.rotation);
+			collectibles--;
+		}
 
 		yield return null;
 	}
@@ -255,6 +275,8 @@ public class LvlBuilder : MonoBehaviour
 
 		SoundManager.Instance.PlayWin();
 
+		Actions.onLvlFinished?.Invoke();
+
 		foreach (GameObject enemy in enemiesGO)
 		{
 			enemy.GetComponent<Enemy>().StopMoving();
@@ -308,13 +330,14 @@ public class LvlBuilder : MonoBehaviour
 			completedChallenges++;
 		}
 
-		currentLvl.hotspot = hotspotScore;
+		currentLvl.hotspot = Mathf.Max(hotspotScore, currentLvl.hotspot);
 		if (currentLvl.hotspot >= 0.99f)
 		{
 			currentLvl.hotspot = 1;
 			completedChallenges++;
 		}
 
+		currentLvl.collectibles = Mathf.Max(collectiblesScore / currentLvl.collectiblesSpawnTimeStamps.Count, currentLvl.collectibles);
 		if (currentLvl.collectibles >= 0.99f)
 		{
 			currentLvl.collectibles = 1;
@@ -349,6 +372,11 @@ public class LvlBuilder : MonoBehaviour
 		hotspotScore = score;
 	}
 
+	public void CollectiblePicked()
+	{
+		collectiblesScore++;
+	}
+
 	[ContextMenu("Reset lvls")]
 	public void ResetLvls()
 	{
@@ -361,6 +389,7 @@ public class LvlBuilder : MonoBehaviour
 		});
 		levelsManagerSO.levels[0].unlocked = true;
 	}
+
 
 	#endregion
 }

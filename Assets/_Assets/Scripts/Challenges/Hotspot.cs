@@ -11,10 +11,19 @@ public class Hotspot : MonoBehaviour
 	private void OnEnable()
 	{
 		Actions.onCleanLvl += DestroyThis;
+		Actions.onLvlFinished += Disable;
 	}
+
 	private void OnDisable()
 	{
 		Actions.onCleanLvl -= DestroyThis;
+		Actions.onLvlFinished -= Disable;
+	}
+
+	private void Disable()
+	{
+		GetComponentInChildren<SpriteRenderer>().color = Color.gray;
+		GetComponentInChildren<Collider2D>().enabled = false;
 	}
 
 	private void DestroyThis()

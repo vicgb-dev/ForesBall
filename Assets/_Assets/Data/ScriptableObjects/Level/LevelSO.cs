@@ -35,5 +35,7 @@ public class LevelSO : ScriptableObject
 	public float hotspot;
 	[Range(0f, 1f)]
 	public float collectibles;
+	public List<float> collectiblesSpawnTimeStamps;
+	[Space(10)]
 	public bool unlocked;
 }
