@@ -122,3 +122,7 @@ MonoBehaviour:
   - 27.4
   - 39
   - 56.2
+  timeChallenge: 0
+  hotspot: 0
+  collectibles: 0
+  unlocked: 0

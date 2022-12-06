@@ -239,6 +239,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3414033596814995912, guid: 53176e6366e7934468b3f820a659620b, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 6438973676714548558, guid: 53176e6366e7934468b3f820a659620b, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1130,5 +1134,66 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerUpShrink
       objectReference: {fileID: 0}
+    - target: {fileID: 8234862638002759916, guid: 2753aaf441ba3344584bc3a152cdd183, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2753aaf441ba3344584bc3a152cdd183, type: 3}
+--- !u!1001 &8791018425843124247
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2689746286415047123, guid: 4677fc26c2ab3bf49918c7be31d37a8e, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2689746286415047123, guid: 4677fc26c2ab3bf49918c7be31d37a8e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2689746286415047123, guid: 4677fc26c2ab3bf49918c7be31d37a8e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2689746286415047123, guid: 4677fc26c2ab3bf49918c7be31d37a8e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2689746286415047123, guid: 4677fc26c2ab3bf49918c7be31d37a8e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2689746286415047123, guid: 4677fc26c2ab3bf49918c7be31d37a8e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2689746286415047123, guid: 4677fc26c2ab3bf49918c7be31d37a8e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2689746286415047123, guid: 4677fc26c2ab3bf49918c7be31d37a8e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2689746286415047123, guid: 4677fc26c2ab3bf49918c7be31d37a8e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2689746286415047123, guid: 4677fc26c2ab3bf49918c7be31d37a8e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2689746286415047123, guid: 4677fc26c2ab3bf49918c7be31d37a8e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787326823694797884, guid: 4677fc26c2ab3bf49918c7be31d37a8e, type: 3}
+      propertyPath: m_Name
+      value: HotSpotChallenge
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4677fc26c2ab3bf49918c7be31d37a8e, type: 3}

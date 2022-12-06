@@ -31,5 +31,10 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  powerUpsWaveTimeStamps: []
+  raySpawnTimeStamps: []
   powerUpsInmortalTimeStamps: []
+  powerUpsShrinkTimeStamps: []
+  timeChallenge: 0
+  hotspot: 0
+  collectibles: 0
+  unlocked: 0

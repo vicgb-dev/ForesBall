@@ -3828,6 +3828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delayStartTime: 2
   enemiesManagerSO: {fileID: 11400000, guid: 8fda57debc87ec34bbf2a94ce4d88646, type: 2}
+  challengesManagerSO: {fileID: 11400000, guid: 17dd6fe231b2cee408ac2ea239652cc4, type: 2}
   powerUpsManagerSO: {fileID: 11400000, guid: d6e86457443e7544abd7181a788379a7, type: 2}
   levelsManagerSO: {fileID: 11400000, guid: 2a83f6d13ea37f549acaa41908a8c803, type: 2}
 --- !u!1 &1559251322

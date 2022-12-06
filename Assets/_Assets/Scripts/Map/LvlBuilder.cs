@@ -12,6 +12,9 @@ public class LvlBuilder : MonoBehaviour
 	[Header("Enemies")]
 	[SerializeField] private EnemiesManagerSO enemiesManagerSO;
 
+	[Header("Challenges")]
+	[SerializeField] private ChallengesManagerSO challengesManagerSO;
+
 	[Header("Power Ups")]
 	[SerializeField] private PowerUpsManagerSO powerUpsManagerSO;
 
@@ -24,6 +27,7 @@ public class LvlBuilder : MonoBehaviour
 	private LevelSO currentLvl;
 	private List<GameObject> enemiesGO = new List<GameObject>();
 	private float lvlDuration = 0;
+	private float hotspotScore = 0;
 
 	//Definición del patrón Singleton
 	#region Singleton
@@ -58,8 +62,6 @@ public class LvlBuilder : MonoBehaviour
 
 	#endregion
 
-	public List<LevelSO> GetLevels() => levelsManagerSO.levels;
-
 	private void OnEnable()
 	{
 		Actions.onLvlStart += StartLevelWithDelay;
@@ -71,6 +73,13 @@ public class LvlBuilder : MonoBehaviour
 		Actions.onLvlStart -= StartLevelWithDelay;
 		Actions.onLvlEnd -= StopSpawns;
 	}
+
+	public void StartLevelWithDelay(LevelSO lvl)
+	{
+		currentLvl = lvl;
+		Invoke(nameof(StartLevel), delayStartTime);
+	}
+
 	// Start Lvl spawner
 	public void StartLevel()
 	{
@@ -92,103 +101,28 @@ public class LvlBuilder : MonoBehaviour
 		// PowerUps
 		StartCoroutine(SpawnPowerUp(0, currentLvl.powerUpsInmortalTimeStamps));
 		StartCoroutine(SpawnPowerUp(1, currentLvl.powerUpsShrinkTimeStamps));
-	}
 
-	// End of game
-	private IEnumerator CountdownToWin(float timeToWin)
-	{
-		lvlDuration = Time.realtimeSinceStartup;
-
-		yield return new WaitForSecondsRealtime(timeToWin);
-
-		SoundManager.Instance.PlayWin();
-
-		foreach (GameObject enemy in enemiesGO)
-		{
-			enemy.GetComponent<Enemy>().StopMoving();
-
-			enemy.tag = Tag.Untagged.ToString();
-		}
-		yield return new WaitForSecondsRealtime(2);
-
-		float y = 1;
-		foreach (GameObject enemy in enemiesGO)
-		{
-			if (enemy.transform.childCount > 0)
-			{
-				Destroy(enemy);
-				SoundManager.Instance.PlayPop();
-
-				yield return new WaitForSecondsRealtime(1 / y);
-				y++;
-			}
-		}
-
-		yield return new WaitForSecondsRealtime(1);
-
-		Actions.onLvlEnd?.Invoke(true);
-	}
-
-	// End lvl win/lose
-	private void StopSpawns(bool win)
-	{
-		StopAllCoroutines();
-		CheckCompleteChallenges();
-	}
-
-	private void CheckCompleteChallenges()
-	{
-		// Should show congratulations or not
-		int completedChallenges = 0;
-		bool showCongratulations = true;
-		if (currentLvl.timeChallenge >= 0.99f) completedChallenges++;
-		if (currentLvl.hotspot >= 0.99f) completedChallenges++;
-		if (currentLvl.collectibles >= 0.99f) completedChallenges++;
-		if (completedChallenges >= 2) showCongratulations = false;
-		completedChallenges = 0;
-
-		// Update challenges
-		float timeCompleted = (Time.realtimeSinceStartup - lvlDuration) / currentLvl.music.length;
-		currentLvl.timeChallenge = Mathf.Max(timeCompleted, currentLvl.timeChallenge);
-		if (currentLvl.timeChallenge >= 0.99f)
-		{
-			currentLvl.timeChallenge = 1;
-			completedChallenges++;
-		}
-
-		if (currentLvl.hotspot >= 0.99f)
-		{
-			currentLvl.hotspot = 1;
-			completedChallenges++;
-		}
-
-		if (currentLvl.collectibles >= 0.99f)
-		{
-			currentLvl.collectibles = 1;
-			completedChallenges++;
-		}
-
-		// Show congratulations and unlock
-		if (completedChallenges >= 2)
-		{
-			var index = levelsManagerSO.levels.IndexOf(currentLvl);
-			if (index < levelsManagerSO.levels.Count - 1) levelsManagerSO.levels[index + 1].unlocked = true;
-			if (showCongratulations) PlayCongratulations();
-		}
-	}
-
-	private void PlayCongratulations()
-	{
-		Debug.Log("FELICIDADES! HAS DESBLOQUEADO EL SIGUIENTE NIVEL");
-	}
-
-	public void StartLevelWithDelay(LevelSO lvl)
-	{
-		currentLvl = lvl;
-		Invoke(nameof(StartLevel), delayStartTime);
+		// Challenges
+		StartCoroutine(SpawnChallenges(challengesManagerSO));
 	}
 
 	#region spawns
+
+	private IEnumerator SpawnChallenges(ChallengesManagerSO challengesManagerSO)
+	{
+		// Spawn HotSpot
+		hotspotScore = 0;
+		Debug.Log("right" + limits[Limits.right]);
+		Debug.Log("left" + limits[Limits.left]);
+		Debug.Log("up" + limits[Limits.up]);
+		Debug.Log("bottom" + limits[Limits.bottom]);
+		Vector3 center = new Vector3(limits[Limits.right] + limits[Limits.left], limits[Limits.up] - (limits[Limits.up] - limits[Limits.bottom]) / 2, 0);
+		Instantiate(challengesManagerSO.hotSpotPrefab, center, challengesManagerSO.hotSpotPrefab.transform.rotation);
+
+		// Spawn collectibles
+
+		yield return null;
+	}
 
 	private IEnumerator SpawnPowerUp(int powerUpType, List<float> timeStamps)
 	{
@@ -312,6 +246,109 @@ public class LvlBuilder : MonoBehaviour
 
 	#endregion
 
+	// End of game
+	private IEnumerator CountdownToWin(float timeToWin)
+	{
+		lvlDuration = Time.realtimeSinceStartup;
+
+		yield return new WaitForSecondsRealtime(timeToWin);
+
+		SoundManager.Instance.PlayWin();
+
+		foreach (GameObject enemy in enemiesGO)
+		{
+			enemy.GetComponent<Enemy>().StopMoving();
+
+			enemy.tag = Tag.Untagged.ToString();
+		}
+		yield return new WaitForSecondsRealtime(2);
+
+		float y = 1;
+		foreach (GameObject enemy in enemiesGO)
+		{
+			if (enemy.transform.childCount > 0)
+			{
+				Destroy(enemy);
+				SoundManager.Instance.PlayPop();
+
+				yield return new WaitForSecondsRealtime(1 / y);
+				y++;
+			}
+		}
+
+		yield return new WaitForSecondsRealtime(1);
+
+		Actions.onLvlEnd?.Invoke(true);
+	}
+
+	// End lvl win/lose
+	private void StopSpawns(bool win)
+	{
+		StopAllCoroutines();
+		CheckCompleteChallenges();
+	}
+
+	private void CheckCompleteChallenges()
+	{
+		// Should show congratulations or not
+		int completedChallenges = 0;
+		bool showCongratulations = true;
+		if (currentLvl.timeChallenge >= 0.99f) completedChallenges++;
+		if (currentLvl.hotspot >= 0.99f) completedChallenges++;
+		if (currentLvl.collectibles >= 0.99f) completedChallenges++;
+		if (completedChallenges >= 2) showCongratulations = false;
+		completedChallenges = 0;
+
+		// Update challenges
+		float timeCompleted = (Time.realtimeSinceStartup - lvlDuration) / currentLvl.music.length;
+		currentLvl.timeChallenge = Mathf.Max(timeCompleted, currentLvl.timeChallenge);
+		if (currentLvl.timeChallenge >= 0.99f)
+		{
+			currentLvl.timeChallenge = 1;
+			completedChallenges++;
+		}
+
+		currentLvl.hotspot = hotspotScore;
+		if (currentLvl.hotspot >= 0.99f)
+		{
+			currentLvl.hotspot = 1;
+			completedChallenges++;
+		}
+
+		if (currentLvl.collectibles >= 0.99f)
+		{
+			currentLvl.collectibles = 1;
+			completedChallenges++;
+		}
+
+		// Show congratulations and unlock
+		if (completedChallenges >= 2)
+		{
+			var index = levelsManagerSO.levels.IndexOf(currentLvl);
+			if (index < levelsManagerSO.levels.Count - 1) levelsManagerSO.levels[index + 1].unlocked = true;
+			if (showCongratulations) PlayCongratulations();
+		}
+	}
+
+	private void PlayCongratulations()
+	{
+		Debug.Log("FELICIDADES! HAS DESBLOQUEADO EL SIGUIENTE NIVEL");
+	}
+
+	#region External Methods
+
+	public List<LevelSO> GetLevels() => levelsManagerSO.levels;
+
+	public float GetMusicLength()
+	{
+		return currentLvl.music.length;
+	}
+
+	public void SetHotSpotAchieve(float score)
+	{
+		hotspotScore = score;
+	}
+
 	[ContextMenu("Reset lvls")]
 	public void ResetLvls()
 	{
@@ -324,4 +361,6 @@ public class LvlBuilder : MonoBehaviour
 		});
 		levelsManagerSO.levels[0].unlocked = true;
 	}
+
+	#endregion
 }

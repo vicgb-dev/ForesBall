@@ -32,5 +32,9 @@ MonoBehaviour:
   followSpawnTimeStamps: []
   bigSpawnTimeStamps: []
   raySpawnTimeStamps: []
-  powerUpsWaveTimeStamps: []
   powerUpsInmortalTimeStamps: []
+  powerUpsShrinkTimeStamps: []
+  timeChallenge: 0
+  hotspot: 0
+  collectibles: 0
+  unlocked: 1
