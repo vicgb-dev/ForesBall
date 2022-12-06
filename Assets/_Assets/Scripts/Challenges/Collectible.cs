@@ -83,9 +83,9 @@ public class Collectible : MonoBehaviour
 	{
 		if (other.transform.tag == "Player")
 		{
-			LvlBuilder.Instance.CollectiblePicked();
+			Actions.updateChallenge?.Invoke(Actions.ChallengeType.collectible, 0);
+			SoundManager.Instance.PlaySinglePop();
 			Instantiate(prefabDestroyParticles, this.transform.position, this.transform.rotation);
-			Debug.LogWarning("Desafio completado");
 			Destroy(this.gameObject);
 		}
 	}

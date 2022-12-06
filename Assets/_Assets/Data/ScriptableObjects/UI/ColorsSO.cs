@@ -11,4 +11,7 @@ public class ColorsSO : ScriptableObject
 	public Color customizeMenuColor;
 	public Color settingsMenuColor;
 	public Color levelsMenuColor;
+
+	[Header("Interface")]
+	public Color challengesColor;
 }

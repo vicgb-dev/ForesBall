@@ -17,3 +17,4 @@ MonoBehaviour:
   customizeMenuColor: {r: 1, g: 0.67058825, b: 0.46274513, a: 1}
   settingsMenuColor: {r: 1, g: 0.988943, b: 0.48584908, a: 1}
   levelsMenuColor: {r: 1, g: 1, b: 1, a: 1}
+  challengesColor: {r: 0.12941177, g: 0.8862745, b: 0.81960785, a: 1}

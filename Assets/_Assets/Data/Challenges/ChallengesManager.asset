@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ChallengesManager
   m_EditorClassIdentifier: 
   hotSpotPrefab: {fileID: 7787326823694797884, guid: 4677fc26c2ab3bf49918c7be31d37a8e, type: 3}
-  collectiblePrefab: {fileID: 0}
+  collectiblePrefab: {fileID: 9035800448830220733, guid: c874bf34200439241bcfa76fbab2e05c, type: 3}

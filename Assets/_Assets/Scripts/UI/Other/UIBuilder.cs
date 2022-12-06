@@ -18,7 +18,6 @@ public class UIBuilder : MonoBehaviour
 	[Header("Lvl chooser")]
 	[SerializeField] private GameObject lvlPLvlChooser;
 	[SerializeField] private GameObject lvlPanelPrefab;
-	[SerializeField] private Color challengeCompleteColor;
 
 	private LevelSO currentLvl;
 	private int currentLvlIndex;
@@ -77,13 +76,14 @@ public class UIBuilder : MonoBehaviour
 		bool timeChallengeCompleted = currentLvl.timeChallenge == 1;
 		bool hotspotChallengeCompleted = currentLvl.hotspot == 1;
 		bool collectiblesChallengeCompleted = currentLvl.collectibles == 1;
+		Color color = UIColorsManager.Instance.GetColorsSO().challengesColor;
 
 		Image timeChallenge = challenges.GetChild(0).GetComponent<Image>();
 		timeChallenge.fillAmount = currentLvl.timeChallenge;
 		if (timeChallengeCompleted)
 		{
 			completedChallenges++;
-			timeChallenge.color = challengeCompleteColor;
+			timeChallenge.color = color;
 			timeChallenge.transform.GetChild(0).GetComponent<Image>().color = Color.black;
 		}
 
@@ -92,7 +92,7 @@ public class UIBuilder : MonoBehaviour
 		if (hotspotChallengeCompleted)
 		{
 			completedChallenges++;
-			hotspot.color = challengeCompleteColor;
+			hotspot.color = color;
 			hotspot.transform.GetChild(0).GetComponent<Image>().color = Color.black;
 		}
 
@@ -101,7 +101,7 @@ public class UIBuilder : MonoBehaviour
 		if (collectiblesChallengeCompleted)
 		{
 			completedChallenges++;
-			collectibles.color = challengeCompleteColor;
+			collectibles.color = color;
 			collectibles.transform.GetChild(0).GetComponent<Image>().color = Color.black;
 		}
 

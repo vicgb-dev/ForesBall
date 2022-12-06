@@ -67,12 +67,14 @@ public class LvlBuilder : MonoBehaviour
 	{
 		Actions.onLvlStart += StartLevelWithDelay;
 		Actions.onLvlEnd += StopSpawns;
+		Actions.updateChallenge += UpdateChallenges;
 	}
 
 	private void OnDisable()
 	{
 		Actions.onLvlStart -= StartLevelWithDelay;
 		Actions.onLvlEnd -= StopSpawns;
+		Actions.updateChallenge -= UpdateChallenges;
 	}
 
 	public void StartLevelWithDelay(LevelSO lvl)
@@ -271,7 +273,14 @@ public class LvlBuilder : MonoBehaviour
 	{
 		lvlDuration = Time.realtimeSinceStartup;
 
-		yield return new WaitForSecondsRealtime(timeToWin);
+		float time = 0;
+		while (time < timeToWin)
+		{
+			time += Time.unscaledDeltaTime;
+
+			Actions.updateChallenge?.Invoke(Actions.ChallengeType.time, time / currentLvl.music.length > 0.99 ? 1 : time / currentLvl.music.length);
+			yield return null;
+		}
 
 		SoundManager.Instance.PlayWin();
 
@@ -367,14 +376,19 @@ public class LvlBuilder : MonoBehaviour
 		return currentLvl.music.length;
 	}
 
-	public void SetHotSpotAchieve(float score)
+	private void UpdateChallenges(Actions.ChallengeType challengeType, float score)
 	{
-		hotspotScore = score;
-	}
-
-	public void CollectiblePicked()
-	{
-		collectiblesScore++;
+		switch (challengeType)
+		{
+			case Actions.ChallengeType.time:
+				break;
+			case Actions.ChallengeType.hotspot:
+				hotspotScore = score;
+				break;
+			case Actions.ChallengeType.collectible:
+				collectiblesScore++;
+				break;
+		}
 	}
 
 	[ContextMenu("Reset lvls")]
@@ -390,6 +404,17 @@ public class LvlBuilder : MonoBehaviour
 		levelsManagerSO.levels[0].unlocked = true;
 	}
 
+	[ContextMenu("Unlock all lvls")]
+	public void UnlockAllLvls()
+	{
+		levelsManagerSO.levels.ForEach(lvl =>
+		{
+			lvl.timeChallenge = 0;
+			lvl.collectibles = 1;
+			lvl.hotspot = 1;
+			lvl.unlocked = true;
+		});
+	}
 
 	#endregion
 }

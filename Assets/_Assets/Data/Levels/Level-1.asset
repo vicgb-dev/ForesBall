@@ -37,4 +37,7 @@ MonoBehaviour:
   timeChallenge: 0
   hotspot: 0
   collectibles: 0
-  unlocked: 1
+  collectiblesSpawnTimeStamps:
+  - 3
+  - 5
+  unlocked: 0

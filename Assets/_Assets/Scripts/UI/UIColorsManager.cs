@@ -35,12 +35,39 @@ public class UIColorsManager : MonoBehaviour
 	[SerializeField] public List<SpriteRenderer> mapLimits;
 
 	private UIState currentUIState;
+	#region Singleton
+
+	private static UIColorsManager _instance;
+	public static UIColorsManager Instance
+	{
+		get
+		{
+			if (_instance != null) return _instance;
+			Debug.Log("Buscando singleton en escena");
+			_instance = FindObjectOfType<UIColorsManager>();
+			if (_instance != null) return _instance;
+			var manager = new GameObject("Singleton");
+			_instance = manager.AddComponent<UIColorsManager>();
+			return _instance;
+		}
+	}
 
 	private void Awake()
 	{
+		// Si el singleton aun no ha sido inicializado
+		if (_instance != null && _instance != this)
+		{
+			Destroy(this.gameObject);
+			return;
+		}
+
 		currentUIState = UIState.Main;
 		ChangeGlobalColors();
+		_instance = this;
+		//DontDestroyOnLoad(this.gameObject);
 	}
+
+	#endregion
 
 	private void OnEnable()
 	{
@@ -131,5 +158,10 @@ public class UIColorsManager : MonoBehaviour
 	{
 		foreach (TextMeshProUGUI text in textsCommon)
 			text.color = color;
+	}
+
+	public ColorsSO GetColorsSO()
+	{
+		return colorsSO;
 	}
 }

@@ -46,13 +46,13 @@ public class Hotspot : MonoBehaviour
 			transform.localScale = new Vector3(lerpScale, lerpScale, lerpScale);
 
 			// Set score of challenge
-			LvlBuilder.Instance.SetHotSpotAchieve(timeInHotspot / timeToCompleteHotspot);
+			Actions.updateChallenge?.Invoke(Actions.ChallengeType.hotspot, timeInHotspot / timeToCompleteHotspot);
 
 			if (timeInHotspot >= timeToCompleteHotspot)
 			{
-				LvlBuilder.Instance.SetHotSpotAchieve(1);
+				Actions.updateChallenge?.Invoke(Actions.ChallengeType.hotspot, 1);
+				SoundManager.Instance.PlaySinglePop();
 				Instantiate(prefabDestroyParticles, this.transform.position, this.transform.rotation);
-				Debug.LogWarning("Desafio completado");
 				Destroy(this.gameObject);
 			}
 		}

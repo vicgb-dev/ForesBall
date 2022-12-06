@@ -33,7 +33,11 @@ MonoBehaviour:
   - 1
   - 2
   - 3
-  timeChallenge: 1
-  hotspot: 1
-  collectibles: 0
+  timeChallenge: 0.6921026
+  hotspot: 0.4519952
+  collectibles: 0.33333334
+  collectiblesSpawnTimeStamps:
+  - 1
+  - 2
+  - 3
   unlocked: 1
