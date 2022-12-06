@@ -14,4 +14,11 @@ public class ColorsSO : ScriptableObject
 
 	[Header("Interface")]
 	public Color challengesColor;
+
+
+	[Header("Enemies")]
+	public Color straightEnemyColor;
+	public Color followEnemyColor;
+	public Color bigEnemyColor;
+	public Color rayEnemyColor;
 }

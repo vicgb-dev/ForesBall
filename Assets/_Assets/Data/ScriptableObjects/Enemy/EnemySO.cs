@@ -8,9 +8,19 @@ public class EnemySO : ScriptableObject
 	public SpriteRendererSO spriteRendererSO;
 	public TrailSO trailSO;
 	public DeathParticlesSO deathParticlesSO;
+	public EnemyType enemyType;
+	public enum EnemyType
+	{
+		straight,
+		follow,
+		big,
+		ray
+	}
 
 	public void SetUpEnemy(GameObject enemy)
 	{
+		Color color = ColorsManager.Instance.GetEnemyColor(enemyType);
+
 		SpriteRenderer spriteGO = enemy.GetComponentInChildren<SpriteRenderer>();
 		if (spriteGO != null && spriteRendererSO.sprite != null) spriteGO.sprite = spriteRendererSO.sprite;
 		if (spriteGO != null && spriteRendererSO.color != null) spriteGO.color = spriteRendererSO.color;

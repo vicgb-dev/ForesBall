@@ -13,7 +13,7 @@ public class TESTEditor : Editor
 		TESTS tests = (TESTS)target;
 
 		LevelsMenuManager levelsMenuManager = tests.levelsMenuManager;
-		UIColorsManager uIColorsManager = tests.uIColorsManager;
+		ColorsManager uIColorsManager = tests.uIColorsManager;
 
 		GUILayout.Label("Actions");
 		GUILayout.BeginHorizontal();

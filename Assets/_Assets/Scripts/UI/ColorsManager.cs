@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UIColorsManager : MonoBehaviour
+public class ColorsManager : MonoBehaviour
 {
 	[SerializeField] private ColorsSO colorsSO;
 
@@ -37,17 +37,17 @@ public class UIColorsManager : MonoBehaviour
 	private UIState currentUIState;
 	#region Singleton
 
-	private static UIColorsManager _instance;
-	public static UIColorsManager Instance
+	private static ColorsManager _instance;
+	public static ColorsManager Instance
 	{
 		get
 		{
 			if (_instance != null) return _instance;
 			Debug.Log("Buscando singleton en escena");
-			_instance = FindObjectOfType<UIColorsManager>();
+			_instance = FindObjectOfType<ColorsManager>();
 			if (_instance != null) return _instance;
 			var manager = new GameObject("Singleton");
-			_instance = manager.AddComponent<UIColorsManager>();
+			_instance = manager.AddComponent<ColorsManager>();
 			return _instance;
 		}
 	}
@@ -163,5 +163,21 @@ public class UIColorsManager : MonoBehaviour
 	public ColorsSO GetColorsSO()
 	{
 		return colorsSO;
+	}
+	public Color GetEnemyColor(EnemySO.EnemyType enemyType)
+	{
+		switch (enemyType)
+		{
+			case EnemySO.EnemyType.straight:
+				return colorsSO.straightEnemyColor;
+			case EnemySO.EnemyType.follow:
+				return colorsSO.followEnemyColor;
+			case EnemySO.EnemyType.big:
+				return colorsSO.bigEnemyColor;
+			case EnemySO.EnemyType.ray:
+				return colorsSO.rayEnemyColor;
+			default:
+				return colorsSO.rayEnemyColor;
+		}
 	}
 }

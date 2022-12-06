@@ -17,6 +17,6 @@ public class PowerUpInmortal : PowerUp
 		Instantiate(deathParticlesPrefab, this.gameObject.transform);
 		SoundManager.Instance.PlaySinglePop();
 
-		GameObject.FindGameObjectWithTag(Tag.Player.ToString()).GetComponent<Player>().Inmortal(secsPowerUpEffect, GetComponentInChildren<SpriteRenderer>().color);
+		GameObject.Find("Player(Clone)").GetComponent<Player>().Inmortal(secsPowerUpEffect, GetComponentInChildren<SpriteRenderer>().color);
 	}
 }
