@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17778865c3d23914982c8584e1f9d813, type: 3}
   m_Name: Colors-BlackAndWhite
   m_EditorClassIdentifier: 
+  colorName: Black & White
   mainMenuColor: {r: 1, g: 1, b: 1, a: 1}
-  customizeMenuColor: {r: 1, g: 0.67058825, b: 0.46274513, a: 1}
-  settingsMenuColor: {r: 1, g: 0.988943, b: 0.48584908, a: 1}
+  customizeMenuColor: {r: 0.7924528, g: 0.6755657, b: 0.6018156, a: 1}
+  settingsMenuColor: {r: 0.7924528, g: 0.7886007, b: 0.6242435, a: 1}
   levelsMenuColor: {r: 1, g: 1, b: 1, a: 1}
-  challengesColor: {r: 0.5801887, g: 0.95225686, b: 1, a: 1}
-  powerUpColor: {r: 1, g: 0.9079357, b: 0.6273585, a: 1}
+  challengesColor: {r: 0.62077254, g: 0.8234546, b: 0.8490566, a: 1}
+  powerUpColor: {r: 0.7830189, g: 0.7463562, b: 0.631586, a: 1}
   straightEnemyColor: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
   followEnemyColor: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
   bigEnemyColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}

@@ -184,4 +184,10 @@ public class ColorsManager : MonoBehaviour
 
 	public Color GetPowerUpColor() => colorsSO.powerUpColor;
 	public Color GetChallengesColor() => colorsSO.challengesColor;
+
+	public void ChangeColors(ColorsSO colors)
+	{
+		colorsSO = colors;
+		UpdateGlobalColors();
+	}
 }
