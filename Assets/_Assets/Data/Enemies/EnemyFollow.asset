@@ -16,3 +16,4 @@ MonoBehaviour:
   spriteRendererSO: {fileID: 11400000, guid: 05b4e313b8dfcfb4bb7e748e44551682, type: 2}
   trailSO: {fileID: 11400000, guid: e9f42372f7852e44ca2514bd08d3b61d, type: 2}
   deathParticlesSO: {fileID: 11400000, guid: 3143c820b6c17de4aa3f83666a5b116e, type: 2}
+  enemyType: 1

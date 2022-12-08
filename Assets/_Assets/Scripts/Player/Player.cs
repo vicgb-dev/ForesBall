@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
-	[SerializeField] private GameObject endPowerUpParticlesPrefab;
-
 	SpriteRenderer sprite;
 	TrailRenderer trail;
+
+	Color inmortalColor;
+	Color inmortalColorFaded;
 
 	private bool inmortal = false;
 	private void OnEnable()
@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
 	{
 		ResetPlayer();
 	}
+
 	private void ResetPlayer()
 	{
 		StopAllCoroutines();
@@ -69,61 +70,70 @@ public class Player : MonoBehaviour
 	}
 
 	// El powerUp Inmortal llama a este metodo
-	public void Inmortal(float seconds, Color color)
+	public void Inmortal(float seconds, Color color, GameObject deathParticlesPrefab)
 	{
 		StopAllCoroutines();
 		inmortal = true;
-		sprite.color = color;
+
+		inmortalColor = color;
+		inmortalColorFaded = new Color(inmortalColor.r, inmortalColor.g, inmortalColor.b, 0.5f);
+
 		trail.startColor = color;
 		trail.endColor = color;
 
-		StartCoroutine(InmortalCoroutine(seconds));
+		StartCoroutine(InmortalCoroutine(seconds, deathParticlesPrefab));
 	}
 
-	private IEnumerator InmortalCoroutine(float seconds)
+	private IEnumerator InmortalCoroutine(float seconds, GameObject deathParticlesPrefab)
 	{
-		sprite.enabled = false;
+		sprite.color = inmortalColorFaded;
 
 		yield return new WaitForSecondsRealtime(seconds - 2);
 
-		sprite.enabled = true;
+		sprite.color = inmortalColor;
 		yield return new WaitForSecondsRealtime(0.1f);
 
-		sprite.enabled = false;
+		sprite.color = inmortalColorFaded;
 		yield return new WaitForSecondsRealtime(0.1f);
 
-		sprite.enabled = true;
+
+		sprite.color = inmortalColor;
 		yield return new WaitForSecondsRealtime(0.1f);
 
-		sprite.enabled = false;
+		sprite.color = inmortalColorFaded;
 		yield return new WaitForSecondsRealtime(0.1f);
 
-		sprite.enabled = true;
+
+		sprite.color = inmortalColor;
 		yield return new WaitForSecondsRealtime(0.1f);
 
-		sprite.enabled = false;
+		sprite.color = inmortalColorFaded;
 		yield return new WaitForSecondsRealtime(0.2f);
 
-		sprite.enabled = true;
+
+		sprite.color = inmortalColor;
 		yield return new WaitForSecondsRealtime(0.2f);
 
-		sprite.enabled = false;
+		sprite.color = inmortalColorFaded;
 		yield return new WaitForSecondsRealtime(0.2f);
 
-		sprite.enabled = true;
+
+		sprite.color = inmortalColor;
 		yield return new WaitForSecondsRealtime(0.2f);
 
-		sprite.enabled = false;
+		sprite.color = inmortalColorFaded;
 		yield return new WaitForSecondsRealtime(0.2f);
 
-		sprite.enabled = true;
+
+		sprite.color = inmortalColor;
 		yield return new WaitForSecondsRealtime(0.3f);
 
-		sprite.enabled = false;
-		yield return new WaitForSecondsRealtime(0.2f);
+		sprite.color = inmortalColorFaded;
+		yield return new WaitForSecondsRealtime(0.3f);
 
-		sprite.enabled = true;
-		Instantiate(endPowerUpParticlesPrefab, this.transform);
+
+		sprite.color = inmortalColor;
+		Instantiate(deathParticlesPrefab, this.transform);
 		yield return new WaitForSecondsRealtime(0.3f);
 		sprite.color = Color.white;
 		inmortal = false;

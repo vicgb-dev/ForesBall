@@ -65,7 +65,7 @@ public class MiniMenuManager : MonoBehaviour
 
 	private void Start()
 	{
-		colorCompleted = ColorsManager.Instance.GetColorsSO().challengesColor;
+		colorCompleted = ColorsManager.Instance.GetChallengesColor();
 	}
 
 	private void OnEnable()

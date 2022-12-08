@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Colors", menuName = "UI/Colors")]
@@ -14,7 +12,7 @@ public class ColorsSO : ScriptableObject
 
 	[Header("Interface")]
 	public Color challengesColor;
-
+	public Color powerUpColor;
 
 	[Header("Enemies")]
 	public Color straightEnemyColor;

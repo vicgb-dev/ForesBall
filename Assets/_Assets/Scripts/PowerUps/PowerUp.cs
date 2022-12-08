@@ -4,8 +4,8 @@ using UnityEngine;
 public abstract class PowerUp : MonoBehaviour
 {
 	protected float secsToActivateCollider = 0.3f;
-	[Min(3f)]
-	protected float secsPowerUpEffect = 8f;
+
+	public float secsPowerUpEffect = 8f;
 
 	public GameObject deathParticlesPrefab;
 

@@ -116,7 +116,8 @@ public class LvlBuilder : MonoBehaviour
 		// Spawn HotSpot
 		hotspotScore = 0;
 		Vector3 center = new Vector3(limits[Limits.right] + limits[Limits.left], limits[Limits.up] - (limits[Limits.up] - limits[Limits.bottom]) / 2, 0);
-		Instantiate(challengesManagerSO.hotSpotPrefab, center, challengesManagerSO.hotSpotPrefab.transform.rotation);
+		GameObject instantiatedHotspot = Instantiate(challengesManagerSO.hotSpotPrefab, center, challengesManagerSO.hotSpotPrefab.transform.rotation);
+		instantiatedHotspot.GetComponent<Hotspot>().SetUp(currentLvl.music.length * currentLvl.percentOfSongToCompleteHotspot / 100);
 
 		// Spawn collectibles
 		collectiblesScore = 0;
@@ -140,6 +141,7 @@ public class LvlBuilder : MonoBehaviour
 				0);
 
 			GameObject instantiatedCollectible = Instantiate(collectiblePrefab, newLocation, collectiblePrefab.transform.rotation);
+			instantiatedCollectible.GetComponent<Collectible>().SetUp();
 			collectibles--;
 		}
 
@@ -167,6 +169,7 @@ public class LvlBuilder : MonoBehaviour
 				0);
 
 			GameObject instantiatedPowerUp = Instantiate(powerUpPrefab, newLocation, powerUpPrefab.transform.rotation);
+			powerUpsManagerSO.powerUps[powerUpType].SetUpPowerUp(instantiatedPowerUp);
 			powerUps--;
 		}
 	}

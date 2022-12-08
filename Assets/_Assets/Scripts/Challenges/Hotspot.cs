@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class Hotspot : MonoBehaviour
 {
-	[Range(0.1f, 0.9f)]
-	[SerializeField] private float percentOfLvlInHotspot;
 	[SerializeField] private GameObject prefabDestroyParticles;
 	[SerializeField] private float timeToCompleteHotspot;
 	[SerializeField] private float timeInHotspot = 0;
+	private SpriteRenderer sprite;
 
 	private void OnEnable()
 	{
@@ -22,7 +21,7 @@ public class Hotspot : MonoBehaviour
 
 	private void Disable()
 	{
-		GetComponentInChildren<SpriteRenderer>().color = Color.gray;
+		sprite.color = Color.gray;
 		GetComponentInChildren<Collider2D>().enabled = false;
 	}
 
@@ -31,10 +30,18 @@ public class Hotspot : MonoBehaviour
 		Destroy(this.gameObject);
 	}
 
-	private void Start()
+	public void SetUp(float timeToComplete)
 	{
-		timeToCompleteHotspot = LvlBuilder.Instance.GetMusicLength();
-		timeToCompleteHotspot *= percentOfLvlInHotspot;
+		// Set color challenge to sprite
+		sprite = GetComponentInChildren<SpriteRenderer>();
+		sprite.color = ColorsManager.Instance.GetChallengesColor();
+
+		// Set color challenge to prefabDestroyParticles
+		ParticleSystem ps = prefabDestroyParticles.GetComponent<ParticleSystem>();
+		ParticleSystem.MainModule psmain = ps.main;
+		psmain.startColor = ColorsManager.Instance.GetChallengesColor();
+
+		timeToCompleteHotspot = timeToComplete;
 		transform.localScale = new Vector3(5, 5, 5);
 	}
 	private void OnTriggerStay2D(Collider2D other)

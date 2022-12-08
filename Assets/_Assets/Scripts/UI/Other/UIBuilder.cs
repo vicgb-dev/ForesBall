@@ -76,7 +76,7 @@ public class UIBuilder : MonoBehaviour
 		bool timeChallengeCompleted = currentLvl.timeChallenge == 1;
 		bool hotspotChallengeCompleted = currentLvl.hotspot == 1;
 		bool collectiblesChallengeCompleted = currentLvl.collectibles == 1;
-		Color color = ColorsManager.Instance.GetColorsSO().challengesColor;
+		Color color = ColorsManager.Instance.GetChallengesColor();
 
 		Image timeChallenge = challenges.GetChild(0).GetComponent<Image>();
 		timeChallenge.fillAmount = currentLvl.timeChallenge;

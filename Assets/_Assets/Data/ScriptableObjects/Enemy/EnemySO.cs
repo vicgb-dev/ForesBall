@@ -23,11 +23,17 @@ public class EnemySO : ScriptableObject
 
 		SpriteRenderer spriteGO = enemy.GetComponentInChildren<SpriteRenderer>();
 		if (spriteGO != null && spriteRendererSO.sprite != null) spriteGO.sprite = spriteRendererSO.sprite;
-		if (spriteGO != null && spriteRendererSO.color != null) spriteGO.color = spriteRendererSO.color;
+		if (spriteGO != null) spriteGO.color = color;
 
 		TrailRenderer trailGO = enemy.GetComponentInChildren<TrailRenderer>();
-		if (trailGO != null && trailSO != null) trailSO.SetUpTrail(trailGO);
+		if (trailGO != null && trailSO != null) trailSO.SetUpTrail(trailGO, color);
 
-		if (deathParticlesSO != null) enemy.GetComponent<Enemy>().deathParticlesPrefab = deathParticlesSO.deathParticlesPrefab;
+		if (deathParticlesSO != null)
+		{
+			enemy.GetComponent<Enemy>().deathParticlesPrefab = deathParticlesSO.deathParticlesPrefab;
+			ParticleSystem ps = deathParticlesSO.deathParticlesPrefab.GetComponent<ParticleSystem>();
+			ParticleSystem.MainModule psmain = ps.main;
+			psmain.startColor = color;
+		}
 	}
 }

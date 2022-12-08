@@ -164,6 +164,7 @@ public class ColorsManager : MonoBehaviour
 	{
 		return colorsSO;
 	}
+
 	public Color GetEnemyColor(EnemySO.EnemyType enemyType)
 	{
 		switch (enemyType)
@@ -180,4 +181,7 @@ public class ColorsManager : MonoBehaviour
 				return colorsSO.rayEnemyColor;
 		}
 	}
+
+	public Color GetPowerUpColor() => colorsSO.powerUpColor;
+	public Color GetChallengesColor() => colorsSO.challengesColor;
 }

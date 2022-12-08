@@ -34,9 +34,17 @@ public class Collectible : MonoBehaviour
 		Destroy(this.gameObject);
 	}
 
-	private void Start()
+	public void SetUp()
 	{
+		// Set color challenge to sprite
 		sprite = GetComponentInChildren<SpriteRenderer>();
+		sprite.color = ColorsManager.Instance.GetChallengesColor();
+
+		// Set color challenge to prefabDestroyParticles
+		ParticleSystem ps = prefabDestroyParticles.GetComponent<ParticleSystem>();
+		ParticleSystem.MainModule psmain = ps.main;
+		psmain.startColor = ColorsManager.Instance.GetChallengesColor();
+
 		StartCoroutine(FlipSprite());
 		StartCoroutine(BounceCollectible());
 	}
