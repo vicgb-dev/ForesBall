@@ -116,7 +116,7 @@ public class LvlSwiper : MonoBehaviour, IPointerDownHandler
 			if (scrollbar.value < positions[i] + (distance / 2) && scrollbar.value > positions[i] - (distance / 2))
 			{
 				currentPanel = i;
-				UIManager.Instance.currentPanel = currentPanel;
+				UIManager.Instance.SetCurrentPanel(currentPanel);
 				transform.GetChild(i).localScale = Vector2.Lerp(transform.GetChild(i).localScale, new Vector2(panelMaxScale, panelMaxScale), transitionTime);
 				for (int a = 0; a < positions.Length; a++)
 					if (a != i)

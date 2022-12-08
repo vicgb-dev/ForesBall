@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,7 @@ public class UIManager : MonoBehaviour
 	public AnimationCurve curveToMove;
 	public float secondsToChangeAlpha = 0.5f;
 	public AnimationCurve curveToOriginalColor;
-	[HideInInspector] public int currentPanel;
+	private int currentPanel = -1;
 
 	private LevelsMenuManager levelsMenuManager;
 	private MainMenuManager mainMenuManager;
@@ -91,5 +92,14 @@ public class UIManager : MonoBehaviour
 			Debug.Log($"El nivel {currentPanel + 1} no esta desbloqueado");
 
 		return !LvlBuilder.Instance.GetLevels()[currentPanel].unlocked;
+	}
+
+	public void SetCurrentPanel(int newCurrentPanel)
+	{
+		if (currentPanel == newCurrentPanel) return;
+		currentPanel = newCurrentPanel;
+
+		SoundManager.Instance.PlayMusicPreview(LvlBuilder.Instance.GetLevels()[currentPanel]);
+
 	}
 }
