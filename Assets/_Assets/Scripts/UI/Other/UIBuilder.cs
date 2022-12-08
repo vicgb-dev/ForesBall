@@ -84,6 +84,7 @@ public class UIBuilder : MonoBehaviour
 		{
 			completedChallenges++;
 			timeChallenge.color = color;
+			ColorsManager.Instance.imagesChallenges.Add(timeChallenge);
 			timeChallenge.transform.GetChild(0).GetComponent<Image>().color = Color.black;
 		}
 
@@ -93,6 +94,7 @@ public class UIBuilder : MonoBehaviour
 		{
 			completedChallenges++;
 			hotspot.color = color;
+			ColorsManager.Instance.imagesChallenges.Add(hotspot);
 			hotspot.transform.GetChild(0).GetComponent<Image>().color = Color.black;
 		}
 
@@ -102,6 +104,7 @@ public class UIBuilder : MonoBehaviour
 		{
 			completedChallenges++;
 			collectibles.color = color;
+			ColorsManager.Instance.imagesChallenges.Add(collectibles);
 			collectibles.transform.GetChild(0).GetComponent<Image>().color = Color.black;
 		}
 

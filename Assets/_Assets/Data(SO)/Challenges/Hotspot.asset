@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aee233f7bac00e4ea152b51d570b6a1, type: 3}
+  m_Name: Hotspot
+  m_EditorClassIdentifier: 
+  challengePrefab: {fileID: 7787326823694797884, guid: 4677fc26c2ab3bf49918c7be31d37a8e, type: 3}
+  spriteRendererSO: {fileID: 11400000, guid: 16accc712403d434a824587459cf81f3, type: 2}
+  destroyParticlesSO: {fileID: 11400000, guid: 66b58f95f30980246b2ee302211c0a41, type: 2}
+  challengeType: 0

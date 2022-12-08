@@ -62,7 +62,7 @@ public class ColorsManager : MonoBehaviour
 		}
 
 		currentUIState = UIState.Main;
-		ChangeGlobalColors();
+		UpdateGlobalColors();
 		_instance = this;
 		//DontDestroyOnLoad(this.gameObject);
 	}
@@ -83,7 +83,7 @@ public class ColorsManager : MonoBehaviour
 				ChangeCommonColors(colorsSO.mainMenuColor);
 				break;
 			case UIState.Challenges:
-				ChangeCommonColors(colorsSO.challengesMenuColor);
+				ChangeCommonColors(colorsSO.challengesColor);
 				break;
 			case UIState.Customize:
 				ChangeCommonColors(colorsSO.customizeMenuColor);
@@ -97,14 +97,14 @@ public class ColorsManager : MonoBehaviour
 		}
 	}
 
-	public void ChangeGlobalColors()
+	public void UpdateGlobalColors()
 	{
 		ChoseColor(currentUIState);
 
 		// Challenges
-		ChangeImageColor(imagesChallenges, colorsSO.challengesMenuColor);
-		ChangeTextColor(textsChallenges, colorsSO.challengesMenuColor);
-		ChangeButtonPressedColor(buttonsChallenges, colorsSO.challengesMenuColor);
+		ChangeImageColor(imagesChallenges, colorsSO.challengesColor);
+		ChangeTextColor(textsChallenges, colorsSO.challengesColor);
+		ChangeButtonPressedColor(buttonsChallenges, colorsSO.challengesColor);
 
 		// Customize
 		ChangeImageColor(imagesCustomize, colorsSO.customizeMenuColor);

@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
 		inmortal = true;
 
 		inmortalColor = color;
-		inmortalColorFaded = new Color(inmortalColor.r, inmortalColor.g, inmortalColor.b, 0.5f);
+		inmortalColorFaded = new Color(inmortalColor.r, inmortalColor.g, inmortalColor.b, 0.2f);
 
 		trail.startColor = color;
 		trail.endColor = color;

@@ -1,9 +1,8 @@
 using UnityEngine;
 
-public class Hotspot : MonoBehaviour
+public class Hotspot : Challenge
 {
-	[SerializeField] private GameObject prefabDestroyParticles;
-	[SerializeField] private float timeToCompleteHotspot;
+	public float timeToCompleteHotspot;
 	[SerializeField] private float timeInHotspot = 0;
 	private SpriteRenderer sprite;
 
@@ -30,18 +29,13 @@ public class Hotspot : MonoBehaviour
 		Destroy(this.gameObject);
 	}
 
-	public void SetUp(float timeToComplete)
+	private void Awake()
 	{
-		// Set color challenge to sprite
 		sprite = GetComponentInChildren<SpriteRenderer>();
-		sprite.color = ColorsManager.Instance.GetChallengesColor();
+	}
 
-		// Set color challenge to prefabDestroyParticles
-		ParticleSystem ps = prefabDestroyParticles.GetComponent<ParticleSystem>();
-		ParticleSystem.MainModule psmain = ps.main;
-		psmain.startColor = ColorsManager.Instance.GetChallengesColor();
-
-		timeToCompleteHotspot = timeToComplete;
+	private void Start()
+	{
 		transform.localScale = new Vector3(5, 5, 5);
 	}
 	private void OnTriggerStay2D(Collider2D other)

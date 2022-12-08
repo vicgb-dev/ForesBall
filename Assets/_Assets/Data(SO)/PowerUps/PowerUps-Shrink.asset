@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c3566293f7c3784880d92acf0d90074, type: 3}
+  m_Name: PowerUps-Shrink
+  m_EditorClassIdentifier: 
+  powerUpPrefab: {fileID: 8234862638002759916, guid: 2753aaf441ba3344584bc3a152cdd183, type: 3}
+  spriteRendererSO: {fileID: 11400000, guid: 59a958054fe80d748b2debc02f3baf12, type: 2}
+  destroyedParticlesSO: {fileID: 11400000, guid: 960fe30b76a1d8949ba9dbc7d229da36, type: 2}
+  secsPowerUpEffect: 8

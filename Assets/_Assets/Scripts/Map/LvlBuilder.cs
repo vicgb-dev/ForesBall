@@ -1,7 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class LvlBuilder : MonoBehaviour
 {
@@ -96,33 +96,37 @@ public class LvlBuilder : MonoBehaviour
 		StartCoroutine(CountdownToWin(currentLvl.music.length));
 
 		// Enemies
-		StartCoroutine(SpawnEnemy(0, currentLvl.straightSpawnTimeStamps));
-		StartCoroutine(SpawnEnemy(1, currentLvl.followSpawnTimeStamps));
-		StartCoroutine(SpawnEnemy(2, currentLvl.bigSpawnTimeStamps));
-		StartCoroutine(SpawnEnemy(3, currentLvl.raySpawnTimeStamps));
+		StartCoroutine(SpawnEnemy(enemiesManagerSO.enemies.Where(enemy => enemy.enemyType == EnemySO.EnemyType.straight).ToList().First(), currentLvl.straightSpawnTimeStamps));
+		StartCoroutine(SpawnEnemy(enemiesManagerSO.enemies.Where(enemy => enemy.enemyType == EnemySO.EnemyType.follow).ToList().First(), currentLvl.followSpawnTimeStamps));
+		StartCoroutine(SpawnEnemy(enemiesManagerSO.enemies.Where(enemy => enemy.enemyType == EnemySO.EnemyType.big).ToList().First(), currentLvl.bigSpawnTimeStamps));
+		StartCoroutine(SpawnEnemy(enemiesManagerSO.enemies.Where(enemy => enemy.enemyType == EnemySO.EnemyType.ray).ToList().First(), currentLvl.raySpawnTimeStamps));
 
 		// PowerUps
 		StartCoroutine(SpawnPowerUp(0, currentLvl.powerUpsInmortalTimeStamps));
 		StartCoroutine(SpawnPowerUp(1, currentLvl.powerUpsShrinkTimeStamps));
 
 		// Challenges
-		StartCoroutine(SpawnChallenges(challengesManagerSO, currentLvl.collectiblesSpawnTimeStamps));
+		SpawnHotspot(challengesManagerSO.challenges.Where(challenge => challenge.challengeType == ChallengeSO.ChallengeType.hotspot).ToList().First());
+		StartCoroutine(SpawnCollectibles(challengesManagerSO.challenges.Where(challenge => challenge.challengeType == ChallengeSO.ChallengeType.collectible).ToList().First(), currentLvl.collectiblesSpawnTimeStamps));
 	}
 
 	#region spawns
 
-	private IEnumerator SpawnChallenges(ChallengesManagerSO challengesManagerSO, List<float> timeStamps)
+	private void SpawnHotspot(ChallengeSO challenge)
 	{
 		// Spawn HotSpot
 		hotspotScore = 0;
 		Vector3 center = new Vector3(limits[Limits.right] + limits[Limits.left], limits[Limits.up] - (limits[Limits.up] - limits[Limits.bottom]) / 2, 0);
-		GameObject instantiatedHotspot = Instantiate(challengesManagerSO.hotSpotPrefab, center, challengesManagerSO.hotSpotPrefab.transform.rotation);
-		instantiatedHotspot.GetComponent<Hotspot>().SetUp(currentLvl.music.length * currentLvl.percentOfSongToCompleteHotspot / 100);
+		GameObject instantiatedHotspot = Instantiate(challenge.challengePrefab, center, challenge.challengePrefab.transform.rotation);
+		challenge.SetUpChallenge(instantiatedHotspot, currentLvl.music.length * currentLvl.percentOfSongToCompleteHotspot / 100);
+	}
 
+	private IEnumerator SpawnCollectibles(ChallengeSO challenge, List<float> timeStamps)
+	{
 		// Spawn collectibles
 		collectiblesScore = 0;
 
-		GameObject collectiblePrefab = challengesManagerSO.collectiblePrefab;
+		GameObject collectiblePrefab = challenge.challengePrefab;
 		SpriteRenderer sRenderer = collectiblePrefab.GetComponentInChildren<SpriteRenderer>();
 		int collectibles = timeStamps.Count;
 		int counter = 0;
@@ -141,7 +145,7 @@ public class LvlBuilder : MonoBehaviour
 				0);
 
 			GameObject instantiatedCollectible = Instantiate(collectiblePrefab, newLocation, collectiblePrefab.transform.rotation);
-			instantiatedCollectible.GetComponent<Collectible>().SetUp();
+			challenge.SetUpChallenge(instantiatedCollectible);
 			collectibles--;
 		}
 
@@ -174,9 +178,9 @@ public class LvlBuilder : MonoBehaviour
 		}
 	}
 
-	private IEnumerator SpawnEnemy(int enemyType, List<float> timeStamps)
+	private IEnumerator SpawnEnemy(EnemySO enemy, List<float> timeStamps)
 	{
-		GameObject enemyPrefab = enemiesManagerSO.enemies[enemyType].enemyPrefab;
+		GameObject enemyPrefab = enemy.enemyPrefab;
 		SpriteRenderer sRenderer = enemyPrefab.GetComponentInChildren<SpriteRenderer>();
 		int enemies = timeStamps.Count;
 		int counter = 0;
@@ -192,7 +196,7 @@ public class LvlBuilder : MonoBehaviour
 			while (!spawned)
 			{
 				// Si el enemigo es el tipo rayo
-				if (enemyType == 3)
+				if (enemy.enemyType == EnemySO.EnemyType.ray)
 				{
 					SpawnRayEnemy(enemyPrefab);
 					spawned = true;
@@ -207,7 +211,7 @@ public class LvlBuilder : MonoBehaviour
 					if (CanSpawn(newLocation, sRenderer.size.x * 0.75f))
 					{
 						GameObject instantiatedEnemy = Instantiate(enemyPrefab, newLocation, enemyPrefab.transform.rotation);
-						enemiesManagerSO.enemies[enemyType].SetUpEnemy(instantiatedEnemy);
+						enemy.SetUpEnemy(instantiatedEnemy);
 						enemiesGO.Add(instantiatedEnemy);
 						spawned = true;
 					}
@@ -328,7 +332,7 @@ public class LvlBuilder : MonoBehaviour
 		int completedChallenges = 0;
 		bool showCongratulations = true;
 		if (currentLvl.timeChallenge >= 0.99f) completedChallenges++;
-		if (currentLvl.hotspot >= 0.99f) completedChallenges++;
+		if (currentLvl.hotspot >= 0.999f) completedChallenges++;
 		if (currentLvl.collectibles >= 0.99f) completedChallenges++;
 		if (completedChallenges >= 2) showCongratulations = false;
 		completedChallenges = 0;
@@ -343,7 +347,7 @@ public class LvlBuilder : MonoBehaviour
 		}
 
 		currentLvl.hotspot = Mathf.Max(hotspotScore, currentLvl.hotspot);
-		if (currentLvl.hotspot >= 0.99f)
+		if (currentLvl.hotspot >= 0.999f)
 		{
 			currentLvl.hotspot = 1;
 			completedChallenges++;

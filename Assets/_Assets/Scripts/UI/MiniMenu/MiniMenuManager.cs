@@ -31,8 +31,6 @@ public class MiniMenuManager : MonoBehaviour
 	private int collectiblesAmount;
 	private LevelSO currentLvl;
 
-	private Color colorCompleted;
-
 	#region Singleton
 
 	private static MiniMenuManager _instance;
@@ -62,11 +60,6 @@ public class MiniMenuManager : MonoBehaviour
 	}
 
 	#endregion
-
-	private void Start()
-	{
-		colorCompleted = ColorsManager.Instance.GetChallengesColor();
-	}
 
 	private void OnEnable()
 	{
@@ -107,9 +100,9 @@ public class MiniMenuManager : MonoBehaviour
 	private void ChangeFillAmount(Image fill, float value)
 	{
 		fill.fillAmount = value;
-		if (value > 0.99f)
+		if (value > 0.999f)
 		{
-			fill.color = colorCompleted;
+			fill.color = ColorsManager.Instance.GetChallengesColor();
 			fill.transform.GetChild(0).GetComponent<Image>().color = Color.black;
 		}
 		else

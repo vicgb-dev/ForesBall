@@ -1,13 +1,11 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
-public class Collectible : MonoBehaviour
+public class Collectible : Challenge
 {
 	[SerializeField] private AnimationCurve curve;
 	[SerializeField] private float secondsToBounce = 1;
 	[SerializeField] private float amplitude = 0.1f;
-	[SerializeField] private GameObject prefabDestroyParticles;
 	private SpriteRenderer sprite;
 
 	private void OnEnable()
@@ -34,17 +32,13 @@ public class Collectible : MonoBehaviour
 		Destroy(this.gameObject);
 	}
 
-	public void SetUp()
+	private void Awake()
 	{
-		// Set color challenge to sprite
 		sprite = GetComponentInChildren<SpriteRenderer>();
-		sprite.color = ColorsManager.Instance.GetChallengesColor();
+	}
 
-		// Set color challenge to prefabDestroyParticles
-		ParticleSystem ps = prefabDestroyParticles.GetComponent<ParticleSystem>();
-		ParticleSystem.MainModule psmain = ps.main;
-		psmain.startColor = ColorsManager.Instance.GetChallengesColor();
-
+	private void Start()
+	{
 		StartCoroutine(FlipSprite());
 		StartCoroutine(BounceCollectible());
 	}

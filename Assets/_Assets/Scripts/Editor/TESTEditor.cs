@@ -46,7 +46,7 @@ public class TESTEditor : Editor
 
 		if (GUILayout.Button("ChangeColors"))
 		{
-			uIColorsManager.ChangeGlobalColors();
+			uIColorsManager.UpdateGlobalColors();
 		}
 		GUILayout.EndHorizontal();
 	}
