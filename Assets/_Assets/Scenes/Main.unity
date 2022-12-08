@@ -3073,7 +3073,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  currentPanel: 0
 --- !u!114 &980059119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6034,6 +6033,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popSound: {fileID: 8300000, guid: c2043e2c212871e49ac06cf59e60bc95, type: 3}
   popVolume: 0.2
+  secondsMusicPreview: 10
+  secondsToChangeVolumeMusicPreview: 4.89
 --- !u!4 &1884302626
 Transform:
   m_ObjectHideFlags: 0
@@ -6099,6 +6100,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1df8c92eac622bb4084fb8e6dd6aca48, type: 2}
   - {fileID: 11400000, guid: d5eda59fa8a0e3b4796f271eed8439a9, type: 2}
   - {fileID: 11400000, guid: 6a0a68ca94abbfd44a237747fb222f39, type: 2}
+  - {fileID: 11400000, guid: 2811df42f0b163040851e91df03efbe6, type: 2}
   button1: {fileID: 726810101}
 --- !u!1 &1910143626
 GameObject:
