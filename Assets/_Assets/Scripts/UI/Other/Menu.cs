@@ -26,10 +26,10 @@ public class Menu : MonoBehaviour
 	protected virtual void Awake()
 	{
 		RectTransform rT = panelMenu.GetComponent<RectTransform>();
-		panelLeftPosition = new Vector3(rT.localPosition.x - rT.rect.width, rT.localPosition.y, rT.localPosition.z);
-		panelRightPosition = new Vector3(rT.localPosition.x + rT.rect.width, rT.localPosition.y, rT.localPosition.z);
-		panelUpPosition = new Vector3(rT.localPosition.x, rT.localPosition.y + rT.rect.height, rT.localPosition.z);
-		panelDownPosition = new Vector3(rT.localPosition.x, rT.localPosition.y - rT.rect.height, rT.localPosition.z);
+		panelLeftPosition = new Vector3(rT.localPosition.x - rT.rect.width - 10, rT.localPosition.y, rT.localPosition.z);
+		panelRightPosition = new Vector3(rT.localPosition.x + rT.rect.width + 10, rT.localPosition.y, rT.localPosition.z);
+		panelUpPosition = new Vector3(rT.localPosition.x, rT.localPosition.y + rT.rect.height + 10, rT.localPosition.z);
+		panelDownPosition = new Vector3(rT.localPosition.x, rT.localPosition.y - rT.rect.height - 10, rT.localPosition.z);
 		panelCenterPosition = new Vector3(rT.localPosition.x, rT.localPosition.y, rT.localPosition.z);
 	}
 

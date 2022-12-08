@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+	[SerializeField] Scrollbar customizeScrollbar;
+
 	public float secondsToMovePanels = 1;
 	public AnimationCurve curveToMove;
 	public float secondsToChangeAlpha = 0.5f;
@@ -62,6 +65,7 @@ public class UIManager : MonoBehaviour
 	public void MainMenuButton2()
 	{
 		Actions.onNewUIState?.Invoke(UIState.Customize);
+		customizeScrollbar.value = 1;
 	}
 
 	public void MainMenuButton3()

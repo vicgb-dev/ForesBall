@@ -8,6 +8,7 @@ public class LevelsMenuManager : MonoBehaviour
 	[SerializeField] private Color loseBackground;
 
 	[Header("References")]
+	[SerializeField] private GameObject background;
 	[SerializeField] private GameObject pUiGame;
 	[SerializeField] private GameObject pBlockTouchGame;
 	[SerializeField] private GameObject pEndGame;
@@ -19,6 +20,10 @@ public class LevelsMenuManager : MonoBehaviour
 
 	private Vector3 scrollBarUpPosition;
 	private Vector3 scrollBarDownPosition;
+
+	private Image backgroundImg;
+	private Color backgroundAlpha0;
+	private Color backgroundAlpha1;
 
 	private Image endGameImage;
 	private Color originalColor;
@@ -34,6 +39,10 @@ public class LevelsMenuManager : MonoBehaviour
 		rT = horizontalScrollBar.GetComponent<RectTransform>();
 		scrollBarUpPosition = new Vector3(rT.localPosition.x, rT.localPosition.y, rT.localPosition.z);
 		scrollBarDownPosition = new Vector3(rT.localPosition.x, rT.localPosition.y - rT.rect.height - 10, rT.localPosition.z);
+
+		backgroundImg = background.GetComponent<Image>();
+		backgroundAlpha0 = new Color(backgroundImg.color.r, backgroundImg.color.g, backgroundImg.color.b, 0);
+		backgroundAlpha1 = new Color(backgroundImg.color.r, backgroundImg.color.g, backgroundImg.color.b, 1);
 
 		endGameImage = pEndGame.GetComponent<Image>();
 		originalColor = endGameImage.color;
@@ -63,6 +72,7 @@ public class LevelsMenuManager : MonoBehaviour
 		StartCoroutine(UIHelpers.Instance.MovePanel(scrollView, scrollView.transform.localPosition, scrollViewUpPosition, UIManager.Instance.secondsToMovePanels, UIManager.Instance.curveToMove));
 		StartCoroutine(UIHelpers.Instance.MovePanel(horizontalScrollBar, horizontalScrollBar.transform.localPosition, scrollBarDownPosition, UIManager.Instance.secondsToMovePanels, UIManager.Instance.curveToMove));
 		StartCoroutine(UIHelpers.Instance.ColorChange(endGameImage, endGameImage.color, endGameAlpha0, UIManager.Instance.secondsToChangeAlpha, UIManager.Instance.curveToMove));
+		StartCoroutine(UIHelpers.Instance.ColorChange(backgroundImg, backgroundImg.color, backgroundAlpha1, UIManager.Instance.secondsToChangeAlpha, UIManager.Instance.curveToMove));
 		pBlockTouchGame.SetActive(true);
 	}
 
@@ -85,6 +95,7 @@ public class LevelsMenuManager : MonoBehaviour
 			Actions.onCleanLvl?.Invoke();
 			StartCoroutine(UIHelpers.Instance.ColorChange(endGameImage, endGameImage.color, endGameAlpha1, UIManager.Instance.secondsToChangeAlpha * 10, UIManager.Instance.curveToOriginalColor));
 		}));
+		StartCoroutine(UIHelpers.Instance.ColorChange(backgroundImg, backgroundImg.color, backgroundAlpha0, UIManager.Instance.secondsToChangeAlpha, UIManager.Instance.curveToMove));
 		pBlockTouchGame.SetActive(false);
 	}
 }
