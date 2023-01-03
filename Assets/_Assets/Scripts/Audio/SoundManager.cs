@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +18,7 @@ public class SoundManager : MonoBehaviour
 	private bool inLvlsMenu = false;
 
 	private Coroutine musicPreviewCo;
-	private GameObject musicPreviewGO;
+	public List<GameObject> musicPreviewGOs = new List<GameObject>();
 
 	//Definición del patrón Singleton
 	#region Singleton
@@ -148,18 +147,18 @@ public class SoundManager : MonoBehaviour
 		if (musicPreviewCo != null)
 		{
 			StopCoroutine(musicPreviewCo);
-			if (musicPreviewGO != null)
-				StartCoroutine(FadeOut(musicPreviewGO));
+			if (musicPreviewGOs.Count > 0)
+				StartCoroutine(FadeOut(musicPreviewGOs[musicPreviewGOs.Count - 1]));
 		}
 	}
 
 	private IEnumerator PlayMusicPreviewCo()
 	{
-
 		yield return new WaitForSeconds(0.5f);
 		var clip = currentLvl.music;
 
-		musicPreviewGO = new GameObject(clip.name + "Preview");
+		GameObject musicPreviewGO = new GameObject(clip.name + "Preview");
+		musicPreviewGOs.Add(musicPreviewGO);
 
 		musicPreviewGO.transform.SetParent(gameObject.transform);
 		AudioSource audioSource = musicPreviewGO.AddComponent<AudioSource>();
@@ -192,12 +191,15 @@ public class SoundManager : MonoBehaviour
 			yield return null;
 		}
 
+		musicPreviewGOs.Remove(musicPreviewGO);
 		Destroy(musicPreviewGO);
 	}
 
-	private IEnumerator FadeOut(GameObject asd)
+	private IEnumerator FadeOut(GameObject go)
 	{
-		AudioSource aS = asd.GetComponent<AudioSource>();
+		musicPreviewGOs.Remove(go);
+
+		AudioSource aS = go.GetComponent<AudioSource>();
 		float time = 0;
 		float initialVolume = aS.volume;
 
@@ -208,6 +210,6 @@ public class SoundManager : MonoBehaviour
 			yield return null;
 		}
 
-		Destroy(asd);
+		Destroy(go);
 	}
 }

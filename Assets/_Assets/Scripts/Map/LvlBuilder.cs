@@ -50,6 +50,20 @@ public class LvlBuilder : MonoBehaviour
 
 	private void Awake()
 	{
+		List<SavedLevel> savedLevels = LoadSaveManager.Instance.LoadLevels();
+		if (savedLevels != null)
+			foreach (SavedLevel savedLevel in savedLevels)
+				levelsManagerSO.levels.ForEach(lvl =>
+				{
+					if (lvl.name.Equals(savedLevel.lvlName))
+					{
+						lvl.timeChallenge = savedLevel.timeChallenge;
+						lvl.hotspot = savedLevel.hotspot;
+						lvl.collectibles = savedLevel.collectibles;
+						lvl.unlocked = savedLevel.unlocked;
+					}
+				});
+
 		// Si el singleton aun no ha sido inicializado
 		if (_instance != null && _instance != this)
 		{
@@ -367,6 +381,8 @@ public class LvlBuilder : MonoBehaviour
 			if (index < levelsManagerSO.levels.Count - 1) levelsManagerSO.levels[index + 1].unlocked = true;
 			if (showCongratulations) PlayCongratulations();
 		}
+
+		LoadSaveManager.Instance.SaveLevel(new SavedLevel(currentLvl.name, currentLvl.timeChallenge, currentLvl.hotspot, currentLvl.collectibles, currentLvl.unlocked));
 	}
 
 	private void PlayCongratulations()

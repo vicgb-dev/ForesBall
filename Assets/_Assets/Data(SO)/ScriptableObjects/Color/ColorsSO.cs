@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Colors", menuName = "UI/Colors")]
 public class ColorsSO : ScriptableObject
 {
+	public int idColor;
 	public string colorName;
 	[Header("Menus")]
 	public Color mainMenuColor;

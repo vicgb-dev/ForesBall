@@ -63,6 +63,8 @@ public class LevelsMenuManager : MonoBehaviour
 			BlockGameView();
 		else
 			CleanGameView();
+
+		StartCoroutine(UIHelpers.Instance.ColorChange(backgroundImg, backgroundImg.color, state == UIState.Levels ? backgroundAlpha0 : backgroundAlpha1, UIManager.Instance.secondsToChangeAlpha, UIManager.Instance.curveToMove));
 	}
 
 	// Move elements out of the player's sight
@@ -95,7 +97,6 @@ public class LevelsMenuManager : MonoBehaviour
 			Actions.onCleanLvl?.Invoke();
 			StartCoroutine(UIHelpers.Instance.ColorChange(endGameImage, endGameImage.color, endGameAlpha1, UIManager.Instance.secondsToChangeAlpha * 10, UIManager.Instance.curveToOriginalColor));
 		}));
-		StartCoroutine(UIHelpers.Instance.ColorChange(backgroundImg, backgroundImg.color, win == null ? backgroundAlpha0 : backgroundAlpha1, UIManager.Instance.secondsToChangeAlpha, UIManager.Instance.curveToMove));
 		pBlockTouchGame.SetActive(false);
 	}
 }

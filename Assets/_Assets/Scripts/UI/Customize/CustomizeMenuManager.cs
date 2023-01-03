@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class CustomizeMenuManager : Menu
 {
@@ -17,12 +18,23 @@ public class CustomizeMenuManager : Menu
 		childState = UIState.Customize;
 		panelDirection = Direction.Right;
 
-		foreach (ColorsSO color in colors)
+		int? idColor = LoadSaveManager.Instance.LoadColorTheme();
+		if (idColor != null)
+		{
+			ColorsSO loadedColor = colors.Where(color => color.idColor == idColor).ToList().First();
+			ColorsManager.Instance.ChangeColors(loadedColor);
+		}
+
+		foreach (ColorsSO colorSO in colors)
 		{
 			// Instancias y populate un panel
 			GameObject pack = Instantiate(colorPackButton, menuContent.transform);
-			pack.GetComponent<ColorPack>().SetUp(color);
-			pack.GetComponent<Button>().onClick.AddListener(() => ColorsManager.Instance.ChangeColors(color));
+			pack.GetComponent<ColorPack>().SetUp(colorSO);
+			pack.GetComponent<Button>().onClick.AddListener(() =>
+			{
+				ColorsManager.Instance.ChangeColors(colorSO);
+				LoadSaveManager.Instance.SaveColorTheme(colorSO.idColor);
+			});
 		}
 	}
 
