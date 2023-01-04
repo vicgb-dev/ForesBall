@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17778865c3d23914982c8584e1f9d813, type: 3}
   m_Name: Colors-BlackAndWhite
   m_EditorClassIdentifier: 
+  idColor: 2
   colorName: Black & White
   mainMenuColor: {r: 1, g: 1, b: 1, a: 1}
   customizeMenuColor: {r: 0.7924528, g: 0.6755657, b: 0.6018156, a: 1}

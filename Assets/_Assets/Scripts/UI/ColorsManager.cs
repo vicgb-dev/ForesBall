@@ -142,9 +142,19 @@ public class ColorsManager : MonoBehaviour
 	{
 		foreach (Button button in buttons)
 		{
-			ColorBlock colors = button.colors;
-			colors.pressedColor = color;
-			button.colors = colors;
+			ButtonFeedback feedback = button.gameObject.GetComponent<ButtonFeedback>();
+			if (feedback != null)
+			{
+				feedback.pressedColor = new Color(color.r - 0.2f, color.g - 0.2f, color.b - 0.2f, 1);
+			}
+			else
+			{
+				ColorBlock colors = button.colors;
+				colors.pressedColor = new Color(color.r, color.g, color.b, 0.5f);
+				colors.fadeDuration = UIManager.Instance.buttonSeconds;
+				button.colors = colors;
+			}
+
 		}
 	}
 

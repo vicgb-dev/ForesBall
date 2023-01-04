@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -26,7 +25,6 @@ public class MiniMenuManager : MonoBehaviour
 	private Vector3 panelDownPosition;
 	private Vector3 panelCenterPosition;
 
-	private float hotspotScore = 0;
 	private int collectiblesScore = 0;
 	private int collectiblesAmount;
 	private LevelSO currentLvl;

@@ -425,6 +425,7 @@ public class LvlBuilder : MonoBehaviour
 			lvl.unlocked = false;
 		});
 		levelsManagerSO.levels[0].unlocked = true;
+		LoadSaveManager.Instance.Delete();
 	}
 
 	[ContextMenu("Unlock all lvls")]

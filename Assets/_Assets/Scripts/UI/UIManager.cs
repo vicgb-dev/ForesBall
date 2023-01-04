@@ -1,9 +1,18 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+	[Header("Buttons config")]
+	public float buttonSeconds;
+	public float buttonScale;
+	[Range(0, 1)]
+	public float buttonBrightness;
+	public AnimationCurve buttonCurve;
+	public bool buttonVibration;
+
+
+	[Header("Menus config")]
 	[SerializeField] Scrollbar customizeScrollbar;
 
 	public float secondsToMovePanels = 1;
