@@ -63,10 +63,10 @@ public class Player : MonoBehaviour
 
 	private void ResetVisuals()
 	{
-		sprite.enabled = true;
-		trail.startColor = Color.white;
-		trail.endColor = Color.white;
-		sprite.color = Color.white;
+		// sprite.enabled = true;
+		trail.startColor = ColorsManager.Instance.GetColorsSO().playerColor;
+		trail.endColor = ColorsManager.Instance.GetColorsSO().playerColor;
+		sprite.color = ColorsManager.Instance.GetColorsSO().playerColor;
 	}
 
 	// El powerUp Inmortal llama a este metodo

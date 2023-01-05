@@ -170,10 +170,7 @@ public class ColorsManager : MonoBehaviour
 			text.color = color;
 	}
 
-	public ColorsSO GetColorsSO()
-	{
-		return colorsSO;
-	}
+	public ColorsSO GetColorsSO() => colorsSO;
 
 	public Color GetEnemyColor(EnemySO.EnemyType enemyType)
 	{

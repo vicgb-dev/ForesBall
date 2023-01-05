@@ -57,7 +57,6 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 	{
 		if (eventData.pointerEnter != this.gameObject) return;
 		SoundManager.Instance.PlaySinglePop();
-		Debug.Log("Enter");
 		StopAllCoroutines();
 		StartCoroutine(PressAnimation());
 		StartCoroutine(PressColor());
@@ -72,7 +71,6 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		if (eventData.pointerEnter != this.gameObject) return;
-		Debug.Log("Exit");
 		StopAllCoroutines();
 		StartCoroutine(ReleaseAnimation());
 		StartCoroutine(ReleaseColor());
