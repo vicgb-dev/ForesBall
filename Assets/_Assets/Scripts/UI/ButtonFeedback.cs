@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-	[SerializeField] private float seconds;
-	[SerializeField] private float scale;
+	[SerializeField] private float seconds = 0.3f;
+	[SerializeField] private float scale = 0.9f;
 	[SerializeField] private float brightness;
 	[SerializeField] private AnimationCurve curve;
 	[SerializeField] private bool vibration;
@@ -16,26 +16,35 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 	Button button;
 	Image image;
 	Vector3 initialScale;
+	Transform childTransform;
 
 	private void Awake()
 	{
+		childTransform = transform.GetChild(0).GetComponent<Transform>();
+		initialScale = childTransform.localScale;
 		button = GetComponent<Button>();
-		image = GetComponent<Image>();
+		image = transform.GetChild(0).GetComponent<Image>();
+		if (image == null)
+		{
+			Destroy(this);
+			return;
+		}
 		initialColor = image.color;
+
 		if (button == null)
 		{
 			Destroy(this);
 			return;
 		}
-		initialScale = gameObject.transform.localScale;
 	}
 
 	private void Start()
 	{
-		//SetUp();
+		SetUp();
 	}
 
-	private void SetUp()
+	[ContextMenu("SetUp variables")]
+	public void SetUp()
 	{
 		seconds = UIManager.Instance.buttonSeconds;
 		scale = UIManager.Instance.buttonScale;
@@ -46,6 +55,8 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
+		if (eventData.pointerEnter != this.gameObject) return;
+		SoundManager.Instance.PlaySinglePop();
 		Debug.Log("Enter");
 		StopAllCoroutines();
 		StartCoroutine(PressAnimation());
@@ -54,11 +65,13 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 
 	public void OnPointerClick(PointerEventData eventData)
 	{
+		if (eventData.pointerEnter != this.gameObject) return;
 		Debug.Log("Click");
 	}
 
 	public void OnPointerExit(PointerEventData eventData)
 	{
+		if (eventData.pointerEnter != this.gameObject) return;
 		Debug.Log("Exit");
 		StopAllCoroutines();
 		StartCoroutine(ReleaseAnimation());
@@ -70,14 +83,14 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 		Vector3 smallScale = initialScale * scale;
 		float elapsedTime = 0;
 
-		while (gameObject.transform.localScale.x >= smallScale.x)
+		while (elapsedTime < seconds)
 		{
 			elapsedTime += Time.deltaTime;
-			gameObject.transform.localScale = Vector3.Lerp(initialScale, smallScale, elapsedTime / seconds);
+			childTransform.localScale = Vector3.LerpUnclamped(initialScale, smallScale, curve.Evaluate(elapsedTime / seconds));
 			yield return null;
 		}
 
-		gameObject.transform.localScale = smallScale;
+		childTransform.localScale = smallScale;
 	}
 
 	private IEnumerator PressColor()
@@ -88,7 +101,7 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 		while (elapsedTime < (seconds / 2))
 		{
 			elapsedTime += Time.deltaTime;
-			image.color = Color.Lerp(startColor, pressedColor, elapsedTime / (seconds / 2));
+			image.color = Color.Lerp(startColor, pressedColor, curve.Evaluate(elapsedTime / (seconds / 2)));
 			yield return null;
 		}
 
@@ -100,14 +113,14 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 		Vector3 bigScale = initialScale;
 		float elapsedTime = 0;
 
-		while (gameObject.transform.localScale.x <= bigScale.x)
+		while (elapsedTime < seconds)
 		{
 			elapsedTime += Time.deltaTime;
-			gameObject.transform.localScale = Vector3.Lerp(initialScale * scale, bigScale, elapsedTime / seconds);
+			childTransform.localScale = Vector3.LerpUnclamped(initialScale * scale, bigScale, curve.Evaluate(elapsedTime / seconds));
 			yield return null;
 		}
 
-		gameObject.transform.localScale = initialScale * scale;
+		childTransform.localScale = bigScale;
 	}
 
 	private IEnumerator ReleaseColor()
@@ -118,7 +131,7 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 		while (elapsedTime < seconds)
 		{
 			elapsedTime += Time.deltaTime;
-			image.color = Color.Lerp(startColor, initialColor, elapsedTime / seconds);
+			image.color = Color.Lerp(startColor, initialColor, curve.Evaluate(elapsedTime / seconds));
 			yield return null;
 		}
 

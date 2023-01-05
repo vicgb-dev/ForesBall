@@ -378,7 +378,11 @@ public class LvlBuilder : MonoBehaviour
 		if (completedChallenges >= 2)
 		{
 			var index = levelsManagerSO.levels.IndexOf(currentLvl);
-			if (index < levelsManagerSO.levels.Count - 1) levelsManagerSO.levels[index + 1].unlocked = true;
+			if (index < levelsManagerSO.levels.Count - 1)
+			{
+				levelsManagerSO.levels[index + 1].unlocked = true;
+				LoadSaveManager.Instance.SaveLevel(new SavedLevel(levelsManagerSO.levels[index + 1].name, levelsManagerSO.levels[index + 1].timeChallenge, levelsManagerSO.levels[index + 1].hotspot, levelsManagerSO.levels[index + 1].collectibles, levelsManagerSO.levels[index + 1].unlocked));
+			}
 			if (showCongratulations) PlayCongratulations();
 		}
 
