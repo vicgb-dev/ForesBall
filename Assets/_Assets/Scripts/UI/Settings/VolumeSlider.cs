@@ -11,6 +11,7 @@ public class VolumeSlider : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
+		if (eventData.pointerEnter != this.gameObject) return;
 		pointerIsOver = true;
 	}
 
@@ -52,6 +53,9 @@ public class VolumeSlider : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 				Vibration.Vibrate(20);
 			}
 		}
+
+		if (slider.fillAmount < 0.0001f)
+			slider.fillAmount = 0.0001f;
 	}
 
 	public void SetColor(Color newColor)

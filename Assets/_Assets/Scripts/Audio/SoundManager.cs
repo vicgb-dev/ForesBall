@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
+	[SerializeField] private AudioMixerGroup mixerGroup;
 	[SerializeField] private AudioClip popSound;
 	[Range(0, 1)]
 	[SerializeField] private float popVolume;
@@ -50,14 +52,16 @@ public class SoundManager : MonoBehaviour
 			return;
 		}
 
-		linearVolume = PlayerPrefs.GetFloat("volume", 1);
-		logVolume = Mathf.Log10(linearVolume) * 20;
-
 		_instance = this;
-		//DontDestroyOnLoad(this.gameObject);
 	}
 
 	#endregion
+
+	private void Start()
+	{
+		linearVolume = PlayerPrefs.GetFloat("volume", 1);
+		SetVolume(linearVolume);
+	}
 
 	public float GetLinearVolume() => linearVolume;
 
@@ -65,6 +69,9 @@ public class SoundManager : MonoBehaviour
 	{
 		linearVolume = newVolume;
 		logVolume = Mathf.Log10(newVolume) * 20;
+		if (logVolume < -20) logVolume = -80;
+
+		mixerGroup.audioMixer.SetFloat("mixerVolume", logVolume);
 
 		PlayerPrefs.SetFloat("volume", linearVolume);
 		PlayerPrefs.Save();
@@ -122,6 +129,8 @@ public class SoundManager : MonoBehaviour
 		GameObject lvlAudio = new GameObject(name);
 		lvlAudio.transform.SetParent(gameObject.transform);
 		AudioSource audioSource = lvlAudio.AddComponent<AudioSource>();
+
+		audioSource.outputAudioMixerGroup = mixerGroup;
 		audioSource.clip = audioClip;
 		audioSource.volume = audioVolume;
 
@@ -181,6 +190,7 @@ public class SoundManager : MonoBehaviour
 
 		musicPreviewGO.transform.SetParent(gameObject.transform);
 		AudioSource audioSource = musicPreviewGO.AddComponent<AudioSource>();
+		audioSource.outputAudioMixerGroup = mixerGroup;
 		audioSource.clip = clip;
 		audioSource.volume = currentLvl.musicVolume;
 
