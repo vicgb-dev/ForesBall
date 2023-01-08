@@ -11,6 +11,7 @@ public static class Actions
 	public static Action onCleanLvl;
 	public static Action<GameObject, float> powerUpShrink;
 	public static Action<ChallengeType, float> updateChallenge;
+	public static Action<ColorsSO> colorsChange;
 
 	public enum ChallengeType
 	{

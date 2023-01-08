@@ -6644,7 +6644,7 @@ MonoBehaviour:
   panelMenu: {fileID: 815428732}
   blockPanel: {fileID: 1520960290}
   menuContent: {fileID: 4169258434312351101}
-  colorPackButton: {fileID: 3029219947896354054, guid: 6a0cac2c711a51c488f573870df99296, type: 3}
+  colorPackButton: {fileID: 7548968316153541887, guid: aa3b1fbe9b778c941b6201a9a7f823c1, type: 3}
   colors:
   - {fileID: 11400000, guid: 1df8c92eac622bb4084fb8e6dd6aca48, type: 2}
   - {fileID: 11400000, guid: d5eda59fa8a0e3b4796f271eed8439a9, type: 2}

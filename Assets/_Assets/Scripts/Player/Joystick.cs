@@ -64,6 +64,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 
 	private void OnEnable()
 	{
+		Actions.colorsChange += PackSelected;
 		Actions.onLvlStart += lvl =>
 		{
 			StopAllCoroutines();
@@ -86,6 +87,11 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 			StartCoroutine(ToButton());
 		else
 			StartCoroutine(ToNothing());
+	}
+
+	private void PackSelected(ColorsSO newColor)
+	{
+		gameObject.GetComponent<Image>().color = newColor.playerColor;
 	}
 
 	public void OnDrag(PointerEventData eventData)
@@ -156,6 +162,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 	public IEnumerator ToJoystick()
 	{
 		float time = 0;
+		gameObject.GetComponent<Image>().color = ColorsManager.Instance.GetPlayerColor();
 
 		Vector3 initialScale = thisRT.localScale;
 		Vector3 finalScale = Vector3.one;

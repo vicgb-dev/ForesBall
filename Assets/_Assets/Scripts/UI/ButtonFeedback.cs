@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -17,6 +18,7 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 	Image image;
 	Vector3 initialScale;
 	Transform childTransform;
+	bool isColorPackSelected = false;
 
 	private void Awake()
 	{
@@ -55,24 +57,42 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
-		if (eventData.pointerEnter != this.gameObject) return;
 		SoundManager.Instance.PlaySinglePop();
 		StopAllCoroutines();
 		StartCoroutine(PressAnimation());
+		if (isColorPackSelected) return;
 		StartCoroutine(PressColor());
 	}
 
 	public void OnPointerClick(PointerEventData eventData)
 	{
-		if (eventData.pointerEnter != this.gameObject) return;
 		Debug.Log("Click");
 	}
 
 	public void OnPointerExit(PointerEventData eventData)
 	{
-		if (eventData.pointerEnter != this.gameObject) return;
 		StopAllCoroutines();
+		StartReleaseAnimation();
+		if (isColorPackSelected) return;
+		StartReleaseColor();
+	}
+
+	public void SetColorPackSelected(bool seleceted)
+	{
+		isColorPackSelected = seleceted;
+		if (seleceted)
+			StartReleaseAnimation();
+		else
+			StartReleaseColor();
+	}
+
+	private void StartReleaseAnimation()
+	{
 		StartCoroutine(ReleaseAnimation());
+	}
+
+	private void StartReleaseColor()
+	{
 		StartCoroutine(ReleaseColor());
 	}
 
