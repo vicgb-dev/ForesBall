@@ -58,6 +58,7 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 	public void OnPointerEnter(PointerEventData eventData)
 	{
 		SoundManager.Instance.PlaySinglePop();
+		Vibration.Vibrate(20);
 		StopAllCoroutines();
 		StartCoroutine(PressAnimation());
 		if (isColorPackSelected) return;
@@ -67,6 +68,7 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 	public void OnPointerClick(PointerEventData eventData)
 	{
 		Debug.Log("Click");
+		Vibration.Vibrate(30);
 	}
 
 	public void OnPointerExit(PointerEventData eventData)

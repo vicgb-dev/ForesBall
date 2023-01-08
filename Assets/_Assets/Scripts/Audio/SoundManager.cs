@@ -126,6 +126,7 @@ public class SoundManager : MonoBehaviour
 
 	public void PlayPop()
 	{
+		Vibration.Vibrate(20);
 		AudioSource aS = CreateAudioChild($"PopSound{pitch.ToString("0.00")}", popSound, popVolume);
 		aS.pitch = pitch;
 		pitch += 0.1f;

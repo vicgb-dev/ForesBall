@@ -85,6 +85,7 @@ public class Collectible : Challenge
 	{
 		if (other.transform.tag == "Player")
 		{
+			Vibration.Vibrate(30);
 			Actions.updateChallenge?.Invoke(Actions.ChallengeType.collectible, 0);
 			SoundManager.Instance.PlaySinglePop();
 			Instantiate(prefabDestroyParticles, this.transform.position, this.transform.rotation);

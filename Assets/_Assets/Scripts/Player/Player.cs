@@ -39,11 +39,13 @@ public class Player : MonoBehaviour
 	{
 		if (other.gameObject.tag.Contains(Tag.Enemy.ToString()) && !inmortal)
 		{
+			Vibration.Vibrate(300);
 			Debug.LogWarning("FIN DEL JUEGO");
 			Actions.onLvlEnd?.Invoke(false);
 		}
 		else if (other.gameObject.tag.Contains(Tag.PowerUp.ToString()))
 		{
+			Vibration.Vibrate(30);
 			other.GetComponent<PowerUp>().PlayEffect();
 		}
 	}

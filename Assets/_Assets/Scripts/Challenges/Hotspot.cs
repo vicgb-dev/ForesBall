@@ -51,6 +51,8 @@ public class Hotspot : Challenge
 
 			if (timeInHotspot >= timeToCompleteHotspot)
 			{
+
+				Vibration.Vibrate(30);
 				Actions.updateChallenge?.Invoke(Actions.ChallengeType.hotspot, 1);
 				SoundManager.Instance.PlaySinglePop();
 				Instantiate(prefabDestroyParticles, this.transform.position, this.transform.rotation);
