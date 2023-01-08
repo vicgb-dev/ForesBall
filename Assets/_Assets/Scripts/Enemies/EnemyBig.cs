@@ -29,13 +29,13 @@ public class EnemyBig : Enemy
 
 	private IEnumerator ChangeSize()
 	{
-		float time = 0;
 		Vector3 initialScale = transform.localScale;
+		float time = 0;
 		float scale = 0;
 		while (scale >= 0)
 		{
 			time += Time.deltaTime;
-			scale = (Mathf.Sin(time * frecuency) * amplitude);
+			scale = Mathf.Sin(time * frecuency) * amplitude;
 			transform.localScale = new Vector3(scale, scale, scale);
 			yield return null;
 		}

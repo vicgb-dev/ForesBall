@@ -1023,10 +1023,13 @@ MonoBehaviour:
   player: {fileID: 3940728068901147035}
   straightEnemy: {fileID: 6537863423886111212}
   followEnemy: {fileID: 8155754880345735189}
+  followSpeed: 3
   bigEnemy: {fileID: 8264736675766946599}
   rayEnemy: {fileID: 3003780083087260239}
   challenge: {fileID: 611334177639733966}
+  challengeSpeed: 10
   powerUp: {fileID: 4015997257434597606}
+  duration: 0.2
 --- !u!114 &5751310573955536549
 MonoBehaviour:
   m_ObjectHideFlags: 0
