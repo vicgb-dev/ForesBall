@@ -154,6 +154,12 @@ public class ColorsManager : MonoBehaviour
 				colors.fadeDuration = UIManager.Instance.buttonSeconds;
 				button.colors = colors;
 			}
+
+			VibrationButton vibrationButton = button.gameObject.GetComponent<VibrationButton>();
+			if (vibrationButton != null)
+			{
+				vibrationButton.UpdateColor();
+			}
 		}
 	}
 
