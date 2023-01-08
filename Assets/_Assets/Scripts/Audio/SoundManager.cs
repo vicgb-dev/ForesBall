@@ -12,6 +12,9 @@ public class SoundManager : MonoBehaviour
 	[Range(0, 5f)]
 	[SerializeField] private float secondsToChangeVolumeMusicPreview;
 
+	private float logVolume;
+	private float linearVolume;
+
 	private LevelSO currentLvl;
 	private GameObject lvlMusic;
 	private float pitch;
@@ -47,11 +50,26 @@ public class SoundManager : MonoBehaviour
 			return;
 		}
 
+		linearVolume = PlayerPrefs.GetFloat("volume", 1);
+		logVolume = Mathf.Log10(linearVolume) * 20;
+
 		_instance = this;
 		//DontDestroyOnLoad(this.gameObject);
 	}
 
 	#endregion
+
+	public float GetLinearVolume() => linearVolume;
+
+	public void SetVolume(float newVolume)
+	{
+		linearVolume = newVolume;
+		logVolume = Mathf.Log10(newVolume) * 20;
+
+		PlayerPrefs.SetFloat("volume", linearVolume);
+		PlayerPrefs.Save();
+
+	}
 
 	private void OnEnable()
 	{

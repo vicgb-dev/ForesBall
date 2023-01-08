@@ -161,7 +161,18 @@ public class ColorsManager : MonoBehaviour
 	private void ChangeImageColor(List<Image> images, Color color)
 	{
 		foreach (Image image in images)
-			image.color = color;
+		{
+			VolumeSlider slider = image.gameObject.GetComponent<VolumeSlider>();
+			if (slider != null)
+			{
+				slider.SetColor(color);
+			}
+			else
+			{
+				image.color = color;
+			}
+
+		}
 	}
 
 	private void ChangeTextColor(List<TextMeshProUGUI> texts, Color color)

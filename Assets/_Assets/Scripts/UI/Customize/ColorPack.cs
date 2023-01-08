@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -71,7 +70,6 @@ public class ColorPack : MonoBehaviour
 		if (state != UIState.Customize || !isSeleceted)
 		{
 			StopAllCoroutines();
-			Debug.LogWarning("ResetPositions");
 			StartCoroutine(ResetPositions());
 			return;
 		}
