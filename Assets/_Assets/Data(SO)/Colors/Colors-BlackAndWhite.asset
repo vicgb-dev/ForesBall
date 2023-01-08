@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idColor: 2
   colorName: Black & White
+  playerColor: {r: 1, g: 1, b: 1, a: 1}
   mainMenuColor: {r: 1, g: 1, b: 1, a: 1}
   customizeMenuColor: {r: 0.7924528, g: 0.6755657, b: 0.6018156, a: 1}
   settingsMenuColor: {r: 0.7924528, g: 0.7886007, b: 0.6242435, a: 1}
