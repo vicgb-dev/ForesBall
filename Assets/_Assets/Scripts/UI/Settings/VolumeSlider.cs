@@ -24,7 +24,7 @@ public class VolumeSlider : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 	{
 		lastFillAmount = slider.fillAmount;
 		slider.fillAmount = SoundManager.Instance.GetLinearVolume();
-		slider.color = new Color(color.r * slider.fillAmount, color.g * slider.fillAmount, color.b * slider.fillAmount, Remap(slider.fillAmount, 0, 1, 0.3f, 0.8f));
+		slider.color = new Color(color.r - 0.2f, color.g - 0.2f, color.b - 0.2f, Remap(slider.fillAmount, 0, 1, 0.3f, 1));
 	}
 
 	void Update()
@@ -43,7 +43,7 @@ public class VolumeSlider : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 		slider.fillAmount = 0.5f + pointerLocalPoint.x / this.transform.GetComponent<RectTransform>().rect.width;
 		SoundManager.Instance.SetVolume(slider.fillAmount);
 
-		slider.color = new Color(color.r * slider.fillAmount, color.g * slider.fillAmount, color.b * slider.fillAmount, Remap(slider.fillAmount, 0, 1, 0.3f, 0.8f));
+		slider.color = new Color(color.r - 0.2f, color.g - 0.2f, color.b - 0.2f, Remap(slider.fillAmount, 0, 1, 0.3f, 1));
 
 		if (slider.fillAmount != lastFillAmount)
 		{
@@ -61,7 +61,7 @@ public class VolumeSlider : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 	public void SetColor(Color newColor)
 	{
 		color = newColor;
-		slider.color = new Color(color.r * slider.fillAmount, color.g * slider.fillAmount, color.b * slider.fillAmount, Remap(slider.fillAmount, 0, 1, 0.3f, 0.8f));
+		slider.color = new Color(color.r - 0.2f, color.g - 0.2f, color.b - 0.2f, Remap(slider.fillAmount, 0, 1, 0.3f, 1));
 	}
 
 	float Remap(float value, float from1, float to1, float from2, float to2)

@@ -154,7 +154,6 @@ public class ColorsManager : MonoBehaviour
 				colors.fadeDuration = UIManager.Instance.buttonSeconds;
 				button.colors = colors;
 			}
-
 		}
 	}
 

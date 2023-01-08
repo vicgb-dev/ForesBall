@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -67,7 +66,6 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 
 	public void OnPointerClick(PointerEventData eventData)
 	{
-		Debug.Log("Click");
 		Vibration.Vibrate(30);
 	}
 
