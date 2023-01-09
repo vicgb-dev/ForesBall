@@ -6,4 +6,5 @@ public class GameState
 {
 	public int idColor;
 	public List<SavedLevel> savedLevels;
+	public Accomplishments accomplishments;
 }

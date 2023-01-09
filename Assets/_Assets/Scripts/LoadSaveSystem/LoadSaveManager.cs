@@ -65,6 +65,15 @@ public class LoadSaveManager : MonoBehaviour
 		Save(currentState);
 	}
 
+	public void SaveAccomplishments(Accomplishments accomplishments)
+	{
+		Debug.LogWarning($"Guardando accomplishments");
+		GameState currentState = GetState();
+
+		currentState.accomplishments = accomplishments;
+		Save(currentState);
+	}
+
 	public void SaveColorTheme(int idColor)
 	{
 		Debug.LogWarning($"Guardando colores con id {idColor}");
@@ -78,6 +87,8 @@ public class LoadSaveManager : MonoBehaviour
 	#region Load
 
 	public List<SavedLevel> LoadLevels() => Load()?.savedLevels;
+
+	public Accomplishments LoadAccomplishments() => Load()?.accomplishments;
 
 	public int? LoadColorTheme() => Load()?.idColor;
 

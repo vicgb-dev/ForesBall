@@ -16,6 +16,8 @@ public class PowerUpShrink : PowerUp
 		}
 		Instantiate(deathParticlesPrefab, this.gameObject.transform);
 		SoundManager.Instance.PlaySinglePop();
+		Vibration.Vibrate(30);
+		AccomplishmentsSystem.Instance.AddTimesShrink();
 
 		Actions.powerUpShrink(deathParticlesPrefab, secsPowerUpEffect);
 	}

@@ -51,7 +51,7 @@ public class Hotspot : Challenge
 
 			if (timeInHotspot >= timeToCompleteHotspot)
 			{
-
+				AccomplishmentsSystem.Instance.AddHotspot();
 				Vibration.Vibrate(30);
 				Actions.updateChallenge?.Invoke(Actions.ChallengeType.hotspot, 1);
 				SoundManager.Instance.PlaySinglePop();

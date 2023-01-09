@@ -85,6 +85,7 @@ public class Collectible : Challenge
 	{
 		if (other.transform.tag == "Player")
 		{
+			AccomplishmentsSystem.Instance.AddCollected();
 			Vibration.Vibrate(30);
 			Actions.updateChallenge?.Invoke(Actions.ChallengeType.collectible, 0);
 			SoundManager.Instance.PlaySinglePop();

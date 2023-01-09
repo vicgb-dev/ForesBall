@@ -6,7 +6,7 @@ public static class Actions
 	public static Action<LevelSO> onLvlStart;
 	// Cuando se acaba la animación de fin de nivel y todo debe volver a su sitio
 	public static Action<bool> onLvlEnd;
-	// Justo cuando acaba el nivel
+	// Justo cuando acaba el nivel si ganas
 	public static Action onLvlFinished;
 	public static Action onCleanLvl;
 	public static Action<GameObject, float> powerUpShrink;

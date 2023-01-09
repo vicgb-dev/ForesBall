@@ -330,6 +330,8 @@ public class LvlBuilder : MonoBehaviour
 
 		yield return new WaitForSecondsRealtime(1);
 
+		AccomplishmentsSystem.Instance.AddLvlCompleted();
+		AccomplishmentsSystem.Instance.LvlReached(levelsManagerSO.levels.IndexOf(currentLvl));
 		Actions.onLvlEnd?.Invoke(true);
 	}
 
