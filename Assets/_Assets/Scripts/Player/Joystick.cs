@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeginDragHandler, IEndDragHandler
 {
@@ -45,6 +46,11 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 	}
 
 	private void Start()
+	{
+		SetUpContainers();
+	}
+
+	public void SetUpContainers()
 	{
 		Vector3[] containerCorners = new Vector3[4];
 		rTConainer.GetWorldCorners(containerCorners);

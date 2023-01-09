@@ -19,18 +19,16 @@ public class VibrationButton : MonoBehaviour
 		ButtonFeedback feedback = GetComponent<ButtonFeedback>();
 		feedback.SetColorPackSelected(shouldVibrate);
 		Vibration.shouldVibrate = shouldVibrate;
+
 		if (shouldVibrate)
-		{
 			backgroundButton.color = new Color(feedback.pressedColor.r, feedback.pressedColor.g, feedback.pressedColor.b, 1);
-		}
 	}
 
 	public void UpdateColor()
 	{
 		ButtonFeedback feedback = GetComponent<ButtonFeedback>();
+
 		if (shouldVibrate)
-		{
 			backgroundButton.color = new Color(feedback.pressedColor.r, feedback.pressedColor.g, feedback.pressedColor.b, 1);
-		}
 	}
 }
