@@ -1,16 +1,16 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System;
 
 public class CustomizeMenuManager : Menu
 {
 	[SerializeField] private GameObject menuContent;
-	[SerializeField] private GameObject colorPackButton;
+	[SerializeField] private GameObject colorPackButtonPrefab;
 	[SerializeField] private List<ColorsSO> colors;
 
-	[SerializeField] protected GameObject button1;
+	Dictionary<int, GameObject> colorButtons = new Dictionary<int, GameObject>();
 
 	protected override void Awake()
 	{
@@ -18,21 +18,28 @@ public class CustomizeMenuManager : Menu
 		childState = UIState.Customize;
 		panelDirection = Direction.Right;
 
-		int? idColor = LoadSaveManager.Instance.LoadColorTheme();
-		if (idColor != null)
-		{
-			ColorsSO loadedColor = colors.Where(color => color.idColor == idColor).ToList().First();
-			ColorsManager.Instance.ChangeColors(loadedColor);
-		}
-		else
-		{
-			idColor = 0;
-		}
+		BuildColorsMenu();
+	}
+
+	public void BuildColorsMenu()
+	{
+		int idColor = LoadSaveManager.Instance.LoadColorTheme() ?? 0; // si no encuentra color lo inicializa a 0, que es el paquete de color default
+		ColorsSO loadedColor = colors.Where(color => color.idColor == idColor).ToList().First();
+		ColorsManager.Instance.ChangeColors(loadedColor);
 
 		foreach (ColorsSO colorSO in colors)
 		{
-			// Instancias y populate un panel
-			GameObject pack = Instantiate(colorPackButton, menuContent.transform);
+			// Instancias y populate un panel ColorPackLocked
+			GameObject pack = Instantiate(colorPackButtonPrefab, menuContent.transform);
+
+			// Si el color está bloqueado, activamos el bloqueo de la UI y desactivamos el botón 
+			if (colorSO.idColor != 0)
+			{
+				pack.transform.GetChild(0).Find("ColorPackLocked").gameObject.SetActive(true);
+				pack.GetComponent<Button>().enabled = false;
+				pack.GetComponent<ButtonFeedback>().enabled = false;
+			}
+
 			pack.GetComponent<ColorPack>().SetUp(colorSO, colorSO.idColor == idColor);
 			pack.GetComponent<Button>().onClick.AddListener(() =>
 			{
@@ -40,12 +47,33 @@ public class CustomizeMenuManager : Menu
 				ColorsManager.Instance.ChangeColors(colorSO);
 				LoadSaveManager.Instance.SaveColorTheme(colorSO.idColor);
 			});
+
+			colorButtons.Add(colorSO.idColor, pack);
 		}
 	}
 
-	private void Start()
+	public void UnlockColor(int idColor)
 	{
-		button1.GetComponent<Button>().onClick.AddListener(() => ColorsManager.Instance.UpdateGlobalColors());
-		button1.GetComponentInChildren<TextMeshProUGUI>().text = "Actualizar colores";
+		Debug.LogWarning("Desbloqueando color " + idColor);
+		GameObject buttonPack = colorButtons[idColor];
+		if (buttonPack != null)
+		{
+			buttonPack.transform.GetChild(0).Find("ColorPackLocked").gameObject.SetActive(false);
+			buttonPack.GetComponent<Button>().enabled = true;
+			buttonPack.GetComponent<ButtonFeedback>().enabled = true;
+		}
+		else
+		{
+			Debug.LogError("Boton de color no encontrado");
+		}
+	}
+
+	public String GetColorName(int idColorUnlock)
+	{
+		var colorsList = colors.Where(color => color.idColor == idColorUnlock).ToList();
+		if (colorsList.Count == 0)
+			return "";
+		else
+			return colorsList[0].colorName;
 	}
 }

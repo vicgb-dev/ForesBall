@@ -42,7 +42,6 @@ public class LoadSaveManager : MonoBehaviour
 
 	public void SaveLevel(SavedLevel level)
 	{
-		Debug.LogWarning($"Guardando nivel {level.ToString()}");
 		GameState currentState = GetState();
 
 		if (currentState.savedLevels == null)
@@ -67,7 +66,6 @@ public class LoadSaveManager : MonoBehaviour
 
 	public void SaveAccomplishments(Accomplishments accomplishments)
 	{
-		Debug.LogWarning($"Guardando accomplishments");
 		GameState currentState = GetState();
 
 		currentState.accomplishments = accomplishments;
@@ -76,7 +74,6 @@ public class LoadSaveManager : MonoBehaviour
 
 	public void SaveColorTheme(int idColor)
 	{
-		Debug.LogWarning($"Guardando colores con id {idColor}");
 		GameState currentState = GetState();
 		currentState.idColor = idColor;
 		Save(currentState);

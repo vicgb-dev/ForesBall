@@ -1,7 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AccomplishmentsSystem : MonoBehaviour
 {
+	[SerializeField] private Accomplishments accomplishments;
+	[SerializeField] private List<AccomplishmentSO> accomplishmentsSO;
+	[SerializeField] private ChallengesMenuManager challengesMenu;
+	[SerializeField] private CustomizeMenuManager customizeMenu;
+
+	bool inGame = false;
+	float timeAlive;
+	float songLength;
+
 	#region Singleton
 
 	private static AccomplishmentsSystem _instance;
@@ -28,19 +38,19 @@ public class AccomplishmentsSystem : MonoBehaviour
 		}
 
 		_instance = this;
+		accomplishments = LoadSaveManager.Instance.LoadAccomplishments();
+		if (accomplishments == null)
+			accomplishments = new Accomplishments();
+
+		challengesMenu.BuildAccomplishments(accomplishmentsSO);
 	}
 
 	#endregion
 
-	[SerializeField] private Accomplishments accomplishments;
-
-	bool inGame = false;
-	float timeAlive;
-	float songLength;
-
 	private void Start()
 	{
-		accomplishments = LoadSaveManager.Instance.LoadAccomplishments();
+		challengesMenu.UpdateAccomplishments(accomplishments);
+		CheckCompleteAccomplishments();
 	}
 
 	private void OnEnable()
@@ -53,7 +63,6 @@ public class AccomplishmentsSystem : MonoBehaviour
 	{
 		timeAlive = 0;
 		songLength = lvl.music.length;
-		Debug.Log("la cancion dura " + songLength);
 		LoadSaveManager.Instance.SaveAccomplishments(accomplishments);
 		inGame = true;
 	}
@@ -68,7 +77,8 @@ public class AccomplishmentsSystem : MonoBehaviour
 
 		LoadSaveManager.Instance.SaveAccomplishments(accomplishments);
 		inGame = false;
-		LoadChallengesMenu();
+		challengesMenu.UpdateAccomplishments(accomplishments);
+		CheckCompleteAccomplishments();
 	}
 
 	private void Update()
@@ -80,25 +90,75 @@ public class AccomplishmentsSystem : MonoBehaviour
 		}
 	}
 
-	public void LoadChallengesMenu()
+	private void CheckCompleteAccomplishments()
 	{
-		// construir el scroll con los botones usando las variables de accomplishments
+		foreach (AccomplishmentSO accomp in accomplishmentsSO)
+		{
+			switch (accomp.property)
+			{
+				case AccompProperty.timePlayed:
+					if (accomplishments.timePlayed >= accomp.greaterThan)
+						customizeMenu.UnlockColor(accomp.idColorUnlock);
+					break;
+				case AccompProperty.timeCloseToEnemyFollow:
+					if (accomplishments.timeCloseToEnemyFollow >= accomp.greaterThan)
+						customizeMenu.UnlockColor(accomp.idColorUnlock);
+					break;
+				case AccompProperty.timeCloseToEnemyRay:
+					if (accomplishments.timeCloseToEnemyRay >= accomp.greaterThan)
+						customizeMenu.UnlockColor(accomp.idColorUnlock);
+					break;
+				case AccompProperty.timesDeadEarly:
+					if (accomplishments.timesDeadEarly >= accomp.greaterThan)
+						customizeMenu.UnlockColor(accomp.idColorUnlock);
+					break;
+				case AccompProperty.timesDeadLate:
+					if (accomplishments.timesDeadLate >= accomp.greaterThan)
+						customizeMenu.UnlockColor(accomp.idColorUnlock);
+					break;
+				case AccompProperty.timesLvlCompleted:
+					if (accomplishments.timesLvlCompleted >= accomp.greaterThan)
+						customizeMenu.UnlockColor(accomp.idColorUnlock);
+					break;
+				case AccompProperty.timesHotspot:
+					if (accomplishments.timesHotspot >= accomp.greaterThan)
+						customizeMenu.UnlockColor(accomp.idColorUnlock);
+					break;
+				case AccompProperty.timesCollected:
+					if (accomplishments.timesCollected >= accomp.greaterThan)
+						customizeMenu.UnlockColor(accomp.idColorUnlock);
+					break;
+				case AccompProperty.timesInmortal:
+					if (accomplishments.timesInmortal >= accomp.greaterThan)
+						customizeMenu.UnlockColor(accomp.idColorUnlock);
+					break;
+				case AccompProperty.timesShrink:
+					if (accomplishments.timesShrink >= accomp.greaterThan)
+						customizeMenu.UnlockColor(accomp.idColorUnlock);
+					break;
+				case AccompProperty.lvlReached:
+					if (accomplishments.lvlReached >= accomp.greaterThan)
+						customizeMenu.UnlockColor(accomp.idColorUnlock);
+					break;
+			}
+		}
 	}
 
-	private void AddTimePlayed(float time) => accomplishments.timePlayed += time;//
-	public void AddTimeCloseToEnemyFollow(float time) => accomplishments.timeCloseToEnemyFollow += time;//
-	public void AddTimeCloseToEnemyRay(float time) => accomplishments.timeCloseToEnemyRay += time;//
+	// TimePlayed
+	private void AddTimePlayed(float time) => accomplishments.timePlayed += time;
+	public void AddTimeCloseToEnemyFollow(float time) => accomplishments.timeCloseToEnemyFollow += time;
+	public void AddTimeCloseToEnemyRay(float time) => accomplishments.timeCloseToEnemyRay += time;
 
-	private void AddTimesDeadEarly() => accomplishments.timesDeadEarly++;//
-	private void AddTimesDeadLate() => accomplishments.timesDeadLate++;//
+	private void AddTimesDeadEarly() => accomplishments.timesDeadEarly++;
+	private void AddTimesDeadLate() => accomplishments.timesDeadLate++;
 
-	public void AddLvlCompleted() => accomplishments.timesLvlCompleted++;//
-	public void AddHotspot() => accomplishments.timesHotspot++;//
-	public void AddCollected() => accomplishments.timesCollected++;//
-	public void AddTimesInmortal() => accomplishments.timesInmortal++;//
-	public void AddTimesShrink() => accomplishments.timesShrink++;//
+	public void AddLvlCompleted() => accomplishments.timesLvlCompleted++;
+	public void AddHotspot() => accomplishments.timesHotspot++;
+	public void AddCollected() => accomplishments.timesCollected++;
+	public void AddTimesInmortal() => accomplishments.timesInmortal++;
+	public void AddTimesShrink() => accomplishments.timesShrink++;
 
-	public void LvlReached(int lvlCompleted)//
+	public void LvlReached(int lvlCompleted)
 	{
 		if (lvlCompleted > accomplishments.lvlReached)
 			accomplishments.lvlReached = lvlCompleted;

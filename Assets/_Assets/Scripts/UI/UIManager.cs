@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
 
 	[Header("Menus config")]
 	[SerializeField] Scrollbar customizeScrollbar;
+	[SerializeField] Scrollbar accomplishmentsScrollbar;
 
 	public float secondsToMovePanels = 1;
 	public AnimationCurve curveToMove;
@@ -70,6 +71,7 @@ public class UIManager : MonoBehaviour
 	public void MainMenuButton1()
 	{
 		Actions.onNewUIState?.Invoke(UIState.Challenges);
+		accomplishmentsScrollbar.value = 1;
 	}
 
 	public void MainMenuButton2()

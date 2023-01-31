@@ -16,8 +16,8 @@ public class TESTEditor : Editor
 		ColorsManager uIColorsManager = tests.uIColorsManager;
 
 		GUILayout.Label("Actions");
-		GUILayout.BeginHorizontal();
 
+		GUILayout.BeginHorizontal();
 		if (GUILayout.Button("OnLvlEnd"))
 		{
 			Actions.onLvlEnd?.Invoke(true);
@@ -27,11 +27,10 @@ public class TESTEditor : Editor
 		{
 			Actions.onLvlStart?.Invoke(LvlBuilder.Instance.GetLevels()[0]);
 		}
-
 		GUILayout.EndHorizontal();
+
 		GUILayout.Label("UIGameViewManager");
 		GUILayout.BeginHorizontal();
-
 		if (GUILayout.Button("BlockGameView(true)"))
 		{
 			levelsMenuManager.BlockGameView(true);
@@ -42,11 +41,20 @@ public class TESTEditor : Editor
 			levelsMenuManager.CleanGameView(LvlBuilder.Instance.GetLevels()[0]);
 		}
 		GUILayout.EndHorizontal();
-		GUILayout.BeginHorizontal();
 
+		GUILayout.BeginHorizontal();
 		if (GUILayout.Button("ChangeColors"))
 		{
 			uIColorsManager.UpdateGlobalColors();
+		}
+		GUILayout.EndHorizontal();
+
+		GUILayout.BeginHorizontal();
+		if (GUILayout.Button("RESETEAR TODO"))
+		{
+			LoadSaveManager.Instance.Delete();
+			LvlBuilder.Instance.ResetLvls();
+			PlayerPrefs.DeleteAll();
 		}
 		GUILayout.EndHorizontal();
 	}

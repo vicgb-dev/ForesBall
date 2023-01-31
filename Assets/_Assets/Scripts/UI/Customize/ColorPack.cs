@@ -84,15 +84,10 @@ public class ColorPack : MonoBehaviour
 
 		isSeleceted = selected;
 		if (selected)
-		{
-
-			// animar los 7 elementos
 			MoveElements();
-		}
 		else
 		{
 			StopAllCoroutines();
-			Debug.LogWarning("ResetPositions");
 			StartCoroutine(ResetPositions());
 		}
 	}
