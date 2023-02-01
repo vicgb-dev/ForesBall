@@ -17,4 +17,5 @@ public class Accomplishments
 	public int timesShrink;
 
 	public int lvlReached;
+	public int totalChallengesCompleted;
 }

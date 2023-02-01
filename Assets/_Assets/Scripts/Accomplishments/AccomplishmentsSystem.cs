@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -39,8 +41,6 @@ public class AccomplishmentsSystem : MonoBehaviour
 
 		_instance = this;
 		accomplishments = LoadSaveManager.Instance.LoadAccomplishments();
-		if (accomplishments == null)
-			accomplishments = new Accomplishments();
 
 		challengesMenu.BuildAccomplishments(accomplishmentsSO);
 	}
@@ -69,6 +69,12 @@ public class AccomplishmentsSystem : MonoBehaviour
 
 	private void onLvlEnd(bool win)
 	{
+		StartCoroutine(onLvlEndCo(win));
+	}
+
+	private IEnumerator onLvlEndCo(bool win)
+	{
+		yield return null;
 		if (timeAlive < 5)
 			AddTimesDeadEarly();
 
@@ -157,6 +163,8 @@ public class AccomplishmentsSystem : MonoBehaviour
 	public void AddCollected() => accomplishments.timesCollected++;
 	public void AddTimesInmortal() => accomplishments.timesInmortal++;
 	public void AddTimesShrink() => accomplishments.timesShrink++;
+
+	public void NewTotalChallengesCompleted(int totalChallenges) => accomplishments.totalChallengesCompleted = totalChallenges;
 
 	public void LvlReached(int lvlCompleted)
 	{

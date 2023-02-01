@@ -30,6 +30,8 @@ public class LvlBuilder : MonoBehaviour
 	private float hotspotScore = 0;
 	private float collectiblesScore = 0;
 
+	private int totalChallengesCompleted = 0;
+
 	//Definición del patrón Singleton
 	#region Singleton
 
@@ -58,9 +60,11 @@ public class LvlBuilder : MonoBehaviour
 					if (lvl.name.Equals(savedLevel.lvlName))
 					{
 						lvl.timeChallenge = savedLevel.timeChallenge;
+						if (savedLevel.timeChallenge == 1) totalChallengesCompleted++;
 						lvl.hotspot = savedLevel.hotspot;
+						if (savedLevel.hotspot == 1) totalChallengesCompleted++;
 						lvl.collectibles = savedLevel.collectibles;
-						lvl.unlocked = savedLevel.unlocked;
+						if (savedLevel.collectibles == 1) totalChallengesCompleted++;
 					}
 				});
 
@@ -331,7 +335,7 @@ public class LvlBuilder : MonoBehaviour
 		yield return new WaitForSecondsRealtime(1);
 
 		AccomplishmentsSystem.Instance.AddLvlCompleted();
-		AccomplishmentsSystem.Instance.LvlReached(levelsManagerSO.levels.IndexOf(currentLvl));
+		AccomplishmentsSystem.Instance.LvlReached(levelsManagerSO.levels.IndexOf(currentLvl) + 1);
 		Actions.onLvlEnd?.Invoke(true);
 	}
 
@@ -344,14 +348,11 @@ public class LvlBuilder : MonoBehaviour
 
 	private void CheckCompleteChallenges()
 	{
-		// Should show congratulations or not
-		int completedChallenges = 0;
-		bool showCongratulations = true;
-		if (currentLvl.timeChallenge >= 0.99f) completedChallenges++;
-		if (currentLvl.hotspot >= 0.999f) completedChallenges++;
-		if (currentLvl.collectibles >= 0.99f) completedChallenges++;
-		if (completedChallenges >= 2) showCongratulations = false;
-		completedChallenges = 0;
+		// se ejecuta cuando se acaba el nivel
+		// 
+		float lastTimeChallenge = currentLvl.timeChallenge;
+		float lastHotspot = currentLvl.hotspot;
+		float lastCollectibles = currentLvl.collectibles;
 
 		// Update challenges
 		float timeCompleted = (Time.realtimeSinceStartup - lvlDuration) / currentLvl.music.length;
@@ -359,41 +360,32 @@ public class LvlBuilder : MonoBehaviour
 		if (currentLvl.timeChallenge >= 0.99f)
 		{
 			currentLvl.timeChallenge = 1;
-			completedChallenges++;
+			// Si es la primera vez que lo consigo lo añado al total
+			if (lastTimeChallenge != 1)
+				totalChallengesCompleted++;
+
 		}
 
 		currentLvl.hotspot = Mathf.Max(hotspotScore, currentLvl.hotspot);
 		if (currentLvl.hotspot >= 0.999f)
 		{
 			currentLvl.hotspot = 1;
-			completedChallenges++;
+			// Si es la primera vez que lo consigo lo añado al total
+			if (lastHotspot != 1)
+				totalChallengesCompleted++;
 		}
 
 		currentLvl.collectibles = Mathf.Max(collectiblesScore / currentLvl.collectiblesSpawnTimeStamps.Count, currentLvl.collectibles);
 		if (currentLvl.collectibles >= 0.99f)
 		{
 			currentLvl.collectibles = 1;
-			completedChallenges++;
+			// Si es la primera vez que lo consigo lo añado al total
+			if (lastCollectibles != 1)
+				totalChallengesCompleted++;
 		}
 
-		// Show congratulations and unlock
-		if (completedChallenges >= 2)
-		{
-			var index = levelsManagerSO.levels.IndexOf(currentLvl);
-			if (index < levelsManagerSO.levels.Count - 1)
-			{
-				levelsManagerSO.levels[index + 1].unlocked = true;
-				LoadSaveManager.Instance.SaveLevel(new SavedLevel(levelsManagerSO.levels[index + 1].name, levelsManagerSO.levels[index + 1].timeChallenge, levelsManagerSO.levels[index + 1].hotspot, levelsManagerSO.levels[index + 1].collectibles, levelsManagerSO.levels[index + 1].unlocked));
-			}
-			if (showCongratulations) PlayCongratulations();
-		}
-
-		LoadSaveManager.Instance.SaveLevel(new SavedLevel(currentLvl.name, currentLvl.timeChallenge, currentLvl.hotspot, currentLvl.collectibles, currentLvl.unlocked));
-	}
-
-	private void PlayCongratulations()
-	{
-		Debug.Log("FELICIDADES! HAS DESBLOQUEADO EL SIGUIENTE NIVEL");
+		AccomplishmentsSystem.Instance.NewTotalChallengesCompleted(totalChallengesCompleted);
+		LoadSaveManager.Instance.SaveLevel(new SavedLevel(currentLvl.name, currentLvl.timeChallenge, currentLvl.hotspot, currentLvl.collectibles));
 	}
 
 	#region External Methods
@@ -428,9 +420,7 @@ public class LvlBuilder : MonoBehaviour
 			lvl.timeChallenge = 0;
 			lvl.collectibles = 0;
 			lvl.hotspot = 0;
-			lvl.unlocked = false;
 		});
-		levelsManagerSO.levels[0].unlocked = true;
 		LoadSaveManager.Instance.Delete();
 	}
 
@@ -442,7 +432,6 @@ public class LvlBuilder : MonoBehaviour
 			lvl.timeChallenge = 0;
 			lvl.collectibles = 1;
 			lvl.hotspot = 1;
-			lvl.unlocked = true;
 		});
 	}
 

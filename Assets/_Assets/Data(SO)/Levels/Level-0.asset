@@ -33,12 +33,12 @@ MonoBehaviour:
   - 1
   - 2
   - 3
-  timeChallenge: 0.16341147
-  hotspot: 0.20293668
+  timeChallenge: 0
+  hotspot: 0
   collectibles: 0
   percentOfSongToCompleteHotspot: 50
   collectiblesSpawnTimeStamps:
   - 1
-  - 2
-  - 3
-  unlocked: 1
+  - 1
+  - 1
+  objectivesToUnlock: 0

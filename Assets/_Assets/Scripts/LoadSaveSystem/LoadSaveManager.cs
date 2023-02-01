@@ -85,7 +85,7 @@ public class LoadSaveManager : MonoBehaviour
 
 	public List<SavedLevel> LoadLevels() => Load()?.savedLevels;
 
-	public Accomplishments LoadAccomplishments() => Load()?.accomplishments;
+	public Accomplishments LoadAccomplishments() => Load()?.accomplishments ?? new Accomplishments();
 
 	public int? LoadColorTheme() => Load()?.idColor;
 

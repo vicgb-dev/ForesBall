@@ -7,15 +7,13 @@ public class SavedLevel
 	public float timeChallenge;
 	public float hotspot;
 	public float collectibles;
-	public bool unlocked;
 
-	public SavedLevel(string lvlName, float timeChallenge, float hotspot, float collectibles, bool unlocked)
+	public SavedLevel(string lvlName, float timeChallenge, float hotspot, float collectibles)
 	{
 		this.lvlName = lvlName;
 		this.timeChallenge = timeChallenge;
 		this.hotspot = hotspot;
 		this.collectibles = collectibles;
-		this.unlocked = unlocked;
 	}
 
 	override

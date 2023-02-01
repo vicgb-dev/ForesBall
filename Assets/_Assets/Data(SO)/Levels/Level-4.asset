@@ -131,4 +131,4 @@ MonoBehaviour:
   - 27.4
   - 39
   - 56.2
-  unlocked: 0
+  objectivesToUnlock: 5

@@ -72,7 +72,6 @@ public class UIBuilder : MonoBehaviour
 
 	private void DrawChallenges(Transform challenges)
 	{
-		int completedChallenges = 0;
 		bool timeChallengeCompleted = currentLvl.timeChallenge == 1;
 		bool hotspotChallengeCompleted = currentLvl.hotspot == 1;
 		bool collectiblesChallengeCompleted = currentLvl.collectibles == 1;
@@ -82,7 +81,6 @@ public class UIBuilder : MonoBehaviour
 		timeChallenge.fillAmount = currentLvl.timeChallenge;
 		if (timeChallengeCompleted)
 		{
-			completedChallenges++;
 			timeChallenge.color = color;
 			ColorsManager.Instance.imagesChallenges.Add(timeChallenge);
 			timeChallenge.transform.GetChild(0).GetComponent<Image>().color = Color.black;
@@ -92,7 +90,6 @@ public class UIBuilder : MonoBehaviour
 		hotspot.fillAmount = currentLvl.hotspot;
 		if (hotspotChallengeCompleted)
 		{
-			completedChallenges++;
 			hotspot.color = color;
 			ColorsManager.Instance.imagesChallenges.Add(hotspot);
 			hotspot.transform.GetChild(0).GetComponent<Image>().color = Color.black;
@@ -102,25 +99,25 @@ public class UIBuilder : MonoBehaviour
 		collectibles.fillAmount = currentLvl.collectibles;
 		if (collectiblesChallengeCompleted)
 		{
-			completedChallenges++;
 			collectibles.color = color;
 			ColorsManager.Instance.imagesChallenges.Add(collectibles);
 			collectibles.transform.GetChild(0).GetComponent<Image>().color = Color.black;
 		}
 
-		UpdateLockedLvl(completedChallenges);
+		UpdateLockedLvl();
 	}
 
-	private void UpdateLockedLvl(int completedChallenges)
+	private void UpdateLockedLvl()
 	{
 		if (!populated) return;
-		if (completedChallenges >= 2)
+
+		int totalChallengesComplated = LoadSaveManager.Instance.LoadAccomplishments().totalChallengesCompleted;
+		var lvls = LvlBuilder.Instance.GetLevels();
+		for (int i = 0; i < lvls.Count; i++)
 		{
-			if (LvlBuilder.Instance.GetLevels().Count > currentLvlIndex + 1)
-			{
-				lvlPLvlChooser.transform.GetChild(currentLvlIndex + 1).GetChild(1).gameObject.SetActive(false);
-				LvlBuilder.Instance.GetLevels()[currentLvlIndex + 1].unlocked = true;
-			}
+			lvlPLvlChooser.transform.GetChild(i).GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>().text = $"You need\n{lvls[i].objectivesToUnlock - totalChallengesComplated} more objectives\nto unlock";
+			if (lvls[i].objectivesToUnlock <= totalChallengesComplated)
+				lvlPLvlChooser.transform.GetChild(i).GetChild(1).gameObject.SetActive(false);
 		}
 	}
 
@@ -148,6 +145,7 @@ public class UIBuilder : MonoBehaviour
 	// Create panels to choose level
 	private void LoadPanelLevels(List<LevelSO> levels)
 	{
+		int totalChallengesComplated = LoadSaveManager.Instance.LoadAccomplishments().totalChallengesCompleted;
 		int cont = 1;
 		foreach (LevelSO level in levels)
 		{
@@ -156,8 +154,9 @@ public class UIBuilder : MonoBehaviour
 			lvlPanel.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = cont++ + "";
 			lvlPanel.transform.GetChild(0).GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"{(level.music.length / 60).ToString("00")}:{(level.music.length % 60).ToString("00")}";
 			lvlPanel.transform.GetChild(0).GetChild(1).transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = level.musicName;
+			lvlPanel.transform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>().text = $"You need\n{level.objectivesToUnlock - totalChallengesComplated} more objectives\nto unlock";
 			DrawChallenges(lvlPanel.transform.GetChild(0).GetChild(2).GetChild(0));
-			if (level.unlocked)
+			if (level.objectivesToUnlock <= totalChallengesComplated)
 				lvlPanel.transform.GetChild(1).gameObject.SetActive(false);
 		}
 		lvlPLvlChooser.GetComponent<LvlSwiper>().Populate();

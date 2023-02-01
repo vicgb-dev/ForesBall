@@ -60,3 +60,9 @@ MonoBehaviour:
   raySpawnTimeStamps: []
   powerUpsInmortalTimeStamps: []
   powerUpsShrinkTimeStamps: []
+  timeChallenge: 0
+  hotspot: 0
+  collectibles: 0
+  percentOfSongToCompleteHotspot: 50
+  collectiblesSpawnTimeStamps: []
+  objectivesToUnlock: 12

@@ -43,5 +43,5 @@ public class LevelSO : ScriptableObject
 	public int percentOfSongToCompleteHotspot = 50;
 	public List<float> collectiblesSpawnTimeStamps;
 	[Space(10, order = 9)]
-	public bool unlocked;
+	public int objectivesToUnlock;
 }
