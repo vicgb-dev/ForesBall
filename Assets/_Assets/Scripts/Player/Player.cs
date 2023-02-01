@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -58,7 +59,10 @@ public class Player : MonoBehaviour
 	private void ResetPlayer()
 	{
 		StopAllCoroutines();
-		transform.position = Vector3.zero;
+
+		Dictionary<Limits, float> limits = GameManager.Instance.limits;
+		Vector3 center = new Vector3(limits[Limits.right] + limits[Limits.left], limits[Limits.up] - (limits[Limits.up] - limits[Limits.bottom]) / 2, 0);
+		transform.position = center;
 		inmortal = false;
 		ResetVisuals();
 	}

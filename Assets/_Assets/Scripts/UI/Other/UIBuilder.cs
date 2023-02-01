@@ -13,6 +13,7 @@ public class UIBuilder : MonoBehaviour
 	[SerializeField] private GameObject pSafeArea;
 	[SerializeField] private GameObject pMinimenu;
 	[SerializeField] private GameObject pJoystick;
+	[SerializeField] private GameObject pNotification;
 	[SerializeField] private GameObject pGame;
 
 	[Header("Lvl chooser")]
@@ -117,7 +118,13 @@ public class UIBuilder : MonoBehaviour
 		{
 			lvlPLvlChooser.transform.GetChild(i).GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>().text = $"You need\n{lvls[i].objectivesToUnlock - totalChallengesComplated} more objectives\nto unlock";
 			if (lvls[i].objectivesToUnlock <= totalChallengesComplated)
+			{
+				if (lvlPLvlChooser.transform.GetChild(i).GetChild(1).gameObject.activeSelf)
+				{
+					NotificationsSystem.Instance.NewNotification($"New level unlocked!");
+				}
 				lvlPLvlChooser.transform.GetChild(i).GetChild(1).gameObject.SetActive(false);
+			}
 		}
 	}
 
@@ -133,6 +140,8 @@ public class UIBuilder : MonoBehaviour
 		pGame.transform.SetParent(canvas.transform);
 		pMinimenu.transform.SetParent(canvas.transform);
 		pJoystick.transform.SetParent(canvas.transform);
+		pNotification.transform.SetParent(canvas.transform);
+		pNotification.transform.SetAsLastSibling();
 		pSafeArea.transform.SetParent(pGame.transform);
 		pSafeArea.transform.SetSiblingIndex(0);
 

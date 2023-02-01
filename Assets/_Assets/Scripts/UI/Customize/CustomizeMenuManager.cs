@@ -61,6 +61,8 @@ public class CustomizeMenuManager : Menu
 		GameObject buttonPack = colorButtons[idColor];
 		if (buttonPack != null)
 		{
+			if (!buttonPack.GetComponent<Button>().enabled)
+				NotificationsSystem.Instance.NewNotification($"Color {colors[idColor].colorName} unlocked!");
 			buttonPack.transform.GetChild(0).Find("ColorPackLocked").gameObject.SetActive(false);
 			buttonPack.GetComponent<Button>().enabled = true;
 			buttonPack.GetComponent<ButtonFeedback>().enabled = true;

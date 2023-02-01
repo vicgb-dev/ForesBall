@@ -7,6 +7,19 @@ public class PowerUpInmortal : PowerUp
 		StartCoroutine(ActivatePowerUpTag(Tag.PowerUpInmortal, secsToActivateCollider));
 	}
 
+	private void OnEnable()
+	{
+		Actions.onLvlFinished += Disable;
+	}
+
+	private void Disable()
+	{
+		StopAllCoroutines();
+		GetComponentInChildren<SpriteRenderer>().color = Color.gray;
+		GetComponent<Collider2D>().enabled = false;
+	}
+
+
 	public override void PlayEffect()
 	{
 		GetComponent<Collider2D>().enabled = false;

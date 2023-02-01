@@ -47,7 +47,7 @@ public class UIHelpers : MonoBehaviour
 		{
 			elapsedTime += Time.unscaledDeltaTime;
 			time += Time.unscaledDeltaTime / seconds;
-			rT.localPosition = Vector3.Lerp(initialPosition, finalPosition, curve.Evaluate(time));
+			rT.localPosition = Vector3.LerpUnclamped(initialPosition, finalPosition, curve.Evaluate(time));
 			yield return null;
 		}
 		rT.localPosition = finalPosition;

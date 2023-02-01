@@ -50,6 +50,13 @@ public class TESTEditor : Editor
 		GUILayout.EndHorizontal();
 
 		GUILayout.BeginHorizontal();
+		if (GUILayout.Button("NewNotification"))
+		{
+			NotificationsSystem.Instance.NewNotification("Nueva notificacion de desbloqueo de algo");
+		}
+		GUILayout.EndHorizontal();
+
+		GUILayout.BeginHorizontal();
 		if (GUILayout.Button("RESETEAR TODO"))
 		{
 			LoadSaveManager.Instance.Delete();

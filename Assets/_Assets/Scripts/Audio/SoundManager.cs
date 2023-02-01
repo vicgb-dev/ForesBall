@@ -19,7 +19,7 @@ public class SoundManager : MonoBehaviour
 
 	private LevelSO currentLvl;
 	private GameObject lvlMusic;
-	private float pitch;
+	private float pitch = 1;
 	private bool inLvlsMenu = false;
 
 	private Coroutine musicPreviewCo;
@@ -144,10 +144,10 @@ public class SoundManager : MonoBehaviour
 		Destroy(audioGO);
 	}
 
-	public void PlaySinglePop()
+	public void PlaySinglePop(float newPitch = 0)
 	{
-		AudioSource aS = CreateAudioChild($"PopSound{pitch.ToString("0.00")}", popSound, popVolume);
-		aS.pitch = pitch;
+		AudioSource aS = CreateAudioChild($"PopSound{newPitch.ToString("0.00")}", popSound, popVolume);
+		aS.pitch = newPitch == 0 ? pitch : newPitch;
 		aS.Play();
 	}
 
