@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System;
+using TMPro;
 
 public class CustomizeMenuManager : Menu
 {
@@ -38,6 +39,8 @@ public class CustomizeMenuManager : Menu
 				pack.transform.GetChild(0).Find("ColorPackLocked").gameObject.SetActive(true);
 				pack.GetComponent<Button>().enabled = false;
 				pack.GetComponent<ButtonFeedback>().enabled = false;
+				string unlockText = AccomplishmentsSystem.Instance.GetAccomplishmentsList().Where(accomp => accomp.idColorUnlock == colorSO.idColor).Select(accomp => accomp.accomplishmentTitle).First();
+				pack.transform.GetChild(0).GetChild(8).GetChild(0).GetComponent<TextMeshProUGUI>().text = $"Complete challenge\n\"{unlockText}\"\nto unlock this color";
 			}
 
 			pack.GetComponent<ColorPack>().SetUp(colorSO, colorSO.idColor == idColor);

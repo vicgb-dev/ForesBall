@@ -171,4 +171,6 @@ public class AccomplishmentsSystem : MonoBehaviour
 		if (lvlCompleted > accomplishments.lvlReached)
 			accomplishments.lvlReached = lvlCompleted;
 	}
+
+	public List<AccomplishmentSO> GetAccomplishmentsList() => accomplishmentsSO;
 }
