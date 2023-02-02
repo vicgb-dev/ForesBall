@@ -7,18 +7,6 @@ public class PowerUpShrink : PowerUp
 		StartCoroutine(ActivatePowerUpTag(Tag.PowerUpShrink, secsToActivateCollider));
 	}
 
-	private void OnEnable()
-	{
-		Actions.onLvlFinished += Disable;
-	}
-
-	private void Disable()
-	{
-		StopAllCoroutines();
-		GetComponentInChildren<SpriteRenderer>().color = Color.gray;
-		GetComponent<Collider2D>().enabled = false;
-	}
-
 	public override void PlayEffect()
 	{
 		GetComponent<Collider2D>().enabled = false;

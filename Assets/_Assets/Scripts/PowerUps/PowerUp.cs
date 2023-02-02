@@ -11,14 +11,31 @@ public abstract class PowerUp : MonoBehaviour
 
 	public abstract void PlayEffect();
 
-	private void OnEnable() => Actions.onCleanLvl += DestroyThis;
+	private void OnEnable()
+	{
+		Actions.onCleanLvl += DestroyThis;
+		Actions.onLvlFinished += Disable;
+	}
 
-	private void OnDisable() => Actions.onCleanLvl -= DestroyThis;
+	private void OnDisable()
+	{
+		Actions.onCleanLvl -= DestroyThis;
+		Actions.onLvlFinished -= Disable;
+	}
 
 	private void DestroyThis()
 	{
 		deathParticlesPrefab = null;
 		Destroy(gameObject);
+	}
+
+	private void Disable()
+	{
+		StopAllCoroutines();
+		SpriteRenderer thisRenderer = GetComponentInChildren<SpriteRenderer>();
+		if (thisRenderer != null)
+			thisRenderer.color = Color.gray;
+		GetComponent<Collider2D>().enabled = false;
 	}
 
 	protected IEnumerator ActivatePowerUpTag(Tag tag, float seconds)

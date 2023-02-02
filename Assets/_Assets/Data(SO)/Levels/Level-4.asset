@@ -125,7 +125,7 @@ MonoBehaviour:
   timeChallenge: 0
   hotspot: 0
   collectibles: 0
-  percentOfSongToCompleteHotspot: 50
+  percentOfSongToCompleteHotspot: 40
   collectiblesSpawnTimeStamps:
   - 11.5
   - 27.4

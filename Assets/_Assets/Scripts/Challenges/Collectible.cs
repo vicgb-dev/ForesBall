@@ -8,30 +8,6 @@ public class Collectible : Challenge
 	[SerializeField] private float amplitude = 0.1f;
 	private SpriteRenderer sprite;
 
-	private void OnEnable()
-	{
-		Actions.onCleanLvl += DestroyThis;
-		Actions.onLvlFinished += Disable;
-	}
-
-	private void OnDisable()
-	{
-		Actions.onCleanLvl -= DestroyThis;
-		Actions.onLvlFinished -= Disable;
-	}
-
-	private void Disable()
-	{
-		StopAllCoroutines();
-		sprite.color = Color.gray;
-		GetComponent<Collider2D>().enabled = false;
-	}
-
-	private void DestroyThis()
-	{
-		Destroy(this.gameObject);
-	}
-
 	private void Awake()
 	{
 		sprite = GetComponentInChildren<SpriteRenderer>();

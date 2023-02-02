@@ -6,29 +6,6 @@ public class Hotspot : Challenge
 	[SerializeField] private float timeInHotspot = 0;
 	private SpriteRenderer sprite;
 
-	private void OnEnable()
-	{
-		Actions.onCleanLvl += DestroyThis;
-		Actions.onLvlFinished += Disable;
-	}
-
-	private void OnDisable()
-	{
-		Actions.onCleanLvl -= DestroyThis;
-		Actions.onLvlFinished -= Disable;
-	}
-
-	private void Disable()
-	{
-		sprite.color = Color.gray;
-		GetComponentInChildren<Collider2D>().enabled = false;
-	}
-
-	private void DestroyThis()
-	{
-		Destroy(this.gameObject);
-	}
-
 	private void Awake()
 	{
 		sprite = GetComponentInChildren<SpriteRenderer>();

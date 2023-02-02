@@ -37,6 +37,9 @@ MonoBehaviour:
   timeChallenge: 0
   hotspot: 0
   collectibles: 0
-  percentOfSongToCompleteHotspot: 50
-  collectiblesSpawnTimeStamps: []
+  percentOfSongToCompleteHotspot: 40
+  collectiblesSpawnTimeStamps:
+  - 0
+  - 0
+  - 0
   objectivesToUnlock: 9
