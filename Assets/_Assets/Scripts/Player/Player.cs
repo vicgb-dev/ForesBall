@@ -94,53 +94,53 @@ public class Player : MonoBehaviour
 	{
 		sprite.color = inmortalColorFaded;
 
-		yield return new WaitForSecondsRealtime(seconds - 2);
+		yield return new WaitForSeconds(seconds - 2);
 
 		sprite.color = inmortalColor;
-		yield return new WaitForSecondsRealtime(0.1f);
+		yield return new WaitForSeconds(0.1f);
 
 		sprite.color = inmortalColorFaded;
-		yield return new WaitForSecondsRealtime(0.1f);
-
-
-		sprite.color = inmortalColor;
-		yield return new WaitForSecondsRealtime(0.1f);
-
-		sprite.color = inmortalColorFaded;
-		yield return new WaitForSecondsRealtime(0.1f);
+		yield return new WaitForSeconds(0.1f);
 
 
 		sprite.color = inmortalColor;
-		yield return new WaitForSecondsRealtime(0.1f);
+		yield return new WaitForSeconds(0.1f);
 
 		sprite.color = inmortalColorFaded;
-		yield return new WaitForSecondsRealtime(0.2f);
+		yield return new WaitForSeconds(0.1f);
 
 
 		sprite.color = inmortalColor;
-		yield return new WaitForSecondsRealtime(0.2f);
+		yield return new WaitForSeconds(0.1f);
 
 		sprite.color = inmortalColorFaded;
-		yield return new WaitForSecondsRealtime(0.2f);
+		yield return new WaitForSeconds(0.2f);
 
 
 		sprite.color = inmortalColor;
-		yield return new WaitForSecondsRealtime(0.2f);
+		yield return new WaitForSeconds(0.2f);
 
 		sprite.color = inmortalColorFaded;
-		yield return new WaitForSecondsRealtime(0.2f);
+		yield return new WaitForSeconds(0.2f);
 
 
 		sprite.color = inmortalColor;
-		yield return new WaitForSecondsRealtime(0.3f);
+		yield return new WaitForSeconds(0.2f);
 
 		sprite.color = inmortalColorFaded;
-		yield return new WaitForSecondsRealtime(0.3f);
+		yield return new WaitForSeconds(0.2f);
+
+
+		sprite.color = inmortalColor;
+		yield return new WaitForSeconds(0.3f);
+
+		sprite.color = inmortalColorFaded;
+		yield return new WaitForSeconds(0.3f);
 
 
 		sprite.color = inmortalColor;
 		Instantiate(deathParticlesPrefab, this.transform);
-		yield return new WaitForSecondsRealtime(0.3f);
+		yield return new WaitForSeconds(0.3f);
 		sprite.color = Color.white;
 		inmortal = false;
 

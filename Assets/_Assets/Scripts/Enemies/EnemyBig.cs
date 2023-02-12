@@ -3,13 +3,12 @@ using UnityEngine;
 
 public class EnemyBig : Enemy
 {
-	private Rigidbody2D rb;
 	[SerializeField] private float frecuency = 1;
 	[SerializeField] private float amplitude = 1;
 
-	private void Awake()
+	protected override void Awake()
 	{
-		rb = GetComponent<Rigidbody2D>();
+		base.Awake();
 		isAffectedByPowerUpShrink = false;
 	}
 
@@ -17,14 +16,6 @@ public class EnemyBig : Enemy
 	{
 		StartCoroutine(ActivateEnemyTag(Tag.EnemyBig, secsToActivateCollider));
 		StartCoroutine(ChangeSize());
-	}
-
-	public override void StopMoving()
-	{
-		rb.isKinematic = true;
-		rb.velocity = Vector2.zero;
-		stopped = true;
-		StopAllCoroutines();
 	}
 
 	private IEnumerator ChangeSize()

@@ -40,7 +40,7 @@ public abstract class PowerUp : MonoBehaviour
 
 	protected IEnumerator ActivatePowerUpTag(Tag tag, float seconds)
 	{
-		yield return new WaitForSecondsRealtime(seconds);
+		yield return new WaitForSeconds(seconds);
 		gameObject.tag = tag.ToString();
 	}
 

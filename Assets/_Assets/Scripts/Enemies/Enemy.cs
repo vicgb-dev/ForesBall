@@ -1,28 +1,45 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-	protected float secsToActivateCollider = 1;
-	protected bool isAffectedByPowerUpShrink = true;
-
-	protected bool stopped = false;
-
 	public GameObject deathParticlesPrefab;
 
-	public abstract void StopMoving();
+	public Rigidbody2D rb;
+	public Collider2D coll;
+
+	protected float secsToActivateCollider = 1;
+	protected bool isAffectedByPowerUpShrink = true;
+	protected bool stopped = false;
+
+	protected virtual void Awake()
+	{
+		rb = GetComponent<Rigidbody2D>();
+		coll = GetComponent<Collider2D>();
+	}
 
 	private void OnEnable()
 	{
+		Actions.onLvlEnd += StopMoving;
 		Actions.onCleanLvl += DestroyThis;
 		Actions.powerUpShrink += Shrink;
 	}
 
 	private void OnDisable()
 	{
+		Actions.onLvlEnd -= StopMoving;
 		Actions.onCleanLvl -= DestroyThis;
 		Actions.powerUpShrink -= Shrink;
+	}
+
+	public virtual void StopMoving(bool win = true)
+	{
+		rb.isKinematic = true;
+		rb.velocity = Vector2.zero;
+		coll.enabled = false;
+		stopped = true;
+
+		StopAllCoroutines();
 	}
 
 	private void Shrink(GameObject effectParticles, float secsPowerUpEffect)
@@ -36,7 +53,7 @@ public abstract class Enemy : MonoBehaviour
 
 	private IEnumerator BackToNormalSize(float seconds)
 	{
-		yield return new WaitForSecondsRealtime(seconds - 2);
+		yield return new WaitForSeconds(seconds - 2);
 
 		float time = 0.5f;
 		while (transform.localScale.x <= 1)
@@ -55,7 +72,7 @@ public abstract class Enemy : MonoBehaviour
 
 	protected IEnumerator ActivateEnemyTag(Tag tag, float seconds)
 	{
-		yield return new WaitForSecondsRealtime(seconds);
+		yield return new WaitForSeconds(seconds);
 		gameObject.tag = tag.ToString();
 	}
 

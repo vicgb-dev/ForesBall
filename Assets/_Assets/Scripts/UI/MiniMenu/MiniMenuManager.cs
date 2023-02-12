@@ -159,8 +159,8 @@ public class MiniMenuManager : MonoBehaviour
 		float elapsedTime = 0;
 		while (elapsedTime < secondsToHideChallenges)
 		{
-			elapsedTime += Time.unscaledDeltaTime;
-			time += Time.unscaledDeltaTime / secondsToHideChallenges;
+			elapsedTime += Time.deltaTime;
+			time += Time.deltaTime / secondsToHideChallenges;
 
 			pBlockChallangesMiniMenu.GetComponent<Image>().color = new Color(0, 0, 0, Mathf.Lerp(0, 1, time));
 			yield return null;
@@ -172,8 +172,8 @@ public class MiniMenuManager : MonoBehaviour
 		elapsedTime = 0;
 		while (elapsedTime < secondsToHideChallenges)
 		{
-			elapsedTime += Time.unscaledDeltaTime;
-			time += Time.unscaledDeltaTime / secondsToHideChallenges;
+			elapsedTime += Time.deltaTime;
+			time += Time.deltaTime / secondsToHideChallenges;
 
 			pBlockChallangesMiniMenu.GetComponent<Image>().color = new Color(0, 0, 0, Mathf.Lerp(1, 0, time));
 			yield return null;

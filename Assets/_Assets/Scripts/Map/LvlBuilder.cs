@@ -26,10 +26,10 @@ public class LvlBuilder : MonoBehaviour
 	private Collider2D[] colliders = new Collider2D[0];
 	private LevelSO currentLvl;
 	private List<GameObject> enemiesGO = new List<GameObject>();
-	private float lvlDuration = 0;
+	private float timeInLvl = 0;
+	private bool inLvl = false;
 	private float hotspotScore = 0;
 	private float collectiblesScore = 0;
-
 	private int totalChallengesCompleted = 0;
 
 	//Definición del patrón Singleton
@@ -96,6 +96,12 @@ public class LvlBuilder : MonoBehaviour
 		Actions.onLvlStart -= StartLevelWithDelay;
 		Actions.onLvlEnd -= StopSpawns;
 		Actions.updateChallenge -= UpdateChallenges;
+	}
+
+	private void Update()
+	{
+		if (!inLvl) return;
+		timeInLvl += Time.deltaTime;
 	}
 
 	public void StartLevelWithDelay(LevelSO lvl)
@@ -299,12 +305,13 @@ public class LvlBuilder : MonoBehaviour
 	// End of game
 	private IEnumerator CountdownToWin(float timeToWin)
 	{
-		lvlDuration = Time.realtimeSinceStartup;
+		timeInLvl = 0;
+		inLvl = true;
 
 		float time = 0;
 		while (time < timeToWin)
 		{
-			time += Time.unscaledDeltaTime;
+			time += Time.deltaTime;
 
 			Actions.updateChallenge?.Invoke(Actions.ChallengeType.time, time / currentLvl.music.length > 0.99 ? 1 : time / currentLvl.music.length);
 			yield return null;
@@ -315,12 +322,9 @@ public class LvlBuilder : MonoBehaviour
 		Actions.onLvlFinished?.Invoke();
 
 		foreach (GameObject enemy in enemiesGO)
-		{
 			enemy.GetComponent<Enemy>().StopMoving();
 
-			enemy.tag = Tag.Untagged.ToString();
-		}
-		yield return new WaitForSecondsRealtime(2);
+		yield return new WaitForSeconds(2);
 
 		float y = 1;
 		foreach (GameObject enemy in enemiesGO)
@@ -330,12 +334,12 @@ public class LvlBuilder : MonoBehaviour
 				Destroy(enemy);
 				SoundManager.Instance.PlayPop();
 
-				yield return new WaitForSecondsRealtime(1 / y);
+				yield return new WaitForSeconds(1 / y);
 				y++;
 			}
 		}
 
-		yield return new WaitForSecondsRealtime(1);
+		yield return new WaitForSeconds(1);
 
 		AccomplishmentsSystem.Instance.AddLvlCompleted();
 		AccomplishmentsSystem.Instance.LvlReached(levelsManagerSO.levels.IndexOf(currentLvl) + 1);
@@ -345,6 +349,7 @@ public class LvlBuilder : MonoBehaviour
 	// End lvl win/lose
 	private void StopSpawns(bool win)
 	{
+		inLvl = false;
 		StopAllCoroutines();
 		CheckCompleteChallenges();
 	}
@@ -352,13 +357,12 @@ public class LvlBuilder : MonoBehaviour
 	private void CheckCompleteChallenges()
 	{
 		// se ejecuta cuando se acaba el nivel
-		// 
 		float lastTimeChallenge = currentLvl.timeChallenge;
 		float lastHotspot = currentLvl.hotspot;
 		float lastCollectibles = currentLvl.collectibles;
 
 		// Update challenges
-		float timeCompleted = (Time.realtimeSinceStartup - lvlDuration) / currentLvl.music.length;
+		float timeCompleted = timeInLvl / currentLvl.music.length;
 		currentLvl.timeChallenge = Mathf.Max(timeCompleted, currentLvl.timeChallenge);
 		if (currentLvl.timeChallenge >= 0.99f)
 		{

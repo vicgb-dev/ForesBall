@@ -7,14 +7,13 @@ public class EnemyFollow : Enemy
 	[SerializeField] private float acceleration = 0.1f;
 	[SerializeField] private float speedIncremental = 0.01f;
 
-	private Rigidbody2D rb;
 	private Vector2 direction;
 	private Vector2 lastVelocity;
 	private GameObject targetPlayer;
 
-	private void Awake()
+	protected override void Awake()
 	{
-		rb = GetComponent<Rigidbody2D>();
+		base.Awake();
 		transform.Rotate(0, 0, Random.Range(0, 360));
 		targetPlayer = GameObject.FindGameObjectWithTag("Player");
 	}
@@ -42,15 +41,8 @@ public class EnemyFollow : Enemy
 	{
 		while (true)
 		{
-			yield return new WaitForSecondsRealtime(1);
+			yield return new WaitForSeconds(1);
 			acceleration += speedIncremental;
 		}
-	}
-
-	public override void StopMoving()
-	{
-		rb.isKinematic = true;
-		rb.velocity = Vector2.zero;
-		stopped = true;
 	}
 }

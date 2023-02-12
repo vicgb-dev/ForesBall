@@ -25,7 +25,7 @@ public class NotificationsSystem : MonoBehaviour
 		get
 		{
 			if (_instance != null) return _instance;
-			Debug.Log("Buscando singleton en escena");
+			// Debug.Log("Buscando singleton en escena");
 			_instance = FindObjectOfType<NotificationsSystem>();
 			if (_instance != null) return _instance;
 			var manager = new GameObject("Singleton");
@@ -99,8 +99,8 @@ public class NotificationsSystem : MonoBehaviour
 		float elapsedTime = 0;
 		while (elapsedTime < secondsAnimation)
 		{
-			elapsedTime += Time.unscaledDeltaTime;
-			time += Time.unscaledDeltaTime / secondsAnimation;
+			elapsedTime += Time.deltaTime;
+			time += Time.deltaTime / secondsAnimation;
 			fill.fillAmount = Mathf.LerpUnclamped(0, 1, time);
 			yield return null;
 		}

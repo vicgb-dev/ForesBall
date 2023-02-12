@@ -158,8 +158,8 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 		float elapsedTime = 0;
 		while (elapsedTime < secondsToMorph)
 		{
-			elapsedTime += Time.unscaledDeltaTime;
-			time += Time.unscaledDeltaTime / secondsToMorph;
+			elapsedTime += Time.deltaTime;
+			time += Time.deltaTime / secondsToMorph;
 			thisRT.localScale = Vector3.Lerp(initialScale, finalScale, curve.Evaluate(time));
 			thisRT.position = Vector2.Lerp(initialPosition, finalPosition, curve.Evaluate(time));
 			imagePlayButton.color = Color.Lerp(initialColor, finalColor, curve.Evaluate(time));
@@ -182,8 +182,8 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 		float elapsedTime = 0;
 		while (elapsedTime < secondsToMorph)
 		{
-			elapsedTime += Time.unscaledDeltaTime;
-			time += Time.unscaledDeltaTime / secondsToMorph;
+			elapsedTime += Time.deltaTime;
+			time += Time.deltaTime / secondsToMorph;
 			thisRT.localScale = Vector3.Lerp(initialScale, finalScale, curve.Evaluate(time));
 			imagePlayButton.color = Color.Lerp(initialColor, finalColor, curve.Evaluate(time));
 			yield return null;
@@ -212,8 +212,8 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 		float elapsedTime = 0;
 		while (elapsedTime < secondsToMorph)
 		{
-			elapsedTime += Time.unscaledDeltaTime;
-			time += Time.unscaledDeltaTime / secondsToMorph;
+			elapsedTime += Time.deltaTime;
+			time += Time.deltaTime / secondsToMorph;
 			thisRT.localScale = Vector3.Lerp(initialScale, finalScale, curve.Evaluate(time));
 			thisRT.position = Vector2.Lerp(initialPosition, finalPosition, curve.Evaluate(time));
 			imagePlayButton.color = Color.Lerp(initialColor, finalColor, curve.Evaluate(time));

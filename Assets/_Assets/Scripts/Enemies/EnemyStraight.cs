@@ -8,8 +8,9 @@ public class EnemyStraight : Enemy
 	private Vector2 direction;
 	private Vector2 lastVelocity;
 
-	private void Awake()
+	protected override void Awake()
 	{
+		base.Awake();
 		transform.Rotate(0, 0, Random.Range(0, 360));
 	}
 
@@ -29,11 +30,5 @@ public class EnemyStraight : Enemy
 		if (stopped) return;
 		speed += speedIncremental;
 		transform.up = Vector3.Reflect(transform.up, other.contacts[0].normal);
-	}
-
-	public override void StopMoving()
-	{
-		speed = 0;
-		stopped = true;
 	}
 }

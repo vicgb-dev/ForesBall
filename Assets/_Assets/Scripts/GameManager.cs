@@ -80,7 +80,8 @@ public class GameManager : MonoBehaviour
 
 	public IEnumerator TimeStart()
 	{
-		yield return new WaitForSecondsRealtime(durationTimeStop);
+		//yield return new WaitForSecondsRealtime(durationTimeStop);
+		yield return null;
 		Time.timeScale = 1;
 	}
 }

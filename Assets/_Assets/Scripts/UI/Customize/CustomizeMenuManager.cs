@@ -39,7 +39,9 @@ public class CustomizeMenuManager : Menu
 				pack.transform.GetChild(0).Find("ColorPackLocked").gameObject.SetActive(true);
 				pack.GetComponent<Button>().enabled = false;
 				pack.GetComponent<ButtonFeedback>().enabled = false;
-				string unlockText = AccomplishmentsSystem.Instance.GetAccomplishmentsList().Where(accomp => accomp.idColorUnlock == colorSO.idColor).Select(accomp => accomp.accomplishmentTitle).First();
+				List<AccomplishmentSO> accomps = AccomplishmentsSystem.Instance.GetAccomplishmentsList().Where(accomp => accomp.idColorUnlock == colorSO.idColor).ToList();
+				string unlockText = accomps.Count > 0 ? accomps[0].accomplishmentTitle : "";
+
 				pack.transform.GetChild(0).GetChild(8).GetChild(0).GetComponent<TextMeshProUGUI>().text = $"Complete challenge\n\"{unlockText}\"\nto unlock this color";
 			}
 
@@ -57,10 +59,9 @@ public class CustomizeMenuManager : Menu
 
 	public void UnlockColor(int idColor)
 	{
-		Debug.LogWarning("Desbloqueando color " + idColor);
-		GameObject buttonPack = colorButtons[idColor];
-		if (buttonPack != null)
+		if (colorButtons.ContainsKey(idColor))
 		{
+			GameObject buttonPack = colorButtons[idColor];
 			if (!buttonPack.GetComponent<Button>().enabled)
 				NotificationsSystem.Instance.NewNotification($"Color {colors[idColor].colorName} unlocked!");
 			buttonPack.transform.GetChild(0).Find("ColorPackLocked").gameObject.SetActive(false);

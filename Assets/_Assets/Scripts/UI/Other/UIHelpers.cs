@@ -45,8 +45,8 @@ public class UIHelpers : MonoBehaviour
 		float elapsedTime = 0;
 		while (elapsedTime < seconds)
 		{
-			elapsedTime += Time.unscaledDeltaTime;
-			time += Time.unscaledDeltaTime / seconds;
+			elapsedTime += Time.deltaTime;
+			time += Time.deltaTime / seconds;
 			rT.localPosition = Vector3.LerpUnclamped(initialPosition, finalPosition, curve.Evaluate(time));
 			yield return null;
 		}
@@ -60,8 +60,8 @@ public class UIHelpers : MonoBehaviour
 		float elapsedTime = 0;
 		while (elapsedTime < seconds)
 		{
-			elapsedTime += Time.unscaledDeltaTime;
-			time += Time.unscaledDeltaTime / seconds;
+			elapsedTime += Time.deltaTime;
+			time += Time.deltaTime / seconds;
 			image.color = Color.Lerp(initialColor, finalColor, curve.Evaluate(time));
 			yield return null;
 		}

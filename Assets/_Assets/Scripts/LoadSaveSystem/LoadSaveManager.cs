@@ -14,7 +14,7 @@ public class LoadSaveManager : MonoBehaviour
 		get
 		{
 			if (_instance != null) return _instance;
-			Debug.Log("Buscando singleton en escena");
+			// Debug.Log("Buscando singleton en escena");
 			_instance = FindObjectOfType<LoadSaveManager>();
 			if (_instance != null) return _instance;
 			var manager = new GameObject("Singleton");

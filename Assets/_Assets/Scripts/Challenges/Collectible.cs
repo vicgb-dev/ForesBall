@@ -31,12 +31,12 @@ public class Collectible : Challenge
 			{
 				if (to1)
 				{
-					time += Time.unscaledDeltaTime / secondsToBounce;
+					time += Time.deltaTime / secondsToBounce;
 					if (time > 1) to1 = false;
 				}
 				else
 				{
-					time -= Time.unscaledDeltaTime / secondsToBounce;
+					time -= Time.deltaTime / secondsToBounce;
 					if (time < 0) to1 = true;
 				}
 				transform.position = Vector3.Lerp(initialPosition, finalPosition, curve.Evaluate(time));
