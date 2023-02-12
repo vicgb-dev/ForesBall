@@ -99,4 +99,9 @@ public class LevelsMenuManager : MonoBehaviour
 		}));
 		pBlockTouchGame.SetActive(false);
 	}
+
+	public void UnblockGameview()
+	{
+		pBlockTouchGame.SetActive(false);
+	}
 }

@@ -30,8 +30,8 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 	private float horizontal;
 
 	private bool isButton = false;
-	private bool buttonEnabled = false;
-	private bool isJoystick = true;
+	public bool buttonEnabled = false;
+	public bool isJoystick = true;
 	private int currentLvl;
 
 	public void Init(PlayerMove playerMove)

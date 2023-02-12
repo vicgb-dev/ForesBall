@@ -14,6 +14,8 @@ public class AccomplishmentsSystem : MonoBehaviour
 	float timeAlive;
 	float songLength;
 
+	public bool losefromPause = false;
+
 	#region Singleton
 
 	private static AccomplishmentsSystem _instance;
@@ -75,16 +77,20 @@ public class AccomplishmentsSystem : MonoBehaviour
 	private IEnumerator onLvlEndCo(bool win)
 	{
 		yield return null;
-		if (timeAlive < 5)
-			AddTimesDeadEarly();
+		if (!losefromPause)
+		{
+			if (timeAlive < 5)
+				AddTimesDeadEarly();
 
-		if (timeAlive > songLength - 5 && !win)
-			AddTimesDeadLate();
+			if (timeAlive > songLength - 5 && !win)
+				AddTimesDeadLate();
 
-		LoadSaveManager.Instance.SaveAccomplishments(accomplishments);
-		inGame = false;
-		challengesMenu.UpdateAccomplishments(accomplishments);
-		CheckCompleteAccomplishments();
+			LoadSaveManager.Instance.SaveAccomplishments(accomplishments);
+			inGame = false;
+			challengesMenu.UpdateAccomplishments(accomplishments);
+			CheckCompleteAccomplishments();
+		}
+		losefromPause = false;
 	}
 
 	private void Update()

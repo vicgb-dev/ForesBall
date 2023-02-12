@@ -96,6 +96,12 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 		StartCoroutine(ReleaseColor());
 	}
 
+	private void OnEnable()
+	{
+		childTransform.localScale = initialScale;
+		image.color = initialColor;
+	}
+
 	private IEnumerator PressAnimation()
 	{
 		Vector3 smallScale = initialScale * scale;
@@ -103,7 +109,7 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 
 		while (elapsedTime < seconds)
 		{
-			elapsedTime += Time.deltaTime;
+			elapsedTime += Time.unscaledDeltaTime;
 			childTransform.localScale = Vector3.LerpUnclamped(initialScale, smallScale, curve.Evaluate(elapsedTime / seconds));
 			yield return null;
 		}
@@ -118,7 +124,7 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 
 		while (elapsedTime < (seconds / 2))
 		{
-			elapsedTime += Time.deltaTime;
+			elapsedTime += Time.unscaledDeltaTime;
 			image.color = Color.Lerp(startColor, pressedColor, curve.Evaluate(elapsedTime / (seconds / 2)));
 			yield return null;
 		}
@@ -133,7 +139,7 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 
 		while (elapsedTime < seconds)
 		{
-			elapsedTime += Time.deltaTime;
+			elapsedTime += Time.unscaledDeltaTime;
 			childTransform.localScale = Vector3.LerpUnclamped(initialScale * scale, bigScale, curve.Evaluate(elapsedTime / seconds));
 			yield return null;
 		}
@@ -148,7 +154,7 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 
 		while (elapsedTime < seconds)
 		{
-			elapsedTime += Time.deltaTime;
+			elapsedTime += Time.unscaledDeltaTime;
 			image.color = Color.Lerp(startColor, initialColor, curve.Evaluate(elapsedTime / seconds));
 			yield return null;
 		}

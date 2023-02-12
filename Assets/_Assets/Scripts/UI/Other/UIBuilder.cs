@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System.Linq;
 using UnityEngine.UI;
-using System;
 
 public class UIBuilder : MonoBehaviour
 {
@@ -14,6 +12,7 @@ public class UIBuilder : MonoBehaviour
 	[SerializeField] private GameObject pMinimenu;
 	[SerializeField] private GameObject pJoystick;
 	[SerializeField] private GameObject pNotification;
+	[SerializeField] private GameObject pauseButton;
 	[SerializeField] private GameObject pGame;
 
 	[Header("Lvl chooser")]
@@ -150,6 +149,8 @@ public class UIBuilder : MonoBehaviour
 		for (int i = 0; i < pSafeArea.transform.childCount; i++)
 			pSafeArea.transform.GetChild(i).SetParent(canvas.transform);
 
+		pauseButton.transform.SetParent(canvas.transform);
+		pauseButton.transform.SetAsLastSibling();
 		pSafeArea.transform.localScale *= 2;
 	}
 

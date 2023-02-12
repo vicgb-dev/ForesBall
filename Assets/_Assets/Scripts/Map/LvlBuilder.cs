@@ -107,12 +107,14 @@ public class LvlBuilder : MonoBehaviour
 	public void StartLevelWithDelay(LevelSO lvl)
 	{
 		currentLvl = lvl;
-		Invoke(nameof(StartLevel), delayStartTime);
+		StartCoroutine(StartLevel());
 	}
 
 	// Start Lvl spawner
-	public void StartLevel()
+	public IEnumerator StartLevel()
 	{
+		yield return new WaitForSeconds(delayStartTime);
+
 		limits = GameManager.Instance.limits;
 
 		SoundManager.Instance.OnStartLvl(currentLvl);
