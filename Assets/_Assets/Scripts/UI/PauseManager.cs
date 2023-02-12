@@ -42,12 +42,7 @@ public class PauseManager : MonoBehaviour
 	{
 		Actions.onLvlStart += ShowPauseButton;
 		Actions.onLvlEnd += HidePauseButton;
-	}
-
-	private void OnDisable()
-	{
-		Actions.onLvlStart -= ShowPauseButton;
-		Actions.onLvlEnd -= HidePauseButton;
+		Actions.onLvlFinished += HidePauseButton;
 	}
 
 	private void ShowPauseButton(LevelSO obj = null)
@@ -61,8 +56,16 @@ public class PauseManager : MonoBehaviour
 			UIManager.Instance.curveToMove));
 	}
 
-	private void HidePauseButton(bool win = true)
+	private void HidePauseButton()
 	{
+		HidePauseButton(true);
+	}
+	private void HidePauseButton(bool win)
+	{
+		Time.timeScale = 1;
+		pausePanelImage.color = initialColor;
+		pausePanel.transform.GetChild(0).localPosition = panelLeftPosition;
+		Debug.Log("escondiendo boton");
 		pauseButton.GetComponent<Button>().enabled = false;
 		StartCoroutine(UIHelpers.Instance.MovePanel(
 			pauseButton,
@@ -110,12 +113,15 @@ public class PauseManager : MonoBehaviour
 
 	public void Pause()
 	{
+		pauseButton.GetComponent<Button>().enabled = false;
 		pausePanel.SetActive(true);
 		joystick.buttonEnabled = false;
 		joystick.isJoystick = false;
 
 		levelsMenuManager.UnblockGameview();
 		Time.timeScale = 0;
+
+		SoundManager.Instance.PauseLvlMusic();
 
 		StartCoroutine(UIHelpers.Instance.ColorChange(
 			pausePanelImage,
@@ -135,9 +141,11 @@ public class PauseManager : MonoBehaviour
 
 	public void Unpause()
 	{
+		pauseButton.GetComponent<Button>().enabled = true;
 		pausePanel.SetActive(false);
 		joystick.buttonEnabled = true;
 		joystick.isJoystick = true;
 		Time.timeScale = 1;
+		SoundManager.Instance.UnPauseLvlMusic();
 	}
 }

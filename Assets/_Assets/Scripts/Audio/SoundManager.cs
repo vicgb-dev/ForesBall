@@ -18,7 +18,7 @@ public class SoundManager : MonoBehaviour
 	private float linearVolume;
 
 	private LevelSO currentLvl;
-	private GameObject lvlMusic;
+	private AudioSource lvlMusic;
 	private float pitch = 1;
 	private bool inLvlsMenu = false;
 
@@ -96,7 +96,8 @@ public class SoundManager : MonoBehaviour
 	{
 		pitch = 1;
 		currentLvl = lvl;
-		CreateAudioChild("LvlMusic", currentLvl.music, currentLvl.musicVolume).Play();
+		lvlMusic = CreateAudioChild("LvlMusic", currentLvl.music, currentLvl.musicVolume);
+		lvlMusic.Play();
 	}
 
 	private void OnNewUIState(UIState state)
@@ -168,6 +169,18 @@ public class SoundManager : MonoBehaviour
 
 		StopMusicPreview();
 		musicPreviewCo = StartCoroutine(PlayMusicPreviewCo());
+	}
+
+	public void PauseLvlMusic()
+	{
+		if (lvlMusic != null)
+			lvlMusic.Pause();
+	}
+
+	public void UnPauseLvlMusic()
+	{
+		if (lvlMusic != null)
+			lvlMusic.UnPause();
 	}
 
 	private void StopMusicPreview(LevelSO lvl = null)
