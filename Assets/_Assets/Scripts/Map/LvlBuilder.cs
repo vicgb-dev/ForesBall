@@ -55,6 +55,8 @@ public class LvlBuilder : MonoBehaviour
 		List<SavedLevel> savedLevels = LoadSaveManager.Instance.LoadLevels();
 		if (savedLevels != null)
 			foreach (SavedLevel savedLevel in savedLevels)
+			{
+				Debug.LogWarning($"savedLevel {savedLevel.lvlName}, {savedLevel.timeChallenge}, {savedLevel.hotspot}, {savedLevel.collectibles}");
 				levelsManagerSO.levels.ForEach(lvl =>
 				{
 					if (lvl.name.Equals(savedLevel.lvlName))
@@ -67,6 +69,7 @@ public class LvlBuilder : MonoBehaviour
 						if (savedLevel.collectibles == 1) totalChallengesCompleted++;
 					}
 				});
+			}
 
 		// Si el singleton aun no ha sido inicializado
 		if (_instance != null && _instance != this)
@@ -385,6 +388,7 @@ public class LvlBuilder : MonoBehaviour
 		}
 
 		AccomplishmentsSystem.Instance.NewTotalChallengesCompleted(totalChallengesCompleted);
+		Debug.LogWarning("GUARDANDO NIVEL");
 		LoadSaveManager.Instance.SaveLevel(new SavedLevel(currentLvl.name, currentLvl.timeChallenge, currentLvl.hotspot, currentLvl.collectibles));
 	}
 

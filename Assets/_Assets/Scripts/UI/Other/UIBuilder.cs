@@ -68,11 +68,13 @@ public class UIBuilder : MonoBehaviour
 		// Esperamos un frame para que el LvlBuilder actualice los valores de los desafios del nivel
 		yield return null;
 		Transform lvlPanel = lvlPLvlChooser.transform.GetChild(currentLvlIndex);
+
 		DrawChallenges(lvlPanel.GetChild(0).GetChild(2).GetChild(0));
 	}
 
 	private void DrawChallenges(Transform challenges)
 	{
+		// Debug.LogWarning($"currentLvl {currentLvl.name}");
 		bool timeChallengeCompleted = currentLvl.timeChallenge == 1;
 		bool hotspotChallengeCompleted = currentLvl.hotspot == 1;
 		bool collectiblesChallengeCompleted = currentLvl.collectibles == 1;

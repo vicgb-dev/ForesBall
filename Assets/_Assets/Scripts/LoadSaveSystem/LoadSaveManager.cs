@@ -42,7 +42,7 @@ public class LoadSaveManager : MonoBehaviour
 
 	public void SaveLevel(SavedLevel level)
 	{
-		GameState currentState = GetState();
+		GameState currentState = Load();
 
 		if (currentState.savedLevels == null)
 			currentState.savedLevels = new List<SavedLevel>();
@@ -66,7 +66,7 @@ public class LoadSaveManager : MonoBehaviour
 
 	public void SaveAccomplishments(Accomplishments accomplishments)
 	{
-		GameState currentState = GetState();
+		GameState currentState = Load();
 
 		currentState.accomplishments = accomplishments;
 		Save(currentState);
@@ -74,7 +74,7 @@ public class LoadSaveManager : MonoBehaviour
 
 	public void SaveColorTheme(int idColor)
 	{
-		GameState currentState = GetState();
+		GameState currentState = Load();
 		currentState.idColor = idColor;
 		Save(currentState);
 	}
@@ -91,14 +91,12 @@ public class LoadSaveManager : MonoBehaviour
 
 	#endregion
 
-	private GameState GetState() => state ?? new GameState();
-
 	private void Save(GameState newState)
 	{
 		state = newState;
 		LoadSaveEncrypted.Save(newState);
 	}
-	private GameState Load() => state ?? LoadSaveEncrypted.Load();
+	private GameState Load() => state ?? LoadSaveEncrypted.Load() ?? new GameState();
 
 	[ContextMenu("BORRAR FICHERO")]
 	public void Delete()

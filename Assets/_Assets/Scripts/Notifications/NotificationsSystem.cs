@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -76,7 +75,6 @@ public class NotificationsSystem : MonoBehaviour
 			{
 				string currentNotText = notifications[0];
 				snackBar.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = currentNotText;
-				Debug.Log($"Notificacion: {currentNotText}");
 
 				// Animacion hacia abajo
 				yield return UIHelpers.Instance.MovePanel(snackBar, panelUpPosition, panelDownPosition, secondsShowingSnackBar, curve);
@@ -86,7 +84,6 @@ public class NotificationsSystem : MonoBehaviour
 				yield return UIHelpers.Instance.MovePanel(snackBar, panelDownPosition, panelUpPosition, secondsShowingSnackBar, curve);
 
 				fill.fillAmount = 0;
-				Debug.Log($"borrando notificacion de la lista");
 				notifications.RemoveAt(0);
 			}
 
@@ -114,7 +111,6 @@ public class NotificationsSystem : MonoBehaviour
 	public void NewNotification(string notificationText)
 	{
 		if (!notificationsEnabled) return;
-		Debug.Log("Nueva notificacion");
 		notifications.Add(notificationText);
 	}
 }
