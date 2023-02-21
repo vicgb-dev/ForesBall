@@ -23,9 +23,11 @@ public class ColorPack : MonoBehaviour
 	private int colorId;
 	private ButtonFeedback feedback;
 	private bool isSeleceted;
+	private ColorsSO colorsSO;
 
 	public void SetUp(ColorsSO colors, bool selected)
 	{
+		Debug.Log($"Color {colors.idColor} {selected}");
 		colorName.text = colors.colorName;
 		player.color = colors.playerColor;
 		straightEnemy.color = colors.straightEnemyColor;
@@ -35,6 +37,7 @@ public class ColorPack : MonoBehaviour
 		challenge.color = colors.challengesColor;
 		powerUp.color = colors.powerUpColor;
 		colorId = colors.idColor;
+		colorsSO = colors;
 
 		feedback = this.gameObject.GetComponent<ButtonFeedback>();
 		if (feedback != null)
@@ -246,6 +249,7 @@ public class ColorPack : MonoBehaviour
 				rayEnemy.gameObject.GetComponent<RectTransform>()));
 		}
 	}
+
 	IEnumerator Move(Vector2 destination, float duration, RectTransform rectTransform)
 	{
 		Vector2 startPos = rectTransform.anchoredPosition;
@@ -264,4 +268,8 @@ public class ColorPack : MonoBehaviour
 		return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
 	}
 
+	public void SetBackgroundButton()
+	{
+		backgroundButton.color = new Color(colorsSO.customizeMenuColor.r - 0.2f, colorsSO.customizeMenuColor.g - 0.2f, colorsSO.customizeMenuColor.b - 0.2f, 1);
+	}
 }

@@ -18,7 +18,6 @@ public class CustomizeMenuManager : Menu
 		base.Awake();
 		childState = UIState.Customize;
 		panelDirection = Direction.Right;
-
 		BuildColorsMenu();
 	}
 
@@ -67,6 +66,7 @@ public class CustomizeMenuManager : Menu
 			buttonPack.transform.GetChild(0).Find("ColorPackLocked").gameObject.SetActive(false);
 			buttonPack.GetComponent<Button>().enabled = true;
 			buttonPack.GetComponent<ButtonFeedback>().enabled = true;
+			buttonPack.GetComponent<ColorPack>().SetBackgroundButton();
 		}
 		else
 		{

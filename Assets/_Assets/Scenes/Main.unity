@@ -3632,6 +3632,7 @@ MonoBehaviour:
   - {fileID: 521115738}
   - {fileID: 1832915505}
   - {fileID: 474031123}
+  - {fileID: 8552863102642061608}
   textsCommon: []
   buttonsCommon:
   - {fileID: 1973930915}
@@ -9328,7 +9329,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6468778854116517396}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: GameBorder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
