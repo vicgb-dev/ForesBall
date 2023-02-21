@@ -167,7 +167,7 @@ public class UIBuilder : MonoBehaviour
 			lvlPanel.transform.GetChild(0).GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"{(level.music.length / 60).ToString("00")}:{(level.music.length % 60).ToString("00")}";
 			lvlPanel.transform.GetChild(0).GetChild(1).transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = level.musicName;
 			lvlPanel.transform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>().text = $"You need\n{level.objectivesToUnlock - totalChallengesComplated} more objectives\nto unlock";
-			DrawChallenges(lvlPanel.transform.GetChild(0).GetChild(2).GetChild(0));
+			DrawChallenges(lvlPanel.transform.GetChild(0).GetChild(3).GetChild(0));
 			if (level.objectivesToUnlock <= totalChallengesComplated)
 				lvlPanel.transform.GetChild(1).gameObject.SetActive(false);
 		}
