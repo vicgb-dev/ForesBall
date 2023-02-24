@@ -68,7 +68,7 @@ public class UIBuilder : MonoBehaviour
 		yield return null;
 		Transform lvlPanel = lvlPLvlChooser.transform.GetChild(currentLvlIndex);
 
-		DrawChallenges(lvlPanel.GetChild(0).GetChild(2).GetChild(0));
+		DrawChallenges(lvlPanel.GetChild(0).GetChild(3).GetChild(0));
 	}
 
 	private void DrawChallenges(Transform challenges)

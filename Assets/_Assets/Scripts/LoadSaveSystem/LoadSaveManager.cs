@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class LoadSaveManager : MonoBehaviour
@@ -48,17 +47,10 @@ public class LoadSaveManager : MonoBehaviour
 			currentState.savedLevels = new List<SavedLevel>();
 
 		// Si encontramos el nivel en el estado lo actualizamos, sino lo añadimos
-		bool lvlFound = currentState.savedLevels.Where(lvl =>
-		{
-			if (lvl.lvlName.Equals(level.lvlName))
-			{
-				lvl = level;
-				return true;
-			}
-			return false;
-		}).ToList().Count > 0;
-
-		if (!lvlFound)
+		int existingIndex = currentState.savedLevels.FindIndex(sl => sl.lvlName == level.lvlName);
+		if (existingIndex != -1)
+			currentState.savedLevels[existingIndex] = level;
+		else
 			currentState.savedLevels.Add(level);
 
 		Save(currentState);
