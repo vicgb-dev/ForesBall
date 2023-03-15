@@ -21,8 +21,20 @@ MonoBehaviour:
   loseSoundVolume: 0.5
   straightSpawnTimeStamps:
   - 0
+  - 1
+  - 2
+  straightDeathsTimeStamps:
+  - 2
+  - 3
+  - 3
   followSpawnTimeStamps:
   - 0
+  - 0
+  - 0
+  followDeathsTimeStamps:
+  - 0
+  - 4
+  - 4
   bigSpawnTimeStamps:
   - 0
   raySpawnTimeStamps:
@@ -33,9 +45,9 @@ MonoBehaviour:
   - 1
   - 2
   - 3
-  timeChallenge: 0
-  hotspot: 0
-  collectibles: 0
+  timeChallenge: 1
+  hotspot: 1
+  collectibles: 1
   percentOfSongToCompleteHotspot: 50
   collectiblesSpawnTimeStamps:
   - 1

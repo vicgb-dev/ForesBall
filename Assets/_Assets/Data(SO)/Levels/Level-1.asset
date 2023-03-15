@@ -29,7 +29,17 @@ MonoBehaviour:
   - 39.1
   - 40
   - 40.7
+  straightDeathsTimeStamps:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   followSpawnTimeStamps: []
+  followDeathsTimeStamps: []
   bigSpawnTimeStamps: []
   raySpawnTimeStamps: []
   powerUpsInmortalTimeStamps:

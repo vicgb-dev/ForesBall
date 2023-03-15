@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   property: 1
   greaterThan: 5
-  accomplishmentTitle: Peligro
-  accomplishmentDescription: "Pasa cerca del enemigo que te sigue m\xE1s de 5 segundos"
+  accomplishmentTitle: peligro
+  accomplishmentDescription: "pasa cerca del enemigo que te sigue m\xE1s de 5 segundos"
   idColorUnlock: 2

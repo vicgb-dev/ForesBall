@@ -1643,7 +1643,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9080629175159056196, guid: 0dbeb2e9d60e53f47a6cb45872d64352, type: 3}
       propertyPath: m_text
-      value: Challenges
+      value: challenges
       objectReference: {fileID: 0}
     - target: {fileID: 9080629175255480971, guid: 0dbeb2e9d60e53f47a6cb45872d64352, type: 3}
       propertyPath: m_Name
@@ -3309,7 +3309,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LeftHanded
+  m_text: left-handed
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 06317ca16554e65498a7086f3b948b85, type: 2}
   m_sharedMaterial: {fileID: 2463486706592421214, guid: 06317ca16554e65498a7086f3b948b85, type: 2}
@@ -5271,7 +5271,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9080629175159056196, guid: 0dbeb2e9d60e53f47a6cb45872d64352, type: 3}
       propertyPath: m_text
-      value: Customize
+      value: customize
       objectReference: {fileID: 0}
     - target: {fileID: 9080629175255480971, guid: 0dbeb2e9d60e53f47a6cb45872d64352, type: 3}
       propertyPath: m_Name
@@ -5515,7 +5515,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9080629175159056196, guid: 0dbeb2e9d60e53f47a6cb45872d64352, type: 3}
       propertyPath: m_text
-      value: Settings
+      value: settings
       objectReference: {fileID: 0}
     - target: {fileID: 9080629175255480971, guid: 0dbeb2e9d60e53f47a6cb45872d64352, type: 3}
       propertyPath: m_Name
@@ -9525,7 +9525,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Volume
+  m_text: volume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 06317ca16554e65498a7086f3b948b85, type: 2}
   m_sharedMaterial: {fileID: 2463486706592421214, guid: 06317ca16554e65498a7086f3b948b85, type: 2}
@@ -9789,7 +9789,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Vibration
+  m_text: vibration
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 06317ca16554e65498a7086f3b948b85, type: 2}
   m_sharedMaterial: {fileID: 2463486706592421214, guid: 06317ca16554e65498a7086f3b948b85, type: 2}
@@ -11198,6 +11198,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 174266348578568988}
     m_Modifications:
+    - target: {fileID: 9080629175159056196, guid: 0dbeb2e9d60e53f47a6cb45872d64352, type: 3}
+      propertyPath: m_text
+      value: play
+      objectReference: {fileID: 0}
     - target: {fileID: 9080629175255480971, guid: 0dbeb2e9d60e53f47a6cb45872d64352, type: 3}
       propertyPath: m_Name
       value: LevelsButton

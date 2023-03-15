@@ -132,7 +132,7 @@ public class ChallengesMenuManager : Menu
 			//Description
 			accompPanel.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = accomplishmentSO.accomplishmentDescription;
 			//UnlockColor
-			accompPanel.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = $"Unlock {customizeMenu.GetColorName(accomplishmentSO.idColorUnlock)} color";
+			accompPanel.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = $"unlock {customizeMenu.GetColorName(accomplishmentSO.idColorUnlock).ToLower()} color";
 			//Score
 			string unit = isSeconds ? "s" : "";
 			accompPanel.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = $"{Mathf.Round(currentScore)}{unit}/{accomplishmentSO.greaterThan}{unit}";

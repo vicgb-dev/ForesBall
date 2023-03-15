@@ -111,6 +111,6 @@ public class NotificationsSystem : MonoBehaviour
 	public void NewNotification(string notificationText)
 	{
 		if (!notificationsEnabled) return;
-		notifications.Add(notificationText);
+		notifications.Add(notificationText.ToLower());
 	}
 }

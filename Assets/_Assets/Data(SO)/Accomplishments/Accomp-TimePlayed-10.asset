@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   property: 3
   greaterThan: 10
-  accomplishmentTitle: Que la vida te va a comer
-  accomplishmentDescription: Muere 10 veces demasiado pronto
+  accomplishmentTitle: que la vida te va a comer
+  accomplishmentDescription: muere 10 veces demasiado pronto
   idColorUnlock: 6
