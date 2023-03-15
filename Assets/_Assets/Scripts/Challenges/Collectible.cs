@@ -15,7 +15,7 @@ public class Collectible : Challenge
 
 	private void Start()
 	{
-		StartCoroutine(FlipSprite());
+		//StartCoroutine(FlipSprite());
 		StartCoroutine(BounceCollectible());
 	}
 

@@ -278,8 +278,10 @@ public class LvlBuilder : MonoBehaviour
 
 			// mandar el tiempo que tiene para autodestruirse
 			float secondsToDestroy = 0;
-			if (deathTimeStamps.Count >= counter)
+			if (deathTimeStamps != null && deathTimeStamps.Count > counter)
 			{
+				Debug.Log($"counter es {counter}");
+				Debug.Log($"deathTimeStamps.Count es {deathTimeStamps.Count}");
 				secondsToDestroy = deathTimeStamps[counter] - timeStamps[counter];
 			}
 

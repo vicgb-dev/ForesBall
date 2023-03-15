@@ -58,6 +58,7 @@ public class CustomizeMenuManager : Menu
 
 	public void UnlockColor(int idColor)
 	{
+		Debug.Log($"Desbloquando color {idColor}");
 		if (colorButtons.ContainsKey(idColor))
 		{
 			GameObject buttonPack = colorButtons[idColor];
@@ -70,7 +71,7 @@ public class CustomizeMenuManager : Menu
 		}
 		else
 		{
-			Debug.LogError("Boton de color no encontrado");
+			Debug.LogWarning($"Hay un accomplishments que desbloquea el color {idColor} pero este no existe");
 		}
 	}
 

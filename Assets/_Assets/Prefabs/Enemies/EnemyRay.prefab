@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathParticlesPrefab: {fileID: 548885737187798852, guid: a3f4d3cba30e67c4da65461eec26412a, type: 3}
+  rb: {fileID: 0}
+  coll: {fileID: 0}
   speed: 2
 --- !u!61 &-1157457709657963398
 BoxCollider2D:
@@ -166,7 +168,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 15
   m_Sprite: {fileID: 21300000, guid: dcdc43f7a0ad67b4ab3e3db38233dfae, type: 3}
   m_Color: {r: 0.8679245, g: 0.28248486, b: 0.7281935, a: 1}
   m_FlipX: 0
