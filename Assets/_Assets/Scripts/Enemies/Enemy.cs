@@ -64,6 +64,16 @@ public abstract class Enemy : MonoBehaviour
 		}
 	}
 
+	public IEnumerator DestroyInSeconds(float seconds)
+	{
+		if (seconds > 0)
+		{
+			yield return new WaitForSeconds(seconds);
+			Actions.enemyDestroyed?.Invoke(this.gameObject);
+			Destroy(gameObject);
+		}
+	}
+
 	private void DestroyThis()
 	{
 		deathParticlesPrefab = null;

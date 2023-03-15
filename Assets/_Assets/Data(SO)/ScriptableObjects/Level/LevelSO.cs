@@ -19,7 +19,9 @@ public class LevelSO : ScriptableObject
 	[Space(15, order = 1)]
 	[Header("Enemies", order = 2)]
 	public List<float> straightSpawnTimeStamps;
+	public List<float> straightDeathsTimeStamps;
 	public List<float> followSpawnTimeStamps;
+	public List<float> followDeathsTimeStamps;
 	public List<float> bigSpawnTimeStamps;
 	public List<float> raySpawnTimeStamps;
 

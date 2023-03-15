@@ -89,6 +89,7 @@ public class LvlBuilder : MonoBehaviour
 		Actions.onLvlStart += StartLevelWithDelay;
 		Actions.onLvlEnd += StopSpawns;
 		Actions.updateChallenge += UpdateChallenges;
+		Actions.enemyDestroyed += RemoveFromEnemiesGoList;
 	}
 
 	private void OnDisable()
@@ -96,6 +97,7 @@ public class LvlBuilder : MonoBehaviour
 		Actions.onLvlStart -= StartLevelWithDelay;
 		Actions.onLvlEnd -= StopSpawns;
 		Actions.updateChallenge -= UpdateChallenges;
+		Actions.enemyDestroyed -= RemoveFromEnemiesGoList;
 	}
 
 	private void Update()
@@ -125,8 +127,8 @@ public class LvlBuilder : MonoBehaviour
 		StartCoroutine(CountdownToWin(currentLvl.music.length));
 
 		// Enemies
-		StartCoroutine(SpawnEnemy(enemiesManagerSO.enemies.Where(enemy => enemy.enemyType == EnemySO.EnemyType.straight).ToList().First(), currentLvl.straightSpawnTimeStamps));
-		StartCoroutine(SpawnEnemy(enemiesManagerSO.enemies.Where(enemy => enemy.enemyType == EnemySO.EnemyType.follow).ToList().First(), currentLvl.followSpawnTimeStamps));
+		StartCoroutine(SpawnEnemyWithDeath(enemiesManagerSO.enemies.Where(enemy => enemy.enemyType == EnemySO.EnemyType.straight).ToList().First(), currentLvl.straightSpawnTimeStamps, currentLvl.straightDeathsTimeStamps));
+		StartCoroutine(SpawnEnemyWithDeath(enemiesManagerSO.enemies.Where(enemy => enemy.enemyType == EnemySO.EnemyType.follow).ToList().First(), currentLvl.followSpawnTimeStamps, currentLvl.followDeathsTimeStamps));
 		StartCoroutine(SpawnEnemy(enemiesManagerSO.enemies.Where(enemy => enemy.enemyType == EnemySO.EnemyType.big).ToList().First(), currentLvl.bigSpawnTimeStamps));
 		StartCoroutine(SpawnEnemy(enemiesManagerSO.enemies.Where(enemy => enemy.enemyType == EnemySO.EnemyType.ray).ToList().First(), currentLvl.raySpawnTimeStamps));
 
@@ -259,6 +261,55 @@ public class LvlBuilder : MonoBehaviour
 			spawned = false;
 			enemies--;
 		}
+	}
+
+	private IEnumerator SpawnEnemyWithDeath(EnemySO enemy, List<float> timeStamps, List<float> deathTimeStamps)
+	{
+		GameObject enemyPrefab = enemy.enemyPrefab;
+		SpriteRenderer sRenderer = enemyPrefab.GetComponentInChildren<SpriteRenderer>();
+		int enemies = timeStamps.Count;
+		int counter = 0;
+		while (enemies > 0)
+		{
+			if (counter == 0)
+				yield return new WaitForSeconds(timeStamps[counter]);
+			else
+				yield return new WaitForSeconds(timeStamps[counter] - timeStamps[counter - 1]);
+
+			// mandar el tiempo que tiene para autodestruirse
+			float secondsToDestroy = 0;
+			if (deathTimeStamps.Count >= counter)
+			{
+				secondsToDestroy = deathTimeStamps[counter] - timeStamps[counter];
+			}
+
+			counter++;
+
+			while (!spawned)
+			{
+				Vector3 newLocation = new Vector3(
+					UnityEngine.Random.Range(limits[Limits.left] + sRenderer.size.x, limits[Limits.right] - sRenderer.size.x),
+					UnityEngine.Random.Range(limits[Limits.bottom] + sRenderer.size.y, limits[Limits.up] - sRenderer.size.y),
+					0);
+
+				if (CanSpawn(newLocation, sRenderer.size.x * 0.75f))
+				{
+					GameObject instantiatedEnemy = Instantiate(enemyPrefab, newLocation, enemyPrefab.transform.rotation);
+					enemy.SetUpEnemy(instantiatedEnemy);
+					enemiesGO.Add(instantiatedEnemy);
+					StartCoroutine(instantiatedEnemy.GetComponent<Enemy>().DestroyInSeconds(secondsToDestroy));
+					spawned = true;
+				}
+			}
+
+			spawned = false;
+			enemies--;
+		}
+	}
+
+	private void RemoveFromEnemiesGoList(GameObject enemyGo)
+	{
+		enemiesGO.Remove(enemyGo);
 	}
 
 	private void SpawnRayEnemy(GameObject prefab)

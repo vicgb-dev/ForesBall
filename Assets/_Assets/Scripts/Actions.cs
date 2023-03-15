@@ -12,6 +12,7 @@ public static class Actions
 	public static Action<GameObject, float> powerUpShrink;
 	public static Action<ChallengeType, float> updateChallenge;
 	public static Action<ColorsSO> colorsChange;
+	public static Action<GameObject> enemyDestroyed;
 
 	public enum ChallengeType
 	{

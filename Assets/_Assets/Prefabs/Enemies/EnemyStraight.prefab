@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4042537092935764587}
   - component: {fileID: 7160950359463260034}
   - component: {fileID: 2222314964590709463}
+  - component: {fileID: 8582834929811505130}
   m_Layer: 6
   m_Name: EnemyStraight
   m_TagString: Untagged
@@ -48,7 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathParticlesPrefab: {fileID: 548885737187798852, guid: 7f384a821c67ac44c8879a0ab3d0d8c5, type: 3}
-  initialForce: 100
+  rb: {fileID: 0}
+  coll: {fileID: 0}
   speed: 2
   speedIncremental: 0.02
 --- !u!58 &7160950359463260034
@@ -88,6 +90,18 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 7
+--- !u!114 &8582834929811505130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2222314964590709460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5806c4105a10a042b164dca55f019e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2969951612998566602
 GameObject:
   m_ObjectHideFlags: 0
