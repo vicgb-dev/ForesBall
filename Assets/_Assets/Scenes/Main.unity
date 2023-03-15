@@ -174,7 +174,7 @@ MonoBehaviour:
   pauseButton: {fileID: 1338151949}
   pGame: {fileID: 1932199322}
   lvlPLvlChooser: {fileID: 92440078}
-  lvlPanelPrefab: {fileID: 2727388198621556665, guid: 67301255083ad564886ee0b363b7f63a, type: 3}
+  lvlPanelPrefab: {fileID: 2727388198621556665, guid: 517fc449ced185f47a2e9ff958d736e1, type: 3}
 --- !u!1 &59254279
 GameObject:
   m_ObjectHideFlags: 0
@@ -7597,7 +7597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2031723540
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7613,10 +7613,10 @@ RectTransform:
   m_Father: {fileID: 880245346}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 459.99997, y: -183.74997}
+  m_SizeDelta: {x: 819.99994, y: 267.49994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2031723541
 CanvasRenderer:
@@ -10884,7 +10884,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!223 &8126441076388918438
 Canvas:
   m_ObjectHideFlags: 0
@@ -11350,7 +11350,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quit
+  m_text: quit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 06317ca16554e65498a7086f3b948b85, type: 2}
   m_sharedMaterial: {fileID: 2463486706592421214, guid: 06317ca16554e65498a7086f3b948b85, type: 2}

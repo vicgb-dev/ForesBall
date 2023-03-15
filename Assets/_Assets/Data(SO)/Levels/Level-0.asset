@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Level-0
   m_EditorClassIdentifier: 
   musicName: Platillos
+  musicAuthor: "Un se\xF1or Desconocido"
   music: {fileID: 8300000, guid: 384a1ebc4b057fd489b2e01744769962, type: 3}
   musicVolume: 0.5
   winSound: {fileID: 8300000, guid: 384a1ebc4b057fd489b2e01744769962, type: 3}
@@ -30,11 +31,11 @@ MonoBehaviour:
   followSpawnTimeStamps:
   - 0
   - 0
-  - 0
+  - 2
   followDeathsTimeStamps:
   - 0
   - 4
-  - 4
+  - 1
   bigSpawnTimeStamps:
   - 0
   raySpawnTimeStamps:

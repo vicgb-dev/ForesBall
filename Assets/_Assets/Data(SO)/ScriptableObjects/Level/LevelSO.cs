@@ -6,6 +6,7 @@ public class LevelSO : ScriptableObject
 {
 	[Header("Sound", order = 0)]
 	public string musicName;
+	public string musicAuthor;
 	public AudioClip music;
 	[Range(0f, 1f)]
 	public float musicVolume;
