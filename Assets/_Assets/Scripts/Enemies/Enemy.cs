@@ -9,8 +9,10 @@ public abstract class Enemy : MonoBehaviour
 	public Collider2D coll;
 
 	protected float secsToActivateCollider = 1;
-	protected bool isAffectedByPowerUpShrink = true;
+	protected bool isEnemyBig = false;
 	protected bool stopped = false;
+
+	protected Coroutine coShrinkEffect;
 
 	protected virtual void Awake()
 	{
@@ -44,11 +46,13 @@ public abstract class Enemy : MonoBehaviour
 
 	private void Shrink(GameObject effectParticles, float secsPowerUpEffect)
 	{
-		if (!isAffectedByPowerUpShrink) return;
+		if (isEnemyBig) return;
+		if (coShrinkEffect != null) StopCoroutine(coShrinkEffect);
+
 		Instantiate(effectParticles, this.transform);
 		transform.localScale *= 0.5f;
 
-		StartCoroutine(BackToNormalSize(secsPowerUpEffect));
+		coShrinkEffect = StartCoroutine(BackToNormalSize(secsPowerUpEffect));
 	}
 
 	private IEnumerator BackToNormalSize(float seconds)

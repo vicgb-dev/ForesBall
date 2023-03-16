@@ -165,7 +165,7 @@ public class LvlBuilder : MonoBehaviour
 		{
 			if (counter == 0)
 				yield return new WaitForSeconds(timeStamps[counter]);
-			else
+			else if (timeStamps[counter] - timeStamps[counter - 1] > 0)
 				yield return new WaitForSeconds(timeStamps[counter] - timeStamps[counter - 1]);
 
 			counter++;
@@ -193,7 +193,7 @@ public class LvlBuilder : MonoBehaviour
 		{
 			if (counter == 0)
 				yield return new WaitForSeconds(timeStamps[counter]);
-			else
+			else if (timeStamps[counter] - timeStamps[counter - 1] > 0)
 				yield return new WaitForSeconds(timeStamps[counter] - timeStamps[counter - 1]);
 
 			counter++;
@@ -204,12 +204,12 @@ public class LvlBuilder : MonoBehaviour
 			float thirdHeight = (limits[Limits.up] - limits[Limits.bottom]) / 3;
 
 			float horizontal = isLeft
-				? UnityEngine.Random.Range(limits[Limits.left] + sRenderer.size.x, limits[Limits.left] + thirdWidth)
-				: UnityEngine.Random.Range(limits[Limits.right] - thirdWidth, limits[Limits.right] - sRenderer.size.x);
+				? UnityEngine.Random.Range(limits[Limits.left] + sRenderer.bounds.size.x, limits[Limits.left] + thirdWidth)
+				: UnityEngine.Random.Range(limits[Limits.right] - thirdWidth, limits[Limits.right] - sRenderer.bounds.size.x);
 
 			float vertical = isTop
-				? UnityEngine.Random.Range(limits[Limits.up] - thirdHeight, limits[Limits.up] - sRenderer.size.y)
-				: UnityEngine.Random.Range(limits[Limits.bottom] + sRenderer.size.y, limits[Limits.bottom] + thirdHeight);
+				? UnityEngine.Random.Range(limits[Limits.up] - thirdHeight, limits[Limits.up] - sRenderer.bounds.size.y)
+				: UnityEngine.Random.Range(limits[Limits.bottom] + sRenderer.bounds.size.y, limits[Limits.bottom] + thirdHeight);
 
 			Vector3 newLocation = new Vector3(horizontal, vertical, 0);
 
@@ -229,7 +229,7 @@ public class LvlBuilder : MonoBehaviour
 		{
 			if (counter == 0)
 				yield return new WaitForSeconds(timeStamps[counter]);
-			else
+			else if (timeStamps[counter] - timeStamps[counter - 1] > 0)
 				yield return new WaitForSeconds(timeStamps[counter] - timeStamps[counter - 1]);
 
 			counter++;
@@ -273,7 +273,7 @@ public class LvlBuilder : MonoBehaviour
 		{
 			if (counter == 0)
 				yield return new WaitForSeconds(timeStamps[counter]);
-			else
+			else if (timeStamps[counter] - timeStamps[counter - 1] > 0)
 				yield return new WaitForSeconds(timeStamps[counter] - timeStamps[counter - 1]);
 
 			// mandar el tiempo que tiene para autodestruirse

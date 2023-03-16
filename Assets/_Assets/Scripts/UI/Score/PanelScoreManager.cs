@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -22,19 +20,19 @@ public class PanelScoreManager : MonoBehaviour
 		switch (state)
 		{
 			case UIState.Main:
-				title.text = "Main Menu";
+				title.text = "main menu";
 				break;
 			case UIState.Levels:
-				title.text = "Levels";
+				title.text = "levels";
 				break;
 			case UIState.Challenges:
-				title.text = "Challenges";
+				title.text = "challenges";
 				break;
 			case UIState.Customize:
-				title.text = "Customize";
+				title.text = "customize";
 				break;
 			case UIState.Settings:
-				title.text = "Settings";
+				title.text = "settings";
 				break;
 		}
 	}

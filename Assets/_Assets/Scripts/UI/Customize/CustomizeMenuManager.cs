@@ -23,8 +23,8 @@ public class CustomizeMenuManager : Menu
 
 	public void BuildColorsMenu()
 	{
-		int idColor = LoadSaveManager.Instance.LoadColorTheme() ?? 0; // si no encuentra color lo inicializa a 0, que es el paquete de color default
-		ColorsSO loadedColor = colors.Where(color => color.idColor == idColor).ToList().First();
+		int selectedColor = LoadSaveManager.Instance.LoadColorTheme() ?? 0; // si no encuentra color lo inicializa a 0, que es el paquete de color default
+		ColorsSO loadedColor = colors.Where(color => color.idColor == selectedColor).ToList().First();
 		ColorsManager.Instance.ChangeColors(loadedColor);
 
 		foreach (ColorsSO colorSO in colors)
@@ -32,10 +32,10 @@ public class CustomizeMenuManager : Menu
 			// Instancias y populate un panel ColorPackLocked
 			GameObject pack = Instantiate(colorPackButtonPrefab, menuContent.transform);
 
-			// Si el color está bloqueado, activamos el bloqueo de la UI y desactivamos el botón 
+			// Bloqueamos todos los colores que no sean el primero, después los achievements se encargarán de desbloquearlos
 			if (colorSO.idColor != 0)
 			{
-				pack.transform.GetChild(0).Find("ColorPackLocked").gameObject.SetActive(true);
+				pack.transform.GetChild(0).GetChild(8).gameObject.SetActive(true);
 				pack.GetComponent<Button>().enabled = false;
 				pack.GetComponent<ButtonFeedback>().enabled = false;
 				List<AccomplishmentSO> accomps = AccomplishmentsSystem.Instance.GetAccomplishmentsList().Where(accomp => accomp.idColorUnlock == colorSO.idColor).ToList();
@@ -44,7 +44,7 @@ public class CustomizeMenuManager : Menu
 				pack.transform.GetChild(0).GetChild(8).GetChild(0).GetComponent<TextMeshProUGUI>().text = $"Complete challenge\n\"{unlockText}\"\nto unlock this color";
 			}
 
-			pack.GetComponent<ColorPack>().SetUp(colorSO, colorSO.idColor == idColor);
+			pack.GetComponent<ColorPack>().SetUp(colorSO, colorSO.idColor == selectedColor);
 			pack.GetComponent<Button>().onClick.AddListener(() =>
 			{
 				Actions.colorsChange?.Invoke(colorSO);
@@ -64,7 +64,7 @@ public class CustomizeMenuManager : Menu
 			GameObject buttonPack = colorButtons[idColor];
 			if (!buttonPack.GetComponent<Button>().enabled)
 				NotificationsSystem.Instance.NewNotification($"Color {colors[idColor].colorName} unlocked!");
-			buttonPack.transform.GetChild(0).Find("ColorPackLocked").gameObject.SetActive(false);
+			buttonPack.transform.GetChild(0).GetChild(8).gameObject.SetActive(false);
 			buttonPack.GetComponent<Button>().enabled = true;
 			buttonPack.GetComponent<ButtonFeedback>().enabled = true;
 			buttonPack.GetComponent<ColorPack>().SetBackgroundButton();

@@ -270,6 +270,7 @@ public class ColorPack : MonoBehaviour
 
 	public void SetBackgroundButton()
 	{
-		backgroundButton.color = new Color(colorsSO.customizeMenuColor.r - 0.2f, colorsSO.customizeMenuColor.g - 0.2f, colorsSO.customizeMenuColor.b - 0.2f, 1);
+		if (isSeleceted)
+			backgroundButton.color = new Color(colorsSO.customizeMenuColor.r - 0.2f, colorsSO.customizeMenuColor.g - 0.2f, colorsSO.customizeMenuColor.b - 0.2f, 1);
 	}
 }

@@ -9,7 +9,7 @@ public class EnemyBig : Enemy
 	protected override void Awake()
 	{
 		base.Awake();
-		isAffectedByPowerUpShrink = false;
+		isEnemyBig = true;
 	}
 
 	private void Start()

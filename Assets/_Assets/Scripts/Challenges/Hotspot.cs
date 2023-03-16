@@ -15,6 +15,23 @@ public class Hotspot : Challenge
 	{
 		transform.localScale = new Vector3(5, 5, 5);
 	}
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.transform.tag == "Player")
+		{
+			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 1);
+		}
+	}
+
+	private void OnTriggerExit2D(Collider2D other)
+	{
+		if (other.transform.tag == "Player")
+		{
+			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 0.5f);
+		}
+	}
+
 	private void OnTriggerStay2D(Collider2D other)
 	{
 		if (other.transform.tag == "Player")
