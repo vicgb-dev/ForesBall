@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Colors4-White
   m_EditorClassIdentifier: 
   idColor: 4
-  colorName: White
+  colorName: white
   playerColor: {r: 1, g: 1, b: 1, a: 1}
   mainMenuColor: {r: 1, g: 1, b: 1, a: 1}
   customizeMenuColor: {r: 1, g: 1, b: 1, a: 1}

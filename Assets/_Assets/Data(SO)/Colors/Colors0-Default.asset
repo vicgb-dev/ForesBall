@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Colors0-Default
   m_EditorClassIdentifier: 
   idColor: 0
-  colorName: Default
+  colorName: default
   playerColor: {r: 1, g: 0, b: 0, a: 1}
   mainMenuColor: {r: 1, g: 1, b: 1, a: 1}
   customizeMenuColor: {r: 1, g: 0.67058825, b: 0.46274513, a: 1}

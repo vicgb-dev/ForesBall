@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Colors3-Neon
   m_EditorClassIdentifier: 
   idColor: 3
-  colorName: Neon
+  colorName: neon
   playerColor: {r: 1, g: 0.9048885, b: 0, a: 1}
   mainMenuColor: {r: 1, g: 1, b: 1, a: 1}
   customizeMenuColor: {r: 0.7264151, g: 0.12677999, b: 0.17181827, a: 1}
