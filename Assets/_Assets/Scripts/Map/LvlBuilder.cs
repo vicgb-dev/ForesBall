@@ -170,11 +170,7 @@ public class LvlBuilder : MonoBehaviour
 
 			counter++;
 
-			Vector3 newLocation = new Vector3(
-				UnityEngine.Random.Range(limits[Limits.left] + sRenderer.size.x, limits[Limits.right] - sRenderer.size.x),
-				UnityEngine.Random.Range(limits[Limits.bottom] + sRenderer.size.y, limits[Limits.up] - sRenderer.size.y),
-				0);
-
+			Vector3 newLocation = PositionOutsideHotspot(sRenderer);
 			GameObject instantiatedCollectible = Instantiate(collectiblePrefab, newLocation, collectiblePrefab.transform.rotation);
 			challenge.SetUpChallenge(instantiatedCollectible);
 			collectibles--;
@@ -198,21 +194,7 @@ public class LvlBuilder : MonoBehaviour
 
 			counter++;
 
-			bool isLeft = Random.Range(0, 2) == 0;
-			bool isTop = Random.Range(0, 2) == 0;
-			float thirdWidth = (limits[Limits.right] - limits[Limits.left]) / 3;
-			float thirdHeight = (limits[Limits.up] - limits[Limits.bottom]) / 3;
-
-			float horizontal = isLeft
-				? UnityEngine.Random.Range(limits[Limits.left] + sRenderer.bounds.size.x, limits[Limits.left] + thirdWidth)
-				: UnityEngine.Random.Range(limits[Limits.right] - thirdWidth, limits[Limits.right] - sRenderer.bounds.size.x);
-
-			float vertical = isTop
-				? UnityEngine.Random.Range(limits[Limits.up] - thirdHeight, limits[Limits.up] - sRenderer.bounds.size.y)
-				: UnityEngine.Random.Range(limits[Limits.bottom] + sRenderer.bounds.size.y, limits[Limits.bottom] + thirdHeight);
-
-			Vector3 newLocation = new Vector3(horizontal, vertical, 0);
-
+			Vector3 newLocation = PositionOutsideHotspot(sRenderer);
 			GameObject instantiatedPowerUp = Instantiate(powerUpPrefab, newLocation, powerUpPrefab.transform.rotation);
 			powerUpsManagerSO.powerUps[powerUpType].SetUpPowerUp(instantiatedPowerUp);
 			powerUps--;
@@ -363,6 +345,25 @@ public class LvlBuilder : MonoBehaviour
 				return false;
 		}
 		return true;
+	}
+
+	private Vector3 PositionOutsideHotspot(SpriteRenderer sprite)
+	{
+
+		bool isLeft = Random.Range(0, 2) == 0;
+		bool isTop = Random.Range(0, 2) == 0;
+		float thirdWidth = (limits[Limits.right] - limits[Limits.left]) / 3;
+		float thirdHeight = (limits[Limits.up] - limits[Limits.bottom]) / 3;
+
+		float horizontal = isLeft
+			? UnityEngine.Random.Range(limits[Limits.left] + sprite.bounds.size.x, limits[Limits.left] + thirdWidth)
+			: UnityEngine.Random.Range(limits[Limits.right] - thirdWidth, limits[Limits.right] - sprite.bounds.size.x);
+
+		float vertical = isTop
+			? UnityEngine.Random.Range(limits[Limits.up] - thirdHeight, limits[Limits.up] - sprite.bounds.size.y)
+			: UnityEngine.Random.Range(limits[Limits.bottom] + sprite.bounds.size.y, limits[Limits.bottom] + thirdHeight);
+
+		return new Vector3(horizontal, vertical, 0);
 	}
 
 	#endregion

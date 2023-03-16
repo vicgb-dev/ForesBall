@@ -14,6 +14,7 @@ public class Hotspot : Challenge
 	private void Start()
 	{
 		transform.localScale = new Vector3(5, 5, 5);
+		sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 0.5f);
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
