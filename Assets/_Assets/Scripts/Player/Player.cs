@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 	SpriteRenderer sprite;
+	Material material;
 	TrailRenderer trail;
 
 	Color inmortalColor;
@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 	private bool inmortal = false;
 	private void OnEnable()
 	{
+		material = GetComponentInChildren<SpriteRenderer>().sharedMaterial;
 		sprite = GetComponentInChildren<SpriteRenderer>();
 		trail = GetComponentInChildren<TrailRenderer>();
 		Actions.onCleanLvl += ResetPlayer;
@@ -73,6 +74,11 @@ public class Player : MonoBehaviour
 		trail.startColor = ColorsManager.Instance.GetColorsSO().playerColor;
 		trail.endColor = ColorsManager.Instance.GetColorsSO().playerColor;
 		sprite.color = ColorsManager.Instance.GetColorsSO().playerColor;
+		Color playerColor = ColorsManager.Instance.GetColorsSO().playerColor;
+		trail.startColor = playerColor;
+		trail.endColor = playerColor;
+		sprite.color = playerColor;
+		material.SetColor("_Color", playerColor * 3);
 	}
 
 	// El powerUp Inmortal llama a este metodo
@@ -86,6 +92,7 @@ public class Player : MonoBehaviour
 
 		trail.startColor = color;
 		trail.endColor = color;
+		material.SetColor("_Color", color * 3);
 
 		StartCoroutine(InmortalCoroutine(seconds, deathParticlesPrefab));
 	}
