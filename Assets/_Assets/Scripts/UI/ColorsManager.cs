@@ -34,6 +34,17 @@ public class ColorsManager : MonoBehaviour
 	[SerializeField] public List<Button> buttonsLevels;
 	[SerializeField] public List<SpriteRenderer> mapLimits;
 
+	[Header("SharedColors")]
+	[SerializeField] public SpriteRenderer enemyStraight;
+	[SerializeField] public SpriteRenderer enemyFollow;
+	[SerializeField] public SpriteRenderer enemyBig;
+	[SerializeField] public SpriteRenderer enemyRay;
+	[SerializeField] public SpriteRenderer inmortal;
+	[SerializeField] public SpriteRenderer shrink;
+	[SerializeField] public SpriteRenderer collectible;
+	[SerializeField] public SpriteRenderer hotspot;
+	[SerializeField] public SpriteRenderer challengeFill;
+
 	private UIState currentUIState;
 	#region Singleton
 
@@ -212,6 +223,18 @@ public class ColorsManager : MonoBehaviour
 	public void ChangeColors(ColorsSO colors)
 	{
 		colorsSO = colors;
+
+		// Change sharedColor shader
+		enemyStraight.sharedMaterial.SetColor("_Color", colors.straightEnemyColor * 2);
+		enemyFollow.sharedMaterial.SetColor("_Color", colors.followEnemyColor * 2);
+		enemyBig.sharedMaterial.SetColor("_Color", colors.bigEnemyColor * 2);
+		enemyRay.sharedMaterial.SetColor("_Color", colors.rayEnemyColor * 2);
+		inmortal.sharedMaterial.SetColor("_Color", colors.powerUpColor * 2);
+		shrink.sharedMaterial.SetColor("_Color", colors.powerUpColor * 2);
+		collectible.sharedMaterial.SetColor("_Color", colors.challengesColor * 2);
+		hotspot.sharedMaterial.SetColor("_Color", colors.challengesColor * 2);
+		challengeFill.sharedMaterial.SetColor("_Color", colors.challengesColor * 2);
+
 		UpdateGlobalColors();
 	}
 }

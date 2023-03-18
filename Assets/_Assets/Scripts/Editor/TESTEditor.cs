@@ -64,5 +64,14 @@ public class TESTEditor : Editor
 			PlayerPrefs.DeleteAll();
 		}
 		GUILayout.EndHorizontal();
+
+
+		GUILayout.BeginHorizontal();
+		if (GUILayout.Button("Cambiar color"))
+		{
+			GameObject.FindWithTag("Player").GetComponentInChildren<SpriteRenderer>()
+				.sharedMaterial.SetColor("_Color", new Color(0.8f, 0.5f, 0.2f, 1) * 3);
+		}
+		GUILayout.EndHorizontal();
 	}
 }
