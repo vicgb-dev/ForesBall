@@ -16,12 +16,12 @@ MonoBehaviour:
   colorName: default
   playerColor: {r: 1, g: 0, b: 0, a: 1}
   mainMenuColor: {r: 1, g: 1, b: 1, a: 1}
-  customizeMenuColor: {r: 1, g: 0.67058825, b: 0.46274513, a: 1}
-  settingsMenuColor: {r: 1, g: 0.988943, b: 0.48584908, a: 1}
+  customizeMenuColor: {r: 1, g: 0.5873474, b: 0.3254717, a: 1}
+  settingsMenuColor: {r: 1, g: 0.98501664, b: 0.36320752, a: 1}
   levelsMenuColor: {r: 1, g: 1, b: 1, a: 1}
-  challengesColor: {r: 0, g: 0.8862745, b: 1, a: 1}
-  powerUpColor: {r: 1, g: 0.7529412, b: 0, a: 1}
-  straightEnemyColor: {r: 0.7137255, g: 0.87843144, b: 0.34117648, a: 1}
-  followEnemyColor: {r: 0.87843144, g: 0.37647063, b: 0.34117648, a: 1}
-  bigEnemyColor: {r: 0.34117648, g: 0.68235296, b: 0.87843144, a: 1}
-  rayEnemyColor: {r: 0.86666673, g: 0.28235295, b: 0.7294118, a: 1}
+  challengesColor: {r: 0.4198113, g: 0.93401796, b: 1, a: 1}
+  powerUpColor: {r: 1, g: 0.8706438, b: 0.4764151, a: 1}
+  straightEnemyColor: {r: 0.80810213, g: 1, b: 0.3726415, a: 1}
+  followEnemyColor: {r: 1, g: 0.40566036, b: 0.36320752, a: 1}
+  bigEnemyColor: {r: 0.4009434, g: 0.7815207, b: 1, a: 1}
+  rayEnemyColor: {r: 1, g: 0.4481132, b: 0.8701444, a: 1}
