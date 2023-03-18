@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class SplashManager : MonoBehaviour
 {
+	[SerializeField] private Canvas mainCanvas;
 	[SerializeField] private Canvas canvas;
 	[SerializeField] private float secondsToStart = 0.1f;
 	[Header("Loading animation")]
@@ -120,5 +121,13 @@ public class SplashManager : MonoBehaviour
 		}
 
 		background.color = new Color(background.color.r, background.color.g, background.color.b, 0);
+	}
+
+	public void CanvasRenderTogle()
+	{
+		if (mainCanvas.renderMode == RenderMode.ScreenSpaceCamera)
+			mainCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+		else
+			mainCanvas.renderMode = RenderMode.ScreenSpaceCamera;
 	}
 }

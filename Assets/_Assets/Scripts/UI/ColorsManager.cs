@@ -232,7 +232,7 @@ public class ColorsManager : MonoBehaviour
 		inmortal.sharedMaterial.SetColor("_Color", colors.powerUpColor * 2);
 		shrink.sharedMaterial.SetColor("_Color", colors.powerUpColor * 2);
 		collectible.sharedMaterial.SetColor("_Color", colors.challengesColor * 2);
-		hotspot.sharedMaterial.SetColor("_Color", colors.challengesColor * 1);
+		hotspot.sharedMaterial.SetColor("_Color", colors.challengesColor * 2);
 		challengeFill.sharedMaterial.SetColor("_Color", colors.challengesColor * 2);
 
 		UpdateGlobalColors();
