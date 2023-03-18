@@ -58,7 +58,7 @@ public class CustomizeMenuManager : Menu
 
 	public void UnlockColor(int idColor)
 	{
-		Debug.Log($"Desbloquando color {idColor}");
+		//Debug.Log($"Desbloquando color {idColor}");
 		if (colorButtons.ContainsKey(idColor))
 		{
 			GameObject buttonPack = colorButtons[idColor];

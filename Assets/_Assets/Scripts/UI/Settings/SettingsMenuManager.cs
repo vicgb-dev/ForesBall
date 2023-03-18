@@ -1,24 +1,53 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class SettingsMenuManager : Menu
 {
-	// [SerializeField] protected GameObject button1;
-	// [SerializeField] protected GameObject button2;
+	[SerializeField] private GameObject customizeMenu;
+	[SerializeField] private GameObject gameMenu;
+	[SerializeField] private TextMeshProUGUI resolutionText;
+
+	int cont = 0;
+	Resolution initialResolution;
+
 	protected override void Awake()
 	{
 		base.Awake();
 		childState = UIState.Settings;
 		panelDirection = Direction.Right;
+
+		initialResolution = Screen.currentResolution;
+		resolutionText.text = $"{initialResolution.width}x{initialResolution.height}";
 	}
 
-	private void Start()
+	public void SwitchResolution()
 	{
-		// button1.GetComponent<Button>().onClick.AddListener(() => LvlBuilder.Instance.ResetLvls());
-		// button1.GetComponentInChildren<TextMeshProUGUI>().text = "Resetear puntuacion de niveles";
+		switch (cont)
+		{
+			case 0:
+				Screen.SetResolution((int)(initialResolution.width * 0.9f), (int)(initialResolution.height * 0.9f), Screen.fullScreenMode);
+				break;
+			case 1:
+				Screen.SetResolution((int)(initialResolution.width * 0.7f), (int)(initialResolution.height * 0.7f), Screen.fullScreenMode);
+				break;
+			case 2:
+				Screen.SetResolution((int)(initialResolution.width * 0.5f), (int)(initialResolution.height * 0.5f), Screen.fullScreenMode);
+				break;
+			case 3:
+				Screen.SetResolution(initialResolution.width, initialResolution.height, Screen.fullScreenMode);
+				break;
+		}
+		cont++;
+		if (cont > 3) cont = 0;
 
-		// button2.GetComponent<Button>().onClick.AddListener(() => LvlBuilder.Instance.UnlockAllLvls());
-		// button2.GetComponentInChildren<TextMeshProUGUI>().text = "Desbloquear todos los niveles";
+
+		resolutionText.text = $"{Screen.currentResolution.width}x{Screen.currentResolution.height}";
+	}
+
+	public void TestDisbaleCustomAndGameUI()
+	{
+		Debug.Log("quitando");
+		customizeMenu.SetActive(!customizeMenu.activeSelf);
+		gameMenu.SetActive(!gameMenu.activeSelf);
 	}
 }

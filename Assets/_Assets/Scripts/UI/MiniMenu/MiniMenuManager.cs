@@ -98,15 +98,16 @@ public class MiniMenuManager : MonoBehaviour
 	private void ChangeFillAmount(Image fill, float value)
 	{
 		fill.fillAmount = value;
+		Image fillImage = fill.transform.GetChild(0).GetComponent<Image>();
 		if (value > 0.999f)
 		{
 			fill.color = ColorsManager.Instance.GetChallengesColor();
-			fill.transform.GetChild(0).GetComponent<Image>().color = Color.black;
+			fillImage.color = Color.black;
 		}
 		else
 		{
 			fill.color = Color.gray;
-			fill.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+			fillImage.color = Color.white;
 		}
 	}
 
@@ -154,6 +155,7 @@ public class MiniMenuManager : MonoBehaviour
 	{
 		pBlockTouchMiniMenu.SetActive(lvl != null);
 		pBlockChallangesMiniMenu.SetActive(true);
+		Image blockChallengeMiniMenuImage = pBlockChallangesMiniMenu.GetComponent<Image>();
 
 		float time = 0;
 		float elapsedTime = 0;
@@ -162,7 +164,7 @@ public class MiniMenuManager : MonoBehaviour
 			elapsedTime += Time.deltaTime;
 			time += Time.deltaTime / secondsToHideChallenges;
 
-			pBlockChallangesMiniMenu.GetComponent<Image>().color = new Color(0, 0, 0, Mathf.Lerp(0, 1, time));
+			blockChallengeMiniMenuImage.color = new Color(0, 0, 0, Mathf.Lerp(0, 1, time));
 			yield return null;
 		}
 
@@ -175,7 +177,7 @@ public class MiniMenuManager : MonoBehaviour
 			elapsedTime += Time.deltaTime;
 			time += Time.deltaTime / secondsToHideChallenges;
 
-			pBlockChallangesMiniMenu.GetComponent<Image>().color = new Color(0, 0, 0, Mathf.Lerp(1, 0, time));
+			blockChallengeMiniMenuImage.color = new Color(0, 0, 0, Mathf.Lerp(1, 0, time));
 			yield return null;
 		}
 

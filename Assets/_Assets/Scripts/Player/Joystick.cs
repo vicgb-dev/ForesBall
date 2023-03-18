@@ -1,9 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System;
 
 public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeginDragHandler, IEndDragHandler
 {
@@ -43,6 +41,11 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 	private void Awake()
 	{
 		thisRT = GetComponent<RectTransform>();
+		Vector3[] joystickCorners = new Vector3[4];
+		thisRT.GetWorldCorners(joystickCorners);
+
+		offSetVertical = (joystickCorners[1].y - joystickCorners[0].y) / 2;
+		OffSetHorizontal = (joystickCorners[2].x - joystickCorners[1].x) / 2;
 	}
 
 	private void Start()
@@ -61,11 +64,6 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 		containerLimitLeft = containerCorners[0].x;
 		containerCenter = new Vector2(containerLimitRight - containerLimitLeft, containerLimitUp - containerLimitDown);
 
-		Vector3[] joystickCorners = new Vector3[4];
-		thisRT.GetWorldCorners(joystickCorners);
-
-		offSetVertical = (joystickCorners[1].y - joystickCorners[0].y) / 2;
-		OffSetHorizontal = (joystickCorners[2].x - joystickCorners[1].x) / 2;
 	}
 
 	private void OnEnable()
@@ -104,7 +102,8 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 	{
 		if (!isJoystick) return;
 		//Debug.Log("OnDrag");
-		Vector2 nextPosition = Input.GetTouch(0).position;
+		//Vector2 nextPosition = Input.GetTouch(0).position;
+		Vector2 nextPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
 		bool overLimitUp = nextPosition.y + offSetVertical > containerLimitUp;
 		bool overLimitDown = nextPosition.y - offSetVertical < containerLimitDown;
@@ -120,7 +119,8 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 		if (overLimitLeft)
 			nextPosition = new Vector2(containerLimitLeft + OffSetHorizontal, nextPosition.y);
 
-		thisRT.position = nextPosition;
+		//thisRT.position = nextPosition;
+		thisRT.position = new Vector3(nextPosition.x, nextPosition.y, thisRT.position.z);
 
 		vertical = Mathf.InverseLerp(containerLimitDown + offSetVertical, containerLimitUp - offSetVertical, thisRT.position.y);
 		horizontal = Mathf.InverseLerp(containerLimitLeft + OffSetHorizontal, containerLimitRight - OffSetHorizontal, thisRT.position.x);

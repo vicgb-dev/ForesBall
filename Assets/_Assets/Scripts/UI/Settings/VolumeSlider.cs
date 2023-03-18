@@ -8,6 +8,12 @@ public class VolumeSlider : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
 	private Color color;
 	private float lastFillAmount;
+	private RectTransform thisRectT;
+
+	private void Awake()
+	{
+		thisRectT = this.transform.GetComponent<RectTransform>();
+	}
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
@@ -36,11 +42,11 @@ public class VolumeSlider : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
 		// convert the screen point to a point in local space within the target rectangle
 		Vector2 pointerLocalPoint;
-		if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(this.transform.GetComponent<RectTransform>(), pointerScreenPoint, null, out pointerLocalPoint))
+		if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(thisRectT, pointerScreenPoint, null, out pointerLocalPoint))
 			return;
 
 		// calculate a value from 0 to 1 representing the pointer position within the target rectangle
-		slider.fillAmount = 0.5f + pointerLocalPoint.x / this.transform.GetComponent<RectTransform>().rect.width;
+		slider.fillAmount = 0.5f + pointerLocalPoint.x / thisRectT.rect.width;
 		SoundManager.Instance.SetVolume(slider.fillAmount);
 
 		slider.color = new Color(color.r - 0.2f, color.g - 0.2f, color.b - 0.2f, Remap(slider.fillAmount, 0, 1, 0.3f, 1));

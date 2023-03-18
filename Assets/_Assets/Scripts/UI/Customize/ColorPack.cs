@@ -25,9 +25,30 @@ public class ColorPack : MonoBehaviour
 	private bool isSeleceted;
 	private ColorsSO colorsSO;
 
+	RectTransform rectPlayer;
+	RectTransform rectStraightEnemy;
+	RectTransform rectFollowEnemy;
+	RectTransform rotfollowEnemy;
+	RectTransform rectBigEnemy;
+	RectTransform rectRayEnemy;
+	RectTransform rectChallenge;
+	RectTransform rectPowerUp;
+
+	private void Awake()
+	{
+		rectPlayer = player.gameObject.GetComponent<RectTransform>();
+		rectStraightEnemy = straightEnemy.gameObject.GetComponent<RectTransform>();
+		rectFollowEnemy = followEnemy.gameObject.GetComponent<RectTransform>();
+		rotfollowEnemy = followEnemy.gameObject.GetComponent<RectTransform>();
+		rectBigEnemy = bigEnemy.gameObject.GetComponent<RectTransform>();
+		rectRayEnemy = rayEnemy.gameObject.GetComponent<RectTransform>();
+		rectChallenge = challenge.gameObject.GetComponent<RectTransform>();
+		rectPowerUp = powerUp.gameObject.GetComponent<RectTransform>();
+	}
+
 	public void SetUp(ColorsSO colors, bool selected)
 	{
-		Debug.Log($"Color {colors.idColor} {selected}");
+		//Debug.Log($"Color {colors.idColor} {selected}");
 		colorName.text = colors.colorName;
 		player.color = colors.playerColor;
 		straightEnemy.color = colors.straightEnemyColor;
@@ -99,36 +120,27 @@ public class ColorPack : MonoBehaviour
 	{
 		float elapsedTime = 0f;
 
-		Vector2 currentPosplayer = player.gameObject.GetComponent<RectTransform>().anchoredPosition;
-		Vector2 currentPosstraightEnemy = straightEnemy.gameObject.GetComponent<RectTransform>().anchoredPosition;
-		Vector2 currentPosfollowEnemy = followEnemy.gameObject.GetComponent<RectTransform>().anchoredPosition;
-		Quaternion currentRotfollowEnemy = followEnemy.gameObject.GetComponent<RectTransform>().rotation;
-		Vector3 currentScalebigEnemy = bigEnemy.gameObject.GetComponent<RectTransform>().localScale;
-		Vector2 currentPosrayEnemy = rayEnemy.gameObject.GetComponent<RectTransform>().anchoredPosition;
-		Vector2 currentPoschallenge = challenge.gameObject.GetComponent<RectTransform>().anchoredPosition;
-		Vector2 currentPospowerUp = powerUp.gameObject.GetComponent<RectTransform>().anchoredPosition;
-
 		while (elapsedTime < duration)
 		{
 			elapsedTime += Time.deltaTime;
-			player.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(currentPosplayer, Vector2.zero, elapsedTime / duration);
-			straightEnemy.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(currentPosstraightEnemy, Vector2.zero, elapsedTime / duration);
-			followEnemy.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(currentPosfollowEnemy, Vector2.zero, elapsedTime / duration);
-			followEnemy.gameObject.GetComponent<RectTransform>().rotation = Quaternion.Lerp(currentRotfollowEnemy, Quaternion.Euler(0, 0, 0), elapsedTime / duration);
-			bigEnemy.gameObject.GetComponent<RectTransform>().localScale = Vector3.Lerp(currentScalebigEnemy, Vector3.one, elapsedTime / duration);
-			rayEnemy.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(currentPosrayEnemy, Vector2.zero, elapsedTime / duration);
-			challenge.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(currentPoschallenge, Vector2.zero, elapsedTime / duration);
-			powerUp.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(currentPospowerUp, Vector2.zero, elapsedTime / duration);
+			rectPlayer.anchoredPosition = Vector2.Lerp(rectPlayer.anchoredPosition, Vector2.zero, elapsedTime / duration);
+			rectStraightEnemy.anchoredPosition = Vector2.Lerp(rectStraightEnemy.anchoredPosition, Vector2.zero, elapsedTime / duration);
+			rectFollowEnemy.anchoredPosition = Vector2.Lerp(rectFollowEnemy.anchoredPosition, Vector2.zero, elapsedTime / duration);
+			rotfollowEnemy.rotation = Quaternion.Lerp(rotfollowEnemy.rotation, Quaternion.Euler(0, 0, 0), elapsedTime / duration);
+			rectBigEnemy.localScale = Vector3.Lerp(rectBigEnemy.localScale, Vector3.one, elapsedTime / duration);
+			rectRayEnemy.anchoredPosition = Vector2.Lerp(rectRayEnemy.anchoredPosition, Vector2.zero, elapsedTime / duration);
+			rectChallenge.anchoredPosition = Vector2.Lerp(rectChallenge.anchoredPosition, Vector2.zero, elapsedTime / duration);
+			rectPowerUp.anchoredPosition = Vector2.Lerp(rectPowerUp.anchoredPosition, Vector2.zero, elapsedTime / duration);
 			yield return null;
 		}
-		player.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-		straightEnemy.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-		followEnemy.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+		rectPlayer.anchoredPosition = Vector2.zero;
+		rectStraightEnemy.anchoredPosition = Vector2.zero;
+		rectFollowEnemy.anchoredPosition = Vector2.zero;
+		rotfollowEnemy.anchoredPosition = Vector2.zero;
+		rectBigEnemy.anchoredPosition = Vector2.zero;
+		rectRayEnemy.anchoredPosition = Vector2.zero;
+		rectChallenge.anchoredPosition = Vector2.zero;
 		followEnemy.transform.up = Vector3.up;
-		bigEnemy.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-		rayEnemy.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-		challenge.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-		powerUp.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 
 		yield return null;
 	}
@@ -151,7 +163,7 @@ public class ColorPack : MonoBehaviour
 			yield return StartCoroutine(
 				Move(new Vector2(UnityEngine.Random.Range(-100, 100), UnityEngine.Random.Range(-100, 100)),
 				UnityEngine.Random.Range(0.3f, 0.7f),
-				player.gameObject.GetComponent<RectTransform>()));
+				rectPlayer));
 		}
 	}
 
@@ -162,7 +174,7 @@ public class ColorPack : MonoBehaviour
 		{
 			elapsedTime += Time.deltaTime;
 			float t = Mathf.Sin(elapsedTime * challengeSpeed) * 10;
-			challenge.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, t);
+			rectChallenge.anchoredPosition = new Vector2(0, t);
 			yield return null;
 		}
 	}
@@ -175,7 +187,7 @@ public class ColorPack : MonoBehaviour
 		{
 			elapsedTime += Time.deltaTime;
 			float t = Mathf.Sin(elapsedTime * challengeSpeed) * 10;
-			powerUp.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, t);
+			rectPowerUp.anchoredPosition = new Vector2(0, t);
 			yield return null;
 		}
 	}
@@ -187,22 +199,22 @@ public class ColorPack : MonoBehaviour
 			yield return StartCoroutine(
 				Move(new Vector2(0, 40),
 				0.5f,
-				straightEnemy.gameObject.GetComponent<RectTransform>()));
+				rectStraightEnemy));
 
 			yield return StartCoroutine(
 				Move(new Vector2(40, 0),
 				0.5f,
-				straightEnemy.gameObject.GetComponent<RectTransform>()));
+				rectStraightEnemy));
 
 			yield return StartCoroutine(
 				Move(new Vector2(0, -40),
 				0.5f,
-				straightEnemy.gameObject.GetComponent<RectTransform>()));
+				rectStraightEnemy));
 
 			yield return StartCoroutine(
 				Move(new Vector2(-40, 0),
 				0.5f,
-				straightEnemy.gameObject.GetComponent<RectTransform>()));
+				rectStraightEnemy));
 		}
 	}
 
@@ -216,7 +228,7 @@ public class ColorPack : MonoBehaviour
 			float tX = Mathf.Cos(elapsedTime * followSpeed) * 20;
 			followEnemy.transform.up = followEnemy.transform.parent.position - followEnemy.transform.position;
 			followEnemy.transform.Rotate(0, 0, -90);
-			followEnemy.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(tX, tY);
+			rectFollowEnemy.anchoredPosition = new Vector2(tX, tY);
 			yield return null;
 		}
 	}
@@ -241,12 +253,12 @@ public class ColorPack : MonoBehaviour
 			yield return StartCoroutine(
 				Move(new Vector2(20, 20),
 				0.5f,
-				rayEnemy.gameObject.GetComponent<RectTransform>()));
+				rectRayEnemy));
 
 			yield return StartCoroutine(
 				Move(new Vector2(-20, -20),
 				0.5f,
-				rayEnemy.gameObject.GetComponent<RectTransform>()));
+				rectRayEnemy));
 		}
 	}
 
