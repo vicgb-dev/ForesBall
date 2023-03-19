@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17778865c3d23914982c8584e1f9d813, type: 3}
+  m_Name: Colors6-Black
+  m_EditorClassIdentifier: 
+  idColor: 6
+  colorName: black
+  playerColor: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
+  mainMenuColor: {r: 0.16078432, g: 0.16078432, b: 0.16078432, a: 1}
+  customizeMenuColor: {r: 0.16078432, g: 0.16078432, b: 0.16078432, a: 1}
+  settingsMenuColor: {r: 0.16078432, g: 0.16078432, b: 0.16078432, a: 1}
+  levelsMenuColor: {r: 0.16078432, g: 0.16078432, b: 0.16078432, a: 1}
+  challengesColor: {r: 0.16078432, g: 0.16078432, b: 0.16078432, a: 1}
+  powerUpColor: {r: 0.16078432, g: 0.16078432, b: 0.16078432, a: 1}
+  straightEnemyColor: {r: 0.16078432, g: 0.16078432, b: 0.16078432, a: 1}
+  followEnemyColor: {r: 0.16078432, g: 0.16078432, b: 0.16078432, a: 1}
+  bigEnemyColor: {r: 0.16078432, g: 0.16078432, b: 0.16078432, a: 1}
+  rayEnemyColor: {r: 0.16078432, g: 0.16078432, b: 0.16078432, a: 1}

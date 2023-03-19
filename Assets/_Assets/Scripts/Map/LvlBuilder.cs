@@ -262,8 +262,8 @@ public class LvlBuilder : MonoBehaviour
 			float secondsToDestroy = 0;
 			if (deathTimeStamps != null && deathTimeStamps.Count > counter)
 			{
-				Debug.Log($"counter es {counter}");
-				Debug.Log($"deathTimeStamps.Count es {deathTimeStamps.Count}");
+				//Debug.Log($"counter es {counter}");
+				//Debug.Log($"deathTimeStamps.Count es {deathTimeStamps.Count}");
 				secondsToDestroy = deathTimeStamps[counter] - timeStamps[counter];
 			}
 

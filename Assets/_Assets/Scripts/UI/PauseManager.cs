@@ -65,7 +65,7 @@ public class PauseManager : MonoBehaviour
 		Time.timeScale = 1;
 		pausePanelImage.color = initialColor;
 		pausePanel.transform.GetChild(0).localPosition = panelLeftPosition;
-		Debug.Log("escondiendo boton");
+		//Debug.Log("escondiendo boton");
 		pauseButton.GetComponent<Button>().enabled = false;
 		StartCoroutine(UIHelpers.Instance.MovePanel(
 			pauseButton,

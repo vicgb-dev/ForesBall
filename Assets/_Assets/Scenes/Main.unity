@@ -757,7 +757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: d74b008d1422e3e43939fdb89c3b29ca, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -3311,6 +3311,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 747176533}
+  - component: {fileID: 747176534}
   - component: {fileID: 747176532}
   m_Layer: 0
   m_Name: Global Volume
@@ -3350,6 +3351,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &747176534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747176531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb68bde77e7ea2342b9cd33edea8347f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDistorsionX: 0.02
+  moveDistorsionY: 0.05
+  audioVolume: 0.00823158
+  chromaticMin: 0.03
+  chromaticMax: 0.3
+  bloomIntensityMin: 2
+  bloomIntensityMax: 5
+  bloomScatterMin: 0.13
+  bloomScatterMax: 0.2
 --- !u!1 &761115474
 GameObject:
   m_ObjectHideFlags: 0
@@ -5923,7 +5945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: d74b008d1422e3e43939fdb89c3b29ca, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -7608,7 +7630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: d74b008d1422e3e43939fdb89c3b29ca, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -7807,6 +7829,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2811df42f0b163040851e91df03efbe6, type: 2}
   - {fileID: 11400000, guid: 884d82b1ebca5144093b65eeebf4f42c, type: 2}
   - {fileID: 11400000, guid: 09f16e58cfc9b114ea3630770d76958f, type: 2}
+  - {fileID: 11400000, guid: 281dd7d42da93f84db0b9726b9f40c78, type: 2}
 --- !u!1 &1910143626
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeginDragHandler, IEndDragHandler
 {
@@ -126,6 +128,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 		horizontal = Mathf.InverseLerp(containerLimitLeft + OffSetHorizontal, containerLimitRight - OffSetHorizontal, thisRT.position.x);
 
 		//Debug.Log("V: " + Mathf.Round(vertical * 100) + "% H: " + Mathf.Round(horizontal * 100) + "%");
+		PostProcessingManager.Instance.ChangeLensDistorsion(horizontal, vertical);
 
 		if (playerMove != null) playerMove.NewPosition(horizontal, vertical);
 	}

@@ -1,0 +1,149 @@
+using System;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+
+public class PostProcessingManager : MonoBehaviour
+{
+
+	[Header("PostProcessing")]
+	[Range(0, 0.5f)]
+	[SerializeField] private float moveDistorsionX;
+	[Range(0, 0.5f)]
+	[SerializeField] private float moveDistorsionY;
+	[SerializeField] private float audioVolume;
+
+	[Header("Values depending on audio volume")]
+	[SerializeField] private float chromaticMin = 0.05f;
+	[SerializeField] private float chromaticMax = 0.3f;
+	[Space]
+	[SerializeField] private float bloomIntensityMin = 2f;
+	[SerializeField] private float bloomIntensityMax = 4f;
+	[Space]
+	[SerializeField] private float bloomScatterMin = 0.13f;
+	[SerializeField] private float bloomScatterMax = 0.18f;
+
+
+	private Volume post;
+	private ChromaticAberration chromatic; // default 0.1
+	private Bloom bloom; // default 2.5
+	private LensDistortion lens;
+
+
+	private AudioSource lvlMusic;
+
+	#region Singleton
+
+	private static PostProcessingManager _instance;
+	public static PostProcessingManager Instance
+	{
+		get
+		{
+			if (_instance != null) return _instance;
+			Debug.Log("Buscando singleton en escena");
+			_instance = FindObjectOfType<PostProcessingManager>();
+			if (_instance != null) return _instance;
+			var manager = new GameObject("Singleton");
+			_instance = manager.AddComponent<PostProcessingManager>();
+			return _instance;
+		}
+	}
+
+	private void Awake()
+	{
+		if (_instance != null && _instance != this)
+		{
+			Destroy(this.gameObject);
+			return;
+		}
+		_instance = this;
+		post = GetComponent<Volume>();
+	}
+
+	#endregion
+
+	private void Start()
+	{
+		post.profile.TryGet(out lens);
+		post.profile.TryGet(out chromatic);
+		post.profile.TryGet(out bloom);
+	}
+
+	private void OnEnable()
+	{
+		Actions.onLvlMusicChange += SetAudioSource;
+		Actions.onCleanLvl += ReCenterDistorsion;
+	}
+
+	private void OnDisable()
+	{
+		Actions.onLvlMusicChange -= SetAudioSource;
+		Actions.onCleanLvl -= ReCenterDistorsion;
+	}
+
+	private void Update()
+	{
+		if (lvlMusic != null)
+		{
+			audioVolume = CalcularVolumenAudioSource(lvlMusic);
+			chromatic.intensity.value = Tools.Remap(audioVolume, 0, 0.2f, chromaticMin, chromaticMax);
+			bloom.intensity.value = Tools.Remap(audioVolume, 0, 0.2f, bloomIntensityMin, bloomIntensityMax);
+			bloom.threshold.value = Tools.Remap(audioVolume, 0, 0.2f, 1.5f, 1);
+			bloom.scatter.value = Tools.Remap(audioVolume, 0, 0.2f, bloomScatterMin, bloomScatterMax);
+		}
+	}
+
+	public void ChangeLensDistorsion(float horizontal, float vertical)
+	{
+		post.profile.TryGet(out lens);
+		lens.center.value = new Vector2(Mathf.Lerp(0.5f - moveDistorsionX, 0.5f + moveDistorsionX, horizontal), Mathf.Lerp(0.5f - moveDistorsionY, 0.5f + moveDistorsionY, vertical));
+	}
+
+	private void ReCenterDistorsion()
+	{
+		StartCoroutine(MoveDistorsion());
+	}
+
+	private IEnumerator MoveDistorsion()
+	{
+		Vector2 initialValue = lens.center.value;
+		Vector2 finalValue = new Vector2(0.5f, 0.5f);
+		float seconds = 0.2f;
+		float elapsedTime = 0;
+		float time = 0;
+		while (elapsedTime < seconds)
+		{
+			elapsedTime += Time.deltaTime;
+			time += Time.deltaTime / seconds;
+			lens.center.value = Vector2.Lerp(initialValue, finalValue, time);
+			yield return null;
+		}
+	}
+
+	private void SetAudioSource(AudioSource aS)
+	{
+		lvlMusic = aS;
+	}
+
+	public float CalcularVolumenAudioSource(AudioSource aS)
+	{
+		float clipLoudness = 0;
+
+		int sampleDataLength = 1024;
+		float[] clipSampleData = new float[sampleDataLength];
+
+		if (aS != null && (aS.timeSamples + sampleDataLength) < aS.clip.samples)
+		{
+			aS.clip.GetData(clipSampleData, aS.timeSamples); //I read 1024 samples, which is about 80 ms on a 44khz stereo clip, beginning at the current sample position of the clip.
+			foreach (var sample in clipSampleData)
+			{
+				clipLoudness += Mathf.Abs(sample);
+			}
+			clipLoudness /= sampleDataLength; //clipLoudness is what you are looking for
+		}
+		else clipLoudness = 0;
+
+		return clipLoudness;
+	}
+}

@@ -96,8 +96,9 @@ public class SoundManager : MonoBehaviour
 	{
 		pitch = 1;
 		currentLvl = lvl;
-		lvlMusic = CreateAudioChild("LvlMusic", currentLvl.music, currentLvl.musicVolume);
+		lvlMusic = CreateAudioChild("LvlMusic", currentLvl.music, currentLvl.musicVolume, isLvlMusic: true);
 		lvlMusic.Play();
+		Actions.onLvlMusicChange?.Invoke(lvlMusic);
 	}
 
 	private void OnNewUIState(UIState state)
@@ -125,7 +126,7 @@ public class SoundManager : MonoBehaviour
 		CreateAudioChild("EndLvlSound", currentLvl.winSound, currentLvl.winSoundVolume).Play();
 	}
 
-	private AudioSource CreateAudioChild(string name, AudioClip audioClip, float audioVolume, bool selfDestruction = true)
+	private AudioSource CreateAudioChild(string name, AudioClip audioClip, float audioVolume, bool selfDestruction = true, bool isLvlMusic = false)
 	{
 		GameObject lvlAudio = new GameObject(name);
 		lvlAudio.transform.SetParent(gameObject.transform);
@@ -135,13 +136,15 @@ public class SoundManager : MonoBehaviour
 		audioSource.clip = audioClip;
 		audioSource.volume = audioVolume;
 
-		if (selfDestruction) StartCoroutine(SelfDestruction(lvlAudio, audioClip.length));
+		if (selfDestruction) StartCoroutine(SelfDestruction(lvlAudio, audioClip.length, isLvlMusic));
 		return audioSource;
 	}
 
-	private IEnumerator SelfDestruction(GameObject audioGO, float delay)
+	private IEnumerator SelfDestruction(GameObject audioGO, float delay, bool isLvlMusic = false)
 	{
 		yield return new WaitForSeconds(delay);
+		if (isLvlMusic)
+			Actions.onLvlMusicChange?.Invoke(null);
 		Destroy(audioGO);
 	}
 
