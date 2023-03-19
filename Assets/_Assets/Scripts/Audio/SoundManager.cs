@@ -75,7 +75,6 @@ public class SoundManager : MonoBehaviour
 
 		PlayerPrefs.SetFloat("volume", linearVolume);
 		PlayerPrefs.Save();
-
 	}
 
 	private void OnEnable()

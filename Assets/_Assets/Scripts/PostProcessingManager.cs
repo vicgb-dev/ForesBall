@@ -24,12 +24,11 @@ public class PostProcessingManager : MonoBehaviour
 	[SerializeField] private float bloomScatterMin = 0.13f;
 	[SerializeField] private float bloomScatterMax = 0.18f;
 
-
 	private Volume post;
+	private float postWeight;
 	private ChromaticAberration chromatic; // default 0.1
 	private Bloom bloom; // default 2.5
 	private LensDistortion lens;
-
 
 	private AudioSource lvlMusic;
 
@@ -59,6 +58,9 @@ public class PostProcessingManager : MonoBehaviour
 		}
 		_instance = this;
 		post = GetComponent<Volume>();
+		postWeight = PlayerPrefs.GetFloat("postWeight", 1);
+		post.weight = postWeight;
+		Debug.Log($"cargado{postWeight}");
 	}
 
 	#endregion
@@ -94,12 +96,6 @@ public class PostProcessingManager : MonoBehaviour
 		}
 	}
 
-	public void ChangeLensDistorsion(float horizontal, float vertical)
-	{
-		post.profile.TryGet(out lens);
-		lens.center.value = new Vector2(Mathf.Lerp(0.5f - moveDistorsionX, 0.5f + moveDistorsionX, horizontal), Mathf.Lerp(0.5f - moveDistorsionY, 0.5f + moveDistorsionY, vertical));
-	}
-
 	private void ReCenterDistorsion()
 	{
 		StartCoroutine(MoveDistorsion());
@@ -126,6 +122,22 @@ public class PostProcessingManager : MonoBehaviour
 		lvlMusic = aS;
 	}
 
+	public void ChangePostWeight(float amount)
+	{
+		amount = Mathf.Clamp(amount, 0, 1);
+		post.weight = amount;
+		Debug.Log("guardando weight");
+		PlayerPrefs.SetFloat("postWeight", amount);
+	}
+
+	public float GetPostWeight() => post.weight;
+
+	public void ChangeLensDistorsion(float horizontal, float vertical)
+	{
+		post.profile.TryGet(out lens);
+		lens.center.value = new Vector2(Mathf.Lerp(0.5f - moveDistorsionX, 0.5f + moveDistorsionX, horizontal), Mathf.Lerp(0.5f - moveDistorsionY, 0.5f + moveDistorsionY, vertical));
+	}
+
 	public float CalcularVolumenAudioSource(AudioSource aS)
 	{
 		float clipLoudness = 0;
@@ -140,7 +152,7 @@ public class PostProcessingManager : MonoBehaviour
 			{
 				clipLoudness += Mathf.Abs(sample);
 			}
-			clipLoudness /= sampleDataLength; //clipLoudness is what you are looking for
+			clipLoudness /= sampleDataLength;
 		}
 		else clipLoudness = 0;
 

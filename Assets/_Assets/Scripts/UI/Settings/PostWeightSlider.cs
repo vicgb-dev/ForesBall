@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class VolumeSlider : CustomSlider
+public class PostWeightSlider : CustomSlider
 {
 	protected override void Start()
 	{
 		lastFillAmount = slider.fillAmount;
-		slider.fillAmount = SoundManager.Instance.GetLinearVolume();
+		slider.fillAmount = PostProcessingManager.Instance.GetPostWeight();
 		base.Start();
 	}
 
@@ -25,7 +25,7 @@ public class VolumeSlider : CustomSlider
 		if (fill < 0.01f) fill = 0;
 		slider.fillAmount = fill;
 
-		SoundManager.Instance.SetVolume(slider.fillAmount);
+		PostProcessingManager.Instance.ChangePostWeight(fill);
 
 		slider.color = new Color(color.r - 0.2f, color.g - 0.2f, color.b - 0.2f, Tools.Remap(slider.fillAmount, 0, 1, 0.3f, 1));
 

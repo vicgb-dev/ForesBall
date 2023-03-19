@@ -178,16 +178,11 @@ public class ColorsManager : MonoBehaviour
 	{
 		foreach (Image image in images)
 		{
-			VolumeSlider slider = image.gameObject.GetComponent<VolumeSlider>();
-			if (slider != null)
-			{
-				slider.SetColor(color);
-			}
+			CustomSlider customSlider = image.gameObject.GetComponent<CustomSlider>();
+			if (customSlider != null)
+				customSlider.SetColor(color);
 			else
-			{
 				image.color = color;
-			}
-
 		}
 	}
 
@@ -216,7 +211,10 @@ public class ColorsManager : MonoBehaviour
 		}
 	}
 
-	public Color GetPowerUpColor() => colorsSO.powerUpColor;
+	public Color GetPowerUpColor()
+	{
+		return colorsSO.powerUpColor;
+	}
 	public Color GetChallengesColor() => colorsSO.challengesColor;
 	public Color GetPlayerColor() => colorsSO.playerColor;
 
