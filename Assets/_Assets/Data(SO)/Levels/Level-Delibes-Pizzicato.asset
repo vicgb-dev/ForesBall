@@ -10,28 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23f29812b503ecd4aa042a38e18b680e, type: 3}
-  m_Name: Level
+  m_Name: Level-Delibes-Pizzicato
   m_EditorClassIdentifier: 
-  musicName: eine kleine nachtmusik
-  musicAuthor: mozart
-  music: {fileID: 8300000, guid: 7b73aae7976c3814a988c9b5d79aad44, type: 3}
+  musicName: pizzicato
+  musicAuthor: delibes
+  music: {fileID: 8300000, guid: 374835b966ab50a4d8d68fdc4a50fe6e, type: 3}
   musicVolume: 0.5
   winSound: {fileID: 8300000, guid: 828a7d7d251074a48aa1d2cf8c5b3afe, type: 3}
   winSoundVolume: 0.5
   loseSound: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}
   loseSoundVolume: 0.5
-  straightSpawnTimeStamps: []
+  straightSpawnTimeStamps:
+  - 2.6
+  - 3
+  - 6.3
+  - 6.8
+  - 9.9
+  - 10.3
   straightDeathsTimeStamps: []
-  followSpawnTimeStamps: []
+  followSpawnTimeStamps:
+  - 18.6
   followDeathsTimeStamps: []
   bigSpawnTimeStamps: []
   raySpawnTimeStamps: []
   powerUpsInmortalTimeStamps: []
-  powerUpsShrinkTimeStamps: []
+  powerUpsShrinkTimeStamps:
+  - 22.2
   timeChallenge: 1
   hotspot: 1
   collectibles: 1
-  percentOfSongToCompleteHotspot: 30
+  percentOfSongToCompleteHotspot: 20
   collectiblesSpawnTimeStamps:
-  - 0.2
+  - 3
+  - 6.8
+  - 10.3
   objectivesToUnlock: 0

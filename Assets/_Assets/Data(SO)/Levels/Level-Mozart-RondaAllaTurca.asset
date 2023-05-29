@@ -10,28 +10,51 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23f29812b503ecd4aa042a38e18b680e, type: 3}
-  m_Name: Level
+  m_Name: Level-Mozart-RondaAllaTurca
   m_EditorClassIdentifier: 
-  musicName: eine kleine nachtmusik
+  musicName: ronda alla turca
   musicAuthor: mozart
-  music: {fileID: 8300000, guid: 7b73aae7976c3814a988c9b5d79aad44, type: 3}
+  music: {fileID: 8300000, guid: 600e90fb821efe24fa322351118e9384, type: 3}
   musicVolume: 0.5
   winSound: {fileID: 8300000, guid: 828a7d7d251074a48aa1d2cf8c5b3afe, type: 3}
   winSoundVolume: 0.5
   loseSound: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}
   loseSoundVolume: 0.5
-  straightSpawnTimeStamps: []
-  straightDeathsTimeStamps: []
-  followSpawnTimeStamps: []
+  straightSpawnTimeStamps:
+  - 4.3
+  - 5.2
+  - 6
+  - 11.4
+  - 12.4
+  - 13.3
+  - 19.6
+  - 21.4
+  straightDeathsTimeStamps:
+  - 5.2
+  - 6
+  - 0
+  - 12.4
+  - 13.3
+  - 0
+  followSpawnTimeStamps:
+  - 0.8
+  - 7.9
+  - 16
+  - 17.8
+  - 22.2
   followDeathsTimeStamps: []
   bigSpawnTimeStamps: []
   raySpawnTimeStamps: []
   powerUpsInmortalTimeStamps: []
   powerUpsShrinkTimeStamps: []
   timeChallenge: 1
-  hotspot: 1
-  collectibles: 1
-  percentOfSongToCompleteHotspot: 30
+  hotspot: 0.742924
+  collectibles: 0
+  percentOfSongToCompleteHotspot: 25
   collectiblesSpawnTimeStamps:
-  - 0.2
+  - 1.6
+  - 3.4
+  - 8.7
+  - 10.5
+  - 23.3
   objectivesToUnlock: 0

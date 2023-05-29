@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23f29812b503ecd4aa042a38e18b680e, type: 3}
-  m_Name: Level
+  m_Name: Level-Mozartl-EineKleine
   m_EditorClassIdentifier: 
   musicName: eine kleine nachtmusik
   musicAuthor: mozart
@@ -20,7 +20,14 @@ MonoBehaviour:
   winSoundVolume: 0.5
   loseSound: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}
   loseSoundVolume: 0.5
-  straightSpawnTimeStamps: []
+  straightSpawnTimeStamps:
+  - 7.5
+  - 7.5
+  - 10.8
+  - 14.2
+  - 15
+  - 15.9
+  - 16.8
   straightDeathsTimeStamps: []
   followSpawnTimeStamps: []
   followDeathsTimeStamps: []
@@ -28,10 +35,13 @@ MonoBehaviour:
   raySpawnTimeStamps: []
   powerUpsInmortalTimeStamps: []
   powerUpsShrinkTimeStamps: []
-  timeChallenge: 1
-  hotspot: 1
-  collectibles: 1
-  percentOfSongToCompleteHotspot: 30
+  timeChallenge: 0
+  hotspot: 0
+  collectibles: 0
+  percentOfSongToCompleteHotspot: 20
   collectiblesSpawnTimeStamps:
   - 0.2
+  - 0.2
+  - 2.9
+  - 6.5
   objectivesToUnlock: 0
