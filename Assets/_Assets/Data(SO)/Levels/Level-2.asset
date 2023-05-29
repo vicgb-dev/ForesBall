@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f29812b503ecd4aa042a38e18b680e, type: 3}
   m_Name: Level-2
   m_EditorClassIdentifier: 
-  musicName: Swan lake Spanish Dance
+  musicName: swan lake spanish dance
+  musicAuthor: tchaikovsky
   music: {fileID: 8300000, guid: 24abe5c0761a72b45a66381510c9eb9f, type: 3}
   musicVolume: 0.5
   winSound: {fileID: 8300000, guid: 57b5aad0b88bb254aa4e6b4e306359af, type: 3}
@@ -22,6 +23,7 @@ MonoBehaviour:
   straightSpawnTimeStamps:
   - 24.9
   - 37.1
+  straightDeathsTimeStamps: []
   followSpawnTimeStamps:
   - 0
   - 0
@@ -32,11 +34,12 @@ MonoBehaviour:
   - 37.1
   - 37.1
   - 39.8
+  followDeathsTimeStamps: []
   bigSpawnTimeStamps: []
   raySpawnTimeStamps: []
   powerUpsInmortalTimeStamps: []
   powerUpsShrinkTimeStamps: []
-  timeChallenge: 0
+  timeChallenge: 1
   hotspot: 0
   collectibles: 0
   percentOfSongToCompleteHotspot: 40

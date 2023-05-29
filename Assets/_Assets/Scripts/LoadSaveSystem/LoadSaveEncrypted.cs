@@ -70,7 +70,7 @@ public static class LoadSaveEncrypted
 		}
 		else
 		{
-			Debug.LogError("Fichero no encontrado en: " + path);
+			Debug.LogWarning("Fichero no encontrado en: " + path);
 			return null;
 		}
 	}

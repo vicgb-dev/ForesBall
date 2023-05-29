@@ -109,9 +109,9 @@ public class UIManager : MonoBehaviour
 	public void SetCurrentPanel(int newCurrentPanel)
 	{
 		if (currentPanel == newCurrentPanel) return;
+
 		currentPanel = newCurrentPanel;
 
 		SoundManager.Instance.PlayMusicPreview(LvlBuilder.Instance.GetLevels()[currentPanel]);
-
 	}
 }

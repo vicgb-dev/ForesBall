@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f29812b503ecd4aa042a38e18b680e, type: 3}
   m_Name: Level-1
   m_EditorClassIdentifier: 
-  musicName: In The Hall Of The Mountain King
+  musicName: in the hall of the mountain king
+  musicAuthor: grieg
   music: {fileID: 8300000, guid: b7e88e8c0b1c720479ce160154259769, type: 3}
   musicVolume: 0.5
   winSound: {fileID: 8300000, guid: 384a1ebc4b057fd489b2e01744769962, type: 3}
@@ -47,9 +48,9 @@ MonoBehaviour:
   powerUpsShrinkTimeStamps:
   - 19.4
   - 39.1
-  timeChallenge: 0
-  hotspot: 0
-  collectibles: 0
+  timeChallenge: 1
+  hotspot: 1
+  collectibles: 0.6
   percentOfSongToCompleteHotspot: 40
   collectiblesSpawnTimeStamps:
   - 3.4

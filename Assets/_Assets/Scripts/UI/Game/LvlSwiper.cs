@@ -113,6 +113,7 @@ public class LvlSwiper : MonoBehaviour, IPointerDownHandler
 	public void UpdatePanelsScale()
 	{
 		for (int i = 0; i < positions.Length; i++)
+		{
 			if (scrollbar.value < positions[i] + (distance / 2) && scrollbar.value > positions[i] - (distance / 2))
 			{
 				currentPanel = i;
@@ -122,6 +123,7 @@ public class LvlSwiper : MonoBehaviour, IPointerDownHandler
 					if (a != i)
 						transform.GetChild(a).localScale = Vector2.Lerp(transform.GetChild(a).localScale, new Vector2(panelMinScale, panelMinScale), transitionTime);
 			}
+		}
 	}
 
 	public void ScrollbarMoveOrigin()

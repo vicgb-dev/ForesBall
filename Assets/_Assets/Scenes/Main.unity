@@ -3567,8 +3567,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb68bde77e7ea2342b9cd33edea8347f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDistorsionX: 0.02
-  moveDistorsionY: 0.05
+  moveDistorsionX: 0.04
+  moveDistorsionY: 0.07
   audioVolume: 0.00823158
   chromaticMin: 0.03
   chromaticMax: 0.3
@@ -6789,7 +6789,7 @@ MonoBehaviour:
   enemiesManagerSO: {fileID: 11400000, guid: 8fda57debc87ec34bbf2a94ce4d88646, type: 2}
   challengesManagerSO: {fileID: 11400000, guid: 17dd6fe231b2cee408ac2ea239652cc4, type: 2}
   powerUpsManagerSO: {fileID: 11400000, guid: d6e86457443e7544abd7181a788379a7, type: 2}
-  levelsManagerSO: {fileID: 11400000, guid: 2a83f6d13ea37f549acaa41908a8c803, type: 2}
+  levelsManagerSO: {fileID: 11400000, guid: 3d938ded038cc1a46b1893346bcfd3ab, type: 2}
 --- !u!1001 &1546646812
 PrefabInstance:
   m_ObjectHideFlags: 0
