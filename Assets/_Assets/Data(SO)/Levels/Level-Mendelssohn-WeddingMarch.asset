@@ -10,35 +10,59 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23f29812b503ecd4aa042a38e18b680e, type: 3}
-  m_Name: Level-0
+  m_Name: Level-Mendelssohn-WeddingMarch
   m_EditorClassIdentifier: 
-  musicName: Platillos
-  musicAuthor: "Un se\xF1or Desconocido"
-  music: {fileID: 8300000, guid: 384a1ebc4b057fd489b2e01744769962, type: 3}
+  musicName: wedding march
+  musicAuthor: mendelssohn
+  music: {fileID: 8300000, guid: 4fea55015adb372439693da262164343, type: 3}
   musicVolume: 0.5
-  winSound: {fileID: 8300000, guid: 384a1ebc4b057fd489b2e01744769962, type: 3}
+  winSound: {fileID: 8300000, guid: 828a7d7d251074a48aa1d2cf8c5b3afe, type: 3}
   winSoundVolume: 0.5
   loseSound: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}
   loseSoundVolume: 0.5
   straightSpawnTimeStamps:
-  - 6
-  - 6
-  - 6
+  - 3.8
+  - 5.2
+  - 11.5
+  - 18.5
   straightDeathsTimeStamps: []
-  followSpawnTimeStamps: []
+  followSpawnTimeStamps:
+  - 6.8
+  - 12.9
   followDeathsTimeStamps: []
-  bigSpawnTimeStamps: []
+  bigSpawnTimeStamps:
+  - 0.6
+  - 2.3
+  - 6.7
+  - 6.7
+  - 10
+  - 12.9
+  - 12.9
+  - 16.2
+  - 25
+  - 25
+  - 26.8
+  - 28.4
+  - 31.2
+  - 31.2
+  - 33
   raySpawnTimeStamps:
-  - 6
-  - 6
-  - 6
+  - 20
+  - 21.4
+  - 23
+  - 23.7
+  - 24.5
+  - 25.2
   powerUpsInmortalTimeStamps: []
   powerUpsShrinkTimeStamps: []
   timeChallenge: 1
   hotspot: 1
   collectibles: 1
-  percentOfSongToCompleteHotspot: 50
+  percentOfSongToCompleteHotspot: 30
   collectiblesSpawnTimeStamps:
-  - 1
-  - 1
+  - 6.8
+  - 6.8
+  - 13
+  - 19.1
+  - 20.7
   objectivesToUnlock: 0

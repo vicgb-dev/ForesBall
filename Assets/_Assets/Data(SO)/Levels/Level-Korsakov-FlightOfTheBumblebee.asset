@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f29812b503ecd4aa042a38e18b680e, type: 3}
+  m_Name: Level-Korsakov-FlightOfTheBumblebee
+  m_EditorClassIdentifier: 
+  musicName: flight of the bumblebee
+  musicAuthor: korsakov
+  music: {fileID: 8300000, guid: 7323fb8e617ba504b8556bc269bb784e, type: 3}
+  musicVolume: 0.5
+  winSound: {fileID: 8300000, guid: 828a7d7d251074a48aa1d2cf8c5b3afe, type: 3}
+  winSoundVolume: 0.5
+  loseSound: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}
+  loseSoundVolume: 0.5
+  straightSpawnTimeStamps:
+  - 7.8
+  - 9.3
+  - 13.8
+  - 15.4
+  - 25.9
+  - 27.3
+  straightDeathsTimeStamps:
+  - 0
+  - 0
+  - 0
+  - 25.9
+  - 27.3
+  - 0
+  followSpawnTimeStamps:
+  - 6.2
+  - 6.2
+  - 12.3
+  - 28.8
+  followDeathsTimeStamps: []
+  bigSpawnTimeStamps:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 3
+  - 3
+  - 11.6
+  - 17.7
+  - 19.1
+  - 20.5
+  - 30.4
+  - 32.9
+  - 33.5
+  - 34.2
+  - 35.1
+  - 36.6
+  - 36.6
+  raySpawnTimeStamps: []
+  powerUpsInmortalTimeStamps:
+  - 3
+  powerUpsShrinkTimeStamps: []
+  timeChallenge: 1
+  hotspot: 1
+  collectibles: 1
+  percentOfSongToCompleteHotspot: 30
+  collectiblesSpawnTimeStamps:
+  - 0
+  - 7.3
+  - 8.7
+  - 13.4
+  - 14.9
+  objectivesToUnlock: 0

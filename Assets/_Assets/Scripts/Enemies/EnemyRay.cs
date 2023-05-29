@@ -16,7 +16,7 @@ public class EnemyRay : Enemy
 		float time = 0;
 		Vector3 initialScale = transform.localScale;
 
-		while (time <= 5)
+		while (time <= 5 && !stopped)
 		{
 			time += Time.deltaTime;
 			transform.position += transform.up * speed * Time.deltaTime;

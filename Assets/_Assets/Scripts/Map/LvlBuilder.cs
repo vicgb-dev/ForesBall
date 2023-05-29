@@ -324,6 +324,7 @@ public class LvlBuilder : MonoBehaviour
 
 		GameObject instantiatedEnemy = Instantiate(prefab, fromPos, Quaternion.Euler(0, 0, 0));
 		instantiatedEnemy.transform.up = toPos - instantiatedEnemy.transform.position;
+		enemiesGO.Add(instantiatedEnemy);
 		enemiesManagerSO.enemies[3].SetUpEnemy(instantiatedEnemy);
 	}
 
