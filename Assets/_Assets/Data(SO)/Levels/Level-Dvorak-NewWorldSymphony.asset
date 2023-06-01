@@ -10,28 +10,70 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23f29812b503ecd4aa042a38e18b680e, type: 3}
-  m_Name: Level
+  m_Name: Level-Dvorak-NewWorldSymphony
   m_EditorClassIdentifier: 
-  musicName: eine kleine nachtmusik
-  musicAuthor: mozart
-  music: {fileID: 8300000, guid: 7b73aae7976c3814a988c9b5d79aad44, type: 3}
+  musicName: new world symphony
+  musicAuthor: dvorak
+  music: {fileID: 8300000, guid: b0c5d62376b81e7459c1f05f3e0b3ad3, type: 3}
   musicVolume: 0.5
   winSound: {fileID: 8300000, guid: 828a7d7d251074a48aa1d2cf8c5b3afe, type: 3}
   winSoundVolume: 0.5
   loseSound: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}
   loseSoundVolume: 0.5
-  straightSpawnTimeStamps: []
+  straightSpawnTimeStamps:
+  - 4
+  - 4.8
+  - 20.2
+  - 26.8
   straightDeathsTimeStamps: []
-  followSpawnTimeStamps: []
+  followSpawnTimeStamps:
+  - 1
+  - 2.6
+  - 15.2
   followDeathsTimeStamps: []
-  bigSpawnTimeStamps: []
-  raySpawnTimeStamps: []
-  powerUpsInmortalTimeStamps: []
-  powerUpsShrinkTimeStamps: []
+  bigSpawnTimeStamps:
+  - 15.2
+  - 16.8
+  - 18.5
+  - 19.4
+  - 20.2
+  - 21.9
+  - 23.5
+  - 25.1
+  - 26.1
+  - 26.9
+  - 28.6
+  - 30.2
+  - 31.7
+  - 32.7
+  - 33.5
+  - 35.2
+  - 36.8
+  - 38.4
+  - 39.2
+  - 40.1
+  - 40.1
+  raySpawnTimeStamps:
+  - 8.5
+  - 9.4
+  - 10.2
+  - 11
+  - 26.9
+  - 30.2
+  - 33.5
+  powerUpsInmortalTimeStamps:
+  - 26.9
+  powerUpsShrinkTimeStamps:
+  - 30.2
   timeChallenge: 1
   hotspot: 1
   collectibles: 1
   percentOfSongToCompleteHotspot: 40
   collectiblesSpawnTimeStamps:
-  - 0.2
+  - 11.4
+  - 18.5
+  - 19.4
+  - 20.2
+  - 25.1
+  - 26.1
   objectivesToUnlock: 0

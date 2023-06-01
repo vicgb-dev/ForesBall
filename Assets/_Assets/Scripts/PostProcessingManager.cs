@@ -27,7 +27,11 @@ public class PostProcessingManager : MonoBehaviour
 	private Volume post;
 	private float postWeight;
 	private ChromaticAberration chromatic; // default 0.1
+	private float chromaticInitial = 0;
 	private Bloom bloom; // default 2.5
+	private float bloomIntensityInitial = 0;
+	private float bloomThresholdInitial = 0;
+	private float bloomScatterInitial = 0;
 	private LensDistortion lens;
 
 	private AudioSource lvlMusic;
@@ -69,19 +73,23 @@ public class PostProcessingManager : MonoBehaviour
 	{
 		post.profile.TryGet(out lens);
 		post.profile.TryGet(out chromatic);
+		chromaticInitial = chromatic.intensity.value;
 		post.profile.TryGet(out bloom);
+		bloomIntensityInitial = bloom.intensity.value;
+		bloomThresholdInitial = bloom.threshold.value;
+		bloomScatterInitial = bloom.scatter.value;
 	}
 
 	private void OnEnable()
 	{
 		Actions.onLvlMusicChange += SetAudioSource;
-		Actions.onCleanLvl += ReCenterDistorsion;
+		Actions.onCleanLvl += ResetPostprocesses;
 	}
 
 	private void OnDisable()
 	{
 		Actions.onLvlMusicChange -= SetAudioSource;
-		Actions.onCleanLvl -= ReCenterDistorsion;
+		Actions.onCleanLvl -= ResetPostprocesses;
 	}
 
 	private void Update()
@@ -96,15 +104,22 @@ public class PostProcessingManager : MonoBehaviour
 		}
 	}
 
-	private void ReCenterDistorsion()
+	private void ResetPostprocesses()
 	{
-		StartCoroutine(MoveDistorsion());
+		StartCoroutine(ResetPostprocessesCo());
 	}
 
-	private IEnumerator MoveDistorsion()
+	private IEnumerator ResetPostprocessesCo()
 	{
 		Vector2 initialValue = lens.center.value;
 		Vector2 finalValue = new Vector2(0.5f, 0.5f);
+
+		float bloomIntensity = bloom.intensity.value;
+		float bloomThreshold = bloom.threshold.value;
+		float bloomScatter = bloom.scatter.value;
+
+		float finalChromatic = chromatic.intensity.value;
+
 		float seconds = 0.2f;
 		float elapsedTime = 0;
 		float time = 0;
@@ -113,6 +128,13 @@ public class PostProcessingManager : MonoBehaviour
 			elapsedTime += Time.deltaTime;
 			time += Time.deltaTime / seconds;
 			lens.center.value = Vector2.Lerp(initialValue, finalValue, time);
+
+			bloom.intensity.value = Mathf.Lerp(bloomIntensity, bloomIntensityInitial, time);
+			bloom.threshold.value = Mathf.Lerp(bloomThreshold, bloomThresholdInitial, time);
+			bloom.scatter.value = Mathf.Lerp(bloomScatter, bloomScatterInitial, time);
+
+			chromatic.intensity.value = Mathf.Lerp(finalChromatic, chromaticInitial, time);
+
 			yield return null;
 		}
 	}

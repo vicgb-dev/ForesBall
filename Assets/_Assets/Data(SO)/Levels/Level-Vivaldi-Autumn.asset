@@ -10,28 +10,72 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23f29812b503ecd4aa042a38e18b680e, type: 3}
-  m_Name: Level
+  m_Name: Level-Vivaldi-Autumn
   m_EditorClassIdentifier: 
-  musicName: eine kleine nachtmusik
-  musicAuthor: mozart
-  music: {fileID: 8300000, guid: 7b73aae7976c3814a988c9b5d79aad44, type: 3}
+  musicName: autumn
+  musicAuthor: vivaldi
+  music: {fileID: 8300000, guid: 12ebb2042d8cbaf4db1b03f5c3fe4205, type: 3}
   musicVolume: 0.5
   winSound: {fileID: 8300000, guid: 828a7d7d251074a48aa1d2cf8c5b3afe, type: 3}
   winSoundVolume: 0.5
   loseSound: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}
   loseSoundVolume: 0.5
-  straightSpawnTimeStamps: []
-  straightDeathsTimeStamps: []
-  followSpawnTimeStamps: []
-  followDeathsTimeStamps: []
+  straightSpawnTimeStamps:
+  - 0.3
+  - 1.2
+  - 2.2
+  - 3.1
+  - 4
+  - 5
+  straightDeathsTimeStamps:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 6.9
+  - 8.8
+  followSpawnTimeStamps:
+  - 12.5
+  - 14.3
+  - 18.7
+  - 23.3
+  - 28.6
+  - 30.4
+  - 32.3
+  - 34
+  followDeathsTimeStamps:
+  - 0
+  - 22.3
+  - 23.3
+  - 30.4
+  - 32.3
+  - 0
+  - 0
+  - 0
   bigSpawnTimeStamps: []
-  raySpawnTimeStamps: []
-  powerUpsInmortalTimeStamps: []
-  powerUpsShrinkTimeStamps: []
+  raySpawnTimeStamps:
+  - 11.6
+  - 14.2
+  - 18.7
+  - 24.1
+  - 25.1
+  - 26.8
+  - 28.6
+  - 35
+  - 35.9
+  - 36.8
+  - 37.6
+  - 40.3
+  powerUpsInmortalTimeStamps:
+  - 34
+  powerUpsShrinkTimeStamps:
+  - 10.6
   timeChallenge: 1
   hotspot: 1
   collectibles: 1
   percentOfSongToCompleteHotspot: 40
   collectiblesSpawnTimeStamps:
-  - 0.2
+  - 8
+  - 12.5
+  - 20.5
   objectivesToUnlock: 0

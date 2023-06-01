@@ -10,6 +10,8 @@ public class MiniMenuManager : MonoBehaviour
 	[SerializeField] private GameObject pBlockChallangesMiniMenu;
 	[SerializeField] private GameObject pChallangesMiniMenu;
 	[SerializeField] private float secondsToHideChallenges;
+	[SerializeField] private SlicedFilledImage fillTitle;
+	[SerializeField] private TextMeshProUGUI titleText;
 
 	[Header("Challenges in Lvl")]
 	[SerializeField] private Image fillClock;
@@ -75,6 +77,9 @@ public class MiniMenuManager : MonoBehaviour
 
 	private void StartLvl(LevelSO lvl)
 	{
+		fillTitle.fillAmount = 0;
+		fillTitle.color = Color.grey;
+		titleText.text = "";
 		StopAllCoroutines();
 		DrawChallenges(lvl);
 		StartCoroutine(ToggleMiniMenuChallenges(lvl));
@@ -113,6 +118,7 @@ public class MiniMenuManager : MonoBehaviour
 
 	private void EndLvl(bool win)
 	{
+		titleText.text = "levels";
 		collectiblesScore = 0;
 		StopAllCoroutines();
 		StartCoroutine(ToggleMiniMenuChallenges(null));
@@ -123,6 +129,10 @@ public class MiniMenuManager : MonoBehaviour
 		switch (challengeType)
 		{
 			case Actions.ChallengeType.time:
+				fillTitle.fillAmount = score;
+				if (score == 1)
+					fillTitle.color = ColorsManager.Instance.GetChallengesColor();
+
 				if (currentLvl.timeChallenge < score)
 					ChangeFillAmount(fillClock, score);
 
@@ -157,6 +167,8 @@ public class MiniMenuManager : MonoBehaviour
 		pBlockChallangesMiniMenu.SetActive(true);
 		Image blockChallengeMiniMenuImage = pBlockChallangesMiniMenu.GetComponent<Image>();
 
+		float fillTitleCurrent = fillTitle.fillAmount;
+
 		float time = 0;
 		float elapsedTime = 0;
 		while (elapsedTime < secondsToHideChallenges)
@@ -178,6 +190,7 @@ public class MiniMenuManager : MonoBehaviour
 			time += Time.deltaTime / secondsToHideChallenges;
 
 			blockChallengeMiniMenuImage.color = new Color(0, 0, 0, Mathf.Lerp(1, 0, time));
+			fillTitle.fillAmount = Mathf.Lerp(fillTitleCurrent, 0, time);
 			yield return null;
 		}
 

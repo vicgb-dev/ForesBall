@@ -164,7 +164,7 @@ public class UIBuilder : MonoBehaviour
 			currentLvl = level;
 			GameObject lvlPanel = Instantiate(lvlPanelPrefab, lvlPLvlChooser.transform);
 			lvlPanel.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = cont++ + "";
-			lvlPanel.transform.GetChild(0).GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"{(level.music.length / 60).ToString("00")}:{(level.music.length % 60).ToString("00")}";
+			lvlPanel.transform.GetChild(0).GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"{(Mathf.Floor(level.music.length / 60f)).ToString("00")}:{(level.music.length % 60).ToString("00")}";
 			lvlPanel.transform.GetChild(0).GetChild(1).transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = level.musicName.ToLower();
 			lvlPanel.transform.GetChild(0).GetChild(1).transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = $"by: {level.musicAuthor.ToLower()}";
 			lvlPanel.transform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>().text = $"you need\n{level.objectivesToUnlock - totalChallengesComplated} more objectives\nto unlock";
