@@ -18,6 +18,7 @@ public abstract class Enemy : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody2D>();
 		coll = GetComponent<Collider2D>();
+		GameObject particles = Instantiate(deathParticlesPrefab, this.gameObject.transform);
 	}
 
 	private void OnEnable()
