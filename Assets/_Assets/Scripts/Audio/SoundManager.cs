@@ -15,6 +15,8 @@ public class SoundManager : MonoBehaviour
 	[Range(0, 5f)]
 	[SerializeField] private float secondsToChangeVolumeMusicPreview;
 	[SerializeField] private List<AudioClip> pianoTiles = new List<AudioClip>();
+	[SerializeField] private List<AudioClip> uniquePianoTiles = new List<AudioClip>();
+	private List<GameObject> pianoTilesGo = new List<GameObject>();
 
 	private int currentTile = 0;
 	private float logVolume;
@@ -67,6 +69,18 @@ public class SoundManager : MonoBehaviour
 		SetVolume(linearVolume);
 		peopleAs = CreateAudioChild("PeopleTalking", peopleTalkingSound, 1, selfDestruction: false, loop: true);
 		StartCoroutine(PlayPeopleTalkingCo());
+
+		foreach (var tile in uniquePianoTiles)
+		{
+			GameObject go = new GameObject(tile.name);
+			go.transform.SetParent(gameObject.transform);
+			AudioSource audioSource = go.AddComponent<AudioSource>();
+			audioSource.playOnAwake = false;
+			audioSource.outputAudioMixerGroup = mixerGroup;
+			audioSource.clip = tile;
+			audioSource.volume = popVolume;
+			pianoTilesGo.Add(go);
+		}
 	}
 
 	public float GetLinearVolume() => linearVolume;
@@ -166,16 +180,32 @@ public class SoundManager : MonoBehaviour
 		aS.pitch = newPitch == 0 ? pitch : newPitch;
 		aS.Play();
 	}
+
 	public void PlaySinglePianoTile(float newPitch = 0)
 	{
 		// AudioSource aS = CreateAudioChild($"PopSound{newPitch.ToString("0.00")}", popSound, popVolume);
 
+		/*
 		AudioClip tileSound = pianoTiles[currentTile];
 		currentTile = (currentTile + 1) % pianoTiles.Count;
 
 		AudioSource aS = CreateAudioChild($"PopSound{newPitch.ToString("0.00")}", tileSound, popVolume);
 		aS.pitch = newPitch == 0 ? pitch : newPitch;
 		aS.Play();
+		*/
+		string tileName = pianoTiles[currentTile].name;
+		currentTile = (currentTile + 1) % pianoTiles.Count;
+
+		foreach (var tile in pianoTilesGo)
+		{
+			if (tile.name == tileName)
+			{
+				AudioSource aS = tile.GetComponent<AudioSource>();
+				aS.Play();
+				break;
+			}
+		}
+
 	}
 
 	public void PlayPop()

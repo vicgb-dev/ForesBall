@@ -6585,10 +6585,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb82cee7459bd743a383d2a7e5222b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyStraight: {fileID: 2222314964590709460, guid: 69322490d75fdcb44bd4c2bcf20d40b5, type: 3}
-  enemyFollow: {fileID: 2222314964590709460, guid: 4685ddc68294101468b3aa827eac8ce6, type: 3}
-  enemyBig: {fileID: 2222314964590709460, guid: d02e885acc21fff4091fe32c87ea8d5c, type: 3}
-  enemyRay: {fileID: 2222314964590709460, guid: f81882bb68e404c489c6c43dfcb83713, type: 3}
+  enemyStraightSO: {fileID: 11400000, guid: 873339d889d258147abfa922537f82c4, type: 2}
+  enemyFollowSO: {fileID: 11400000, guid: 86fc72bf8d146c04bb87457d6d88eb8d, type: 2}
+  enemyBigSO: {fileID: 11400000, guid: 4aed449f1b7a6114f8283aa0335da18a, type: 2}
+  enemyRaySO: {fileID: 11400000, guid: bfde680459e543047836c7eb0520a771, type: 2}
 --- !u!4 &1440461813
 Transform:
   m_ObjectHideFlags: 0
@@ -8566,6 +8566,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c466807b6825a044190a70921350761c, type: 3}
   - {fileID: 8300000, guid: 03250f25e719eb94b918f6a6094e06f5, type: 3}
   - {fileID: 8300000, guid: b7697e0f2f650b542a9b2ca2437d4bfa, type: 3}
+  - {fileID: 8300000, guid: 03250f25e719eb94b918f6a6094e06f5, type: 3}
+  - {fileID: 8300000, guid: b7697e0f2f650b542a9b2ca2437d4bfa, type: 3}
+  uniquePianoTiles:
+  - {fileID: 8300000, guid: 4ef393e6c0cf7474c9040c18396ac764, type: 3}
+  - {fileID: 8300000, guid: c466807b6825a044190a70921350761c, type: 3}
+  - {fileID: 8300000, guid: 39d4b8c5ad371a2489dc53eb618fdb20, type: 3}
   - {fileID: 8300000, guid: 03250f25e719eb94b918f6a6094e06f5, type: 3}
   - {fileID: 8300000, guid: b7697e0f2f650b542a9b2ca2437d4bfa, type: 3}
   musicPreviewGOs: []
