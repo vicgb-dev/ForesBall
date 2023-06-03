@@ -4,7 +4,6 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
 	public GameObject deathParticlesPrefab;
-
 	public Rigidbody2D rb;
 	public Collider2D coll;
 
@@ -18,6 +17,9 @@ public abstract class Enemy : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody2D>();
 		coll = GetComponent<Collider2D>();
+	}
+	protected virtual void Start()
+	{
 		GameObject particles = Instantiate(deathParticlesPrefab, this.gameObject.transform);
 	}
 

@@ -12,8 +12,9 @@ public class EnemyBig : Enemy
 		isEnemyBig = true;
 	}
 
-	private void Start()
+	protected override void Start()
 	{
+		base.Start();
 		StartCoroutine(ActivateEnemyTag(Tag.EnemyBig, secsToActivateCollider));
 		StartCoroutine(ChangeSize());
 	}

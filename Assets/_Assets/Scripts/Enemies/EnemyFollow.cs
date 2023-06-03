@@ -18,8 +18,9 @@ public class EnemyFollow : Enemy
 		targetPlayer = GameObject.FindGameObjectWithTag("Player");
 	}
 
-	private void Start()
+	protected override void Start()
 	{
+		base.Start();
 		rb.AddForce(transform.up * initialForce);
 		StartCoroutine(ActivateEnemyTag(Tag.EnemyFollow, secsToActivateCollider));
 		StartCoroutine(MoreSpeed());

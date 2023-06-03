@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class EnemyRay : Enemy
 {
-	[SerializeField] private float speed;
+	public float speed = 2;
 
-	private void Start()
+	protected override void Start()
 	{
+		base.Start();
 		StartCoroutine(ActivateEnemyTag(Tag.EnemyRay, secsToActivateCollider));
 		StartCoroutine(Move());
 	}

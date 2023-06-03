@@ -14,8 +14,9 @@ public class EnemyStraight : Enemy
 		transform.Rotate(0, 0, Random.Range(0, 360));
 	}
 
-	private void Start()
+	protected override void Start()
 	{
+		base.Start();
 		StartCoroutine(ActivateEnemyTag(Tag.EnemyStraight, secsToActivateCollider));
 	}
 

@@ -56,7 +56,7 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
-		SoundManager.Instance.PlaySinglePop(1);
+		SoundManager.Instance.PlaySinglePianoTile();
 		Vibration.Vibrate(20);
 		StopAllCoroutines();
 		StartCoroutine(PressAnimation());

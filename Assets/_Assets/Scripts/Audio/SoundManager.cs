@@ -7,18 +7,22 @@ public class SoundManager : MonoBehaviour
 {
 	[SerializeField] private AudioMixerGroup mixerGroup;
 	[SerializeField] private AudioClip popSound;
+	[SerializeField] private AudioClip peopleTalkingSound;
 	[Range(0, 1)]
 	[SerializeField] private float popVolume;
 	[Range(10, 20)]
 	[SerializeField] private float secondsMusicPreview;
 	[Range(0, 5f)]
 	[SerializeField] private float secondsToChangeVolumeMusicPreview;
+	[SerializeField] private List<AudioClip> pianoTiles = new List<AudioClip>();
 
+	private int currentTile = 0;
 	private float logVolume;
 	private float linearVolume;
 
 	private LevelSO currentLvl;
 	private AudioSource lvlMusic;
+	private AudioSource peopleAs;
 	private float pitch = 1;
 	private bool inLvlsMenu = false;
 
@@ -61,6 +65,8 @@ public class SoundManager : MonoBehaviour
 	{
 		linearVolume = PlayerPrefs.GetFloat("volume", 1);
 		SetVolume(linearVolume);
+		peopleAs = CreateAudioChild("PeopleTalking", peopleTalkingSound, 1, selfDestruction: false, loop: true);
+		StartCoroutine(PlayPeopleTalkingCo());
 	}
 
 	public float GetLinearVolume() => linearVolume;
@@ -81,6 +87,7 @@ public class SoundManager : MonoBehaviour
 	{
 		Actions.onLvlEnd += PlayLose;
 		Actions.onLvlStart += StopMusicPreview;
+		Actions.onLvlStart += (lvl) => StartCoroutine(FadePeopleTalking(false));
 		Actions.onNewUIState += OnNewUIState;
 	}
 
@@ -116,7 +123,11 @@ public class SoundManager : MonoBehaviour
 	public void PlayLose(bool win)
 	{
 		Destroy(GameObject.Find("LvlMusic"));
-		if (!win) CreateAudioChild("EndLvlSound", currentLvl.loseSound, currentLvl.loseSoundVolume).Play();
+		if (!win)
+		{
+			CreateAudioChild("EndLvlSound", currentLvl.loseSound, currentLvl.loseSoundVolume).Play();
+		}
+		StartCoroutine(FadePeopleTalking(true));
 	}
 
 	public void PlayWin()
@@ -125,12 +136,13 @@ public class SoundManager : MonoBehaviour
 		CreateAudioChild("EndLvlSound", currentLvl.winSound, currentLvl.winSoundVolume).Play();
 	}
 
-	private AudioSource CreateAudioChild(string name, AudioClip audioClip, float audioVolume, bool selfDestruction = true, bool isLvlMusic = false)
+	private AudioSource CreateAudioChild(string name, AudioClip audioClip, float audioVolume, bool selfDestruction = true, bool isLvlMusic = false, bool loop = false)
 	{
 		GameObject lvlAudio = new GameObject(name);
 		lvlAudio.transform.SetParent(gameObject.transform);
 		AudioSource audioSource = lvlAudio.AddComponent<AudioSource>();
 
+		audioSource.loop = loop;
 		audioSource.outputAudioMixerGroup = mixerGroup;
 		audioSource.clip = audioClip;
 		audioSource.volume = audioVolume;
@@ -150,6 +162,18 @@ public class SoundManager : MonoBehaviour
 	public void PlaySinglePop(float newPitch = 0)
 	{
 		AudioSource aS = CreateAudioChild($"PopSound{newPitch.ToString("0.00")}", popSound, popVolume);
+
+		aS.pitch = newPitch == 0 ? pitch : newPitch;
+		aS.Play();
+	}
+	public void PlaySinglePianoTile(float newPitch = 0)
+	{
+		// AudioSource aS = CreateAudioChild($"PopSound{newPitch.ToString("0.00")}", popSound, popVolume);
+
+		AudioClip tileSound = pianoTiles[currentTile];
+		currentTile = (currentTile + 1) % pianoTiles.Count;
+
+		AudioSource aS = CreateAudioChild($"PopSound{newPitch.ToString("0.00")}", tileSound, popVolume);
 		aS.pitch = newPitch == 0 ? pitch : newPitch;
 		aS.Play();
 	}
@@ -187,12 +211,15 @@ public class SoundManager : MonoBehaviour
 
 	private void StopMusicPreview(LevelSO lvl = null)
 	{
+		Debug.Log("StopMusicPreview");
 		if (musicPreviewCo != null)
 		{
 			StopCoroutine(musicPreviewCo);
+
 			if (musicPreviewGOs.Count > 0)
 				StartCoroutine(FadeOut(musicPreviewGOs[musicPreviewGOs.Count - 1]));
 		}
+
 	}
 
 	private IEnumerator PlayMusicPreviewCo()
@@ -255,5 +282,24 @@ public class SoundManager : MonoBehaviour
 		}
 
 		Destroy(go);
+	}
+
+	private IEnumerator PlayPeopleTalkingCo()
+	{
+		yield return new WaitForSeconds(3f);
+		peopleAs.Play();
+	}
+
+	public IEnumerator FadePeopleTalking(bool to1)
+	{
+		float time = 0;
+		float initialVolume = peopleAs.volume;
+
+		while (time <= 1)
+		{
+			time += Time.deltaTime;
+			peopleAs.volume = Mathf.Lerp(initialVolume, to1 ? 1 : 0, time);
+			yield return null;
+		}
 	}
 }
