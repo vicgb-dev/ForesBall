@@ -231,7 +231,7 @@ public class LvlBuilder : MonoBehaviour
 						UnityEngine.Random.Range(limits[Limits.bottom] + sRenderer.size.y, limits[Limits.up] - sRenderer.size.y),
 						0);
 
-					if (CanSpawn(newLocation, sRenderer.size.x * 0.75f))
+					if (CanSpawn(newLocation, sRenderer.size.x * (enemy.enemyType == EnemySO.EnemyType.big ? 0 : 0.75f)))
 					{
 						GameObject instantiatedEnemy = Instantiate(enemyPrefab, newLocation, enemyPrefab.transform.rotation);
 						enemy.SetUpEnemy(instantiatedEnemy);
