@@ -1,0 +1,155 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f29812b503ecd4aa042a38e18b680e, type: 3}
+  m_Name: Level-Vivaldi-Storm
+  m_EditorClassIdentifier: 
+  musicName: storm
+  musicAuthor: vivaldi
+  music: {fileID: 8300000, guid: 07178d66435154e4ca07581600f9f184, type: 3}
+  musicVolume: 0.5
+  winSound: {fileID: 8300000, guid: 828a7d7d251074a48aa1d2cf8c5b3afe, type: 3}
+  winSoundVolume: 0.5
+  loseSound: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}
+  loseSoundVolume: 0.5
+  straightSpawnTimeStamps:
+  - 0.2
+  - 1.5
+  - 2.8
+  - 4.1
+  - 6.7
+  - 8
+  - 9.3
+  - 10.6
+  - 13.2
+  - 13.2
+  - 15.7
+  - 20.9
+  straightDeathsTimeStamps:
+  - 4.8
+  - 4.8
+  - 4.8
+  - 4.8
+  - 11.5
+  - 11.5
+  - 11.5
+  - 11.5
+  followSpawnTimeStamps:
+  - 0.2
+  - 1.5
+  - 2.8
+  - 4.1
+  - 6.7
+  - 8
+  - 9.3
+  - 10.6
+  - 13.2
+  - 13.2
+  - 18.3
+  - 23.6
+  followDeathsTimeStamps:
+  - 4.8
+  - 4.8
+  - 4.8
+  - 4.8
+  - 11.5
+  - 11.5
+  - 11.5
+  - 11.5
+  bigSpawnTimeStamps:
+  - 0.2
+  - 0.2
+  - 1.5
+  - 1.5
+  - 2.8
+  - 2.8
+  - 4.1
+  - 4.1
+  - 6.7
+  - 6.7
+  - 8
+  - 8
+  - 9.3
+  - 9.3
+  - 10.6
+  - 10.6
+  - 13.2
+  - 13.2
+  - 14.5
+  - 15.8
+  - 17
+  - 18.4
+  - 19.6
+  - 20.9
+  - 22.2
+  - 23.5
+  - 24.9
+  - 26.1
+  - 27.5
+  - 28.8
+  - 30.3
+  - 31.4
+  - 32.9
+  - 34
+  - 35.6
+  - 42.2
+  - 44.7
+  - 46
+  - 47.4
+  - 48.6
+  raySpawnTimeStamps:
+  - 13.2
+  - 14.6
+  - 15.9
+  - 17.2
+  - 18.3
+  - 19.8
+  - 21.1
+  - 22.4
+  - 23.7
+  - 26
+  - 27.6
+  - 28.8
+  - 30.2
+  - 31.6
+  - 33.2
+  - 34.9
+  - 36.2
+  - 36.7
+  - 38.2
+  - 42
+  - 43.4
+  - 44.6
+  - 46
+  - 47.4
+  - 48.4
+  - 48.9
+  - 49.4
+  - 49.7
+  - 50.4
+  - 50.6
+  - 51.3
+  powerUpsInmortalTimeStamps:
+  - 11.5
+  powerUpsShrinkTimeStamps:
+  - 4.8
+  timeChallenge: 1
+  hotspot: 1
+  collectibles: 1
+  percentOfSongToCompleteHotspot: 40
+  collectiblesSpawnTimeStamps:
+  - 0.2
+  - 6.7
+  - 13.2
+  - 21.1
+  - 26
+  - 36.7
+  objectivesToUnlock: 0
