@@ -99,7 +99,10 @@ public class UIManager : MonoBehaviour
 	{
 		int totalChallengesComplated = LoadSaveManager.Instance.LoadAccomplishments().totalChallengesCompleted;
 		if (LvlBuilder.Instance.GetLevels()[currentPanel].objectivesToUnlock <= totalChallengesComplated)
+		{
+			Actions.onCleanLvl?.Invoke();
 			Actions.onLvlStart?.Invoke(LvlBuilder.Instance.GetLevels()[currentPanel]);
+		}
 		else
 			Debug.Log($"El nivel {currentPanel + 1} no esta desbloqueado");
 
