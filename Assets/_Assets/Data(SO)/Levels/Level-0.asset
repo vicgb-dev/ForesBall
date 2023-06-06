@@ -21,17 +21,19 @@ MonoBehaviour:
   loseSound: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}
   loseSoundVolume: 0.5
   straightSpawnTimeStamps:
-  - 6
-  - 6
-  - 6
+  - 1
+  - 1
   straightDeathsTimeStamps: []
-  followSpawnTimeStamps: []
+  followSpawnTimeStamps:
+  - 1
+  - 1
   followDeathsTimeStamps: []
-  bigSpawnTimeStamps: []
+  bigSpawnTimeStamps:
+  - 1
+  - 1
   raySpawnTimeStamps:
-  - 6
-  - 6
-  - 6
+  - 1
+  - 1
   powerUpsInmortalTimeStamps: []
   powerUpsShrinkTimeStamps: []
   timeChallenge: 1
