@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f29812b503ecd4aa042a38e18b680e, type: 3}
+  m_Name: Level-Dvorak-SerenadeForStrings
+  m_EditorClassIdentifier: 
+  musicName: serenade for strings
+  musicAuthor: dvorak
+  music: {fileID: 8300000, guid: e9bcd31b798353d4a8f9f81eada12060, type: 3}
+  musicVolume: 0.5
+  winSound: {fileID: 8300000, guid: 828a7d7d251074a48aa1d2cf8c5b3afe, type: 3}
+  winSoundVolume: 0.5
+  loseSound: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}
+  loseSoundVolume: 0.5
+  straightSpawnTimeStamps:
+  - 22
+  - 23.1
+  - 24.2
+  - 25.4
+  - 26.5
+  straightDeathsTimeStamps:
+  - 31.8
+  followSpawnTimeStamps:
+  - 0
+  - 1.3
+  - 2.4
+  - 3.4
+  - 4.5
+  followDeathsTimeStamps:
+  - 10.4
+  - 34
+  bigSpawnTimeStamps:
+  - 34
+  - 35
+  - 36
+  - 37
+  - 39
+  - 40
+  - 41
+  - 42
+  - 43.2
+  - 43.2
+  - 45
+  - 45
+  - 47
+  - 47
+  - 49
+  - 49
+  - 50
+  - 50.8
+  - 51.8
+  - 52.8
+  - 53.7
+  - 54.7
+  - 55.7
+  raySpawnTimeStamps:
+  - 5.9
+  - 8
+  - 9
+  - 10.3
+  - 11.3
+  - 12.4
+  - 13.4
+  - 14.3
+  - 15.6
+  - 17.6
+  - 18.5
+  - 19.5
+  - 20.5
+  - 28.9
+  - 30.7
+  - 31.9
+  - 34
+  - 34
+  - 35
+  - 36
+  - 36
+  - 37
+  - 39
+  - 40
+  - 41
+  - 42
+  - 43.2
+  - 43.2
+  - 45
+  - 45
+  - 47
+  - 47
+  - 49
+  - 49
+  - 50
+  - 50.8
+  - 51.8
+  - 52.8
+  - 53.7
+  - 54.7
+  - 55.7
+  powerUpsInmortalTimeStamps: []
+  powerUpsShrinkTimeStamps:
+  - 20.6
+  timeChallenge: 1
+  hotspot: 1
+  collectibles: 1
+  percentOfSongToCompleteHotspot: 40
+  collectiblesSpawnTimeStamps:
+  - 14.3
+  - 19.5
+  - 36
+  - 33.2
+  - 41.1
+  objectivesToUnlock: 0
