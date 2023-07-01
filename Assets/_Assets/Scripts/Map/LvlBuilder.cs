@@ -467,6 +467,7 @@ public class LvlBuilder : MonoBehaviour
 	#region External Methods
 
 	public List<LevelSO> GetLevels() => levelsManagerSO.levels;
+	public LevelSO GetCurrentLevel() => currentLvl;
 
 	public float GetMusicLength()
 	{
