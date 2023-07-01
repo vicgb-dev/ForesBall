@@ -24,9 +24,23 @@ MonoBehaviour:
   - 1.4
   - 2.4
   - 3.4
+  - 9.4
+  - 10.4
+  - 11.4
+  - 13.4
+  - 14.5
   - 17.4
   - 18.4
   - 19.4
+  - 21.4
+  - 22.4
+  - 25.4
+  - 26.4
+  - 27.4
+  - 30.7
+  - 33
+  - 33.9
+  - 34.9
   - 39.1
   - 40
   - 40.7
@@ -39,10 +53,42 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  - 18.4
+  - 19.4
+  - 21.4
+  - 22.4
+  - 25.4
+  - 26.4
+  - 27.4
+  - 30.7
+  - 33
+  - 33.9
+  - 34.9
+  - 0
+  - 0
+  - 0
+  - 0
   followSpawnTimeStamps: []
   followDeathsTimeStamps: []
-  bigSpawnTimeStamps: []
-  raySpawnTimeStamps: []
+  bigSpawnTimeStamps:
+  - 38.6
+  - 45.1
+  - 62.5
+  - 67.5
+  - 72.2
+  - 73.2
+  - 76.4
+  - 77.3
+  - 80.5
+  - 81.5
+  - 22.5
+  - 26.3
+  - 26.3
+  raySpawnTimeStamps:
+  - 7
+  - 15
+  - 23
+  - 30.6
   powerUpsInmortalTimeStamps:
   - 17.4
   powerUpsShrinkTimeStamps:
