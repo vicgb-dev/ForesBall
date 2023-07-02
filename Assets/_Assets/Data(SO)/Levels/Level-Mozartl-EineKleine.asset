@@ -15,7 +15,7 @@ MonoBehaviour:
   musicName: eine kleine nachtmusik
   musicAuthor: mozart
   music: {fileID: 8300000, guid: 7b73aae7976c3814a988c9b5d79aad44, type: 3}
-  musicVolume: 0.5
+  musicVolume: 1
   winSound: {fileID: 8300000, guid: 828a7d7d251074a48aa1d2cf8c5b3afe, type: 3}
   winSoundVolume: 0.5
   loseSound: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}

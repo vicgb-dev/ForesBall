@@ -15,7 +15,7 @@ MonoBehaviour:
   musicName: dies irae
   musicAuthor: verdi
   music: {fileID: 8300000, guid: 1b56efb2761362c489dc6fb9de98ace2, type: 3}
-  musicVolume: 0.5
+  musicVolume: 1
   winSound: {fileID: 8300000, guid: 828a7d7d251074a48aa1d2cf8c5b3afe, type: 3}
   winSoundVolume: 0.5
   loseSound: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}
@@ -32,7 +32,48 @@ MonoBehaviour:
   - 12
   - 12.8
   - 13.6
-  straightDeathsTimeStamps: []
+  - 23.1
+  - 23.9
+  - 24.8
+  - 25.6
+  - 26.3
+  - 27.1
+  - 27.9
+  - 28.7
+  - 45.4
+  - 45.4
+  - 49.2
+  - 49.2
+  - 50.8
+  - 50.8
+  - 54.1
+  - 63.8
+  - 65.5
+  - 67.2
+  straightDeathsTimeStamps:
+  - 17.1
+  - 17.1
+  - 17.9
+  - 17.9
+  - 18.7
+  - 18.7
+  - 19.4
+  - 19.4
+  - 33.8
+  - 33.8
+  - 33.8
+  - 35.4
+  - 35.4
+  - 35.4
+  - 40.3
+  - 40.3
+  - 41.9
+  - 41.9
+  - 74.1
+  - 74.1
+  - 75.7
+  - 77.4
+  - 79.1
   followSpawnTimeStamps:
   - 7.4
   - 7.4
@@ -45,7 +86,48 @@ MonoBehaviour:
   - 12
   - 12.8
   - 13.6
-  followDeathsTimeStamps: []
+  - 23.1
+  - 23.9
+  - 24.8
+  - 25.6
+  - 26.3
+  - 27.1
+  - 27.9
+  - 28.7
+  - 45.4
+  - 45.4
+  - 49.2
+  - 49.2
+  - 50.8
+  - 50.8
+  - 54.1
+  - 63.8
+  - 65.5
+  - 67.2
+  followDeathsTimeStamps:
+  - 17.1
+  - 17.1
+  - 17.9
+  - 17.9
+  - 18.7
+  - 18.7
+  - 19.4
+  - 19.4
+  - 33.8
+  - 33.8
+  - 33.8
+  - 35.4
+  - 35.4
+  - 35.4
+  - 40.3
+  - 40.3
+  - 41.9
+  - 41.9
+  - 74.1
+  - 74.1
+  - 75.7
+  - 77.4
+  - 79.1
   bigSpawnTimeStamps:
   - 0.8
   - 0.8
@@ -121,5 +203,8 @@ MonoBehaviour:
   collectibles: 1
   percentOfSongToCompleteHotspot: 40
   collectiblesSpawnTimeStamps:
-  - 0.2
+  - 19.5
+  - 33.8
+  - 40.3
+  - 50.9
   objectivesToUnlock: 0

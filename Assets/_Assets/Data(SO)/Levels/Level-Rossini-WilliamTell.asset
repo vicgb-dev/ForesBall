@@ -15,7 +15,7 @@ MonoBehaviour:
   musicName: william tell
   musicAuthor: rossini
   music: {fileID: 8300000, guid: e1f50dd3f7a33b54f9dc3859c7e690ff, type: 3}
-  musicVolume: 0.6
+  musicVolume: 1
   winSound: {fileID: 8300000, guid: 828a7d7d251074a48aa1d2cf8c5b3afe, type: 3}
   winSoundVolume: 0.5
   loseSound: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}

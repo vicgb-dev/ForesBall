@@ -15,8 +15,8 @@ MonoBehaviour:
   musicName: in the hall of the mountain king
   musicAuthor: grieg
   music: {fileID: 8300000, guid: b7e88e8c0b1c720479ce160154259769, type: 3}
-  musicVolume: 0.5
-  winSound: {fileID: 8300000, guid: 384a1ebc4b057fd489b2e01744769962, type: 3}
+  musicVolume: 1
+  winSound: {fileID: 8300000, guid: 828a7d7d251074a48aa1d2cf8c5b3afe, type: 3}
   winSoundVolume: 0.5
   loseSound: {fileID: 8300000, guid: d3d94882b44132741b70283a7d80140a, type: 3}
   loseSoundVolume: 0.5
