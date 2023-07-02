@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class LeftHanded : MonoBehaviour
 {
 	[SerializeField] private Image backgroundButton;
+	[SerializeField] private Image icon;
 	[SerializeField] private RectTransform miniMenuRect;
 	[SerializeField] private RectTransform playButtonRect;
 	[SerializeField] private Joystick joystick;
@@ -26,6 +27,14 @@ public class LeftHanded : MonoBehaviour
 	public void ToggleLeftHanded()
 	{
 		isLeftHanded = !isLeftHanded;
+		if (isLeftHanded)
+		{
+			icon.transform.localScale = new Vector3(-1, 1, 1);
+		}
+		else
+		{
+			icon.transform.localScale = new Vector3(1, 1, 1);
+		}
 		PlayerPrefs.SetInt("leftHanded", isLeftHanded ? 1 : 0);
 		ButtonFeedback feedback = GetComponent<ButtonFeedback>();
 		feedback.SetColorPackSelected(isLeftHanded);
