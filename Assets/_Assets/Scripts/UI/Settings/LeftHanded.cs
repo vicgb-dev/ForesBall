@@ -14,7 +14,7 @@ public class LeftHanded : MonoBehaviour
 
 	private void Start()
 	{
-		isLeftHanded = PlayerPrefs.GetInt("leftHanded", 0) != 1;
+		isLeftHanded = PlayerPrefs.GetInt("leftHanded", 1) != 1;
 		ToggleLeftHanded();
 		if (!isLeftHanded)
 		{
@@ -37,7 +37,7 @@ public class LeftHanded : MonoBehaviour
 		}
 		PlayerPrefs.SetInt("leftHanded", isLeftHanded ? 1 : 0);
 		ButtonFeedback feedback = GetComponent<ButtonFeedback>();
-		feedback.SetColorPackSelected(isLeftHanded);
+		//feedback.SetColorPackSelected(isLeftHanded);
 
 		// cambiar posiciones
 		Vector2 tempRect = miniMenuRect.position;
@@ -45,15 +45,15 @@ public class LeftHanded : MonoBehaviour
 		playButtonRect.position = tempRect;
 		joystick.SetUpContainers();
 
-		if (isLeftHanded)
-			backgroundButton.color = new Color(feedback.pressedColor.r, feedback.pressedColor.g, feedback.pressedColor.b, 1);
+		// if (isLeftHanded)
+		// 	backgroundButton.color = new Color(feedback.pressedColor.r, feedback.pressedColor.g, feedback.pressedColor.b, 1);
 	}
 
 	public void UpdateColor()
 	{
 		ButtonFeedback feedback = GetComponent<ButtonFeedback>();
 
-		if (isLeftHanded)
-			backgroundButton.color = new Color(feedback.pressedColor.r, feedback.pressedColor.g, feedback.pressedColor.b, 1);
+		// if (isLeftHanded)
+		// 	backgroundButton.color = new Color(feedback.pressedColor.r, feedback.pressedColor.g, feedback.pressedColor.b, 1);
 	}
 }

@@ -20,7 +20,7 @@ public class SoundManager : MonoBehaviour
 
 	private int currentTile = 0;
 	private float logVolume;
-	private float linearVolume;
+	private int linearVolume;
 
 	private LevelSO currentLvl;
 	private AudioSource lvlMusic;
@@ -57,6 +57,8 @@ public class SoundManager : MonoBehaviour
 			Destroy(this.gameObject);
 			return;
 		}
+		linearVolume = PlayerPrefs.GetInt("mutedVolume", 1);
+		SetVolume(linearVolume);
 
 		_instance = this;
 	}
@@ -65,8 +67,6 @@ public class SoundManager : MonoBehaviour
 
 	private void Start()
 	{
-		linearVolume = PlayerPrefs.GetFloat("volume", 1);
-		SetVolume(linearVolume);
 		peopleAs = CreateAudioChild("PeopleTalking", peopleTalkingSound, 1, selfDestruction: false, loop: true);
 		StartCoroutine(PlayPeopleTalkingCo());
 
@@ -83,9 +83,9 @@ public class SoundManager : MonoBehaviour
 		}
 	}
 
-	public float GetLinearVolume() => linearVolume;
+	public int GetLinearVolume() => linearVolume;
 
-	public void SetVolume(float newVolume)
+	public void SetVolume(int newVolume)
 	{
 		linearVolume = newVolume;
 		logVolume = Mathf.Log10(newVolume) * 20;
@@ -93,7 +93,7 @@ public class SoundManager : MonoBehaviour
 
 		mixerGroup.audioMixer.SetFloat("mixerVolume", logVolume);
 
-		PlayerPrefs.SetFloat("volume", linearVolume);
+		PlayerPrefs.SetFloat("mutedVolume", linearVolume);
 		PlayerPrefs.Save();
 	}
 
@@ -103,6 +103,7 @@ public class SoundManager : MonoBehaviour
 		Actions.onLvlStart += StopMusicPreview;
 		Actions.onLvlStart += (lvl) => StartCoroutine(FadePeopleTalking(false));
 		Actions.onNewUIState += OnNewUIState;
+		Actions.onMute += OnMute;
 	}
 
 	private void OnDisable()
@@ -110,8 +111,13 @@ public class SoundManager : MonoBehaviour
 		Actions.onLvlEnd -= PlayLose;
 		Actions.onLvlStart -= StopMusicPreview;
 		Actions.onNewUIState -= OnNewUIState;
+		Actions.onMute -= OnMute;
 	}
 
+	private void OnMute(bool mute)
+	{
+		SoundManager.Instance.SetVolume(mute ? 0 : 1);
+	}
 	public void OnStartLvl(LevelSO lvl)
 	{
 		pitch = 1;

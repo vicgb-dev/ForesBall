@@ -25,7 +25,7 @@ public class VolumeSlider : CustomSlider
 		if (fill < 0.01f) fill = 0;
 		slider.fillAmount = fill;
 
-		SoundManager.Instance.SetVolume(slider.fillAmount);
+		//SoundManager.Instance.SetVolume(slider.fillAmount);
 
 		slider.color = new Color(color.r - 0.2f, color.g - 0.2f, color.b - 0.2f, Tools.Remap(slider.fillAmount, 0, 1, 0.3f, 1));
 

@@ -171,6 +171,11 @@ public class ColorsManager : MonoBehaviour
 			{
 				vibrationButton.UpdateColor();
 			}
+			MuteToggle muteToggle = button.gameObject.GetComponent<MuteToggle>();
+			if (muteToggle != null)
+			{
+				muteToggle.UpdateColor();
+			}
 		}
 	}
 

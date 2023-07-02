@@ -14,6 +14,7 @@ public static class Actions
 	public static Action<ColorsSO> colorsChange;
 	public static Action<GameObject> enemyDestroyed;
 	public static Action<AudioSource> onLvlMusicChange;
+	public static Action<bool> onMute;
 
 	public enum ChallengeType
 	{
