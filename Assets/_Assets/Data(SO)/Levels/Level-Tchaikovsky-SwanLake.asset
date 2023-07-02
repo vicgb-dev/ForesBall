@@ -124,10 +124,10 @@ MonoBehaviour:
   - 69.6
   - 70.7
   - 71.9
-  - 21.1
-  - 21.1
-  - 21.7
-  - 21.7
+  - 81
+  - 81
+  - 81.6
+  - 81.6
   raySpawnTimeStamps:
   - 2.7
   - 2.9
@@ -252,7 +252,7 @@ MonoBehaviour:
   timeChallenge: 1
   hotspot: 1
   collectibles: 1
-  percentOfSongToCompleteHotspot: 40
+  percentOfSongToCompleteHotspot: 30
   collectiblesSpawnTimeStamps:
   - 16.6
   - 31.8
