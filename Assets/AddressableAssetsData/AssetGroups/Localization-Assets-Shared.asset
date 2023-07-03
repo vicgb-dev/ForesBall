@@ -27,15 +27,8 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1317265bd367bf24c8c9252ba14c8797
-    m_Address: Assets/Samples/Localization/1.4.4/Smart Strings - Persistent Variables/String
-      Table/Gender Sample Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 27153e20147c06c4c8d1304d28104a87
-    m_Address: Assets/Samples/Localization/1.4.4/Smart Strings - Persistent Variables/String
-      Table/Global Variables Sample Shared Data.asset
+  - m_GUID: 390c6639aa5b43b448a58f6fdeec8bde
+    m_Address: Assets/_Assets/Localization/Tables/Colores Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

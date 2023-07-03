@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ac-LvlReach-33
   m_EditorClassIdentifier: 
   property: 10
-  greaterThan: 3
+  greaterThan: 33
   accomplishmentTitle: calentando
   accomplishmentDescription: lvlReachedDescription
   idColorUnlock: 0

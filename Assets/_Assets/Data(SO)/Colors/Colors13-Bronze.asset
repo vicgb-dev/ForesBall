@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17778865c3d23914982c8584e1f9d813, type: 3}
+  m_Name: Colors13-Bronze
+  m_EditorClassIdentifier: 
+  idColor: 13
+  colorName: bronze
+  playerColor: {r: 1, g: 1, b: 1, a: 1}
+  mainMenuColor: {r: 1, g: 1, b: 1, a: 1}
+  customizeMenuColor: {r: 0.6981132, g: 0.4854899, b: 0, a: 1}
+  settingsMenuColor: {r: 0.6509434, g: 0.45268652, b: 0, a: 1}
+  levelsMenuColor: {r: 1, g: 1, b: 1, a: 1}
+  challengesColor: {r: 0.6886792, g: 0.57660645, b: 0.31510323, a: 1}
+  powerUpColor: {r: 0.754717, g: 0.59261054, b: 0.21003917, a: 1}
+  straightEnemyColor: {r: 0.6509434, g: 0.45923275, b: 0.021493427, a: 1}
+  followEnemyColor: {r: 0.6132076, g: 0.42644385, b: 0, a: 1}
+  bigEnemyColor: {r: 0.5849056, g: 0.40676177, b: 0, a: 1}
+  rayEnemyColor: {r: 0.5660378, g: 0.3936405, b: 0, a: 1}

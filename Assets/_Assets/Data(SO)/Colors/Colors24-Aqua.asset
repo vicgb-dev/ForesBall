@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17778865c3d23914982c8584e1f9d813, type: 3}
+  m_Name: Colors24-Aqua
+  m_EditorClassIdentifier: 
+  idColor: 24
+  colorName: aqua
+  playerColor: {r: 0.5518868, g: 1, b: 0.93849427, a: 1}
+  mainMenuColor: {r: 1, g: 1, b: 1, a: 1}
+  customizeMenuColor: {r: 0.6556604, g: 1, b: 0.9527377, a: 1}
+  settingsMenuColor: {r: 0.654902, g: 1, b: 0.95294124, a: 1}
+  levelsMenuColor: {r: 1, g: 1, b: 1, a: 1}
+  challengesColor: {r: 0.41869882, g: 0.9150943, b: 0.78385836, a: 1}
+  powerUpColor: {r: 0, g: 1, b: 0.8028641, a: 1}
+  straightEnemyColor: {r: 0.3254717, g: 0.9847391, b: 1, a: 1}
+  followEnemyColor: {r: 0.37624598, g: 0.8396226, b: 0.8396226, a: 1}
+  bigEnemyColor: {r: 0.13363297, g: 0.8584906, b: 0.6968649, a: 1}
+  rayEnemyColor: {r: 0.1745283, g: 0.6981132, b: 0.6262486, a: 1}

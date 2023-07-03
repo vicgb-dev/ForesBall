@@ -15,10 +15,10 @@ MonoBehaviour:
   idColor: 5
   colorName: blue sky
   playerColor: {r: 0, g: 0.8982549, b: 1, a: 1}
-  mainMenuColor: {r: 1, g: 1, b: 1, a: 1}
-  customizeMenuColor: {r: 0.7264151, g: 0.12677999, b: 0.17181827, a: 1}
-  settingsMenuColor: {r: 0.9339623, g: 0.3127893, b: 0.4786195, a: 1}
-  levelsMenuColor: {r: 1, g: 1, b: 1, a: 1}
+  mainMenuColor: {r: 0.504717, g: 1, b: 1, a: 1}
+  customizeMenuColor: {r: 0, g: 0.8980393, b: 1, a: 1}
+  settingsMenuColor: {r: 0, g: 0.14509805, b: 1, a: 1}
+  levelsMenuColor: {r: 0.7311321, g: 1, b: 1, a: 1}
   challengesColor: {r: 0, g: 0.78807735, b: 1, a: 1}
   powerUpColor: {r: 0, g: 0.42142296, b: 1, a: 1}
   straightEnemyColor: {r: 0, g: 0.1465373, b: 1, a: 1}

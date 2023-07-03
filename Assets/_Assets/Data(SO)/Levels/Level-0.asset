@@ -22,20 +22,26 @@ MonoBehaviour:
   loseSoundVolume: 0.5
   straightSpawnTimeStamps:
   - 1
-  - 1
+  - 2
+  - 3
   straightDeathsTimeStamps: []
   followSpawnTimeStamps:
   - 1
-  - 1
+  - 2
+  - 3
   followDeathsTimeStamps: []
   bigSpawnTimeStamps:
   - 1
-  - 1
+  - 2
+  - 3
   raySpawnTimeStamps:
   - 1
+  - 2
+  - 3
+  powerUpsInmortalTimeStamps:
   - 1
-  powerUpsInmortalTimeStamps: []
-  powerUpsShrinkTimeStamps: []
+  powerUpsShrinkTimeStamps:
+  - 1
   timeChallenge: 1
   hotspot: 1
   collectibles: 1

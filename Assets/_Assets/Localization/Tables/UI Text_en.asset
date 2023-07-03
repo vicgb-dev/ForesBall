@@ -34,5 +34,17 @@ MonoBehaviour:
     m_Localized: settings
     m_Metadata:
       m_Items: []
+  - m_Id: 53978829774848
+    m_Localized: objectives
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54616670167040
+    m_Localized: main menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54683233771520
+    m_Localized: levels
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

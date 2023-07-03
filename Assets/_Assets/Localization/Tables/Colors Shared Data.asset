@@ -14,7 +14,111 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TableCollectionName: Colors
   m_TableCollectionNameGuidString: 390c6639aa5b43b448a58f6fdeec8bde
-  m_Entries: []
+  m_Entries:
+  - m_Id: 718127325184
+    m_Key: completeToUnlock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15998027128832
+    m_Key: default
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16064863363072
+    m_Key: autumn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16099147603968
+    m_Key: grey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16121142534144
+    m_Key: neon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16149714132992
+    m_Key: white
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16173428727808
+    m_Key: blue sky
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16218693656576
+    m_Key: black
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18499891716096
+    m_Key: forest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31647323480064
+    m_Key: hell
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33024086990848
+    m_Key: purple
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34760260411392
+    m_Key: supersonic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36247258619904
+    m_Key: golden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36375105200128
+    m_Key: pink
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36543712026624
+    m_Key: bronze
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37823612280832
+    m_Key: everest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39533403529216
+    m_Key: sunset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40115199631360
+    m_Key: submarine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41181295239168
+    m_Key: ethereal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42048807329792
+    m_Key: hamburguer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43824591757312
+    m_Key: browser
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45556705091584
+    m_Key: sponge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47597447897088
+    m_Key: politic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49157917728768
+    m_Key: impostor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50404947222528
+    m_Key: vscode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 52577554751488
+    m_Key: aqua
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

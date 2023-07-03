@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idColor: 0
   colorName: default
-  playerColor: {r: 1, g: 0, b: 0, a: 1}
+  playerColor: {r: 1, g: 1, b: 1, a: 1}
   mainMenuColor: {r: 1, g: 1, b: 1, a: 1}
-  customizeMenuColor: {r: 1, g: 0.67058825, b: 0.46274513, a: 1}
-  settingsMenuColor: {r: 1, g: 0.988943, b: 0.48584908, a: 1}
+  customizeMenuColor: {r: 0.87843144, g: 0.37647063, b: 0.34117648, a: 1}
+  settingsMenuColor: {r: 0.7137255, g: 0.87843144, b: 0.34117648, a: 1}
   levelsMenuColor: {r: 1, g: 1, b: 1, a: 1}
   challengesColor: {r: 0, g: 0.8862745, b: 1, a: 1}
   powerUpColor: {r: 1, g: 0.7529412, b: 0, a: 1}

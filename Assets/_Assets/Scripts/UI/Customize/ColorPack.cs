@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 public class ColorPack : MonoBehaviour
@@ -75,6 +76,10 @@ public class ColorPack : MonoBehaviour
 		{
 			backgroundButton.color = new Color(colors.customizeMenuColor.r - 0.2f, colors.customizeMenuColor.g - 0.2f, colors.customizeMenuColor.b - 0.2f, 1);
 		}
+
+		LocalizeStringEvent localizedTitle = this.transform.GetComponentInChildren<LocalizeStringEvent>();
+		localizedTitle.StringReference.SetReference("Colors", colors.colorName);
+
 	}
 
 	private void OnEnable()

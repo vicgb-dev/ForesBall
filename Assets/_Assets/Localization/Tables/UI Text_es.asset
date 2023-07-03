@@ -34,5 +34,17 @@ MonoBehaviour:
     m_Localized: opciones
     m_Metadata:
       m_Items: []
+  - m_Id: 53978829774848
+    m_Localized: objetivos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54616670167040
+    m_Localized: "men\xFA principal"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54683233771520
+    m_Localized: niveles
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

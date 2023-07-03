@@ -31,6 +31,18 @@ MonoBehaviour:
     m_Key: opciones
     m_Metadata:
       m_Items: []
+  - m_Id: 53978829774848
+    m_Key: objetivos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54616670167040
+    m_Key: menuPrincipal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54683233771520
+    m_Key: niveles
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

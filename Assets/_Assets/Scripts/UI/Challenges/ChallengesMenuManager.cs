@@ -32,7 +32,6 @@ public class ChallengesMenuManager : Menu
 		foreach (AccomplishmentSO accomplishmentSO in accomplishmentsSO)
 		{
 			GameObject accompPanel = Instantiate(accomplishmentPanelPrefab, menuContent.transform);
-			Debug.Log("name " + accompPanel.transform.GetChild(0).GetChild(1).GetChild(0).name);
 			LocalizeStringEvent localizedTitle = accompPanel.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<LocalizeStringEvent>();
 			localizedTitle.StringReference.SetReference("Accomplishments", accomplishmentSO.accomplishmentTitle);
 
@@ -144,7 +143,7 @@ public class ChallengesMenuManager : Menu
 			//Description
 			// accompPanel.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = accomplishmentSO.accomplishmentDescription;
 			//UnlockColor
-			accompPanel.transform.GetChild(0).GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>().text = $"{customizeMenu.GetColorName(accomplishmentSO.idColorUnlock).ToLower()} color";
+			accompPanel.transform.GetChild(0).GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>().text = customizeMenu.GetColorName(accomplishmentSO.idColorUnlock).ToLower();
 			//Score
 			string unit = isSeconds ? "s" : "";
 			accompPanel.transform.GetChild(0).GetChild(1).GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{Mathf.Round(currentScore)}{unit}/{accomplishmentSO.greaterThan}{unit}";

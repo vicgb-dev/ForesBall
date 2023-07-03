@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17778865c3d23914982c8584e1f9d813, type: 3}
+  m_Name: Colors18-Hamburguer
+  m_EditorClassIdentifier: 
+  idColor: 18
+  colorName: hamburguer
+  playerColor: {r: 1, g: 0, b: 0, a: 1}
+  mainMenuColor: {r: 1, g: 1, b: 1, a: 1}
+  customizeMenuColor: {r: 1, g: 0.6947903, b: 0.68235296, a: 1}
+  settingsMenuColor: {r: 1, g: 0.9938217, b: 0.21226418, a: 1}
+  levelsMenuColor: {r: 1, g: 1, b: 1, a: 1}
+  challengesColor: {r: 0.6320754, g: 0.4601462, b: 0.21764861, a: 1}
+  powerUpColor: {r: 0.038047332, g: 0.8962264, b: 0.06005187, a: 1}
+  straightEnemyColor: {r: 0.9561175, g: 0.9607843, b: 0, a: 1}
+  followEnemyColor: {r: 1, g: 0.05156806, b: 0, a: 1}
+  bigEnemyColor: {r: 0.6313726, g: 0.45882356, b: 0.21960786, a: 1}
+  rayEnemyColor: {r: 0.039215688, g: 0.8980393, b: 0.058823533, a: 1}

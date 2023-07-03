@@ -16,7 +16,117 @@ MonoBehaviour:
     m_Code: es
   m_SharedData: {fileID: 11400000, guid: 390c6639aa5b43b448a58f6fdeec8bde, type: 2}
   m_Metadata:
-    m_Items: []
-  m_TableData: []
+    m_Items:
+    - id: 0
+  m_TableData:
+  - m_Id: 718127325184
+    m_Localized: "completa el desaf\xEDo \"{0}\" para desbloquear este color"
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 15998027128832
+    m_Localized: por defecto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16064863363072
+    m_Localized: "oto\xF1o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16099147603968
+    m_Localized: gris
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16121142534144
+    m_Localized: neon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16149714132992
+    m_Localized: blanco
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16173428727808
+    m_Localized: azul cielo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16218693656576
+    m_Localized: negro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18499891716096
+    m_Localized: bosque
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31647323480064
+    m_Localized: infierno
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33024086990848
+    m_Localized: morado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34760260411392
+    m_Localized: supersonico
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36247258619904
+    m_Localized: dorado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36375105200128
+    m_Localized: rosa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36543712026624
+    m_Localized: bronce
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37823612280832
+    m_Localized: everest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39533403529216
+    m_Localized: puesta de sol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40115199631360
+    m_Localized: submarino
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41181295239168
+    m_Localized: etereo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42048807329792
+    m_Localized: hamburguesa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43824591757312
+    m_Localized: navegador
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45556705091584
+    m_Localized: esponja
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47597447897088
+    m_Localized: politica
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49157917728768
+    m_Localized: impostor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50404947222528
+    m_Localized: vscode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 52577554751488
+    m_Localized: aqua
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
+    00000000:
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 0060b933a7000000

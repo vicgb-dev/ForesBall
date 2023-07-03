@@ -8,18 +8,18 @@ public class ColorsSO : ScriptableObject
 	[Header("Player")]
 	public Color playerColor;
 	[Header("Menus")]
-	public Color mainMenuColor;
-	public Color customizeMenuColor;
-	public Color settingsMenuColor;
-	public Color levelsMenuColor;
+	public Color mainMenuColor = Color.white;
+	public Color customizeMenuColor = Color.white;
+	public Color settingsMenuColor = Color.white;
+	public Color levelsMenuColor = Color.white;
 
 	[Header("Interface")]
-	public Color challengesColor;
-	public Color powerUpColor;
+	public Color challengesColor = Color.white;
+	public Color powerUpColor = Color.white;
 
 	[Header("Enemies")]
-	public Color straightEnemyColor;
-	public Color followEnemyColor;
-	public Color bigEnemyColor;
-	public Color rayEnemyColor;
+	public Color straightEnemyColor = Color.white;
+	public Color followEnemyColor = Color.white;
+	public Color bigEnemyColor = Color.white;
+	public Color rayEnemyColor = Color.white;
 }

@@ -4,6 +4,10 @@ using UnityEngine.UI;
 using System.Linq;
 using System;
 using TMPro;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.Tables;
+using UnityEditor.Localization;
+using UnityEngine.Localization.Components;
 
 public class CustomizeMenuManager : Menu
 {
@@ -33,16 +37,26 @@ public class CustomizeMenuManager : Menu
 			GameObject pack = Instantiate(colorPackButtonPrefab, menuContent.transform);
 
 			// Bloqueamos todos los colores que no sean el primero, después los achievements se encargarán de desbloquearlos
-			if (colorSO.idColor != 0)
+			/*if (colorSO.idColor != 0)
 			{
 				pack.transform.GetChild(0).GetChild(8).gameObject.SetActive(true);
 				pack.GetComponent<Button>().enabled = false;
 				pack.GetComponent<ButtonFeedback>().enabled = false;
 				List<AccomplishmentSO> accomps = AccomplishmentsSystem.Instance.GetAccomplishmentsList().Where(accomp => accomp.idColorUnlock == colorSO.idColor).ToList();
-				string unlockText = accomps.Count > 0 ? accomps[0].accomplishmentTitle : "";
+				string accTitle = accomps.Count > 0 ? accomps[0].accomplishmentTitle : "";
+				// get string from localization where accomps[0].accomplishmentTitle is the key
 
-				pack.transform.GetChild(0).GetChild(8).GetChild(0).GetComponent<TextMeshProUGUI>().text = $"Complete challenge\n\"{unlockText}\"\nto unlock this color";
-			}
+				if (accTitle != "")
+				{
+					LocalizationSettings localizationSettings = LocalizationSettings.Instance;
+					StringTable table = localizationSettings.GetStringDatabase().GetTable("Accomplishments");
+					string lolizedTitle = table.GetEntry(accTitle).GetLocalizedString();
+
+					LocalizeStringEvent unlockStringEvent = pack.transform.GetChild(0).GetChild(8).GetChild(0).GetComponent<LocalizeStringEvent>();
+					unlockStringEvent.StringReference.SetReference("Colors", "completeToUnlock");
+					unlockStringEvent.StringReference.Arguments = new object[] { lolizedTitle };
+				}
+			}*/
 
 			pack.GetComponent<ColorPack>().SetUp(colorSO, colorSO.idColor == selectedColor);
 			pack.GetComponent<Button>().onClick.AddListener(() =>
@@ -79,8 +93,16 @@ public class CustomizeMenuManager : Menu
 	{
 		var colorsList = colors.Where(color => color.idColor == idColorUnlock).ToList();
 		if (colorsList.Count == 0)
+		{
 			return "";
+		}
 		else
-			return colorsList[0].colorName;
+		{
+
+			LocalizationSettings localizationSettings = LocalizationSettings.Instance;
+			StringTable table = localizationSettings.GetStringDatabase().GetTable("Colors");
+			string lolizedColor = table.GetEntry(colorsList[0].colorName).GetLocalizedString();
+			return lolizedColor;
+		}
 	}
 }
