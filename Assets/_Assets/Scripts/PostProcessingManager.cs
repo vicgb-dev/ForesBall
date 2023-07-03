@@ -148,7 +148,6 @@ public class PostProcessingManager : MonoBehaviour
 	{
 		amount = Mathf.Clamp(amount, 0, 1);
 		post.weight = amount;
-		Debug.Log("guardando weight");
 		PlayerPrefs.SetFloat("postWeight", amount);
 	}
 

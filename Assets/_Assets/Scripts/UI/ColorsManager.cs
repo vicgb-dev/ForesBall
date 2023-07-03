@@ -24,6 +24,7 @@ public class ColorsManager : MonoBehaviour
 	[SerializeField] public List<Button> buttonsCustomize;
 
 	[Header("Settings")]
+	[SerializeField] public List<ResolutionToggle> resolutionToggles;
 	[SerializeField] public List<Image> imagesSettings;
 	[SerializeField] public List<TextMeshProUGUI> textsSettings;
 	[SerializeField] public List<Button> buttonsSettings;
@@ -123,6 +124,7 @@ public class ColorsManager : MonoBehaviour
 		ChangeButtonPressedColor(buttonsCustomize, colorsSO.customizeMenuColor);
 
 		// Settings
+		ChangeSlicedImageColor(resolutionToggles, colorsSO.settingsMenuColor);
 		ChangeImageColor(imagesSettings, colorsSO.settingsMenuColor);
 		ChangeTextColor(textsSettings, colorsSO.settingsMenuColor);
 		ChangeButtonPressedColor(buttonsSettings, colorsSO.settingsMenuColor);
@@ -185,9 +187,22 @@ public class ColorsManager : MonoBehaviour
 		{
 			CustomSlider customSlider = image.gameObject.GetComponent<CustomSlider>();
 			if (customSlider != null)
+			{
 				customSlider.SetColor(color);
+			}
 			else
+			{
 				image.color = color;
+			}
+		}
+	}
+
+	private void ChangeSlicedImageColor(List<ResolutionToggle> resolutionToggles, Color color)
+	{
+		foreach (ResolutionToggle resolutionToggle in resolutionToggles)
+		{
+			Debug.Log("ChangeSlicedImageColor");
+			resolutionToggle.SetColor(color);
 		}
 	}
 

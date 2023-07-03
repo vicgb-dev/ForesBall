@@ -101,14 +101,14 @@ public class PauseManager : MonoBehaviour
 			UIManager.Instance.curveToMove
 		));
 
-		Debug.Log("moviendo el panel a la derecha");
 		StartCoroutine(UIHelpers.Instance.MovePanel(
 			pausePanel.transform.GetChild(0).gameObject,
 			pausePanel.transform.localPosition,
 			panelRightPosition,
 			UIManager.Instance.secondsToMovePanels,
 			UIManager.Instance.curveToMove,
-			callback));
+			callback
+		));
 	}
 
 	public void Pause()
@@ -136,7 +136,8 @@ public class PauseManager : MonoBehaviour
 			panelLeftPosition,
 			panelCenterPosition,
 			UIManager.Instance.secondsToMovePanels,
-			UIManager.Instance.curveToMove));
+			UIManager.Instance.curveToMove
+		));
 	}
 
 	public void Unpause()

@@ -11,10 +11,11 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 	[SerializeField] private AnimationCurve curve;
 	[SerializeField] private bool vibration;
 	public Color pressedColor;
-	Color initialColor;
+	public Color initialColor;
 
 	Button button;
 	Image image;
+	SlicedFilledImage slicedImage;
 	Vector3 initialScale;
 	Transform childTransform;
 	bool isColorPackSelected = false;
@@ -25,12 +26,18 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 		initialScale = childTransform.localScale;
 		button = GetComponent<Button>();
 		image = transform.GetChild(0).GetComponent<Image>();
-		if (image == null)
+		slicedImage = transform.GetChild(0).GetComponent<SlicedFilledImage>();
+
+		if (image == null && slicedImage == null)
 		{
 			Destroy(this);
 			return;
 		}
-		initialColor = image.color;
+		if (image != null)
+			initialColor = image.color;
+
+		if (slicedImage != null)
+			initialColor = slicedImage.color;
 
 		if (button == null)
 		{
@@ -99,7 +106,12 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 	private void OnEnable()
 	{
 		childTransform.localScale = initialScale;
-		image.color = initialColor;
+
+		if (image != null)
+			image.color = initialColor;
+
+		if (slicedImage != null)
+			slicedImage.color = initialColor;
 	}
 
 	private IEnumerator PressAnimation()
@@ -119,17 +131,34 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 
 	private IEnumerator PressColor()
 	{
-		Color startColor = image.color;
+		Color startColor = Color.white;
+
+		if (image != null)
+			startColor = image.color;
+
+		if (slicedImage != null)
+			startColor = slicedImage.color;
+
 		float elapsedTime = 0;
 
 		while (elapsedTime < (seconds / 2))
 		{
 			elapsedTime += Time.unscaledDeltaTime;
-			image.color = Color.Lerp(startColor, pressedColor, curve.Evaluate(elapsedTime / (seconds / 2)));
+
+			if (image != null)
+				image.color = Color.Lerp(startColor, pressedColor, curve.Evaluate(elapsedTime / (seconds / 2)));
+
+			if (slicedImage != null)
+				slicedImage.color = Color.Lerp(startColor, pressedColor, curve.Evaluate(elapsedTime / (seconds / 2)));
+
 			yield return null;
 		}
 
-		image.color = pressedColor;
+		if (image != null)
+			image.color = pressedColor;
+
+		if (slicedImage != null)
+			slicedImage.color = pressedColor;
 	}
 
 	private IEnumerator ReleaseAnimation()
@@ -149,16 +178,33 @@ public class ButtonFeedback : MonoBehaviour, IPointerClickHandler, IPointerEnter
 
 	private IEnumerator ReleaseColor()
 	{
-		Color startColor = image.color;
+		Color startColor = Color.white;
+
+		if (image != null)
+			startColor = image.color;
+
+		if (slicedImage != null)
+			startColor = slicedImage.color;
+
 		float elapsedTime = 0;
 
 		while (elapsedTime < seconds)
 		{
 			elapsedTime += Time.unscaledDeltaTime;
-			image.color = Color.Lerp(startColor, initialColor, curve.Evaluate(elapsedTime / seconds));
+
+			if (image != null)
+				image.color = Color.Lerp(startColor, initialColor, curve.Evaluate(elapsedTime / seconds));
+
+			if (slicedImage != null)
+				slicedImage.color = Color.Lerp(startColor, initialColor, curve.Evaluate(elapsedTime / seconds));
+
 			yield return null;
 		}
 
-		image.color = initialColor;
+		if (image != null)
+			image.color = initialColor;
+
+		if (slicedImage != null)
+			slicedImage.color = initialColor;
 	}
 }
