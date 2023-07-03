@@ -22,5 +22,17 @@ MonoBehaviour:
     m_Localized: jugar
     m_Metadata:
       m_Items: []
+  - m_Id: 1043081027584
+    m_Localized: desafios
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1248186687488
+    m_Localized: personalizar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1291820032000
+    m_Localized: opciones
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

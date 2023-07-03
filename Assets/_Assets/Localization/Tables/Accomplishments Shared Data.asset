@@ -1,0 +1,191 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Accomplishments Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Accomplishments
+  m_TableCollectionNameGuidString: 39c5ad019d588724bb69c4cb431879cf
+  m_Entries:
+  - m_Id: 18852962304
+    m_Key: closeToFollowDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 970788003840
+    m_Key: cuidado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23436025487360
+    m_Key: temerario
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23620289650688
+    m_Key: bailandoConLaMuerte
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21974239240192
+    m_Key: deadEarlyDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21736455757824
+    m_Key: demasiadoPronto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24224852434944
+    m_Key: despierta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24374698139648
+    m_Key: niLoIntentes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24632295514112
+    m_Key: timePlayedDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24872855625728
+    m_Key: bienvenido
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24954069934080
+    m_Key: tocaCesped
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36208964624384
+    m_Key: sufriendo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34393833431040
+    m_Key: visitaFamilia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37581793878016
+    m_Key: closeToRayDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38460001443840
+    m_Key: matrix
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38654097055744
+    m_Key: deadLateDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38958209261568
+    m_Key: casi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39247272304640
+    m_Key: lineaMeta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39935180103680
+    m_Key: tanCercaLejos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40457064767488
+    m_Key: lvlCompletedDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40611104776192
+    m_Key: algoEsAlgo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41443258884096
+    m_Key: sigueIntentandolo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41910227525632
+    m_Key: practicaPerfeccion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42064934428672
+    m_Key: timesHotspotDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42240830955520
+    m_Key: puntoCaliente
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44232932417536
+    m_Key: theRing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42499799867392
+    m_Key: battleRoyale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42967703838720
+    m_Key: collectedDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43539140009984
+    m_Key: pianista
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44397718233088
+    m_Key: violinista
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43199569158144
+    m_Key: director
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45840231653376
+    m_Key: inmortalDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46100530159616
+    m_Key: intocable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46319300861952
+    m_Key: etereo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46169975250944
+    m_Key: semiDios
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46976414081024
+    m_Key: shrinkDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47566795923456
+    m_Key: pequeno
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47845503229952
+    m_Key: minusculo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47969138728960
+    m_Key: pixel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48474917265408
+    m_Key: lvlReachedDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48792128282624
+    m_Key: calentando
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1688394323091

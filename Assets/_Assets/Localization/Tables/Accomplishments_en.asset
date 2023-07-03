@@ -1,0 +1,202 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Accomplishments_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 39c5ad019d588724bb69c4cb431879cf, type: 2}
+  m_Metadata:
+    m_Items:
+    - id: 0
+  m_TableData:
+  - m_Id: 18852962304
+    m_Localized: move close to the enemy that follows you for more than {0} seconds
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 970788003840
+    m_Localized: careful
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21736455757824
+    m_Localized: too soon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21974239240192
+    m_Localized: lose in the first 5 seconds {0} times
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 23436025487360
+    m_Localized: reckless
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23620289650688
+    m_Localized: dancing with the death
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24224852434944
+    m_Localized: wake up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24374698139648
+    m_Localized: ganbaru
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24632295514112
+    m_Localized: play more than {0} seconds
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 24872855625728
+    m_Localized: welcome
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24954069934080
+    m_Localized: touch grass
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34393833431040
+    m_Localized: go visit family
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36208964624384
+    m_Localized: quality time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37581793878016
+    m_Localized: move close to the rectangle enemy for more than {0} seconds
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 38460001443840
+    m_Localized: matrix
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38654097055744
+    m_Localized: lose in the last 5 seconds {0} times
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 38958209261568
+    m_Localized: close one
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39247272304640
+    m_Localized: "at the finish line\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39935180103680
+    m_Localized: so close & so far
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40457064767488
+    m_Localized: win a level {0} times
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 40611104776192
+    m_Localized: it's something
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41443258884096
+    m_Localized: keep trying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41910227525632
+    m_Localized: practice makes perfect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42064934428672
+    m_Localized: Get the hotspot {0} times
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 42240830955520
+    m_Localized: hotspot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42499799867392
+    m_Localized: battle royale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42967703838720
+    m_Localized: get {0} notes
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 43199569158144
+    m_Localized: orchestra director
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43539140009984
+    m_Localized: pianist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44232932417536
+    m_Localized: the ring
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44397718233088
+    m_Localized: violinist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45840231653376
+    m_Localized: be inmortal {0} times
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 46100530159616
+    m_Localized: untouchable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46169975250944
+    m_Localized: demigod
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46319300861952
+    m_Localized: ethereal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46976414081024
+    m_Localized: get shrink power up {0} times
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 47566795923456
+    m_Localized: little one
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47845503229952
+    m_Localized: super tiny
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47969138728960
+    m_Localized: 1 pixel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48474917265408
+    m_Localized: reach level {0}
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 48792128282624
+    m_Localized: "warming up\r"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 1
+    00000000:
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 0060b963040000000060b946fc1300000060392767160000006079312e2200000060b9db272300000060f9a4cb24000000607901422600000060b932142700000060b902b12900000060798cb92a000000603972162c0000

@@ -19,6 +19,18 @@ MonoBehaviour:
     m_Key: jugar
     m_Metadata:
       m_Items: []
+  - m_Id: 1043081027584
+    m_Key: desafios
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1248186687488
+    m_Key: personalizar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1291820032000
+    m_Key: opciones
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

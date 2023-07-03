@@ -3,6 +3,10 @@ using UnityEngine;
 using TMPro;
 using System;
 using System.Linq;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.Tables;
+using UnityEngine.Localization.Components;
+using UnityEngine.Localization;
 
 public class ChallengesMenuManager : Menu
 {
@@ -28,6 +32,14 @@ public class ChallengesMenuManager : Menu
 		foreach (AccomplishmentSO accomplishmentSO in accomplishmentsSO)
 		{
 			GameObject accompPanel = Instantiate(accomplishmentPanelPrefab, menuContent.transform);
+			Debug.Log("name " + accompPanel.transform.GetChild(0).GetChild(1).GetChild(0).name);
+			LocalizeStringEvent localizedTitle = accompPanel.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<LocalizeStringEvent>();
+			localizedTitle.StringReference.SetReference("Accomplishments", accomplishmentSO.accomplishmentTitle);
+
+			LocalizeStringEvent localizedDescription = accompPanel.transform.GetChild(0).GetChild(1).GetChild(1).GetComponent<LocalizeStringEvent>();
+			localizedDescription.StringReference.SetReference("Accomplishments", accomplishmentSO.accomplishmentDescription);
+			localizedDescription.StringReference.Arguments = new object[] { accomplishmentSO.greaterThan };
+
 			accompPanels.Add(accomplishmentSO.name, accompPanel);
 		}
 	}
@@ -128,14 +140,14 @@ public class ChallengesMenuManager : Menu
 			*/
 
 			// Title
-			accompPanel.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = accomplishmentSO.accomplishmentTitle;
+			// accompPanel.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = accomplishmentSO.accomplishmentTitle;
 			//Description
-			accompPanel.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = accomplishmentSO.accomplishmentDescription;
+			// accompPanel.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = accomplishmentSO.accomplishmentDescription;
 			//UnlockColor
-			accompPanel.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = $"unlock {customizeMenu.GetColorName(accomplishmentSO.idColorUnlock).ToLower()} color";
+			accompPanel.transform.GetChild(0).GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>().text = $"{customizeMenu.GetColorName(accomplishmentSO.idColorUnlock).ToLower()} color";
 			//Score
 			string unit = isSeconds ? "s" : "";
-			accompPanel.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = $"{Mathf.Round(currentScore)}{unit}/{accomplishmentSO.greaterThan}{unit}";
+			accompPanel.transform.GetChild(0).GetChild(1).GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{Mathf.Round(currentScore)}{unit}/{accomplishmentSO.greaterThan}{unit}";
 
 			// StraightPanel fill
 			accompPanel.transform.GetChild(0).GetChild(0).GetComponent<SlicedFilledImage>().fillAmount = fill;

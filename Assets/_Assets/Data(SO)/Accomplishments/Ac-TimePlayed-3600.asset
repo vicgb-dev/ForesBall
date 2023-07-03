@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c2f02b6b1246584283847fc3c37fc3b, type: 3}
-  m_Name: Accomp-CloseFollow-5
+  m_Name: Ac-TimePlayed-3600
   m_EditorClassIdentifier: 
-  property: 1
-  greaterThan: 5
-  accomplishmentTitle: peligro
-  accomplishmentDescription: "pasa cerca del enemigo que te sigue m\xE1s de 5 segundos"
-  idColorUnlock: 2
+  property: 0
+  greaterThan: 3600
+  accomplishmentTitle: visitaFamilia
+  accomplishmentDescription: timePlayedDescription
+  idColorUnlock: 6

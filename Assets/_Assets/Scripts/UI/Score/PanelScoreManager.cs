@@ -1,9 +1,9 @@
 using UnityEngine;
-using TMPro;
+using UnityEngine.Localization.Components;
 
 public class PanelScoreManager : MonoBehaviour
 {
-	[SerializeField] private TextMeshProUGUI title;
+	[SerializeField] private LocalizeStringEvent title;
 
 	private void OnEnable()
 	{
@@ -20,19 +20,19 @@ public class PanelScoreManager : MonoBehaviour
 		switch (state)
 		{
 			case UIState.Main:
-				title.text = "main menu";
+				title.StringReference.SetReference("UI Text", "menuPrincipal");
 				break;
 			case UIState.Levels:
-				title.text = "levels";
+				title.StringReference.SetReference("UI Text", "niveles");
 				break;
 			case UIState.Challenges:
-				title.text = "challenges";
+				title.StringReference.SetReference("UI Text", "desafios");
 				break;
 			case UIState.Customize:
-				title.text = "customize";
+				title.StringReference.SetReference("UI Text", "personalizar");
 				break;
 			case UIState.Settings:
-				title.text = "settings";
+				title.StringReference.SetReference("UI Text", "opciones");
 				break;
 		}
 	}

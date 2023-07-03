@@ -1,0 +1,202 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Accomplishments_es
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: es
+  m_SharedData: {fileID: 11400000, guid: 39c5ad019d588724bb69c4cb431879cf, type: 2}
+  m_Metadata:
+    m_Items:
+    - id: 0
+  m_TableData:
+  - m_Id: 18852962304
+    m_Localized: "pasa cerca del enemigo que te sigue m\xE1s de {0} segundos"
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 970788003840
+    m_Localized: cuidado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21736455757824
+    m_Localized: demasiado pronto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21974239240192
+    m_Localized: pierde en los primeros 5 segundos {0} veces
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 23436025487360
+    m_Localized: temerario
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23620289650688
+    m_Localized: "bailando con la muerte\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24224852434944
+    m_Localized: despierta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24374698139648
+    m_Localized: ganbaru
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24632295514112
+    m_Localized: "juega m\xE1s de {0} segundos"
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 24872855625728
+    m_Localized: bienvenido
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24954069934080
+    m_Localized: toca cesped
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34393833431040
+    m_Localized: visita a la familia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36208964624384
+    m_Localized: tiempo de calidad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37581793878016
+    m_Localized: "mu\xE9vete cerca del enemigo rect\xE1ngular m\xE1s de {0} segundos"
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 38460001443840
+    m_Localized: matrix
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38654097055744
+    m_Localized: "pierde en los \xFAltimos 5 segundos {0} veces"
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 38958209261568
+    m_Localized: casi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39247272304640
+    m_Localized: en la linea de meta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39935180103680
+    m_Localized: tan lejos y tan cerca
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40457064767488
+    m_Localized: gana un nivel {0} veces
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 40611104776192
+    m_Localized: algo es algo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41443258884096
+    m_Localized: "sigue intent\xE1ndolo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41910227525632
+    m_Localized: "la pr\xE1ctica hace la perfecci\xF3n\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42064934428672
+    m_Localized: Completa el punto caliente {0} veces
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 42240830955520
+    m_Localized: punto caliente
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42499799867392
+    m_Localized: battle royale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42967703838720
+    m_Localized: recoge {0} notas
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 43199569158144
+    m_Localized: director de orquesta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43539140009984
+    m_Localized: pianista
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44232932417536
+    m_Localized: "la se\xF1al"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44397718233088
+    m_Localized: violinista
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45840231653376
+    m_Localized: recoge la inmortalidad {0} veces
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 46100530159616
+    m_Localized: intocable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46169975250944
+    m_Localized: semidios
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46319300861952
+    m_Localized: etereo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46976414081024
+    m_Localized: "recoge el poder de reducci\xF3n {0} veces"
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 47566795923456
+    m_Localized: "peque\xF1ito"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47845503229952
+    m_Localized: minusculo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47969138728960
+    m_Localized: 1 pixel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48474917265408
+    m_Localized: alcanza el nivel {0}
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 48792128282624
+    m_Localized: calentando
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 1
+    00000000:
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 0060b963040000000060b946fc1300000060392767160000006079312e2200000060b9db272300000060f9a4cb24000000607901422600000060b932142700000060b902b12900000060798cb92a000000603972162c0000
