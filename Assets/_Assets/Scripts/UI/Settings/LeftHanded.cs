@@ -14,7 +14,8 @@ public class LeftHanded : MonoBehaviour
 
 	private void Start()
 	{
-		isLeftHanded = PlayerPrefs.GetInt("leftHanded", 1) != 1;
+		isLeftHanded = PlayerPrefs.GetInt("leftHanded", 0) != 1;
+		Debug.Log("isLeftHanded: " + isLeftHanded);
 		ToggleLeftHanded();
 		if (!isLeftHanded)
 		{
@@ -27,6 +28,8 @@ public class LeftHanded : MonoBehaviour
 	public void ToggleLeftHanded()
 	{
 		isLeftHanded = !isLeftHanded;
+
+		Debug.Log("toggled isLeftHanded: " + isLeftHanded);
 		if (isLeftHanded)
 		{
 			icon.transform.localScale = new Vector3(-1, 1, 1);

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17778865c3d23914982c8584e1f9d813, type: 3}
-  m_Name: Colors19-Browser
+  m_Name: Colors18-Browser
   m_EditorClassIdentifier: 
-  idColor: 19
+  idColor: 18
   colorName: browser
   playerColor: {r: 0.8941177, g: 0.2509804, b: 0.19215688, a: 1}
   mainMenuColor: {r: 1, g: 1, b: 1, a: 1}

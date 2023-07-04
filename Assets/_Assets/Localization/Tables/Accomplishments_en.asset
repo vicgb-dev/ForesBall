@@ -118,7 +118,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 42064934428672
-    m_Localized: Get the hotspot {0} times
+    m_Localized: get the hotspot {0} times
     m_Metadata:
       m_Items:
       - id: 0
@@ -192,6 +192,18 @@ MonoBehaviour:
       - id: 0
   - m_Id: 48792128282624
     m_Localized: "warming up\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 379042917867520
+    m_Localized: rookie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 379157661442048
+    m_Localized: veteran
+    m_Metadata:
+      m_Items: []
+  - m_Id: 379272916721664
+    m_Localized: god
     m_Metadata:
       m_Items: []
   references:

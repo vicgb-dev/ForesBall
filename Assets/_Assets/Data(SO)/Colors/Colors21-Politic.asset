@@ -20,7 +20,7 @@ MonoBehaviour:
   settingsMenuColor: {r: 0.6713836, g: 1, b: 0.5518868, a: 1}
   levelsMenuColor: {r: 1, g: 1, b: 1, a: 1}
   challengesColor: {r: 1, g: 1, b: 1, a: 1}
-  powerUpColor: {r: 1, g: 1, b: 1, a: 1}
+  powerUpColor: {r: 1, g: 0.61737454, b: 0, a: 1}
   straightEnemyColor: {r: 0.34117648, g: 0.7294118, b: 0.20000002, a: 1}
   followEnemyColor: {r: 0.5529412, g: 0.40000004, b: 0.9294118, a: 1}
   bigEnemyColor: {r: 0.91764706, g: 0.003921569, b: 0, a: 1}

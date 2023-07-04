@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17778865c3d23914982c8584e1f9d813, type: 3}
-  m_Name: Colors11-Golden
+  m_Name: Colors25-Golden
   m_EditorClassIdentifier: 
-  idColor: 11
+  idColor: 25
   colorName: golden
   playerColor: {r: 1, g: 1, b: 1, a: 1}
   mainMenuColor: {r: 1, g: 1, b: 1, a: 1}

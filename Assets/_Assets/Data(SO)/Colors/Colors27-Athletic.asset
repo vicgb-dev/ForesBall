@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17778865c3d23914982c8584e1f9d813, type: 3}
-  m_Name: Colors8-Hell
+  m_Name: Colors27-Athletic
   m_EditorClassIdentifier: 
-  idColor: 8
-  colorName: hell
-  playerColor: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
-  mainMenuColor: {r: 1, g: 0, b: 0, a: 1}
-  customizeMenuColor: {r: 1, g: 0, b: 0, a: 1}
-  settingsMenuColor: {r: 1, g: 0, b: 0, a: 1}
-  levelsMenuColor: {r: 1, g: 0, b: 0, a: 1}
+  idColor: 27
+  colorName: athletic
+  playerColor: {r: 1, g: 0, b: 0, a: 1}
+  mainMenuColor: {r: 1, g: 1, b: 1, a: 1}
+  customizeMenuColor: {r: 1, g: 1, b: 1, a: 1}
+  settingsMenuColor: {r: 1, g: 0.2783019, b: 0.2783019, a: 1}
+  levelsMenuColor: {r: 1, g: 1, b: 1, a: 1}
   challengesColor: {r: 1, g: 0, b: 0, a: 1}
-  powerUpColor: {r: 1, g: 0, b: 0, a: 1}
-  straightEnemyColor: {r: 1, g: 0, b: 0, a: 1}
+  powerUpColor: {r: 1, g: 1, b: 1, a: 1}
+  straightEnemyColor: {r: 1, g: 1, b: 1, a: 1}
   followEnemyColor: {r: 1, g: 0, b: 0, a: 1}
-  bigEnemyColor: {r: 1, g: 0, b: 0, a: 1}
+  bigEnemyColor: {r: 1, g: 1, b: 1, a: 1}
   rayEnemyColor: {r: 1, g: 0, b: 0, a: 1}

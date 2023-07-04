@@ -16,4 +16,4 @@ MonoBehaviour:
   greaterThan: 120
   accomplishmentTitle: temerario
   accomplishmentDescription: closeToRayDescription
-  idColorUnlock: 0
+  idColorUnlock: 5

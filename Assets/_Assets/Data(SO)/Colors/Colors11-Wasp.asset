@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17778865c3d23914982c8584e1f9d813, type: 3}
+  m_Name: Colors11-Wasp
+  m_EditorClassIdentifier: 
+  idColor: 11
+  colorName: wasp
+  playerColor: {r: 1, g: 0.9784647, b: 0.24056602, a: 1}
+  mainMenuColor: {r: 1, g: 1, b: 1, a: 1}
+  customizeMenuColor: {r: 1, g: 0.9908821, b: 0.6462264, a: 1}
+  settingsMenuColor: {r: 1, g: 0.9833333, b: 0.25, a: 1}
+  levelsMenuColor: {r: 1, g: 1, b: 1, a: 1}
+  challengesColor: {r: 1, g: 0.9803922, b: 0.2392157, a: 1}
+  powerUpColor: {r: 0.34901962, g: 0.34901962, b: 0.34901962, a: 1}
+  straightEnemyColor: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 1}
+  followEnemyColor: {r: 1, g: 0.9803922, b: 0.2392157, a: 1}
+  bigEnemyColor: {r: 0.34901962, g: 0.34901962, b: 0.34901962, a: 1}
+  rayEnemyColor: {r: 1, g: 0.9803922, b: 0.2392157, a: 1}

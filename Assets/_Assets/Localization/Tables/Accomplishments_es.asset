@@ -20,7 +20,7 @@ MonoBehaviour:
     - id: 0
   m_TableData:
   - m_Id: 18852962304
-    m_Localized: "pasa cerca del enemigo que te sigue m\xE1s de {0} segundos"
+    m_Localized: pasa cerca del enemigo que te sigue mas de {0} segundos
     m_Metadata:
       m_Items:
       - id: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 24632295514112
-    m_Localized: "juega m\xE1s de {0} segundos"
+    m_Localized: juega mas de {0} segundos
     m_Metadata:
       m_Items:
       - id: 0
@@ -75,7 +75,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 37581793878016
-    m_Localized: "mu\xE9vete cerca del enemigo rect\xE1ngular m\xE1s de {0} segundos"
+    m_Localized: muevete cerca del enemigo rectangular mas de {0} segundos
     m_Metadata:
       m_Items:
       - id: 0
@@ -84,7 +84,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 38654097055744
-    m_Localized: "pierde en los \xFAltimos 5 segundos {0} veces"
+    m_Localized: pierde en los ultimos 5 segundos {0} veces
     m_Metadata:
       m_Items:
       - id: 0
@@ -110,15 +110,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 41443258884096
-    m_Localized: "sigue intent\xE1ndolo"
+    m_Localized: sigue intentandolo
     m_Metadata:
       m_Items: []
   - m_Id: 41910227525632
-    m_Localized: "la pr\xE1ctica hace la perfecci\xF3n\r"
+    m_Localized: "la practica hace la perfeccion\r"
     m_Metadata:
       m_Items: []
   - m_Id: 42064934428672
-    m_Localized: Completa el punto caliente {0} veces
+    m_Localized: completa el punto caliente {0} veces
     m_Metadata:
       m_Items:
       - id: 0
@@ -169,7 +169,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 46976414081024
-    m_Localized: "recoge el poder de reducci\xF3n {0} veces"
+    m_Localized: recoge el poder de reduccion {0} veces
     m_Metadata:
       m_Items:
       - id: 0
@@ -192,6 +192,18 @@ MonoBehaviour:
       - id: 0
   - m_Id: 48792128282624
     m_Localized: calentando
+    m_Metadata:
+      m_Items: []
+  - m_Id: 379042917867520
+    m_Localized: novato
+    m_Metadata:
+      m_Items: []
+  - m_Id: 379157661442048
+    m_Localized: veterano
+    m_Metadata:
+      m_Items: []
+  - m_Id: 379272916721664
+    m_Localized: dios
     m_Metadata:
       m_Items: []
   references:

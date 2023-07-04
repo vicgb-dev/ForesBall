@@ -16,4 +16,4 @@ MonoBehaviour:
   greaterThan: 50
   accomplishmentTitle: director
   accomplishmentDescription: collectedDescription
-  idColorUnlock: 0
+  idColorUnlock: 9

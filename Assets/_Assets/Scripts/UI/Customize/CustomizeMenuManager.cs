@@ -3,10 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System;
-using TMPro;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.Tables;
-using UnityEditor.Localization;
 using UnityEngine.Localization.Components;
 
 public class CustomizeMenuManager : Menu
@@ -37,7 +35,7 @@ public class CustomizeMenuManager : Menu
 			GameObject pack = Instantiate(colorPackButtonPrefab, menuContent.transform);
 
 			// Bloqueamos todos los colores que no sean el primero, después los achievements se encargarán de desbloquearlos
-			/*if (colorSO.idColor != 0)
+			if (colorSO.idColor != 0)
 			{
 				pack.transform.GetChild(0).GetChild(8).gameObject.SetActive(true);
 				pack.GetComponent<Button>().enabled = false;
@@ -56,7 +54,7 @@ public class CustomizeMenuManager : Menu
 					unlockStringEvent.StringReference.SetReference("Colors", "completeToUnlock");
 					unlockStringEvent.StringReference.Arguments = new object[] { lolizedTitle };
 				}
-			}*/
+			}
 
 			pack.GetComponent<ColorPack>().SetUp(colorSO, colorSO.idColor == selectedColor);
 			pack.GetComponent<Button>().onClick.AddListener(() =>

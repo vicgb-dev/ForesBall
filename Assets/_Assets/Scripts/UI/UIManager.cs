@@ -66,18 +66,23 @@ public class UIManager : MonoBehaviour
 	private void Start()
 	{
 		Actions.onNewUIState?.Invoke(UIState.Main);
+		Invoke(nameof(ResetScrolls), 0.5f);
+	}
+
+	private void ResetScrolls()
+	{
+		accomplishmentsScrollbar.value = 1;
+		customizeScrollbar.value = 1;
 	}
 
 	public void MainMenuButton1()
 	{
 		Actions.onNewUIState?.Invoke(UIState.Challenges);
-		accomplishmentsScrollbar.value = 1;
 	}
 
 	public void MainMenuButton2()
 	{
 		Actions.onNewUIState?.Invoke(UIState.Customize);
-		customizeScrollbar.value = 1;
 	}
 
 	public void MainMenuButton3()

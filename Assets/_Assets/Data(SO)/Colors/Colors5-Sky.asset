@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idColor: 5
   colorName: blue sky
-  playerColor: {r: 0, g: 0.8982549, b: 1, a: 1}
+  playerColor: {r: 0.19339621, g: 0.91775817, b: 1, a: 1}
   mainMenuColor: {r: 0.504717, g: 1, b: 1, a: 1}
   customizeMenuColor: {r: 0, g: 0.8980393, b: 1, a: 1}
   settingsMenuColor: {r: 0, g: 0.14509805, b: 1, a: 1}
