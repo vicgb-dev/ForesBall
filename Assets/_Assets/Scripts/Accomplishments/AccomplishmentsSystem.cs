@@ -79,17 +79,18 @@ public class AccomplishmentsSystem : MonoBehaviour
 		yield return null;
 		if (!losefromPause)
 		{
-			if (timeAlive < 5)
+			if (timeAlive < 10)
 				AddTimesDeadEarly();
 
 			if (timeAlive > songLength - 5 && !win)
 				AddTimesDeadLate();
-
-			LoadSaveManager.Instance.SaveAccomplishments(accomplishments);
-			inGame = false;
-			challengesMenu.UpdateAccomplishments(accomplishments);
-			CheckCompleteAccomplishments();
 		}
+
+		LoadSaveManager.Instance.SaveAccomplishments(accomplishments);
+		inGame = false;
+		challengesMenu.UpdateAccomplishments(accomplishments);
+		CheckCompleteAccomplishments();
+
 		losefromPause = false;
 	}
 

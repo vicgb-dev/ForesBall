@@ -16,7 +16,8 @@ MonoBehaviour:
     m_Code: en
   m_SharedData: {fileID: 11400000, guid: b7411638e019c3844b1579ea3c504387, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - id: 0
   m_TableData:
   - m_Id: 121630187520
     m_Localized: play
@@ -46,5 +47,68 @@ MonoBehaviour:
     m_Localized: levels
     m_Metadata:
       m_Items: []
+  - m_Id: 1081862230990848
+    m_Localized: 'hi, i''m a solo developer and i used my free time to create this
+      game. if you enjoyed playing as much as i did making it consider invite me
+      to a coffe.
+
+      if you can''t, don''t worry just play and tell your friends
+      about this game.
+
+
+      thank you for playing!
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1082525350453248
+    m_Localized: just a coffee?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1082627800522752
+    m_Localized: not for now
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084133765373952
+    m_Localized: post processing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084251759534080
+    m_Localized: quality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084295250272256
+    m_Localized: low
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084327055679488
+    m_Localized: medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084376825290752
+    m_Localized: high
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084402683174912
+    m_Localized: ultra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1095457824137216
+    m_Localized: author
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1180450722242560
+    m_Localized: "you need\n{0}\nmore objectives \nto unlock\nthis level"
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 1181031570432000
+    m_Localized: "you need\n1\nmore objective \nto unlock\nthis level"
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
+    00000000:
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 0060f9199d310400

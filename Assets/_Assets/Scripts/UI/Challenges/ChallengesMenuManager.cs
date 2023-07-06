@@ -1,12 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System;
 using System.Linq;
-using UnityEngine.Localization.Settings;
-using UnityEngine.Localization.Tables;
 using UnityEngine.Localization.Components;
-using UnityEngine.Localization;
 
 public class ChallengesMenuManager : Menu
 {
@@ -105,7 +101,6 @@ public class ChallengesMenuManager : Menu
 				case AccompProperty.timesHotspot:
 					fill = Mathf.Min(newAccomp.timesHotspot / accomplishmentSO.greaterThan, 1);
 					currentScore = Mathf.Min(newAccomp.timesHotspot, accomplishmentSO.greaterThan);
-					isSeconds = true;
 					break;
 				case AccompProperty.timesCollected:
 					fill = Mathf.Min(newAccomp.timesCollected / accomplishmentSO.greaterThan, 1);
@@ -127,16 +122,6 @@ public class ChallengesMenuManager : Menu
 
 
 			GameObject accompPanel = accompPanels[accomplishmentSO.name];
-			/*
-			AccomplishmentPanel(Clone)
-				Visuals
-					StraightPanel
-						Panel
-					Title
-					Score
-					Description
-					UnlockColor
-			*/
 
 			// Title
 			// accompPanel.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = accomplishmentSO.accomplishmentTitle;

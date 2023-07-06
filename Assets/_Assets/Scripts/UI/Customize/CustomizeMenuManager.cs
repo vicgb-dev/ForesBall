@@ -6,6 +6,8 @@ using System;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.Tables;
 using UnityEngine.Localization.Components;
+using UnityEngine.Localization;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
 public class CustomizeMenuManager : Menu
 {
@@ -50,9 +52,12 @@ public class CustomizeMenuManager : Menu
 					StringTable table = localizationSettings.GetStringDatabase().GetTable("Accomplishments");
 					string lolizedTitle = table.GetEntry(accTitle).GetLocalizedString();
 
-					LocalizeStringEvent unlockStringEvent = pack.transform.GetChild(0).GetChild(8).GetChild(0).GetComponent<LocalizeStringEvent>();
-					unlockStringEvent.StringReference.SetReference("Colors", "completeToUnlock");
-					unlockStringEvent.StringReference.Arguments = new object[] { lolizedTitle };
+					LocalizedString unlockStringEvent = pack.transform.GetChild(0).GetChild(8).GetChild(0).GetComponent<LocalizeStringEvent>().StringReference;
+					//unlockStringEvent.StringReference.SetReference("Colors", "completeToUnlock");
+					(unlockStringEvent["0"] as StringVariable).Value = lolizedTitle;
+
+					// unlockStringEvent.StringReference.GetLocalizedString().
+					// unlockStringEvent.StringReference.Arguments = new object[] { "lolizedTitle" };
 				}
 			}
 

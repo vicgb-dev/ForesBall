@@ -33,7 +33,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 21974239240192
-    m_Localized: pierde en los primeros 5 segundos {0} veces
+    m_Localized: pierde en los primeros 10 segundos {0} veces
     m_Metadata:
       m_Items:
       - id: 0
@@ -186,7 +186,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 48474917265408
-    m_Localized: alcanza el nivel {0}
+    m_Localized: supera el nivel {0}
     m_Metadata:
       m_Items:
       - id: 0

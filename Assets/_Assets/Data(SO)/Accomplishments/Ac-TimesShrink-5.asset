@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c2f02b6b1246584283847fc3c37fc3b, type: 3}
   m_Name: Ac-TimesShrink-5
   m_EditorClassIdentifier: 
-  property: 0
+  property: 9
   greaterThan: 5
   accomplishmentTitle: pequeno
   accomplishmentDescription: shrinkDescription

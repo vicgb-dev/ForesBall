@@ -43,6 +43,54 @@ MonoBehaviour:
     m_Key: niveles
     m_Metadata:
       m_Items: []
+  - m_Id: 1081862230990848
+    m_Key: coffeeText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1082525350453248
+    m_Key: justACoffee
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1082627800522752
+    m_Key: close
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084133765373952
+    m_Key: post
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084251759534080
+    m_Key: quality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084295250272256
+    m_Key: low
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084327055679488
+    m_Key: medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084376825290752
+    m_Key: high
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084402683174912
+    m_Key: ultra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1095457824137216
+    m_Key: author
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1180450722242560
+    m_Key: unlockLvlPlural
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1181031570432000
+    m_Key: unlockLvlSingular
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

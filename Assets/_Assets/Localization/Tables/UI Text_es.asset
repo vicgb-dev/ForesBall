@@ -16,7 +16,8 @@ MonoBehaviour:
     m_Code: es
   m_SharedData: {fileID: 11400000, guid: b7411638e019c3844b1579ea3c504387, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - id: 0
   m_TableData:
   - m_Id: 121630187520
     m_Localized: jugar
@@ -46,5 +47,79 @@ MonoBehaviour:
     m_Localized: niveles
     m_Metadata:
       m_Items: []
+  - m_Id: 1081862230990848
+    m_Localized: "hola, soy un desarrollador independiente y he usado mi tiempo libre
+      para crear este juego. si disfrutaste jugando tanto como yo haciendolo, considera
+      invitarme a un cafe.\nsi no puedes, no te preocupes, simplemente juega y habla
+      a tus amigos sobre este juego.\n\n\xA1gracias por jugar!\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1082525350453248
+    m_Localized: "\xBFsolo un cafe?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1082627800522752
+    m_Localized: por ahora no
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084133765373952
+    m_Localized: postprocesado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084251759534080
+    m_Localized: calidad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084295250272256
+    m_Localized: baja
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084327055679488
+    m_Localized: media
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084376825290752
+    m_Localized: alta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084402683174912
+    m_Localized: ultra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1095457824137216
+    m_Localized: autor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1180450722242560
+    m_Localized: 'necesitas
+
+      {0}
+
+      objetivos mas
+
+      para desbloquear
+
+      este
+      nivel'
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 1181031570432000
+    m_Localized: 'necesitas
+
+      1
+
+      objetivo mas
+
+      para desbloquear
+
+      este
+      nivel'
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
+    00000000:
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 0060f9199d310400

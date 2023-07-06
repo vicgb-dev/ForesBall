@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.Tables;
 
 public class ResolutionToggle : MonoBehaviour
 {
@@ -32,30 +34,38 @@ public class ResolutionToggle : MonoBehaviour
 		ButtonFeedback feedback = GetComponent<ButtonFeedback>();
 		feedback.SetColorPackSelected(true);
 		slider.color = new Color(feedback.pressedColor.r, feedback.pressedColor.g, feedback.pressedColor.b, 1);
+
+		LocalizationSettings localizationSettings = LocalizationSettings.Instance;
+		StringTable table = localizationSettings.GetStringDatabase().GetTable("UI Text");
+		string quality = table.GetEntry("quality").GetLocalizedString();
+
+		string qualityLvl = "";
 		switch (option)
 		{
 			case 0:
 				slider.fillAmount = 0.25f;
 				Screen.SetResolution((int)(initialResolution.width * 0.5f), (int)(initialResolution.height * 0.5f), Screen.fullScreenMode);
-				resolutionText.text = "quality: low";
+
+				qualityLvl = table.GetEntry("low").GetLocalizedString();
 				break;
 			case 1:
 				slider.fillAmount = 0.5f;
 				Screen.SetResolution((int)(initialResolution.width * 0.7f), (int)(initialResolution.height * 0.7f), Screen.fullScreenMode);
-				resolutionText.text = "quality: medium";
+				qualityLvl = table.GetEntry("medium").GetLocalizedString();
 				break;
 			case 2:
 				slider.fillAmount = 0.75f;
 				Screen.SetResolution((int)(initialResolution.width * 0.9f), (int)(initialResolution.height * 0.9f), Screen.fullScreenMode);
-				resolutionText.text = "quality: high";
+				qualityLvl = table.GetEntry("high").GetLocalizedString();
 				break;
 			case 3:
 				slider.fillAmount = 1f;
 				Screen.SetResolution(initialResolution.width, initialResolution.height, Screen.fullScreenMode);
-				resolutionText.text = "quality: ultra";
+				qualityLvl = table.GetEntry("ultra").GetLocalizedString();
 				break;
 		}
 
+		resolutionText.text = $"{quality}: {qualityLvl}";
 		PlayerPrefs.SetInt("resolutionOption", resolutionOption);
 	}
 }

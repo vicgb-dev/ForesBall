@@ -1583,45 +1583,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1239075054453062416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6696656578151932128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_StringReference:
-    m_TableReference:
-      m_TableCollectionName: 
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  m_FormatArguments: []
-  m_UpdateString:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2765386576346845696}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  references:
-    version: 1
 --- !u!1 &7229970166883154079
 GameObject:
   m_ObjectHideFlags: 0
@@ -2191,19 +2152,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8596981385744923757, guid: 287c6e0d987176541be8ec0de41b1df3, type: 3}
   m_PrefabInstance: {fileID: 2716446232592128448}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6696656578151932128 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8745300917787392288, guid: 287c6e0d987176541be8ec0de41b1df3, type: 3}
-  m_PrefabInstance: {fileID: 2716446232592128448}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2765386576346845696 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 275389198319717312, guid: 287c6e0d987176541be8ec0de41b1df3, type: 3}
-  m_PrefabInstance: {fileID: 2716446232592128448}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6696656578151932128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

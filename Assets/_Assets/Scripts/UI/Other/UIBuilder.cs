@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.Tables;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
 public class UIBuilder : MonoBehaviour
 {
@@ -117,7 +122,16 @@ public class UIBuilder : MonoBehaviour
 		var lvls = LvlBuilder.Instance.GetLevels();
 		for (int i = 0; i < lvls.Count; i++)
 		{
-			lvlPLvlChooser.transform.GetChild(i).GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>().text = $"you need\n{lvls[i].objectivesToUnlock - totalChallengesComplated} more objectives\nto unlock";
+			LocalizedString unlockStringEvent = lvlPLvlChooser.transform.GetChild(i).GetChild(1).GetChild(1).GetComponent<LocalizeStringEvent>().StringReference;
+			if (lvls[i].objectivesToUnlock - totalChallengesComplated > 1)
+			{
+				unlockStringEvent.SetReference("UI Text", "unlockLvlPlural");
+				(unlockStringEvent["0"] as StringVariable).Value = (lvls[i].objectivesToUnlock - totalChallengesComplated).ToString();
+			}
+			else
+				unlockStringEvent.SetReference("UI Text", "unlockLvlSingular");
+
+
 			if (lvls[i].objectivesToUnlock <= totalChallengesComplated)
 			{
 				if (lvlPLvlChooser.transform.GetChild(i).GetChild(1).gameObject.activeSelf)
@@ -157,6 +171,10 @@ public class UIBuilder : MonoBehaviour
 	// Create panels to choose level
 	private void LoadPanelLevels(List<LevelSO> levels)
 	{
+		LocalizationSettings localizationSettings = LocalizationSettings.Instance;
+		StringTable table = localizationSettings.GetStringDatabase().GetTable("UI Text");
+		string author = table.GetEntry("author").GetLocalizedString();
+
 		int totalChallengesComplated = LoadSaveManager.Instance.LoadAccomplishments().totalChallengesCompleted;
 		int cont = 1;
 		foreach (LevelSO level in levels)
@@ -166,8 +184,20 @@ public class UIBuilder : MonoBehaviour
 			lvlPanel.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = cont++ + "";
 			lvlPanel.transform.GetChild(0).GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"{(Mathf.Floor(level.music.length / 60f)).ToString("00")}:{(level.music.length % 60).ToString("00")}";
 			lvlPanel.transform.GetChild(0).GetChild(1).transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = level.musicName.ToLower();
-			lvlPanel.transform.GetChild(0).GetChild(1).transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = $"by: {level.musicAuthor.ToLower()}";
-			lvlPanel.transform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>().text = $"you need\n{level.objectivesToUnlock - totalChallengesComplated} more objectives\nto unlock";
+			lvlPanel.transform.GetChild(0).GetChild(1).transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = $"{author}: {level.musicAuthor.ToLower()}";
+
+			LocalizedString unlockStringEvent = lvlPanel.transform.GetChild(1).GetChild(1).GetComponent<LocalizeStringEvent>().StringReference;
+			if (level.objectivesToUnlock - totalChallengesComplated > 1)
+			{
+				unlockStringEvent.SetReference("UI Text", "unlockLvlPlural");
+				(unlockStringEvent["0"] as StringVariable).Value = (level.objectivesToUnlock - totalChallengesComplated).ToString();
+			}
+			else if (level.objectivesToUnlock - totalChallengesComplated == 1)
+			{
+				Debug.Log("unlockLvlSingular");
+				unlockStringEvent.SetReference("UI Text", "unlockLvlSingular");
+			}
+
 			DrawChallenges(lvlPanel.transform.GetChild(0).GetChild(3).GetChild(0));
 			if (level.objectivesToUnlock <= totalChallengesComplated)
 				lvlPanel.transform.GetChild(1).gameObject.SetActive(false);
