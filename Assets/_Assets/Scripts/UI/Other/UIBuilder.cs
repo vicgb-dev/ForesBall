@@ -136,7 +136,10 @@ public class UIBuilder : MonoBehaviour
 			{
 				if (lvlPLvlChooser.transform.GetChild(i).GetChild(1).gameObject.activeSelf)
 				{
-					NotificationsSystem.Instance.NewNotification($"New level unlocked!");
+					LocalizationSettings localizationSettings = LocalizationSettings.Instance;
+					StringTable table = localizationSettings.GetStringDatabase().GetTable("UI Text");
+					string newLvlUnlocked = table.GetEntry("newLvlUnlocked").GetLocalizedString();
+					NotificationsSystem.Instance.NewNotification(newLvlUnlocked);
 				}
 				lvlPLvlChooser.transform.GetChild(i).GetChild(1).gameObject.SetActive(false);
 			}

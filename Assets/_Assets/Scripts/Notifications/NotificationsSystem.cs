@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Components;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.Tables;
 
 public class NotificationsSystem : MonoBehaviour
 {
@@ -107,6 +112,19 @@ public class NotificationsSystem : MonoBehaviour
 		fill.fillAmount = 1;
 	}
 
+	public void NewNotificationColorUnlocked(string colorLocalizationKey)
+	{
+
+		LocalizationSettings localizationSettings = LocalizationSettings.Instance;
+		StringTable tableColor = localizationSettings.GetStringDatabase().GetTable("Colors");
+		string colorNameLocalized = tableColor.GetEntry(colorLocalizationKey).GetLocalizedString();
+
+		StringTable tableColorUnlock = localizationSettings.GetStringDatabase().GetTable("Colors");
+		string colorUnlockLocalized = tableColorUnlock.GetEntry("colorUnlocked").GetLocalizedString(new object[] { colorNameLocalized });
+
+		if (!notificationsEnabled) return;
+		notifications.Add(colorUnlockLocalized.ToLower());
+	}
 
 	public void NewNotification(string notificationText)
 	{

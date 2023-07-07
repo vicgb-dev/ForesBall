@@ -80,7 +80,8 @@ public class CustomizeMenuManager : Menu
 		{
 			GameObject buttonPack = colorButtons[idColor];
 			if (!buttonPack.GetComponent<Button>().enabled)
-				NotificationsSystem.Instance.NewNotification($"Color {colors[idColor].colorName} unlocked!");
+				NotificationsSystem.Instance.NewNotificationColorUnlocked(colors[idColor].colorName);
+
 			buttonPack.transform.GetChild(0).GetChild(8).gameObject.SetActive(false);
 			buttonPack.GetComponent<Button>().enabled = true;
 			buttonPack.GetComponent<ButtonFeedback>().enabled = true;
@@ -101,7 +102,6 @@ public class CustomizeMenuManager : Menu
 		}
 		else
 		{
-
 			LocalizationSettings localizationSettings = LocalizationSettings.Instance;
 			StringTable table = localizationSettings.GetStringDatabase().GetTable("Colors");
 			string lolizedColor = table.GetEntry(colorsList[0].colorName).GetLocalizedString();

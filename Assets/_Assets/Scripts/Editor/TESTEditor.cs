@@ -55,6 +55,12 @@ public class TESTEditor : Editor
 			NotificationsSystem.Instance.NewNotification("Nueva notificacion de desbloqueo de algo");
 		}
 		GUILayout.EndHorizontal();
+		GUILayout.BeginHorizontal();
+		if (GUILayout.Button("NewColorUnlockNotification"))
+		{
+			NotificationsSystem.Instance.NewNotificationColorUnlocked("default");
+		}
+		GUILayout.EndHorizontal();
 
 		GUILayout.BeginHorizontal();
 		if (GUILayout.Button("RESETEAR TODO"))
