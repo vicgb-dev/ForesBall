@@ -168,9 +168,14 @@ MonoBehaviour:
     m_Localized: synthwave
     m_Metadata:
       m_Items: []
+  - m_Id: 1329828426506240
+    m_Localized: color {0} unlocked!
+    m_Metadata:
+      m_Items:
+      - id: 0
   references:
     version: 1
     00000000:
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 0060b933a7000000
+        m_Entries: 0060b933a70000000060f9ce78b90400

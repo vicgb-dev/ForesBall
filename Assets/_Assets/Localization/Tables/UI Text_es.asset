@@ -117,6 +117,10 @@ MonoBehaviour:
       nivel'
     m_Metadata:
       m_Items: []
+  - m_Id: 1385977892921344
+    m_Localized: "\xA1nuevo nivel desbloqueado!"
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:

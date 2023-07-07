@@ -163,6 +163,10 @@ MonoBehaviour:
     m_Key: synthwave
     m_Metadata:
       m_Items: []
+  - m_Id: 1329828426506240
+    m_Key: colorUnlocked
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

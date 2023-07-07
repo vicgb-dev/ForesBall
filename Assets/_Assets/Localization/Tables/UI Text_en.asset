@@ -106,6 +106,10 @@ MonoBehaviour:
     m_Localized: "you need\n1\nmore objective \nto unlock\nthis level"
     m_Metadata:
       m_Items: []
+  - m_Id: 1385977892921344
+    m_Localized: new level unlocked!
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:

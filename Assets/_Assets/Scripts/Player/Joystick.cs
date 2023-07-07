@@ -2,8 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
 
 public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeginDragHandler, IEndDragHandler
 {
@@ -12,7 +10,11 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 
 	[SerializeField] private float secondsToMorph = 3f;
 	[SerializeField] private float maxScale = 3f;
-	[SerializeField] private AnimationCurve curve;
+	[SerializeField] private AnimationCurve joystickCurve;
+	[Header("Arrows")]
+	[SerializeField] private Image arrows;
+	[SerializeField] private AnimationCurve arrowsCurve;
+	[SerializeField] private float secondsToMorphArrows = 1f;
 
 	private RectTransform thisRT;
 	private PlayerMove playerMove;
@@ -32,7 +34,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 	private bool isButton = false;
 	public bool buttonEnabled = false;
 	public bool isJoystick = true;
-	private int currentLvl;
+	private LevelSO currentLvl;
 
 	public void Init(PlayerMove playerMove)
 	{
@@ -73,6 +75,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 		Actions.colorsChange += PackSelected;
 		Actions.onLvlStart += lvl =>
 		{
+			currentLvl = lvl;
 			StopAllCoroutines();
 			StartCoroutine(ToJoystick());
 		};
@@ -130,6 +133,8 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 		//Debug.Log("V: " + Mathf.Round(vertical * 100) + "% H: " + Mathf.Round(horizontal * 100) + "%");
 		PostProcessingManager.Instance.ChangeLensDistorsion(horizontal, vertical);
 
+		if (arrows.color.a > 0) arrows.color = new Color(arrows.color.r, arrows.color.g, arrows.color.b, Mathf.Max(arrows.color.a - 0.01f, 0));
+
 		if (playerMove != null) playerMove.NewPosition(horizontal, vertical);
 	}
 
@@ -146,6 +151,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 	{
 		isButton = true;
 		isJoystick = false;
+		StartCoroutine(AnimateArrows(false));
 
 		float time = 0;
 		Vector3 initialScale = thisRT.localScale;
@@ -163,9 +169,9 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 		{
 			elapsedTime += Time.deltaTime;
 			time += Time.deltaTime / secondsToMorph;
-			thisRT.localScale = Vector3.Lerp(initialScale, finalScale, curve.Evaluate(time));
-			thisRT.position = Vector2.Lerp(initialPosition, finalPosition, curve.Evaluate(time));
-			imagePlayButton.color = Color.Lerp(initialColor, finalColor, curve.Evaluate(time));
+			thisRT.localScale = Vector3.Lerp(initialScale, finalScale, joystickCurve.Evaluate(time));
+			thisRT.position = Vector2.Lerp(initialPosition, finalPosition, joystickCurve.Evaluate(time));
+			imagePlayButton.color = Color.Lerp(initialColor, finalColor, joystickCurve.Evaluate(time));
 			yield return null;
 		}
 	}
@@ -175,8 +181,14 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 		float time = 0;
 		gameObject.GetComponent<Image>().color = ColorsManager.Instance.GetPlayerColor();
 
-		Vector3 initialScale = thisRT.localScale;
-		Vector3 finalScale = Vector3.one;
+		if (LvlBuilder.Instance.GetLevels().IndexOf(currentLvl) <= 3)
+		{
+			arrows.color = new Color(arrows.color.r, arrows.color.g, arrows.color.b, 1);
+			StartCoroutine(AnimateArrows(true));
+		}
+
+		Vector3 initialJoystickScale = thisRT.localScale;
+		Vector3 finalJoystickScale = Vector3.one;
 
 		Image imagePlayButton = gameObject.transform.GetChild(0).GetComponent<Image>();
 		Color initialColor = imagePlayButton.color;
@@ -187,8 +199,8 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 		{
 			elapsedTime += Time.deltaTime;
 			time += Time.deltaTime / secondsToMorph;
-			thisRT.localScale = Vector3.Lerp(initialScale, finalScale, curve.Evaluate(time));
-			imagePlayButton.color = Color.Lerp(initialColor, finalColor, curve.Evaluate(time));
+			thisRT.localScale = Vector3.Lerp(initialJoystickScale, finalJoystickScale, joystickCurve.Evaluate(time));
+			imagePlayButton.color = Color.Lerp(initialColor, finalColor, joystickCurve.Evaluate(time));
 			yield return null;
 		}
 
@@ -200,6 +212,8 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 	{
 		isButton = false;
 		buttonEnabled = false;
+
+		StartCoroutine(AnimateArrows(false));
 
 		float time = 0;
 		Vector3 initialScale = thisRT.localScale;
@@ -217,10 +231,58 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 		{
 			elapsedTime += Time.deltaTime;
 			time += Time.deltaTime / secondsToMorph;
-			thisRT.localScale = Vector3.Lerp(initialScale, finalScale, curve.Evaluate(time));
-			thisRT.position = Vector2.Lerp(initialPosition, finalPosition, curve.Evaluate(time));
-			imagePlayButton.color = Color.Lerp(initialColor, finalColor, curve.Evaluate(time));
+			thisRT.localScale = Vector3.Lerp(initialScale, finalScale, joystickCurve.Evaluate(time));
+			thisRT.position = Vector2.Lerp(initialPosition, finalPosition, joystickCurve.Evaluate(time));
+			imagePlayButton.color = Color.Lerp(initialColor, finalColor, joystickCurve.Evaluate(time));
 			yield return null;
+		}
+	}
+
+	private IEnumerator AnimateArrows(bool toBig)
+	{
+		Vector3 initialArrowsScale = arrows.transform.localScale;
+		Vector3 finalArrowsScale = toBig ? Vector3.one : Vector3.zero;
+
+		float time = 0;
+		float elapsedTime = 0;
+
+		while (elapsedTime < secondsToMorph)
+		{
+			elapsedTime += Time.deltaTime;
+			time += Time.deltaTime / secondsToMorph;
+			arrows.transform.localScale = Vector3.Lerp(initialArrowsScale, finalArrowsScale, joystickCurve.Evaluate(time));
+			yield return null;
+		}
+		// Si se ha hecoh grande, tiene que animarse 3 veces
+		if (toBig)
+		{
+
+			Vector3 bigArrowsScale = Vector3.one;
+			Vector3 smallArrowsScale = new Vector3(0.8f, 0.8f, 0.8f);
+
+			time = 0;
+			elapsedTime = 0;
+			while (arrows.color.a > 0)
+			{
+				while (elapsedTime < secondsToMorphArrows)
+				{
+					elapsedTime += Time.deltaTime;
+					time += Time.deltaTime / secondsToMorphArrows;
+					arrows.transform.localScale = Vector3.Lerp(bigArrowsScale, smallArrowsScale, arrowsCurve.Evaluate(time));
+					yield return null;
+				}
+				time = 0;
+				elapsedTime = 0;
+				while (elapsedTime < secondsToMorphArrows)
+				{
+					elapsedTime += Time.deltaTime;
+					time += Time.deltaTime / secondsToMorphArrows;
+					arrows.transform.localScale = Vector3.Lerp(smallArrowsScale, bigArrowsScale, arrowsCurve.Evaluate(time));
+					yield return null;
+				}
+				time = 0;
+				elapsedTime = 0;
+			}
 		}
 	}
 }

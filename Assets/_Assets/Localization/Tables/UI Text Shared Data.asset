@@ -91,6 +91,10 @@ MonoBehaviour:
     m_Key: unlockLvlSingular
     m_Metadata:
       m_Items: []
+  - m_Id: 1385977892921344
+    m_Key: newLvlUnlocked
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

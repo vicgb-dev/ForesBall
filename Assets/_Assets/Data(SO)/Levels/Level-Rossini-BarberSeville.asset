@@ -151,9 +151,9 @@ MonoBehaviour:
   powerUpsInmortalTimeStamps:
   - 26
   powerUpsShrinkTimeStamps: []
-  timeChallenge: 1
-  hotspot: 1
-  collectibles: 1
+  timeChallenge: 0
+  hotspot: 0
+  collectibles: 0
   percentOfSongToCompleteHotspot: 40
   collectiblesSpawnTimeStamps:
   - 14
@@ -161,4 +161,4 @@ MonoBehaviour:
   - 33
   - 37.8
   - 48.7
-  objectivesToUnlock: 0
+  objectivesToUnlock: 50

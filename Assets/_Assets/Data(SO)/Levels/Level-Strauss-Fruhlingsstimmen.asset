@@ -99,13 +99,13 @@ MonoBehaviour:
   - 26.6
   powerUpsShrinkTimeStamps:
   - 19.2
-  timeChallenge: 1
-  hotspot: 1
-  collectibles: 1
+  timeChallenge: 0
+  hotspot: 0
+  collectibles: 0
   percentOfSongToCompleteHotspot: 40
   collectiblesSpawnTimeStamps:
   - 5.8
   - 12.5
   - 17.4
   - 17.4
-  objectivesToUnlock: 0
+  objectivesToUnlock: 30
