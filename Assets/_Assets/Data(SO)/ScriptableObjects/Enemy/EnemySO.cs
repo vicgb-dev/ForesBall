@@ -20,7 +20,7 @@ public class EnemySO : ScriptableObject
 	public void SetUpEnemy(GameObject enemy)
 	{
 		Color color = ColorsManager.Instance.GetEnemyColor(enemyType);
-		Debug.Log($"Enemy color = {color}");
+		//Debug.Log($"Enemy color = {color}");
 
 		SpriteRenderer spriteGO = enemy.GetComponentInChildren<SpriteRenderer>();
 		if (spriteGO != null && spriteRendererSO.sprite != null) spriteGO.sprite = spriteRendererSO.sprite;

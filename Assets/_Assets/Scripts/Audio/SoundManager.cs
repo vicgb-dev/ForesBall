@@ -26,6 +26,7 @@ public class SoundManager : MonoBehaviour
 	private AudioSource lvlMusic;
 	private AudioSource peopleAs;
 	private float pitch = 1;
+	private int lastVolume = 1;
 	private bool inLvlsMenu = false;
 
 	private Coroutine musicPreviewCo;
@@ -104,6 +105,12 @@ public class SoundManager : MonoBehaviour
 		Actions.onLvlStart += (lvl) => StartCoroutine(FadePeopleTalking(false));
 		Actions.onNewUIState += OnNewUIState;
 		Actions.onMute += OnMute;
+		Actions.adStarted += () =>
+		{
+			lastVolume = PlayerPrefs.GetInt("mutedVolume", 1);
+			SetVolume(0);
+		};
+		Actions.adFinished += () => SetVolume(lastVolume);
 	}
 
 	private void OnDisable()
@@ -116,7 +123,7 @@ public class SoundManager : MonoBehaviour
 
 	private void OnMute(bool mute)
 	{
-		SoundManager.Instance.SetVolume(mute ? 0 : 1);
+		SetVolume(mute ? 0 : 1);
 	}
 	public void OnStartLvl(LevelSO lvl)
 	{

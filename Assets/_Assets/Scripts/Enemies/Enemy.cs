@@ -43,7 +43,7 @@ public abstract class Enemy : MonoBehaviour
 		rb.velocity = Vector2.zero;
 		coll.enabled = false;
 		stopped = true;
-		Debug.Log($"$rb.isKinematic = {rb.isKinematic} | rb.velocity = {rb.velocity} | coll.enabled = {coll.enabled} | stopped = {stopped}");
+		//Debug.Log($"$rb.isKinematic = {rb.isKinematic} | rb.velocity = {rb.velocity} | coll.enabled = {coll.enabled} | stopped = {stopped}");
 
 		StopAllCoroutines();
 	}
