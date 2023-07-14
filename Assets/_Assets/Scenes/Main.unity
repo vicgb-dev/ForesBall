@@ -1471,7 +1471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063c650a1579379449df00169ee2e5d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeSinceLastAd: 120
+  secondsSinceLastAd: 90
   showAdFromLvl: 4
   testMode: 1
 --- !u!4 &191513598

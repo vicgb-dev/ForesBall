@@ -4,7 +4,7 @@ using UnityEngine.Advertisements;
 
 public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
 {
-	[SerializeField] private float timeSinceLastAd = 120f;
+	[SerializeField] private float secondsSinceLastAd = 120f;
 	[SerializeField] private int showAdFromLvl = 3;
 	[SerializeField] private bool testMode = true;
 	private float _timeSinceLastAd = 0f;
@@ -79,7 +79,16 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
 
 	public void LoadInerstitialAd(int lvlNumber)
 	{
-		if (lvlNumber >= showAdFromLvl && _timeSinceLastAd > timeSinceLastAd)
+		var lvls = LvlBuilder.Instance.GetLevels();
+		bool nextLvlLockedByAd = false;
+		if (lvlNumber >= 19 && lvlNumber + 1 <= lvls.Count)
+		{
+			string lvlName = lvls[lvlNumber + 1].name;
+			nextLvlLockedByAd = LoadSaveManager.Instance.LoadIsLockedByAd(lvlName);
+		}
+
+		// Si el nivel es mas alto que el nivel de mostrar anuncios, y ha pasado el tiempo desde el ultimo anuncio, y el siguiente nivel no esta bloqueado por anuncios
+		if (lvlNumber >= showAdFromLvl && _timeSinceLastAd > secondsSinceLastAd && !nextLvlLockedByAd)
 		{
 			_timeSinceLastAd = 0f;
 			Advertisement.Load(interstitialId, this);
@@ -91,7 +100,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
 		}
 	}
 
-	public void LoadRewardedAd(int lvlNumber, Action rewardCallback)
+	public void LoadRewardedAd(Action rewardCallback)
 	{
 		onRewardComplete = rewardCallback;
 		Advertisement.Load(rewardedId, this);
@@ -116,7 +125,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
 	// Anuncio CARGADO -> Mostrar
 	public void OnUnityAdsAdLoaded(string placementId)
 	{
-		Advertisement.Show(interstitialId, this);
+		Advertisement.Show(placementId, this);
 		Debug.Log("OnUnityAdsAdLoaded");
 	}
 
@@ -138,7 +147,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
 		}
 
 		Time.timeScale = 1;
-		Actions.adFinished?.Invoke();
+		Actions.adFinished?.Invoke(placementId.Equals(rewardedId));
 	}
 
 

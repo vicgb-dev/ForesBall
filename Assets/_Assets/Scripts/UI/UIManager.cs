@@ -103,7 +103,11 @@ public class UIManager : MonoBehaviour
 	public bool PlayLevel()
 	{
 		int totalChallengesComplated = LoadSaveManager.Instance.LoadAccomplishments().totalChallengesCompleted;
-		if (LvlBuilder.Instance.GetLevels()[currentPanel].objectivesToUnlock <= totalChallengesComplated)
+		// Si el nivel es el 20 o superior y esta bloqueado por anuncio
+		bool isLockedByAd = currentPanel >= 19 && LoadSaveManager.Instance.LoadIsLockedByAd(LvlBuilder.Instance.GetLevels()[currentPanel].name);
+		// check if this level had an ad and the user has seen it
+		Debug.Log($"totalChallengesComplated {totalChallengesComplated} isLockedByAd {isLockedByAd}");
+		if (LvlBuilder.Instance.GetLevels()[currentPanel].objectivesToUnlock <= totalChallengesComplated && !isLockedByAd)
 		{
 			Actions.onCleanLvl?.Invoke();
 			Actions.onLvlStart?.Invoke(LvlBuilder.Instance.GetLevels()[currentPanel]);

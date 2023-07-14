@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class LoadSaveManager : MonoBehaviour
 {
@@ -70,16 +72,44 @@ public class LoadSaveManager : MonoBehaviour
 		currentState.idColor = idColor;
 		Save(currentState);
 	}
+	public void SaveLockedByAd(string name)
+	{
+		GameState currentState = Load();
+
+		if (currentState.unlockedLvlByAds == null)
+			currentState.unlockedLvlByAds = new List<UnlockedLvlByAd>();
+
+		int existingIndex = currentState.unlockedLvlByAds.FindIndex(sl => sl.lvlName == name);
+		if (existingIndex != -1)
+			currentState.unlockedLvlByAds[existingIndex] = new UnlockedLvlByAd(name);
+		else
+			currentState.unlockedLvlByAds.Add(new UnlockedLvlByAd(name));
+
+		Debug.Log("Guardando " + name + " como desbloqueado por anuncio");
+
+		Save(currentState);
+	}
 
 	#endregion
 
 	#region Load
 
-	public List<SavedLevel> LoadLevels() => Load()?.savedLevels;
+	public List<SavedLevel> LoadLevels() => Load().savedLevels;
 
-	public Accomplishments LoadAccomplishments() => Load()?.accomplishments ?? new Accomplishments();
+	public Accomplishments LoadAccomplishments() => Load().accomplishments ?? new Accomplishments();
 
-	public int? LoadColorTheme() => Load()?.idColor;
+	public int? LoadColorTheme() => Load().idColor;
+	public bool LoadIsLockedByAd(string name)
+	{
+		// Si no encontramos el nivel en el estado significa que está bloqueado por defecto
+		List<UnlockedLvlByAd> unlockedLvlByAds = Load().unlockedLvlByAds;
+		if (unlockedLvlByAds == null) return true;
+		unlockedLvlByAds = unlockedLvlByAds.Where(lvl => lvl.lvlName == name).ToList();
+		if (unlockedLvlByAds.Count == 0) return true;
+
+		// Lo hemos encontrado, así que el nivel está desbloqueado por anuncio
+		return false;
+	}
 
 	#endregion
 
@@ -95,4 +125,5 @@ public class LoadSaveManager : MonoBehaviour
 	{
 		LoadSaveEncrypted.Delete();
 	}
+
 }

@@ -110,7 +110,7 @@ public class SoundManager : MonoBehaviour
 			lastVolume = PlayerPrefs.GetInt("mutedVolume", 1);
 			SetVolume(0);
 		};
-		Actions.adFinished += () => SetVolume(lastVolume);
+		Actions.adFinished += (isRewarded) => SetVolume(lastVolume);
 	}
 
 	private void OnDisable()
@@ -254,7 +254,7 @@ public class SoundManager : MonoBehaviour
 
 	private void StopMusicPreview(LevelSO lvl = null)
 	{
-		Debug.Log("StopMusicPreview");
+		//Debug.Log("StopMusicPreview");
 		if (musicPreviewCo != null)
 		{
 			StopCoroutine(musicPreviewCo);
@@ -262,7 +262,6 @@ public class SoundManager : MonoBehaviour
 			if (musicPreviewGOs.Count > 0)
 				StartCoroutine(FadeOut(musicPreviewGOs[musicPreviewGOs.Count - 1]));
 		}
-
 	}
 
 	private IEnumerator PlayMusicPreviewCo()

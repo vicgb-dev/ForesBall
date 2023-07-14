@@ -48,6 +48,11 @@ public class UIBuilder : MonoBehaviour
 	{
 		Actions.onLvlStart += SaveCurrentLvl;
 		Actions.onLvlEnd += ReloadLevelUI;
+		Actions.adFinished += (rewarded) =>
+		{
+			// Si hemos visto un anuncio recompensado actualizamos los niveles bloqueados
+			if (rewarded) UpdateLockedLvl();
+		};
 	}
 
 	private void OnDisable()
@@ -123,14 +128,11 @@ public class UIBuilder : MonoBehaviour
 		for (int i = 0; i < lvls.Count; i++)
 		{
 			LocalizedString unlockStringEvent = lvlPLvlChooser.transform.GetChild(i).GetChild(1).GetChild(1).GetComponent<LocalizeStringEvent>().StringReference;
-			if (lvls[i].objectivesToUnlock - totalChallengesComplated > 1)
-			{
-				unlockStringEvent.SetReference("UI Text", "unlockLvlPlural");
-				(unlockStringEvent["0"] as StringVariable).Value = (lvls[i].objectivesToUnlock - totalChallengesComplated).ToString();
-			}
-			else
-				unlockStringEvent.SetReference("UI Text", "unlockLvlSingular");
 
+			bool isPlural = lvls[i].objectivesToUnlock - totalChallengesComplated > 1;
+			unlockStringEvent.SetReference("UI Text", isPlural ? "unlockLvlPlural" : "unlockLvlSingular");
+			if (isPlural)
+				(unlockStringEvent["0"] as StringVariable).Value = (lvls[i].objectivesToUnlock - totalChallengesComplated).ToString();
 
 			if (lvls[i].objectivesToUnlock <= totalChallengesComplated)
 			{
@@ -143,7 +145,14 @@ public class UIBuilder : MonoBehaviour
 				}
 				lvlPLvlChooser.transform.GetChild(i).GetChild(1).gameObject.SetActive(false);
 			}
+
+			// Hide unlock by ad panel
+			bool isLockedByAd = i >= 19 && LoadSaveManager.Instance.LoadIsLockedByAd(lvls[i].name);
+			Debug.Log($"{i} isLockedByAd {isLockedByAd}");
+			if (!isLockedByAd)
+				lvlPLvlChooser.transform.GetChild(i).GetChild(2).gameObject.SetActive(false);
 		}
+
 	}
 
 	void Start()
@@ -190,22 +199,33 @@ public class UIBuilder : MonoBehaviour
 			lvlPanel.transform.GetChild(0).GetChild(1).transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = $"{author}: {level.musicAuthor.ToLower()}";
 
 			LocalizedString unlockStringEvent = lvlPanel.transform.GetChild(1).GetChild(1).GetComponent<LocalizeStringEvent>().StringReference;
-			if (level.objectivesToUnlock - totalChallengesComplated > 1)
-			{
-				unlockStringEvent.SetReference("UI Text", "unlockLvlPlural");
+			// Edit lock panel
+			bool isPlural = level.objectivesToUnlock - totalChallengesComplated > 1;
+			unlockStringEvent.SetReference("UI Text", isPlural ? "unlockLvlPlural" : "unlockLvlSingular");
+			if (isPlural)
 				(unlockStringEvent["0"] as StringVariable).Value = (level.objectivesToUnlock - totalChallengesComplated).ToString();
-			}
-			else if (level.objectivesToUnlock - totalChallengesComplated == 1)
-			{
-				Debug.Log("unlockLvlSingular");
-				unlockStringEvent.SetReference("UI Text", "unlockLvlSingular");
-			}
 
 			DrawChallenges(lvlPanel.transform.GetChild(0).GetChild(3).GetChild(0));
+			// Hide objectives lock panel
 			if (level.objectivesToUnlock <= totalChallengesComplated)
 				lvlPanel.transform.GetChild(1).gameObject.SetActive(false);
+
+			// Hide ad lock panel
+			bool isLockedByAd = cont > 20 && LoadSaveManager.Instance.LoadIsLockedByAd(level.name);
+			if (isLockedByAd)
+			{
+				lvlPanel.transform.GetChild(2).GetChild(2).GetComponent<Button>().onClick.AddListener(
+					() => Actions.showRewardedAdd(() =>
+					{
+						LoadSaveManager.Instance.SaveLockedByAd(level.name);
+					})
+				);
+			}
+			else
+				lvlPanel.transform.GetChild(2).gameObject.SetActive(false);
 		}
 		lvlPLvlChooser.GetComponent<LvlSwiper>().Populate();
 		populated = true;
+		UpdateLockedLvl();
 	}
 }

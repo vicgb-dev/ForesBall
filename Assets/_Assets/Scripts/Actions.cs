@@ -16,9 +16,9 @@ public static class Actions
 	public static Action<AudioSource> onLvlMusicChange;
 	public static Action<bool> onMute;
 	public static Action<int> showNormalAdd;
-	public static Action<int, Action> showRewardedAdd;
+	public static Action<Action> showRewardedAdd;
 	public static Action adStarted;
-	public static Action adFinished;
+	public static Action<bool> adFinished;
 
 	public enum ChallengeType
 	{

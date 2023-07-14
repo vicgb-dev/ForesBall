@@ -121,6 +121,14 @@ MonoBehaviour:
     m_Localized: "\xA1nuevo nivel desbloqueado!"
     m_Metadata:
       m_Items: []
+  - m_Id: 3514156162048000
+    m_Localized: debes ver un anuncio para desbloquear este nivel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3514666868891648
+    m_Localized: ver anuncio
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:
