@@ -115,7 +115,7 @@ public class UIManager : MonoBehaviour
 		else
 			Debug.Log($"El nivel {currentPanel + 1} no esta desbloqueado");
 
-		return !(LvlBuilder.Instance.GetLevels()[currentPanel].objectivesToUnlock <= totalChallengesComplated);
+		return !(LvlBuilder.Instance.GetLevels()[currentPanel].objectivesToUnlock <= totalChallengesComplated && !isLockedByAd);
 	}
 
 	public void SetCurrentPanel(int newCurrentPanel)

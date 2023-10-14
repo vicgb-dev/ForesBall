@@ -131,7 +131,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.9.1
+  bundleVersion: 1.0.0
   preloadedAssets:
   - {fileID: 11400000, guid: f21fbe62d35e25049bfb96ceb69154c5, type: 2}
   metroInputSource: 0
@@ -158,7 +158,7 @@ PlayerSettings:
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
-  AndroidBundleVersionCode: 14
+  AndroidBundleVersionCode: 17
   AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 33
   AndroidPreferredInstallLocation: 1
@@ -267,7 +267,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 5f813e4fdd94c0747a92b8eecec4cde4, type: 3}
+      m_Icon: {fileID: 2800000, guid: 263ae67bb1a249f47808bd3ab78ea3ed, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

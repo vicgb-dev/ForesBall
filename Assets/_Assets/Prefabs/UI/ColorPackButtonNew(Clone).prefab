@@ -2053,6 +2053,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2911893280555867542}
     m_Modifications:
+    - target: {fileID: 6816813767396343586, guid: 287c6e0d987176541be8ec0de41b1df3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 05c66d78b77028d44821757c523b787c, type: 3}
     - target: {fileID: 8596981385744923757, guid: 287c6e0d987176541be8ec0de41b1df3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
