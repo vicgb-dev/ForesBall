@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: Localization-Assets-Shared
   m_EditorClassIdentifier: 
   m_GroupName: Localization-Assets-Shared
-  m_Data:
-    m_SerializedData: []
   m_GUID: ef0cacd52f9ad6d49ba15e9d95f55603
   m_SerializeEntries:
-  - m_GUID: b7411638e019c3844b1579ea3c504387
-    m_Address: Assets/_Assets/Localization/Tables/UI Text Shared Data.asset
+  - m_GUID: 390c6639aa5b43b448a58f6fdeec8bde
+    m_Address: Assets/_Assets/Localization/Tables/Colores Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -27,8 +25,8 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 390c6639aa5b43b448a58f6fdeec8bde
-    m_Address: Assets/_Assets/Localization/Tables/Colores Shared Data.asset
+  - m_GUID: b7411638e019c3844b1579ea3c504387
+    m_Address: Assets/_Assets/Localization/Tables/UI Text Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

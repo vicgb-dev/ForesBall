@@ -1,0 +1,5 @@
+C:/Development/Projects/ForesBall/.utmp/RelWithDebInfo/3t2y6h5y/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Development/Projects/ForesBall/.utmp/RelWithDebInfo/3t2y6h5y/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+C:/Development/Projects/ForesBall/.utmp/RelWithDebInfo/3t2y6h5y/armeabi-v7a/FramePacing/CMakeFiles/swappywrapper.dir
+C:/Development/Projects/ForesBall/.utmp/RelWithDebInfo/3t2y6h5y/armeabi-v7a/FramePacing/CMakeFiles/edit_cache.dir
+C:/Development/Projects/ForesBall/.utmp/RelWithDebInfo/3t2y6h5y/armeabi-v7a/FramePacing/CMakeFiles/rebuild_cache.dir
