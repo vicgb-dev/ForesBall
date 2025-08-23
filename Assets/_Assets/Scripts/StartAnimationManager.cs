@@ -35,6 +35,12 @@ public class StartAnimationManager : MonoBehaviour
 		DestroyEnemy();
 		yield return wait;
 		DestroyEnemy();
+
+		yield return wait;
+		yield return wait;
+		yield return wait;
+
+		Actions.startAnimationEnded?.Invoke();
 	}
 
 	private void DestroyEnemy()

@@ -48,11 +48,6 @@ public class UIBuilder : MonoBehaviour
 	{
 		Actions.onLvlStart += SaveCurrentLvl;
 		Actions.onLvlEnd += ReloadLevelUI;
-		Actions.adFinished += (rewarded) =>
-		{
-			// Si hemos visto un anuncio recompensado actualizamos los niveles bloqueados
-			if (rewarded) UpdateLockedLvl();
-		};
 	}
 
 	private void OnDisable()
@@ -147,10 +142,7 @@ public class UIBuilder : MonoBehaviour
 			}
 
 			// Hide unlock by ad panel
-			bool isLockedByAd = i >= 19 && LoadSaveManager.Instance.LoadIsLockedByAd(lvls[i].name);
-			Debug.Log($"{i} isLockedByAd {isLockedByAd}");
-			if (!isLockedByAd)
-				lvlPLvlChooser.transform.GetChild(i).GetChild(2).gameObject.SetActive(false);
+			lvlPLvlChooser.transform.GetChild(i).GetChild(2).gameObject.SetActive(false);
 		}
 
 	}
@@ -210,19 +202,7 @@ public class UIBuilder : MonoBehaviour
 			if (level.objectivesToUnlock <= totalChallengesComplated)
 				lvlPanel.transform.GetChild(1).gameObject.SetActive(false);
 
-			// Hide ad lock panel
-			bool isLockedByAd = cont > 20 && LoadSaveManager.Instance.LoadIsLockedByAd(level.name);
-			if (isLockedByAd)
-			{
-				lvlPanel.transform.GetChild(2).GetChild(2).GetComponent<Button>().onClick.AddListener(
-					() => Actions.showRewardedAdd(() =>
-					{
-						LoadSaveManager.Instance.SaveLockedByAd(level.name);
-					})
-				);
-			}
-			else
-				lvlPanel.transform.GetChild(2).gameObject.SetActive(false);
+			lvlPanel.transform.GetChild(2).gameObject.SetActive(false);
 		}
 		lvlPLvlChooser.GetComponent<LvlSwiper>().Populate();
 		populated = true;

@@ -72,23 +72,14 @@ public class LoadSaveManager : MonoBehaviour
 		currentState.idColor = idColor;
 		Save(currentState);
 	}
-	public void SaveLockedByAd(string name)
+
+	public void UnlockAllLevels()
 	{
-		GameState currentState = Load();
-
-		if (currentState.unlockedLvlByAds == null)
-			currentState.unlockedLvlByAds = new List<UnlockedLvlByAd>();
-
-		int existingIndex = currentState.unlockedLvlByAds.FindIndex(sl => sl.lvlName == name);
-		if (existingIndex != -1)
-			currentState.unlockedLvlByAds[existingIndex] = new UnlockedLvlByAd(name);
-		else
-			currentState.unlockedLvlByAds.Add(new UnlockedLvlByAd(name));
-
-		Debug.Log("Guardando " + name + " como desbloqueado por anuncio");
-
-		Save(currentState);
+		Accomplishments accomplishments = LoadAccomplishments();
+		accomplishments.totalChallengesCompleted = 9999;
+		SaveAccomplishments(accomplishments);
 	}
+
 
 	#endregion
 
@@ -99,17 +90,6 @@ public class LoadSaveManager : MonoBehaviour
 	public Accomplishments LoadAccomplishments() => Load().accomplishments ?? new Accomplishments();
 
 	public int? LoadColorTheme() => Load().idColor;
-	public bool LoadIsLockedByAd(string name)
-	{
-		// Si no encontramos el nivel en el estado significa que está bloqueado por defecto
-		List<UnlockedLvlByAd> unlockedLvlByAds = Load().unlockedLvlByAds;
-		if (unlockedLvlByAds == null) return true;
-		unlockedLvlByAds = unlockedLvlByAds.Where(lvl => lvl.lvlName == name).ToList();
-		if (unlockedLvlByAds.Count == 0) return true;
-
-		// Lo hemos encontrado, así que el nivel está desbloqueado por anuncio
-		return false;
-	}
 
 	#endregion
 

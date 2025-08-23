@@ -46,11 +46,14 @@ public class GameManager : MonoBehaviour
 	private void OnEnable()
 	{
 		Actions.onLvlEnd += TimeStop;
+		Actions.startAnimationEnded += InstantiatePlayer;
 	}
 
 	private void OnDisable()
 	{
 		Actions.onLvlEnd -= TimeStop;
+		Actions.startAnimationEnded -= InstantiatePlayer;
+
 	}
 
 	public void SetMapLimits(List<float> limitsFloat)
@@ -60,10 +63,9 @@ public class GameManager : MonoBehaviour
 		limits.Add(Limits.up, limitsFloat[1]);
 		limits.Add(Limits.right, limitsFloat[2]);
 		limits.Add(Limits.bottom, limitsFloat[3]);
-		InitScripts();
 	}
 
-	private void InitScripts()
+	private void InstantiatePlayer()
 	{
 		playerMove = Instantiate(playerPrefab).GetComponentInChildren<PlayerMove>();
 		playerMove.Init();

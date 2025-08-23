@@ -15,10 +15,7 @@ public static class Actions
 	public static Action<GameObject> enemyDestroyed;
 	public static Action<AudioSource> onLvlMusicChange;
 	public static Action<bool> onMute;
-	public static Action<int> showNormalAdd;
-	public static Action<Action> showRewardedAdd;
-	public static Action adStarted;
-	public static Action<bool> adFinished;
+	public static Action startAnimationEnded;
 
 	public enum ChallengeType
 	{

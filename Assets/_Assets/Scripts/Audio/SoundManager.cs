@@ -105,12 +105,6 @@ public class SoundManager : MonoBehaviour
 		Actions.onLvlStart += (lvl) => StartCoroutine(FadePeopleTalking(false));
 		Actions.onNewUIState += OnNewUIState;
 		Actions.onMute += OnMute;
-		Actions.adStarted += () =>
-		{
-			lastVolume = PlayerPrefs.GetInt("mutedVolume", 1);
-			SetVolume(0);
-		};
-		Actions.adFinished += (isRewarded) => SetVolume(lastVolume);
 	}
 
 	private void OnDisable()

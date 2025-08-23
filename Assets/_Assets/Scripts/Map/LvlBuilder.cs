@@ -412,7 +412,6 @@ public class LvlBuilder : MonoBehaviour
 		AccomplishmentsSystem.Instance.AddLvlCompleted();
 		AccomplishmentsSystem.Instance.LvlReached(levelsManagerSO.levels.IndexOf(currentLvl) + 1);
 		Actions.onLvlEnd?.Invoke(true);
-		Actions.showNormalAdd?.Invoke(levelsManagerSO.levels.IndexOf(currentLvl) + 1);
 	}
 
 	// End lvl win/lose
@@ -425,6 +424,8 @@ public class LvlBuilder : MonoBehaviour
 
 	private void CheckCompleteChallenges()
 	{
+		if (currentLvl == null) return;
+
 		// se ejecuta cuando se acaba el nivel
 		float lastTimeChallenge = currentLvl.timeChallenge;
 		float lastHotspot = currentLvl.hotspot;

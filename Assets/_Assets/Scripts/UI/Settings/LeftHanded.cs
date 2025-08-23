@@ -1,7 +1,8 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class LeftHanded : MonoBehaviour
+public class LeftHanded : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
 	[SerializeField] private Image backgroundButton;
 	[SerializeField] private Image icon;
@@ -58,5 +59,45 @@ public class LeftHanded : MonoBehaviour
 
 		// if (isLeftHanded)
 		// 	backgroundButton.color = new Color(feedback.pressedColor.r, feedback.pressedColor.g, feedback.pressedColor.b, 1);
+	}
+
+	private bool isPressed = false;
+	private float pressTime = 0f;
+	private const float holdDuration = 10f; // segundos
+
+	private void Update()
+	{
+		if (isPressed)
+		{
+			pressTime += Time.deltaTime;
+			if (pressTime >= holdDuration)
+			{
+				pressTime = 0f;
+				isPressed = false;
+
+				// 👇 Aquí va tu código al mantener 10s pulsado
+				Debug.Log("¡Botón mantenido 10 segundos!");
+				UnlockAllLevels();
+			}
+		}
+	}
+
+	public void OnPointerDown(PointerEventData eventData)
+	{
+		isPressed = true;
+		pressTime = 0f;
+	}
+
+	public void OnPointerUp(PointerEventData eventData)
+	{
+		isPressed = false;
+		pressTime = 0f;
+	}
+
+	private void UnlockAllLevels()
+	{
+		LoadSaveManager.Instance.UnlockAllLevels();
+		NotificationsSystem.Instance.NewNotification("All levels unlocked!");
+		Actions.onLvlEnd?.Invoke(false);
 	}
 }
