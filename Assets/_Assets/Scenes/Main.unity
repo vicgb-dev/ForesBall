@@ -1479,19 +1479,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063c650a1579379449df00169ee2e5d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsSinceLastAd: 40
-  showAdFromLvl: 33
-  testMode: 0
-  _timeSinceLastAd: 0
-  androidGameId: 5339948
-  androidInterstitial: Interstitial_Android
-  gameId: 
-  iosGameId: 5339949
-  iosInterstitial: Interstitial_iOS
-  interstitialId: 
-  androidRewardedId: Rewarded_Android
-  iosRewardedId: Rewarded_iOS
-  rewardedId: 
 --- !u!4 &191513598
 Transform:
   m_ObjectHideFlags: 0
