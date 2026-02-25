@@ -77,6 +77,7 @@ public class LoadSaveManager : MonoBehaviour
 	{
 		Accomplishments accomplishments = LoadAccomplishments();
 		accomplishments.totalChallengesCompleted = 9999;
+		accomplishments.lvlReached = 9999;
 		SaveAccomplishments(accomplishments);
 	}
 

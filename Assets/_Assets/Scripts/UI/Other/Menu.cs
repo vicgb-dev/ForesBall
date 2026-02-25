@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Menu : MonoBehaviour
@@ -40,19 +41,21 @@ public class Menu : MonoBehaviour
 
 	protected virtual void OnNewUIState(UIState state)
 	{
+		StopAllCoroutines();
 		if (state == childState)
 		{
-			MoveTo(Direction.Center);
+			panelMenu.SetActive(true);
+			StartCoroutine(MoveTo(Direction.Center));
 			blockPanel.SetActive(false);
 		}
 		else
 		{
-			MoveTo(panelDirection);
+			StartCoroutine(MoveTo(panelDirection));
 			blockPanel.SetActive(true);
 		}
 	}
 
-	protected void MoveTo(Direction direction)
+	protected IEnumerator MoveTo(Direction direction)
 	{
 		Vector3 finalPosition;
 
@@ -76,11 +79,13 @@ public class Menu : MonoBehaviour
 				break;
 		}
 
-		StopAllCoroutines();
-		StartCoroutine(UIHelpers.Instance.MovePanel(panelMenu,
+		yield return StartCoroutine(UIHelpers.Instance.MovePanel(panelMenu,
 			panelMenu.transform.localPosition,
 			finalPosition,
 			UIManager.Instance.secondsToMovePanels,
 			UIManager.Instance.curveToMove));
+
+		if (direction != Direction.Center)
+			panelMenu.SetActive(false);
 	}
 }

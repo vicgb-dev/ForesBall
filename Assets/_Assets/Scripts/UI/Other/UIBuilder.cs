@@ -140,11 +140,7 @@ public class UIBuilder : MonoBehaviour
 				}
 				lvlPLvlChooser.transform.GetChild(i).GetChild(1).gameObject.SetActive(false);
 			}
-
-			// Hide unlock by ad panel
-			lvlPLvlChooser.transform.GetChild(i).GetChild(2).gameObject.SetActive(false);
 		}
-
 	}
 
 	void Start()
@@ -181,6 +177,7 @@ public class UIBuilder : MonoBehaviour
 
 		int totalChallengesComplated = LoadSaveManager.Instance.LoadAccomplishments().totalChallengesCompleted;
 		int cont = 1;
+		//levels = new List<LevelSO> { levels[0], levels[1] };
 		foreach (LevelSO level in levels)
 		{
 			currentLvl = level;
@@ -201,8 +198,6 @@ public class UIBuilder : MonoBehaviour
 			// Hide objectives lock panel
 			if (level.objectivesToUnlock <= totalChallengesComplated)
 				lvlPanel.transform.GetChild(1).gameObject.SetActive(false);
-
-			lvlPanel.transform.GetChild(2).gameObject.SetActive(false);
 		}
 		lvlPLvlChooser.GetComponent<LvlSwiper>().Populate();
 		populated = true;

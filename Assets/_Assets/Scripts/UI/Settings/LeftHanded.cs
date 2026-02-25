@@ -98,6 +98,7 @@ public class LeftHanded : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 	{
 		LoadSaveManager.Instance.UnlockAllLevels();
 		NotificationsSystem.Instance.NewNotification("All levels unlocked!");
-		Actions.onLvlEnd?.Invoke(false);
+		// Actions.onLvlStart?.Invoke(LvlBuilder.Instance.GetLevels()[0]);
+		// Actions.onLvlEnd?.Invoke(false);
 	}
 }

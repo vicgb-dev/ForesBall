@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -75,6 +76,7 @@ public class LevelsMenuManager : MonoBehaviour
 		StartCoroutine(UIHelpers.Instance.MovePanel(horizontalScrollBar, horizontalScrollBar.transform.localPosition, scrollBarDownPosition, UIManager.Instance.secondsToMovePanels, UIManager.Instance.curveToMove));
 		StartCoroutine(UIHelpers.Instance.ColorChange(endGameImage, endGameImage.color, endGameAlpha0, UIManager.Instance.secondsToChangeAlpha, UIManager.Instance.curveToMove));
 		StartCoroutine(UIHelpers.Instance.ColorChange(backgroundImg, backgroundImg.color, lvl == null ? backgroundAlpha1 : backgroundAlpha0, UIManager.Instance.secondsToChangeAlpha, UIManager.Instance.curveToMove));
+		StartCoroutine(ToggleLvlChose(false));
 		pBlockTouchGame.SetActive(true);
 	}
 
@@ -90,6 +92,10 @@ public class LevelsMenuManager : MonoBehaviour
 			finalColor = originalColor;
 
 		StopAllCoroutines();
+
+		scrollView.SetActive(true);
+		horizontalScrollBar.SetActive(true);
+
 		StartCoroutine(UIHelpers.Instance.MovePanel(scrollView, scrollView.transform.localPosition, scrollViewDownPosition, UIManager.Instance.secondsToMovePanels, UIManager.Instance.curveToMove));
 		StartCoroutine(UIHelpers.Instance.MovePanel(horizontalScrollBar, horizontalScrollBar.transform.localPosition, scrollBarUpPosition, UIManager.Instance.secondsToMovePanels, UIManager.Instance.curveToMove));
 		StartCoroutine(UIHelpers.Instance.ColorChange(endGameImage, endGameAlpha0, finalColor, UIManager.Instance.secondsToChangeAlpha, UIManager.Instance.curveToMove, () =>
@@ -103,5 +109,13 @@ public class LevelsMenuManager : MonoBehaviour
 	public void UnblockGameview()
 	{
 		pBlockTouchGame.SetActive(false);
+	}
+
+	private IEnumerator ToggleLvlChose(bool active)
+	{
+		yield return new WaitForSeconds(UIManager.Instance.secondsToMovePanels);
+
+		scrollView.SetActive(active);
+		horizontalScrollBar.SetActive(active);
 	}
 }

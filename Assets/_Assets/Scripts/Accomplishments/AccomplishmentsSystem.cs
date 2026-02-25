@@ -63,6 +63,7 @@ public class AccomplishmentsSystem : MonoBehaviour
 
 	private void onLvlStart(LevelSO lvl)
 	{
+		accomplishments = LoadSaveManager.Instance.LoadAccomplishments();
 		timeAlive = 0;
 		songLength = lvl.music.length;
 		LoadSaveManager.Instance.SaveAccomplishments(accomplishments);
