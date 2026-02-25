@@ -159,19 +159,24 @@ public class PostProcessingManager : MonoBehaviour
 		lens.center.value = new Vector2(Mathf.Lerp(0.5f - moveDistorsionX, 0.5f + moveDistorsionX, horizontal), Mathf.Lerp(0.5f - moveDistorsionY, 0.5f + moveDistorsionY, vertical));
 	}
 
+	// 1. Declara el array fuera de la función, como una variable de clase
+	private float[] clipSampleData = new float[1024];
+	private int sampleDataLength = 1024;
+
 	public float CalcularVolumenAudioSource(AudioSource aS)
 	{
 		float clipLoudness = 0;
 
-		int sampleDataLength = 1024;
-		float[] clipSampleData = new float[sampleDataLength];
+		// YA NO CREAMOS EL NEW FLOAT[] AQUÍ
 
-		if (aS != null && (aS.timeSamples + sampleDataLength) < aS.clip.samples)
+		if (aS != null && aS.clip != null && (aS.timeSamples + sampleDataLength) < aS.clip.samples)
 		{
-			aS.clip.GetData(clipSampleData, aS.timeSamples); //I read 1024 samples, which is about 80 ms on a 44khz stereo clip, beginning at the current sample position of the clip.
-			foreach (var sample in clipSampleData)
+			// Reutilizamos el array existente
+			aS.clip.GetData(clipSampleData, aS.timeSamples);
+
+			for (int i = 0; i < sampleDataLength; i++)
 			{
-				clipLoudness += Mathf.Abs(sample);
+				clipLoudness += Mathf.Abs(clipSampleData[i]);
 			}
 			clipLoudness /= sampleDataLength;
 		}
