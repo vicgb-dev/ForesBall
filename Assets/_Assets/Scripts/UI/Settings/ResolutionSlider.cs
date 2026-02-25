@@ -23,7 +23,7 @@ public class ResolutionSlider : CustomSlider
 	{
 		initialResolution = Screen.currentResolution;
 		resolutionOption = PlayerPrefs.GetInt("resolutionOption", 3);
-		Debug.Log($"get opcion {resolutionOption}");
+		Logger.Instance.Log($"get opcion {resolutionOption}");
 		SwitchResolution(resolutionOption);
 		slider.fillAmount = 0.25f + 0.25f * (float)resolutionOption;
 		slider.color = new Color(color.r - 0.2f, color.g - 0.2f, color.b - 0.2f, Tools.Remap(slider.fillAmount, 0, 1, 0.3f, 1));
@@ -53,7 +53,7 @@ public class ResolutionSlider : CustomSlider
 		if (slider.fillAmount != lastFillAmount)
 		{
 			SwitchResolution(resolutionOption);
-			Debug.Log($"set opcion {resolutionOption}");
+			Logger.Instance.Log($"set opcion {resolutionOption}");
 			PlayerPrefs.SetInt("resolutionOption", resolutionOption);
 			lastFillAmount = slider.fillAmount;
 			Vibration.Vibrate(20);

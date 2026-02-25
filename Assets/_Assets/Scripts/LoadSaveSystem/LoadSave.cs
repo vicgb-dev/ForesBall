@@ -29,7 +29,7 @@ public static class Loadsave
 		}
 		else
 		{
-			Debug.LogError("Save file not found in " + path);
+			Logger.Instance.LogError("Save file not found in " + path);
 			return null;
 		}
 	}

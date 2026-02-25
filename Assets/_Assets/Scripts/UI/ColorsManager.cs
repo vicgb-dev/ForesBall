@@ -55,7 +55,7 @@ public class ColorsManager : MonoBehaviour
 		get
 		{
 			if (_instance != null) return _instance;
-			Debug.Log("Buscando singleton en escena");
+			Logger.Instance.Log("Buscando singleton en escena");
 			_instance = FindObjectOfType<ColorsManager>();
 			if (_instance != null) return _instance;
 			var manager = new GameObject("Singleton");
@@ -201,7 +201,7 @@ public class ColorsManager : MonoBehaviour
 	{
 		foreach (ResolutionToggle resolutionToggle in resolutionToggles)
 		{
-			Debug.Log("ChangeSlicedImageColor");
+			Logger.Instance.Log("ChangeSlicedImageColor");
 			resolutionToggle.SetColor(color);
 		}
 	}

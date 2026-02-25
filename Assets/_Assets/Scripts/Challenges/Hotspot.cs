@@ -14,10 +14,10 @@ public class Hotspot : Challenge
 
 	private void Start()
 	{
-		Debug.Log("checking if level is lacrimosa");
+		Logger.Instance.Log("checking if level is lacrimosa");
 		if (LvlBuilder.Instance.GetCurrentLevel().musicName.Contains("lacrimosa"))
 		{
-			Debug.Log("level is lacrimosa");
+			Logger.Instance.Log("level is lacrimosa");
 			// cambiar imagen de sprite por spriteNootNoot
 			sprite.sprite = spriteNootNoot;
 		}

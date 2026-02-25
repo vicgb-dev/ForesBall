@@ -136,7 +136,7 @@ public class CoffeDialogManager : MonoBehaviour
 			}
 		));
 
-		Debug.Log("moviendo el panel a la derecha");
+		Logger.Instance.Log("moviendo el panel a la derecha");
 		StartCoroutine(UIHelpers.Instance.MovePanel(
 			coffeDialogPanel.transform.GetChild(0).gameObject,
 			coffeDialogPanel.transform.localPosition,

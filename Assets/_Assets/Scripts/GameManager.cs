@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 		get
 		{
 			if (_instance != null) return _instance;
-			Debug.Log("Buscando singleton en escena");
+			Logger.Instance.Log("Buscando singleton en escena");
 			_instance = FindObjectOfType<GameManager>();
 			if (_instance != null) return _instance;
 			var manager = new GameObject("Singleton");

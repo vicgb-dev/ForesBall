@@ -16,7 +16,7 @@ public class LeftHanded : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 	private void Start()
 	{
 		isLeftHanded = PlayerPrefs.GetInt("leftHanded", 0) != 1;
-		Debug.Log("isLeftHanded: " + isLeftHanded);
+		Logger.Instance.Log("isLeftHanded: " + isLeftHanded);
 		ToggleLeftHanded();
 		if (!isLeftHanded)
 		{
@@ -30,7 +30,7 @@ public class LeftHanded : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 	{
 		isLeftHanded = !isLeftHanded;
 
-		Debug.Log("toggled isLeftHanded: " + isLeftHanded);
+		Logger.Instance.Log("toggled isLeftHanded: " + isLeftHanded);
 		if (isLeftHanded)
 		{
 			icon.transform.localScale = new Vector3(-1, 1, 1);
@@ -76,7 +76,7 @@ public class LeftHanded : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 				isPressed = false;
 
 				// 👇 Aquí va tu código al mantener 10s pulsado
-				Debug.Log("¡Botón mantenido 10 segundos!");
+				Logger.Instance.Log("¡Botón mantenido 10 segundos!");
 				UnlockAllLevels();
 			}
 		}

@@ -17,11 +17,16 @@ public class CustomizeMenuManager : Menu
 
 	Dictionary<int, GameObject> colorButtons = new Dictionary<int, GameObject>();
 
+	StringTable accomplishmentsTable = null;
+	StringTable colorsTable = null;
+
 	protected override void Awake()
 	{
 		base.Awake();
 		childState = UIState.Customize;
 		panelDirection = Direction.Right;
+		accomplishmentsTable = LocalizationSettings.Instance.GetStringDatabase().GetTable("Accomplishments");
+		colorsTable = LocalizationSettings.Instance.GetStringDatabase().GetTable("Colors");
 		BuildColorsMenu();
 	}
 
@@ -48,9 +53,7 @@ public class CustomizeMenuManager : Menu
 
 				if (accTitle != "")
 				{
-					LocalizationSettings localizationSettings = LocalizationSettings.Instance;
-					StringTable table = localizationSettings.GetStringDatabase().GetTable("Accomplishments");
-					string lolizedTitle = table.GetEntry(accTitle).GetLocalizedString();
+					string lolizedTitle = accomplishmentsTable.GetEntry(accTitle).GetLocalizedString();
 
 					LocalizedString unlockStringEvent = pack.transform.GetChild(0).GetChild(8).GetChild(0).GetComponent<LocalizeStringEvent>().StringReference;
 					//unlockStringEvent.StringReference.SetReference("Colors", "completeToUnlock");
@@ -75,7 +78,7 @@ public class CustomizeMenuManager : Menu
 
 	public void UnlockColor(int idColor)
 	{
-		//Debug.Log($"Desbloquando color {idColor}");
+		//Logger.Instance.Log($"Desbloquando color {idColor}");
 		if (colorButtons.ContainsKey(idColor))
 		{
 			GameObject buttonPack = colorButtons[idColor];
@@ -89,7 +92,7 @@ public class CustomizeMenuManager : Menu
 		}
 		else
 		{
-			Debug.LogWarning($"Hay un accomplishments que desbloquea el color {idColor} pero este no existe");
+			Logger.Instance.LogWarning($"Hay un accomplishments que desbloquea el color {idColor} pero este no existe");
 		}
 	}
 
@@ -102,9 +105,9 @@ public class CustomizeMenuManager : Menu
 		}
 		else
 		{
-			LocalizationSettings localizationSettings = LocalizationSettings.Instance;
-			StringTable table = localizationSettings.GetStringDatabase().GetTable("Colors");
-			string lolizedColor = table.GetEntry(colorsList[0].colorName).GetLocalizedString();
+			if (colorsTable == null)
+				colorsTable = LocalizationSettings.Instance.GetStringDatabase().GetTable("Colors");
+			string lolizedColor = colorsTable.GetEntry(colorsList[0].colorName).GetLocalizedString();
 			return lolizedColor;
 		}
 	}

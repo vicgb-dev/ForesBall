@@ -41,7 +41,7 @@ public class LvlBuilder : MonoBehaviour
 		get
 		{
 			if (_instance != null) return _instance;
-			Debug.Log("Buscando singleton en escena");
+			Logger.Instance.Log("Buscando singleton en escena");
 			_instance = FindObjectOfType<LvlBuilder>();
 			if (_instance != null) return _instance;
 			var manager = new GameObject("Singleton");
@@ -56,7 +56,7 @@ public class LvlBuilder : MonoBehaviour
 		if (savedLevels != null)
 			foreach (SavedLevel savedLevel in savedLevels)
 			{
-				Debug.LogWarning($"savedLevel {savedLevel.lvlName}, {savedLevel.timeChallenge}, {savedLevel.hotspot}, {savedLevel.collectibles}");
+				Logger.Instance.LogWarning($"savedLevel {savedLevel.lvlName}, {savedLevel.timeChallenge}, {savedLevel.hotspot}, {savedLevel.collectibles}");
 				levelsManagerSO.levels.ForEach(lvl =>
 				{
 					if (lvl.name.Equals(savedLevel.lvlName))
@@ -262,10 +262,10 @@ public class LvlBuilder : MonoBehaviour
 			float secondsToDestroy = 0;
 			if (deathTimeStamps != null && deathTimeStamps.Count > counter)
 			{
-				//Debug.Log($"counter es {counter}");
-				//Debug.Log($"deathTimeStamps.Count es {deathTimeStamps.Count}");
+				//Logger.Instance.Log($"counter es {counter}");
+				//Logger.Instance.Log($"deathTimeStamps.Count es {deathTimeStamps.Count}");
 				secondsToDestroy = deathTimeStamps[counter] - timeStamps[counter];
-				Debug.Log($"secondsToDestroy es {secondsToDestroy}");
+				Logger.Instance.Log($"secondsToDestroy es {secondsToDestroy}");
 			}
 
 			counter++;
@@ -462,7 +462,7 @@ public class LvlBuilder : MonoBehaviour
 		}
 
 		AccomplishmentsSystem.Instance.NewTotalChallengesCompleted(totalChallengesCompleted);
-		Debug.LogWarning("GUARDANDO NIVEL");
+		Logger.Instance.LogWarning("GUARDANDO NIVEL");
 		LoadSaveManager.Instance.SaveLevel(new SavedLevel(currentLvl.name, currentLvl.timeChallenge, currentLvl.hotspot, currentLvl.collectibles));
 	}
 

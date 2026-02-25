@@ -27,6 +27,7 @@ public class UIBuilder : MonoBehaviour
 	private LevelSO currentLvl;
 	private int currentLvlIndex;
 	private bool populated;
+	StringTable uiTable = null;
 	// Fit the size of UI to the safe zone of the screen (responsive)
 	private void Awake()
 	{
@@ -78,7 +79,7 @@ public class UIBuilder : MonoBehaviour
 
 	private void DrawChallenges(Transform challenges)
 	{
-		// Debug.LogWarning($"currentLvl {currentLvl.name}");
+		// Logger.Instance.LogWarning($"currentLvl {currentLvl.name}");
 		bool timeChallengeCompleted = currentLvl.timeChallenge == 1;
 		bool hotspotChallengeCompleted = currentLvl.hotspot == 1;
 		bool collectiblesChallengeCompleted = currentLvl.collectibles == 1;
@@ -133,9 +134,7 @@ public class UIBuilder : MonoBehaviour
 			{
 				if (lvlPLvlChooser.transform.GetChild(i).GetChild(1).gameObject.activeSelf)
 				{
-					LocalizationSettings localizationSettings = LocalizationSettings.Instance;
-					StringTable table = localizationSettings.GetStringDatabase().GetTable("UI Text");
-					string newLvlUnlocked = table.GetEntry("newLvlUnlocked").GetLocalizedString();
+					string newLvlUnlocked = uiTable.GetEntry("newLvlUnlocked").GetLocalizedString();
 					NotificationsSystem.Instance.NewNotification(newLvlUnlocked);
 				}
 				lvlPLvlChooser.transform.GetChild(i).GetChild(1).gameObject.SetActive(false);
@@ -145,6 +144,7 @@ public class UIBuilder : MonoBehaviour
 
 	void Start()
 	{
+		uiTable = LocalizationSettings.Instance.GetStringDatabase().GetTable("UI Text");
 		ReorganizeParents();
 		LoadPanelLevels(LvlBuilder.Instance.GetLevels());
 	}
@@ -171,9 +171,7 @@ public class UIBuilder : MonoBehaviour
 	// Create panels to choose level
 	private void LoadPanelLevels(List<LevelSO> levels)
 	{
-		LocalizationSettings localizationSettings = LocalizationSettings.Instance;
-		StringTable table = localizationSettings.GetStringDatabase().GetTable("UI Text");
-		string author = table.GetEntry("author").GetLocalizedString();
+		string author = uiTable.GetEntry("author").GetLocalizedString();
 
 		int totalChallengesComplated = LoadSaveManager.Instance.LoadAccomplishments().totalChallengesCompleted;
 		int cont = 1;

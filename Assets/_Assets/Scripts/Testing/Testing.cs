@@ -7,21 +7,21 @@ public class Testing : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 {
 	public void OnPointerDown(PointerEventData eventData)
 	{
-		Debug.Log("OnPointerDown");
+		Logger.Instance.Log("OnPointerDown");
 	}
 
 	public void OnBeginDrag(PointerEventData eventData)
 	{
-		Debug.Log("OnBeginDrag");
+		Logger.Instance.Log("OnBeginDrag");
 	}
 
 	public void OnEndDrag(PointerEventData eventData)
 	{
-		Debug.Log("OnEndDrag");
+		Logger.Instance.Log("OnEndDrag");
 	}
 
 	public void OnDrag(PointerEventData eventData)
 	{
-		Debug.Log("OnDrag");
+		Logger.Instance.Log("OnDrag");
 	}
 }

@@ -35,8 +35,7 @@ public class ResolutionToggle : MonoBehaviour
 		feedback.SetColorPackSelected(true);
 		slider.color = new Color(feedback.pressedColor.r, feedback.pressedColor.g, feedback.pressedColor.b, 1);
 
-		LocalizationSettings localizationSettings = LocalizationSettings.Instance;
-		StringTable table = localizationSettings.GetStringDatabase().GetTable("UI Text");
+		StringTable table = LocalizationSettings.Instance.GetStringDatabase().GetTable("UI Text");
 		string quality = table.GetEntry("quality").GetLocalizedString();
 
 		string qualityLvl = "";

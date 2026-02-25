@@ -49,7 +49,7 @@ public class ColorPack : MonoBehaviour
 
 	public void SetUp(ColorsSO colors, bool selected)
 	{
-		//Debug.Log($"Color {colors.idColor} {selected}");
+		//Logger.Instance.Log($"Color {colors.idColor} {selected}");
 		colorName.text = colors.colorName;
 		player.color = colors.playerColor;
 		straightEnemy.color = colors.straightEnemyColor;
@@ -69,7 +69,7 @@ public class ColorPack : MonoBehaviour
 		}
 		else
 		{
-			Debug.LogError("Los botones de customizar colores deben tener un ButtonFeedback");
+			Logger.Instance.LogError("Los botones de customizar colores deben tener un ButtonFeedback");
 		}
 		isSeleceted = selected;
 		if (selected)

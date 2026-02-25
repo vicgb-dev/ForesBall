@@ -21,6 +21,7 @@ public class NotificationsSystem : MonoBehaviour
 	Vector3 panelUpPosition;
 	Image fill;
 	bool notificationsEnabled = false;
+	StringTable tableColor = null;
 
 	#region Singleton
 
@@ -30,7 +31,7 @@ public class NotificationsSystem : MonoBehaviour
 		get
 		{
 			if (_instance != null) return _instance;
-			// Debug.Log("Buscando singleton en escena");
+			// Logger.Instance.Log("Buscando singleton en escena");
 			_instance = FindObjectOfType<NotificationsSystem>();
 			if (_instance != null) return _instance;
 			var manager = new GameObject("Singleton");
@@ -41,6 +42,7 @@ public class NotificationsSystem : MonoBehaviour
 
 	private void Awake()
 	{
+		tableColor = LocalizationSettings.Instance.GetStringDatabase().GetTable("Colors");
 		if (_instance != null && _instance != this)
 		{
 			Destroy(this.gameObject);
@@ -114,13 +116,8 @@ public class NotificationsSystem : MonoBehaviour
 
 	public void NewNotificationColorUnlocked(string colorLocalizationKey)
 	{
-
-		LocalizationSettings localizationSettings = LocalizationSettings.Instance;
-		StringTable tableColor = localizationSettings.GetStringDatabase().GetTable("Colors");
 		string colorNameLocalized = tableColor.GetEntry(colorLocalizationKey).GetLocalizedString();
-
-		StringTable tableColorUnlock = localizationSettings.GetStringDatabase().GetTable("Colors");
-		string colorUnlockLocalized = tableColorUnlock.GetEntry("colorUnlocked").GetLocalizedString(new object[] { colorNameLocalized });
+		string colorUnlockLocalized = tableColor.GetEntry("colorUnlocked").GetLocalizedString(new object[] { colorNameLocalized });
 
 		if (!notificationsEnabled) return;
 		notifications.Add(colorUnlockLocalized.ToLower());

@@ -17,7 +17,7 @@ public static class LoadSaveEncrypted
 		if (File.Exists(path))
 			File.Delete(path);
 
-		Debug.LogWarning("Fichero de guardado borrado");
+		Logger.Instance.LogWarning("Fichero de guardado borrado");
 	}
 
 	public static void Save(GameState gameState)
@@ -46,7 +46,7 @@ public static class LoadSaveEncrypted
 	{
 		// Leer la matriz de bytes cifrada del archivo de guardado
 		string path = Application.persistentDataPath + fileName;
-		//Debug.Log(path);
+		//Logger.Instance.Log(path);
 		if (File.Exists(path))
 		{
 			FileStream stream = new FileStream(path, FileMode.Open);
@@ -70,7 +70,7 @@ public static class LoadSaveEncrypted
 		}
 		else
 		{
-			Debug.LogWarning("Fichero no encontrado en: " + path);
+			Logger.Instance.LogWarning("Fichero no encontrado en: " + path);
 			return null;
 		}
 	}

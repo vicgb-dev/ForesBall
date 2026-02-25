@@ -46,7 +46,7 @@ public class SettingsMenuManager : Menu
 
 	public void TestDisbaleCustomAndGameUI()
 	{
-		Debug.Log("quitando");
+		Logger.Instance.Log("quitando");
 		customizeMenu.SetActive(!customizeMenu.activeSelf);
 		gameMenu.SetActive(!gameMenu.activeSelf);
 	}

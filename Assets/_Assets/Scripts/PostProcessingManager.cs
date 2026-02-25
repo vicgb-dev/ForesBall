@@ -44,7 +44,7 @@ public class PostProcessingManager : MonoBehaviour
 		get
 		{
 			if (_instance != null) return _instance;
-			Debug.Log("Buscando singleton en escena");
+			Logger.Instance.Log("Buscando singleton en escena");
 			_instance = FindObjectOfType<PostProcessingManager>();
 			if (_instance != null) return _instance;
 			var manager = new GameObject("Singleton");
@@ -64,7 +64,7 @@ public class PostProcessingManager : MonoBehaviour
 		post = GetComponent<Volume>();
 		postWeight = PlayerPrefs.GetFloat("postWeight", 1);
 		post.weight = postWeight;
-		Debug.Log($"cargado{postWeight}");
+		Logger.Instance.Log($"cargado{postWeight}");
 	}
 
 	#endregion

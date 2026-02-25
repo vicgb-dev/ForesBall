@@ -41,7 +41,7 @@ public class SoundManager : MonoBehaviour
 		get
 		{
 			if (_instance != null) return _instance;
-			Debug.Log("Buscando singleton en escena");
+			Logger.Instance.Log("Buscando singleton en escena");
 			_instance = FindObjectOfType<SoundManager>();
 			if (_instance != null) return _instance;
 			var manager = new GameObject("Singleton");
@@ -248,7 +248,7 @@ public class SoundManager : MonoBehaviour
 
 	private void StopMusicPreview(LevelSO lvl = null)
 	{
-		//Debug.Log("StopMusicPreview");
+		//Logger.Instance.Log("StopMusicPreview");
 		if (musicPreviewCo != null)
 		{
 			StopCoroutine(musicPreviewCo);

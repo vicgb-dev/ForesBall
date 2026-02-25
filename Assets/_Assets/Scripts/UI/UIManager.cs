@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
 		get
 		{
 			if (_instance != null) return _instance;
-			Debug.Log("Buscando singleton en escena");
+			Logger.Instance.Log("Buscando singleton en escena");
 			_instance = FindObjectOfType<UIManager>();
 			if (_instance != null) return _instance;
 			var manager = new GameObject("Singleton");
@@ -110,7 +110,7 @@ public class UIManager : MonoBehaviour
 			Actions.onLvlStart?.Invoke(LvlBuilder.Instance.GetLevels()[currentPanel]);
 		}
 		else
-			Debug.Log($"El nivel {currentPanel + 1} no esta desbloqueado");
+			Logger.Instance.Log($"El nivel {currentPanel + 1} no esta desbloqueado");
 
 		return !(LvlBuilder.Instance.GetLevels()[currentPanel].objectivesToUnlock <= totalChallengesComplated);
 	}

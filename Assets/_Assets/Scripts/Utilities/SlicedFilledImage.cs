@@ -586,7 +586,7 @@ public class SlicedFilledImage : MaskableGraphic, ISerializationCallbackReceiver
 		}
 		catch (UnityException e)
 		{
-			Debug.LogError("Using alphaHitTestMinimumThreshold greater than 0 on Image whose sprite texture cannot be read. " + e.Message + " Also make sure to disable sprite packing for this sprite.", this);
+			Logger.Instance.LogError("Using alphaHitTestMinimumThreshold greater than 0 on Image whose sprite texture cannot be read. " + e.Message + " Also make sure to disable sprite packing for this sprite.");
 			return true;
 		}
 	}

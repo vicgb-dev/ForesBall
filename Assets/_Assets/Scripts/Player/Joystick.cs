@@ -106,7 +106,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 	public void OnDrag(PointerEventData eventData)
 	{
 		if (!isJoystick) return;
-		//Debug.Log("OnDrag");
+		//Logger.Instance.Log("OnDrag");
 		//Vector2 nextPosition = Input.GetTouch(0).position;
 		Vector2 nextPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
@@ -130,7 +130,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler//, IBeg
 		vertical = Mathf.InverseLerp(containerLimitDown + offSetVertical, containerLimitUp - offSetVertical, thisRT.position.y);
 		horizontal = Mathf.InverseLerp(containerLimitLeft + OffSetHorizontal, containerLimitRight - OffSetHorizontal, thisRT.position.x);
 
-		//Debug.Log("V: " + Mathf.Round(vertical * 100) + "% H: " + Mathf.Round(horizontal * 100) + "%");
+		//Logger.Instance.Log("V: " + Mathf.Round(vertical * 100) + "% H: " + Mathf.Round(horizontal * 100) + "%");
 		PostProcessingManager.Instance.ChangeLensDistorsion(horizontal, vertical);
 
 		if (arrows.color.a > 0) arrows.color = new Color(arrows.color.r, arrows.color.g, arrows.color.b, Mathf.Max(arrows.color.a - 0.01f, 0));

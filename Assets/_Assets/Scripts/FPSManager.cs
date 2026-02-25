@@ -14,6 +14,6 @@ public class FPSManager : MonoBehaviour
         // 3. Aplicamos el máximo que el móvil permita
         Application.targetFrameRate = (int)refreshRate;
 
-        Debug.Log($"Pantalla detectada a {refreshRate}Hz. Target FPS ajustado.");
+        Logger.Instance.Log($"Pantalla detectada a {refreshRate}Hz. Target FPS ajustado.");
     }
 }

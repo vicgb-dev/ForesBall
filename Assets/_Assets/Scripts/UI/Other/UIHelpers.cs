@@ -15,7 +15,7 @@ public class UIHelpers : MonoBehaviour
 		get
 		{
 			if (_instance != null) return _instance;
-			Debug.Log("Buscando singleton en escena");
+			Logger.Instance.Log("Buscando singleton en escena");
 			_instance = FindObjectOfType<UIHelpers>();
 			if (_instance != null) return _instance;
 			var manager = new GameObject("Singleton");
@@ -39,7 +39,7 @@ public class UIHelpers : MonoBehaviour
 
 	public IEnumerator MovePanel(GameObject go, Vector3 initialPosition, Vector3 finalPosition, float seconds, AnimationCurve curve, Action callback = null)
 	{
-		//Debug.Log($"Moviendo {go.name} de {initialPosition} a {finalPosition} en {seconds} segundos.");
+		//Logger.Instance.Log($"Moviendo {go.name} de {initialPosition} a {finalPosition} en {seconds} segundos.");
 		RectTransform rT = go.GetComponent<RectTransform>();
 		float time = 0;
 		float elapsedTime = 0;
