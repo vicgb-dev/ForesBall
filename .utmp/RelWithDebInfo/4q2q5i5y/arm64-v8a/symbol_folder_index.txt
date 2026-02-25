@@ -1,0 +1,1 @@
+C:\Development\Projects\ForesBall\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\4q2q5i5y\obj\arm64-v8a
